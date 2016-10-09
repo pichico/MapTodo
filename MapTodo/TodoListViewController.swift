@@ -9,10 +9,12 @@
 import UIKit
 import CoreData
 
-class TodoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TodoListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+
     var todoEntities: [Todo]!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         todoEntities = Todo.mr_findAll() as! [Todo]
@@ -29,12 +31,15 @@ class TodoListViewController: UIViewController, UITableViewDelegate, UITableView
         // Dispose of any resources that can be recreated.
     }
 
+}
+
+extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoEntities.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem")
         cell.textLabel?.text = todoEntities[indexPath.row].item
         return cell
