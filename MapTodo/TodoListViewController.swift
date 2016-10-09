@@ -7,12 +7,21 @@
 //
 
 import UIKit
+import CoreData
 
-class TodoListViewController: UIViewController {
+class TodoListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
+    var todoEntities: [Todo]!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        todoEntities = Todo.mr_findAll() as! [Todo]
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        todoEntities = Todo.mr_findAll() as! [Todo]
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +29,15 @@ class TodoListViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return todoEntities.count
+    }
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem")
+        cell.textLabel?.text = todoEntities[indexPath.row].item
+        return cell
+    }
 }
 

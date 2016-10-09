@@ -17,6 +17,9 @@
 		7D40730A1DA92DBD005BBBCD /* MapTodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4073091DA92DBD005BBBCD /* MapTodoTests.swift */; };
 		7D4073151DA92DBD005BBBCD /* MapTodoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4073141DA92DBD005BBBCD /* MapTodoUITests.swift */; };
 		7D4073241DA94514005BBBCD /* TodoListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4073231DA94514005BBBCD /* TodoListItemTableViewCell.swift */; };
+		7DAF7B3E1DAA5270009EDC07 /* TodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF7B3D1DAA5270009EDC07 /* TodoItemViewController.swift */; };
+		7DAF7B4D1DAA9A8D009EDC07 /* Todo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF7B4B1DAA9A8D009EDC07 /* Todo+CoreDataClass.swift */; };
+		7DAF7B4E1DAA9A8D009EDC07 /* Todo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF7B4C1DAA9A8D009EDC07 /* Todo+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +59,9 @@
 		7D4073161DA92DBD005BBBCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D4073221DA93EDF005BBBCD /* MapTodo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MapTodo-Bridging-Header.h"; sourceTree = "<group>"; };
 		7D4073231DA94514005BBBCD /* TodoListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListItemTableViewCell.swift; sourceTree = "<group>"; };
+		7DAF7B3D1DAA5270009EDC07 /* TodoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItemViewController.swift; sourceTree = "<group>"; };
+		7DAF7B4B1DAA9A8D009EDC07 /* Todo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7DAF7B4C1DAA9A8D009EDC07 /* Todo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +132,8 @@
 		7D4072F01DA92DBD005BBBCD /* MapTodo */ = {
 			isa = PBXGroup;
 			children = (
+				7DAF7B4B1DAA9A8D009EDC07 /* Todo+CoreDataClass.swift */,
+				7DAF7B4C1DAA9A8D009EDC07 /* Todo+CoreDataProperties.swift */,
 				7D4072F11DA92DBD005BBBCD /* AppDelegate.swift */,
 				7D4072F31DA92DBD005BBBCD /* TodoListViewController.swift */,
 				7D4072F51DA92DBD005BBBCD /* Main.storyboard */,
@@ -135,6 +143,7 @@
 				7D4072F81DA92DBD005BBBCD /* MapTodo.xcdatamodeld */,
 				7D4073221DA93EDF005BBBCD /* MapTodo-Bridging-Header.h */,
 				7D4073231DA94514005BBBCD /* TodoListItemTableViewCell.swift */,
+				7DAF7B3D1DAA5270009EDC07 /* TodoItemViewController.swift */,
 			);
 			path = MapTodo;
 			sourceTree = "<group>";
@@ -343,9 +352,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D4072F41DA92DBD005BBBCD /* TodoListViewController.swift in Sources */,
+				7DAF7B3E1DAA5270009EDC07 /* TodoItemViewController.swift in Sources */,
 				7D4072FA1DA92DBD005BBBCD /* MapTodo.xcdatamodeld in Sources */,
+				7DAF7B4E1DAA9A8D009EDC07 /* Todo+CoreDataProperties.swift in Sources */,
 				7D4073241DA94514005BBBCD /* TodoListItemTableViewCell.swift in Sources */,
 				7D4072F21DA92DBD005BBBCD /* AppDelegate.swift in Sources */,
+				7DAF7B4D1DAA9A8D009EDC07 /* Todo+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
