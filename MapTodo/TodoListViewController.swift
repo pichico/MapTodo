@@ -44,5 +44,13 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = todoEntities[indexPath.row].item
         return cell
     }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            todoEntities.remove(at: indexPath.row).mr_deleteEntity()
+            NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
+            tableView.reloadData()
+        }
+    }
 }
 
