@@ -12,11 +12,24 @@ import CoreData
 class TodoItemViewController: UIViewController {
 
     @IBOutlet weak var todoField: UITextField!
+    @IBOutlet weak var placePickerView: UIPickerView!
+    var task: Todo? = nil
+    var places: [Place]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        placePickerView.delegate = self
+        placePickerView.dataSource = self
+        if let taskTodo = task {
+            todoField.text = taskTodo.item
+        }
+        places = Place.mr_findAll() as! [Place]
+    }
 
-        // Do any additional setup after loading the view.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        places = Place.mr_findAll() as! [Place]
+        placePickerView.reloadAllComponents()
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,20 +43,38 @@ class TodoItemViewController: UIViewController {
     }
 
     @IBAction func save(_ sender: UIBarButtonItem) {
-        let newTask: Todo = Todo.mr_createEntity()!
-        newTask.item = todoField.text
-        newTask.managedObjectContext!.mr_saveToPersistentStoreAndWait()
+        if task != nil {
+            editTask()
+        } else {
+            createTask()
+        }
         navigationController!.popViewController(animated: true)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func createTask() {
+        let newTask: Todo = Todo.mr_createEntity()!
+        newTask.item = todoField.text
+        newTask.managedObjectContext!.mr_saveToPersistentStoreAndWait()
     }
-    */
+    
+    func editTask() {
+        task?.item = todoField.text
+        task?.managedObjectContext!.mr_saveToPersistentStoreAndWait()
+    }
+}
 
+extension TodoItemViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+
+    @available(iOS 2.0, *)
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return places.count
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return places[row].name
+    }
 }

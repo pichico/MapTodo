@@ -30,7 +30,14 @@ class TodoListViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "edit" {
+            let todoController = segue.destination as! TodoItemViewController
+            let task = todoEntities[tableView.indexPathForSelectedRow!.row]
+            todoController.task = task
+        }
+    }    
 }
 
 extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
