@@ -13,6 +13,7 @@ class TodoItemViewController: UIViewController {
 
     @IBOutlet weak var todoField: UITextField!
     @IBOutlet weak var placePickerView: UIPickerView!
+
     var task: Todo? = nil
     var places: [Place]!
 

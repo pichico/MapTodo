@@ -56,7 +56,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="tableView" destination="HZk-Ha-3sB" id="8nN-UZ-MaI"/>
+                        <outlet property="todoListTableView" destination="HZk-Ha-3sB" id="oRu-ia-fg8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -150,6 +150,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="eh3-Mf-oBv" id="IFs-Hf-7tY"/>
+                                    <outlet property="delegate" destination="eh3-Mf-oBv" id="b9M-Bo-puy"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

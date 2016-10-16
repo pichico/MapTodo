@@ -11,8 +11,9 @@ import CoreData
 
 class PlaceViewController: UIViewController {
 
-    var place : Place? = nil
     @IBOutlet weak var placeNameTextField: UITextField!
+
+    var place : Place? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,17 @@ class PlaceViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func createPlace() {
+        let newPlace: Place = Place.mr_createEntity()!
+        newPlace.name = placeNameTextField.text
+        newPlace.managedObjectContext?.mr_saveToPersistentStoreAndWait()
+    }
+
+    func editTask() {
+        place?.name = placeNameTextField.text
+        place?.managedObjectContext?.mr_saveToPersistentStoreAndWait()
+    }
+
     @IBAction func save(_ sender: AnyObject) {
         if place == nil {
             createPlace()
@@ -37,16 +49,5 @@ class PlaceViewController: UIViewController {
 
     @IBAction func cancel(_ sender: AnyObject) {
         navigationController!.popViewController(animated: true)
-    }
-
-    func createPlace() {
-        let newPlace: Place = Place.mr_createEntity()!
-        newPlace.name = placeNameTextField.text
-        newPlace.managedObjectContext?.mr_saveToPersistentStoreAndWait()
-    }
-
-    func editTask() {
-        place?.name = placeNameTextField.text
-        place?.managedObjectContext?.mr_saveToPersistentStoreAndWait()
     }
 }

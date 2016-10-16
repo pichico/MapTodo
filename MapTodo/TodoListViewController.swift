@@ -11,7 +11,7 @@ import CoreData
 
 class TodoListViewController: UIViewController {
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var todoListTableView: UITableView!
 
     var todoEntities: [Todo]!
 
@@ -23,7 +23,7 @@ class TodoListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         todoEntities = Todo.mr_findAll() as! [Todo]
-        tableView.reloadData()
+        todoListTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,7 +34,7 @@ class TodoListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "edit" {
             let todoController = segue.destination as! TodoItemViewController
-            todoController.task = todoEntities[tableView.indexPathForSelectedRow!.row]
+            todoController.task = todoEntities[todoListTableView.indexPathForSelectedRow!.row]
         }
     }    
 }

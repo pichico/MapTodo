@@ -12,13 +12,12 @@ import CoreData
 class PlaceListViewController: UIViewController {
 
     @IBOutlet weak var placeListTableView: UITableView!
+
     var placeEntities: [Place]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         placeEntities = Place.mr_findAll() as! [Place]!
-        placeListTableView.delegate = self
-        placeListTableView.dataSource = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
