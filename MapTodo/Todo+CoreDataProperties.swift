@@ -2,13 +2,12 @@
 //  Todo+CoreDataProperties.swift
 //  MapTodo
 //
-//  Created by Hitomi Fukushima on 2016/10/10.
+//  Created by Hitomi Fukushima on 2016/10/15.
 //  Copyright © 2016年 fukushima. All rights reserved.
 //
 
 import Foundation
 import CoreData
-
 
 extension Todo {
 
@@ -17,5 +16,6 @@ extension Todo {
     }
 
     @NSManaged public var item: String?
+    @NSManaged public var place: Place?
 
 }

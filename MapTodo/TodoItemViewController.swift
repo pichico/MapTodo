@@ -18,12 +18,15 @@ class TodoItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        places = Place.mr_findAll() as! [Place]
         placePickerView.delegate = self
         placePickerView.dataSource = self
         if let taskTodo = task {
             todoField.text = taskTodo.item
+            if let index = places.index(where: {$0 === taskTodo.place}) {
+                placePickerView.selectRow(index, inComponent: 0, animated: false)
+            }
         }
-        places = Place.mr_findAll() as! [Place]
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -54,11 +57,13 @@ class TodoItemViewController: UIViewController {
     func createTask() {
         let newTask: Todo = Todo.mr_createEntity()!
         newTask.item = todoField.text
+        newTask.place = places[placePickerView.selectedRow(inComponent: 0)]
         newTask.managedObjectContext!.mr_saveToPersistentStoreAndWait()
     }
     
     func editTask() {
         task?.item = todoField.text
+        task?.place = places[placePickerView.selectedRow(inComponent: 0)]
         task?.managedObjectContext!.mr_saveToPersistentStoreAndWait()
     }
 }

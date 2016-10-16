@@ -16,8 +16,9 @@ class PlaceViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        if place != nil {
+            placeNameTextField.text = place?.name
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,7 +27,11 @@ class PlaceViewController: UIViewController {
     }
 
     @IBAction func save(_ sender: AnyObject) {
-        createPlace()
+        if place == nil {
+            createPlace()
+        } else {
+            editTask()
+        }
         navigationController!.popViewController(animated: true)
     }
 
@@ -38,5 +43,10 @@ class PlaceViewController: UIViewController {
         let newPlace: Place = Place.mr_createEntity()!
         newPlace.name = placeNameTextField.text
         newPlace.managedObjectContext?.mr_saveToPersistentStoreAndWait()
+    }
+
+    func editTask() {
+        place?.name = placeNameTextField.text
+        place?.managedObjectContext?.mr_saveToPersistentStoreAndWait()
     }
 }

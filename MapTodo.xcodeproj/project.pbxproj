@@ -23,6 +23,7 @@
 		7DAF7B4E1DAA9A8D009EDC07 /* Todo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF7B4C1DAA9A8D009EDC07 /* Todo+CoreDataProperties.swift */; };
 		7DAF7B511DAB857F009EDC07 /* Place+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF7B4F1DAB857F009EDC07 /* Place+CoreDataClass.swift */; };
 		7DAF7B521DAB857F009EDC07 /* Place+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF7B501DAB857F009EDC07 /* Place+CoreDataProperties.swift */; };
+		7DED36F31DB367F9002CB35C /* PlaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DED36F21DB367F9002CB35C /* PlaceListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		7DAF7B4C1DAA9A8D009EDC07 /* Todo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7DAF7B4F1DAB857F009EDC07 /* Place+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Place+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7DAF7B501DAB857F009EDC07 /* Place+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Place+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7DED36F21DB367F9002CB35C /* PlaceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				7D4073231DA94514005BBBCD /* TodoListItemTableViewCell.swift */,
 				7DAF7B3D1DAA5270009EDC07 /* TodoItemViewController.swift */,
 				7D03CE491DABCDBB0096D2FE /* PlaceViewController.swift */,
+				7DED36F21DB367F9002CB35C /* PlaceListViewController.swift */,
 			);
 			path = MapTodo;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DED36F31DB367F9002CB35C /* PlaceListViewController.swift in Sources */,
 				7D4072F41DA92DBD005BBBCD /* TodoListViewController.swift in Sources */,
 				7DAF7B3E1DAA5270009EDC07 /* TodoItemViewController.swift in Sources */,
 				7D4072FA1DA92DBD005BBBCD /* MapTodo.xcdatamodeld in Sources */,

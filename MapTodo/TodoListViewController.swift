@@ -34,8 +34,7 @@ class TodoListViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "edit" {
             let todoController = segue.destination as! TodoItemViewController
-            let task = todoEntities[tableView.indexPathForSelectedRow!.row]
-            todoController.task = task
+            todoController.task = todoEntities[tableView.indexPathForSelectedRow!.row]
         }
     }    
 }
