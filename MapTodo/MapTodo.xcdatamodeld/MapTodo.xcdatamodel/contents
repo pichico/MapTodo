@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15F34" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Place" representedClassName=".Place" syncable="YES">
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="todo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" syncable="YES"/>
     </entity>
@@ -9,7 +11,7 @@
         <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Place" positionX="-54" positionY="0" width="128" height="75"/>
+        <element name="Place" positionX="-54" positionY="0" width="128" height="105"/>
         <element name="Todo" positionX="-63" positionY="-18" width="128" height="75"/>
     </elements>
 </model>

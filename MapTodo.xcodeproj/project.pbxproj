@@ -24,6 +24,7 @@
 		7DAF7B511DAB857F009EDC07 /* Place+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF7B4F1DAB857F009EDC07 /* Place+CoreDataClass.swift */; };
 		7DAF7B521DAB857F009EDC07 /* Place+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF7B501DAB857F009EDC07 /* Place+CoreDataProperties.swift */; };
 		7DED36F31DB367F9002CB35C /* PlaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DED36F21DB367F9002CB35C /* PlaceListViewController.swift */; };
+		7DED36F91DB39FA3002CB35C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DED36F81DB39FA3002CB35C /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		7DAF7B4F1DAB857F009EDC07 /* Place+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Place+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7DAF7B501DAB857F009EDC07 /* Place+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Place+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7DED36F21DB367F9002CB35C /* PlaceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceListViewController.swift; sourceTree = "<group>"; };
+		7DED36F81DB39FA3002CB35C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DED36F91DB39FA3002CB35C /* MapKit.framework in Frameworks */,
 				657BAA463CF27EE62F3DEAAE /* libPods-MapTodo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -110,6 +113,7 @@
 		49EC4633866E7C05320C7943 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7DED36F81DB39FA3002CB35C /* MapKit.framework */,
 				18276F0B0DF89FB2803B93E8 /* libPods-MapTodo.a */,
 			);
 			name = Frameworks;
@@ -281,6 +285,7 @@
 				TargetAttributes = {
 					7D4072ED1DA92DBC005BBBCD = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = A6FF7AML57;
 						ProvisioningStyle = Automatic;
 					};
 					7D4073041DA92DBD005BBBCD = {
@@ -500,7 +505,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -543,7 +548,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -556,9 +561,10 @@
 			baseConfigurationReference = 78175912D9D700936452644C /* Pods-MapTodo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = A6FF7AML57;
 				INFOPLIST_FILE = MapTodo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.dena.studev.team-test.MapTodo";
+				PRODUCT_BUNDLE_IDENTIFIER = hitomifukushima;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/MapTodo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -570,9 +576,10 @@
 			baseConfigurationReference = 4D95BCFF8BED242295F3FFE5 /* Pods-MapTodo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = A6FF7AML57;
 				INFOPLIST_FILE = MapTodo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.dena.studev.team-test.MapTodo";
+				PRODUCT_BUNDLE_IDENTIFIER = hitomifukushima;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/MapTodo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
