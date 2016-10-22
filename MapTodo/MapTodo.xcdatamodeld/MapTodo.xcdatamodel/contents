@@ -4,11 +4,11 @@
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="todo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" syncable="YES"/>
+        <relationship name="todo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="place" inverseEntity="Todo" syncable="YES"/>
     </entity>
     <entity name="Todo" representedClassName=".Todo" syncable="YES">
         <attribute name="item" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" syncable="YES"/>
+        <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="todo" inverseEntity="Place" syncable="YES"/>
     </entity>
     <elements>
         <element name="Place" positionX="-54" positionY="0" width="128" height="105"/>

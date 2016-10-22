@@ -71,7 +71,6 @@ class TodoItemViewController: UIViewController {
 
 extension TodoItemViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
-    @available(iOS 2.0, *)
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

@@ -18,6 +18,7 @@ class PlaceViewController: UIViewController {
     var place: Place? = nil
     var latitude: NSNumber? = nil
     var longitude: NSNumber? = nil
+    var todoEntities: [Todo] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,8 @@ class PlaceViewController: UIViewController {
                     animated:true)
             }
             placeNameTextField.text = place?.name
+            let predicate: NSPredicate = NSPredicate(format: "place = %@", argumentArray: [place!])
+            todoEntities = Todo.mr_findAll(with: predicate) as! [Todo]
         } else {
             // TODO それっぽい場所に移動
             mapView.setRegion(MKCoordinateRegionMake(CLLocationCoordinate2DMake(35.6581, 139.701742),
@@ -112,4 +115,25 @@ class PlaceViewController: UIViewController {
     @IBAction func cancel(_ sender: AnyObject) {
         navigationController!.popViewController(animated: true)
     }
+}
+
+extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return todoEntities.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem")
+        cell.textLabel?.text = todoEntities[indexPath.row].item
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            todoEntities.remove(at: indexPath.row).mr_deleteEntity()
+            NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
+            tableView.reloadData()
+        }
+    }
+
 }
