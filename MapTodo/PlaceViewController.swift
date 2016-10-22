@@ -16,15 +16,18 @@ class PlaceViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
 
     var place: Place? = nil
-    var latitude: Double? = nil
-    var longitude: Double? = nil
+    var latitude: NSNumber? = nil
+    var longitude: NSNumber? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         if place != nil {
-            mapView.setRegion(MKCoordinateRegionMake(CLLocationCoordinate2DMake(place!.latitude, place!.longitude),
-                                                     MKCoordinateSpanMake(0.005, 0.005)),
-                              animated:true)
+            if place!.latitude != nil &&  place!.longitude != nil {
+                mapView.setRegion(MKCoordinateRegionMake(CLLocationCoordinate2DMake(
+                    place!.latitude as! CLLocationDegrees, place!.longitude as! CLLocationDegrees),
+                    MKCoordinateSpanMake(0.005, 0.005)),
+                    animated:true)
+            }
             placeNameTextField.text = place?.name
         } else {
             // TODO それっぽい場所に移動
@@ -50,8 +53,8 @@ class PlaceViewController: UIViewController {
         //senderから長押しした地図上の座標を取得
         let tappedLocation = sender.location(in: mapView)
         let tappedPoint = mapView.convert(tappedLocation, toCoordinateFrom: mapView)
-        latitude = Double(tappedPoint.latitude)
-        longitude = Double(tappedPoint.longitude)
+        latitude = tappedPoint.latitude as NSNumber?
+        longitude = tappedPoint.longitude as NSNumber?
 
         //ピンの生成
         let pin = MKPointAnnotation()
@@ -64,25 +67,46 @@ class PlaceViewController: UIViewController {
     func createPlace() {
         let newPlace: Place = Place.mr_createEntity()!
         newPlace.name = placeNameTextField.text
-        newPlace.latitude = latitude!
-        newPlace.longitude = longitude!
+        newPlace.latitude = latitude
+        newPlace.longitude = longitude
         newPlace.managedObjectContext?.mr_saveToPersistentStoreAndWait()
     }
 
     func editTask() {
         place?.name = placeNameTextField.text
-        place?.latitude = latitude!
-        place?.longitude = longitude!
+        place?.latitude = latitude
+        place?.longitude = longitude
+        place?.managedObjectContext?.mr_saveToPersistentStoreAndWait()
+    }
+
+    func replacePlace() {
+        if place == nil {
+            place = Place.mr_createEntity()!
+        }
+        place?.name = placeNameTextField.text
+        place?.latitude = latitude
+        place?.longitude = longitude
         place?.managedObjectContext?.mr_saveToPersistentStoreAndWait()
     }
 
     @IBAction func save(_ sender: AnyObject) {
-        if place == nil {
-            createPlace()
+        if latitude == nil {
+            let alert: UIAlertController = UIAlertController(title: "場所の指定がされていません", message: "近くに来たときに通知するには、地図を長押しして地点を指定して下さい", preferredStyle:  UIAlertControllerStyle.alert)
+            let defaultAction: UIAlertAction = UIAlertAction(title: "場所を指定せずに保存", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                self.replacePlace()
+                self.navigationController!.popViewController(animated: true)
+            })
+            let cancelAction: UIAlertAction = UIAlertAction(title: "場所を指定する", style: UIAlertActionStyle.cancel, handler:{
+                (action: UIAlertAction!) -> Void in
+            })
+            alert.addAction(cancelAction)
+            alert.addAction(defaultAction)
+            present(alert, animated: true, completion: nil)
         } else {
-            editTask()
+            replacePlace()
+            navigationController!.popViewController(animated: true)
         }
-        navigationController!.popViewController(animated: true)
     }
 
     @IBAction func cancel(_ sender: AnyObject) {
