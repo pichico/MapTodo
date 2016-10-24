@@ -287,6 +287,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = A6FF7AML57;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					7D4073041DA92DBD005BBBCD = {
 						CreatedOnToolsVersion = 8.0;
@@ -564,7 +569,7 @@
 				DEVELOPMENT_TEAM = A6FF7AML57;
 				INFOPLIST_FILE = MapTodo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = hitomifukushima;
+				PRODUCT_BUNDLE_IDENTIFIER = hitomifukushima.maptodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/MapTodo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -579,7 +584,7 @@
 				DEVELOPMENT_TEAM = A6FF7AML57;
 				INFOPLIST_FILE = MapTodo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = hitomifukushima;
+				PRODUCT_BUNDLE_IDENTIFIER = hitomifukushima.maptodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/MapTodo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

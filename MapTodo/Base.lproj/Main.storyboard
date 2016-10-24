@@ -48,7 +48,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Todo List" id="yua-f5-ye5">
-                        <barButtonItem key="leftBarButtonItem" title="places" id="hrp-cm-k0w">
+                        <barButtonItem key="leftBarButtonItem" title="place" id="hrp-cm-k0w">
                             <connections>
                                 <segue destination="eh3-Mf-oBv" kind="show" id="myv-RJ-RBX"/>
                             </connections>
