@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E849C7407619323E47C23802'
+               BlueprintIdentifier = 'E7E3AE29348BC3E9EF83A9F0'
                BlueprintName = 'Pods-MapTodo'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-MapTodo.a'>
+               BuildableName = 'Pods_MapTodo.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
