@@ -20,8 +20,6 @@ class TodoItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         places = Place.mr_findAll() as! [Place]
-        placePickerView.delegate = self
-        placePickerView.dataSource = self
         if let taskTodo = task {
             todoField.text = taskTodo.item
             if let index = places.index(where: {$0 === taskTodo.place}) {
