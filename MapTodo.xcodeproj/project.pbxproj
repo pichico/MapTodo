@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		657BAA463CF27EE62F3DEAAE /* libPods-MapTodo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 18276F0B0DF89FB2803B93E8 /* libPods-MapTodo.a */; };
 		7D03CE4A1DABCDBB0096D2FE /* PlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D03CE491DABCDBB0096D2FE /* PlaceViewController.swift */; };
 		7D4072F21DA92DBD005BBBCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4072F11DA92DBD005BBBCD /* AppDelegate.swift */; };
 		7D4072F41DA92DBD005BBBCD /* TodoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4072F31DA92DBD005BBBCD /* TodoListViewController.swift */; };
@@ -25,6 +24,7 @@
 		7DAF7B521DAB857F009EDC07 /* Place+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF7B501DAB857F009EDC07 /* Place+CoreDataProperties.swift */; };
 		7DED36F31DB367F9002CB35C /* PlaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DED36F21DB367F9002CB35C /* PlaceListViewController.swift */; };
 		7DED36F91DB39FA3002CB35C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DED36F81DB39FA3002CB35C /* MapKit.framework */; };
+		86F249F6856FB96778277343 /* Pods_MapTodo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCCBA5EF7125B2EA95C64F6 /* Pods_MapTodo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,8 +45,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		18276F0B0DF89FB2803B93E8 /* libPods-MapTodo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MapTodo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D95BCFF8BED242295F3FFE5 /* Pods-MapTodo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapTodo.release.xcconfig"; path = "Pods/Target Support Files/Pods-MapTodo/Pods-MapTodo.release.xcconfig"; sourceTree = "<group>"; };
+		5DCCBA5EF7125B2EA95C64F6 /* Pods_MapTodo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapTodo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		78175912D9D700936452644C /* Pods-MapTodo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapTodo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapTodo/Pods-MapTodo.debug.xcconfig"; sourceTree = "<group>"; };
 		7D03CE491DABCDBB0096D2FE /* PlaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceViewController.swift; sourceTree = "<group>"; };
 		7D4072EE1DA92DBD005BBBCD /* MapTodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapTodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,7 +63,6 @@
 		7D4073101DA92DBD005BBBCD /* MapTodoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapTodoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4073141DA92DBD005BBBCD /* MapTodoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTodoUITests.swift; sourceTree = "<group>"; };
 		7D4073161DA92DBD005BBBCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7D4073221DA93EDF005BBBCD /* MapTodo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MapTodo-Bridging-Header.h"; sourceTree = "<group>"; };
 		7D4073231DA94514005BBBCD /* TodoListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoListItemTableViewCell.swift; sourceTree = "<group>"; };
 		7DAF7B3D1DAA5270009EDC07 /* TodoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItemViewController.swift; sourceTree = "<group>"; };
 		7DAF7B4B1DAA9A8D009EDC07 /* Todo+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todo+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -80,7 +79,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DED36F91DB39FA3002CB35C /* MapKit.framework in Frameworks */,
-				657BAA463CF27EE62F3DEAAE /* libPods-MapTodo.a in Frameworks */,
+				86F249F6856FB96778277343 /* Pods_MapTodo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				7DED36F81DB39FA3002CB35C /* MapKit.framework */,
-				18276F0B0DF89FB2803B93E8 /* libPods-MapTodo.a */,
+				5DCCBA5EF7125B2EA95C64F6 /* Pods_MapTodo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -152,7 +151,6 @@
 				7D4072FB1DA92DBD005BBBCD /* Assets.xcassets */,
 				7D4073001DA92DBD005BBBCD /* Info.plist */,
 				7D4072F81DA92DBD005BBBCD /* MapTodo.xcdatamodeld */,
-				7D4073221DA93EDF005BBBCD /* MapTodo-Bridging-Header.h */,
 			);
 			path = MapTodo;
 			sourceTree = "<group>";
@@ -566,7 +564,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hitomifukushima;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/MapTodo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -581,7 +578,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = hitomifukushima;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/MapTodo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
