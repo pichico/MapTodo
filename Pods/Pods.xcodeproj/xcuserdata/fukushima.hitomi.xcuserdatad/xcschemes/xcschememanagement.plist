@@ -12,17 +12,17 @@
 		<key>Pods-MapTodo.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<true/>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>D54AB3ECEB9A8FBA15D4F73CBE326692</key>
+		<key>0F4997DFBBDD365EF94663D00560CBA6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FE64BC3BA86A365E9844205253DE77E0</key>
+		<key>D58D76EC529B4A92F3E5EDADE0A96661</key>
 		<dict>
 			<key>primary</key>
 			<true/>

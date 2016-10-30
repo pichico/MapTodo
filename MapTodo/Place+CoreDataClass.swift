@@ -8,7 +8,7 @@
 
 import Foundation
 import CoreData
-
+import MagicalRecord
 
 public class Place: NSManagedObject {
 
