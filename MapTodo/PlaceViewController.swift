@@ -21,9 +21,12 @@ class PlaceViewController: UIViewController {
     var mapPoint: CLLocationCoordinate2D? = nil
     var todoEntities: [Todo] = []
     var lm: CLLocationManager! = nil
+    var radius = 20.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        lm = CLLocationManager()
+        lm.delegate = self
         if place != nil {
             if place!.latitude != nil &&  place!.longitude != nil {
                 mapView.setRegion(MKCoordinateRegionMake(CLLocationCoordinate2DMake(
@@ -35,8 +38,9 @@ class PlaceViewController: UIViewController {
             let predicate: NSPredicate = NSPredicate(format: "place = %@", argumentArray: [place!])
             todoEntities = Todo.mr_findAll(with: predicate) as! [Todo]
         } else {
-            lm = CLLocationManager()
-            lm.delegate = self
+            //地図を表示する為の設定
+            mapView.delegate=self
+            mapView.showsUserLocation=true //地図上に現在地を表示
             lm.desiredAccuracy = kCLLocationAccuracyBest
             lm.distanceFilter = 300
             lm.startUpdatingLocation()
@@ -52,22 +56,24 @@ class PlaceViewController: UIViewController {
         if sender.state != UIGestureRecognizerState.began {
             return
         }
+        // 既にあるpin、円を消す
+        mapView.removeAnnotations(self.mapView.annotations)
+        for id in mapView.overlays {
+            mapView.remove(id)
+        }
 
-        // 既にあるpinを消す
-        self.mapView.removeAnnotations(self.mapView.annotations)
-
-        //senderから長押しした地図上の座標を取得
         let tappedLocation = sender.location(in: mapView)
         mapPoint = mapView.convert(tappedLocation, toCoordinateFrom: mapView)
 
-        //ピンの生成
-        let pin = MKPointAnnotation()
-        //ピンを置く場所を指定
-        pin.coordinate = mapPoint!
-        print(mapPoint?.latitude)
-        print(mapPoint?.longitude)
         //ピンをMapViewの上に置く
-        self.mapView.addAnnotation(pin)
+        let pin = MKPointAnnotation()
+        pin.coordinate = mapPoint!
+        mapView.addAnnotation(pin)
+
+        //ジオフェンスの範囲表示用
+        let center:CLLocationCoordinate2D = CLLocationCoordinate2DMake(mapPoint!.latitude, mapPoint!.longitude)
+        let circle:MKCircle = MKCircle(center:center , radius: radius)
+        mapView.add(circle)
     }
 
     func replacePlace() {
@@ -78,15 +84,20 @@ class PlaceViewController: UIViewController {
         if mapPoint != nil {
             place?.latitude = mapPoint!.latitude as NSNumber?
             place?.longitude = mapPoint!.longitude as NSNumber?
-            // TODO radius指定できるようにする
-            lm.startMonitoring(for: CLCircularRegion.init(center: mapPoint!, radius: 200, identifier: place!.name!))
+            lm.startMonitoring(for: CLCircularRegion.init(center: mapPoint!, radius: radius, identifier: place!.name!))
         }
-        
         place?.managedObjectContext?.mr_saveToPersistentStoreAndWait()
     }
 
     @IBAction func save(_ sender: AnyObject) {
-        if mapPoint == nil {
+        if placeNameTextField.text == "" {
+            let alert: UIAlertController = UIAlertController(title: "名前を設定して下さい", message: "", preferredStyle:  UIAlertControllerStyle.alert)
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler:{
+                (action: UIAlertAction!) -> Void in
+            })
+            alert.addAction(defaultAction)
+            present(alert, animated: true, completion: nil)
+        } else if mapPoint == nil {
             let alert: UIAlertController = UIAlertController(title: "場所の指定がされていません", message: "近くに来たときに通知するには、地図を長押しして地点を指定して下さい", preferredStyle:  UIAlertControllerStyle.alert)
             let defaultAction: UIAlertAction = UIAlertAction(title: "場所を指定せずに保存", style: UIAlertActionStyle.default, handler:{
                 (action: UIAlertAction!) -> Void in
@@ -135,10 +146,10 @@ extension PlaceViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.mapView.setRegion(MKCoordinateRegionMake(
             CLLocationCoordinate2DMake(locations[0].coordinate.latitude, locations[0].coordinate.longitude),
-                                       MKCoordinateSpanMake(0.005, 0.005)), animated:true)
+                                       MKCoordinateSpanMake(0.005, 0.005)), animated:false)
     }
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
-        print("start" + region.identifier)
+        print("didStartMonitoringFor" + region.identifier)
     }
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         print("enter region" + region.identifier)
@@ -158,5 +169,15 @@ extension PlaceViewController: CLLocationManagerDelegate {
         })
         alert.addAction(defaultAction)
         present(alert, animated: true, completion: nil)
+    }
+}
+
+extension PlaceViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let render:MKCircleRenderer = MKCircleRenderer(overlay: overlay)
+        render.strokeColor = UIColor.red
+        render.fillColor = UIColor.red.withAlphaComponent(0.4)
+        render.lineWidth=1
+        return render
     }
 }
