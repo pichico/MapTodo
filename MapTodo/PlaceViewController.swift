@@ -65,12 +65,15 @@ class PlaceViewController: UIViewController {
     func replacePlace() {
         if place == nil {
             place = Place.mr_createEntity()!
+            place!.uuid = NSUUID().uuidString
+        } else {
+            lm.stopMonitoring(for: CLCircularRegion.init(center: mapPoint!, radius: radius, identifier: place!.uuid!))
         }
-        place?.name = placeNameTextField.text
+        place!.name = placeNameTextField.text
         if mapPoint != nil {
-            place?.latitude = mapPoint!.latitude as NSNumber?
-            place?.longitude = mapPoint!.longitude as NSNumber?
-            lm.startMonitoring(for: CLCircularRegion.init(center: mapPoint!, radius: radius, identifier: place!.name!))
+            place!.latitude = mapPoint!.latitude as NSNumber?
+            place!.longitude = mapPoint!.longitude as NSNumber?
+            lm.startMonitoring(for: CLCircularRegion.init(center: mapPoint!, radius: radius, identifier: place!.uuid!))
         }
         place?.managedObjectContext?.mr_saveToPersistentStoreAndWait()
     }
@@ -157,7 +160,9 @@ extension PlaceViewController: CLLocationManagerDelegate {
     }
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         print("enter region" + region.identifier)
-        let alert: UIAlertController = UIAlertController(title: "到着", message: region.identifier as String + "に到着", preferredStyle:  UIAlertControllerStyle.alert)
+        let predicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region.identifier])
+        let place = Place.mr_findFirst(with: predicate)! as Place
+        let alert: UIAlertController = UIAlertController(title: "到着", message: place.name! + "に到着", preferredStyle:  UIAlertControllerStyle.alert)
         let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
             (action: UIAlertAction!) -> Void in
         })
@@ -167,7 +172,9 @@ extension PlaceViewController: CLLocationManagerDelegate {
     }
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         print("exit region" + region.identifier)
-        let alert: UIAlertController = UIAlertController(title: "出発", message: region.identifier as String + "を出発", preferredStyle:  UIAlertControllerStyle.alert)
+        let predicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region.identifier])
+        let place = Place.mr_findFirst(with: predicate)! as Place
+        let alert: UIAlertController = UIAlertController(title: "出発", message: place.name! + "を出発", preferredStyle:  UIAlertControllerStyle.alert)
         let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
             (action: UIAlertAction!) -> Void in
         })
