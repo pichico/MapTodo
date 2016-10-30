@@ -17,32 +17,32 @@ class PlaceViewController: UIViewController {
     @IBOutlet weak var placeNameTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
 
-    var place: Place? = nil
-    var mapPoint: CLLocationCoordinate2D? = nil
-    var todoEntities: [Todo] = []
     var lm: CLLocationManager! = nil
-    var radius = 20.0
+    var mapPoint: CLLocationCoordinate2D? = nil
+    var place: Place? = nil
+    var radius = 20.0 // todo 変数にする
+    var todoEntities: [Todo] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         lm = CLLocationManager()
         lm.delegate = self
+        mapView.delegate=self
+        mapView.showsUserLocation=true //地図上に現在地を表示
         if place != nil {
             if place!.latitude != nil &&  place!.longitude != nil {
-                mapView.setRegion(MKCoordinateRegionMake(CLLocationCoordinate2DMake(
-                    place!.latitude as! CLLocationDegrees, place!.longitude as! CLLocationDegrees),
-                    MKCoordinateSpanMake(0.005, 0.005)),
-                    animated:true)
+                let location2d = CLLocationCoordinate2DMake(
+                    place!.latitude as! CLLocationDegrees, place!.longitude as! CLLocationDegrees)
+                mapView.setRegion(MKCoordinateRegionMake(location2d, MKCoordinateSpanMake(0.005, 0.005)), animated:false)
+                showMonitoringRegion(center: location2d, radius: radius)
             }
             placeNameTextField.text = place?.name
             let predicate: NSPredicate = NSPredicate(format: "place = %@", argumentArray: [place!])
             todoEntities = Todo.mr_findAll(with: predicate) as! [Todo]
         } else {
             //地図を表示する為の設定
-            mapView.delegate=self
-            mapView.showsUserLocation=true //地図上に現在地を表示
             lm.desiredAccuracy = kCLLocationAccuracyBest
-            lm.distanceFilter = 300
+            lm.distanceFilter = 200
             lm.startUpdatingLocation()
         }
     }
@@ -56,24 +56,10 @@ class PlaceViewController: UIViewController {
         if sender.state != UIGestureRecognizerState.began {
             return
         }
-        // 既にあるpin、円を消す
-        mapView.removeAnnotations(self.mapView.annotations)
-        for id in mapView.overlays {
-            mapView.remove(id)
-        }
 
         let tappedLocation = sender.location(in: mapView)
         mapPoint = mapView.convert(tappedLocation, toCoordinateFrom: mapView)
-
-        //ピンをMapViewの上に置く
-        let pin = MKPointAnnotation()
-        pin.coordinate = mapPoint!
-        mapView.addAnnotation(pin)
-
-        //ジオフェンスの範囲表示用
-        let center:CLLocationCoordinate2D = CLLocationCoordinate2DMake(mapPoint!.latitude, mapPoint!.longitude)
-        let circle:MKCircle = MKCircle(center:center , radius: radius)
-        mapView.add(circle)
+        showMonitoringRegion(center: mapPoint, radius: radius)
     }
 
     func replacePlace() {
@@ -87,6 +73,24 @@ class PlaceViewController: UIViewController {
             lm.startMonitoring(for: CLCircularRegion.init(center: mapPoint!, radius: radius, identifier: place!.name!))
         }
         place?.managedObjectContext?.mr_saveToPersistentStoreAndWait()
+    }
+
+    func showMonitoringRegion(center: CLLocationCoordinate2D!, radius: CLLocationDistance) {
+        // 既にあるpin、円を消す
+        mapView.removeAnnotations(self.mapView.annotations)
+        for id in mapView.overlays {
+            mapView.remove(id)
+        }
+
+        //ピンをMapViewの上に置く
+        let pin = MKPointAnnotation()
+        pin.coordinate = center!
+        mapView.addAnnotation(pin)
+
+        //ジオフェンスの範囲表示用
+        let center:CLLocationCoordinate2D = CLLocationCoordinate2DMake(center!.latitude, center!.longitude)
+        let circle:MKCircle = MKCircle(center:center , radius: radius)
+        mapView.add(circle)
     }
 
     @IBAction func save(_ sender: AnyObject) {
