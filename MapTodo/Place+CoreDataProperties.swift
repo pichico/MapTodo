@@ -2,7 +2,7 @@
 //  Place+CoreDataProperties.swift
 //  MapTodo
 //
-//  Created by Hitomi Fukushima on 2016/10/30.
+//  Created by Hitomi Fukushima on 2016/11/05.
 //  Copyright © 2016年 fukushima. All rights reserved.
 //
 
@@ -20,6 +20,7 @@ extension Place {
     @NSManaged public var longitude: NSNumber?
     @NSManaged public var name: String?
     @NSManaged public var uuid: String?
+    @NSManaged public var radius: NSNumber?
     @NSManaged public var todo: NSSet?
 
 }
