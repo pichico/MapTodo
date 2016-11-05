@@ -4,6 +4,7 @@
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="radius" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="uuid" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="todo" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="place" inverseEntity="Todo" syncable="YES"/>
     </entity>
@@ -12,7 +13,7 @@
         <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Place" inverseName="todo" inverseEntity="Place" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Place" positionX="-54" positionY="0" width="128" height="120"/>
+        <element name="Place" positionX="-54" positionY="0" width="128" height="135"/>
         <element name="Todo" positionX="-63" positionY="-18" width="128" height="75"/>
     </elements>
 </model>

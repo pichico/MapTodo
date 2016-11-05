@@ -262,6 +262,7 @@
                     <connections>
                         <outlet property="mapView" destination="j76-g7-uLZ" id="zXs-J4-42p"/>
                         <outlet property="placeNameTextField" destination="kG5-5r-bS7" id="YdH-DV-lX0"/>
+                        <outlet property="radiusStepper" destination="vtr-nT-BmB" id="HET-ws-Rts"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Afz-cZ-8as" userLabel="First Responder" sceneMemberID="firstResponder"/>
