@@ -20,7 +20,7 @@ class PlaceViewController: UIViewController {
     var lm: CLLocationManager! = nil
     var mapPoint: CLLocationCoordinate2D? = nil
     var place: Place? = nil
-    var radius = 20.0 // todo 変数にする
+    var radius = 200.0 // todo 変数にする
     var todoEntities: [Todo] = []
 
     override func viewDidLoad() {
@@ -50,16 +50,6 @@ class PlaceViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    @IBAction func mapLongPressed(_ sender: UILongPressGestureRecognizer) {
-        if sender.state != UIGestureRecognizerState.began {
-            return
-        }
-
-        let tappedLocation = sender.location(in: mapView)
-        mapPoint = mapView.convert(tappedLocation, toCoordinateFrom: mapView)
-        showMonitoringRegion(center: mapPoint, radius: radius)
     }
 
     func replacePlace() {
@@ -94,6 +84,23 @@ class PlaceViewController: UIViewController {
         let center:CLLocationCoordinate2D = CLLocationCoordinate2DMake(center!.latitude, center!.longitude)
         let circle:MKCircle = MKCircle(center:center , radius: radius)
         mapView.add(circle)
+    }
+
+    @IBAction func radiusStepperTapped(_ sender: UIStepper) {
+        radius = sender.value
+        if mapPoint != nil {
+            showMonitoringRegion(center: mapPoint, radius: radius)
+        }
+    }
+
+    @IBAction func mapLongPressed(_ sender: UILongPressGestureRecognizer) {
+        if sender.state != UIGestureRecognizerState.began {
+            return
+        }
+
+        let tappedLocation = sender.location(in: mapView)
+        mapPoint = mapView.convert(tappedLocation, toCoordinateFrom: mapView)
+        showMonitoringRegion(center: mapPoint, radius: radius)
     }
 
     @IBAction func save(_ sender: AnyObject) {
