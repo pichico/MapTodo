@@ -69,9 +69,21 @@ class PlaceViewController: UIViewController {
             place!.radius = radiusStepper.value as NSNumber
             place!.latitude = mapPoint!.latitude as NSNumber?
             place!.longitude = mapPoint!.longitude as NSNumber?
+            // あれ？？もしかしてこれいらない？？？
             lm.startMonitoring(for: CLCircularRegion.init(center: mapPoint!, radius: radiusStepper.value, identifier: place!.uuid!))
         }
         place?.managedObjectContext?.mr_saveToPersistentStoreAndWait()
+        UIApplication.shared.cancelAllLocalNotifications()
+        for p in Place.mr_findAll() as! [Place]! {
+            if p.latitude != nil {
+                let notification = UILocalNotification()
+                notification.alertBody = p.name! + "に到着"
+                notification.regionTriggersOnce = false
+                notification.region = CLCircularRegion.init(center: CLLocationCoordinate2DMake(
+                    p.latitude as! CLLocationDegrees, p.longitude as! CLLocationDegrees), radius: CLLocationDistance(p.radius!), identifier: p.uuid!)
+                UIApplication.shared.scheduleLocalNotification(notification)
+            }
+        }
     }
     
     func showMonitoringRegion(center: CLLocationCoordinate2D!, radius: CLLocationDistance) {
@@ -102,7 +114,7 @@ class PlaceViewController: UIViewController {
         if sender.state != UIGestureRecognizerState.began {
             return
         }
-        if place == nil && lm.monitoredRegions.count >= 2 {
+        if place == nil && lm.monitoredRegions.count >= 20 {
             let alert: UIAlertController = UIAlertController(title: "登録できる地点は20個までです。", message: "どれかを消して下さい。", preferredStyle:  UIAlertControllerStyle.alert)
             let cancelAction: UIAlertAction = UIAlertAction(title: "一覧に戻る", style: UIAlertActionStyle.default, handler:{
                 (action: UIAlertAction!) -> Void in
@@ -189,7 +201,6 @@ extension PlaceViewController: CLLocationManagerDelegate {
         })
         alert.addAction(defaultAction)
         present(alert, animated: true, completion: nil)
-        
     }
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         let predicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region.identifier])
