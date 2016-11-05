@@ -40,8 +40,9 @@ class PlaceViewController: UIViewController {
             placeNameTextField.text = place?.name
             let predicate: NSPredicate = NSPredicate(format: "place = %@", argumentArray: [place!])
             todoEntities = Todo.mr_findAll(with: predicate) as! [Todo]
-        } else {
-            //地図を表示する為の設定
+        }
+        if place == nil || place!.latitude == nil {
+            //デフォルトのmap
             lm.desiredAccuracy = kCLLocationAccuracyBest
             lm.distanceFilter = 200
             lm.startUpdatingLocation()
@@ -58,11 +59,14 @@ class PlaceViewController: UIViewController {
             place = Place.mr_createEntity()!
             place!.uuid = NSUUID().uuidString
         } else {
-            lm.stopMonitoring(for: CLCircularRegion.init(center: mapPoint!, radius: radiusStepper.value, identifier: place!.uuid!))
+            if place!.latitude != nil {
+                lm.stopMonitoring(for: CLCircularRegion.init(center: CLLocationCoordinate2DMake(
+                    place!.latitude as! CLLocationDegrees, place!.longitude as! CLLocationDegrees), radius: place!.radius as! CLLocationDistance, identifier: place!.uuid!))
+            }
         }
         place!.name = placeNameTextField.text
-        place!.radius = radiusStepper.value as NSNumber
         if mapPoint != nil {
+            place!.radius = radiusStepper.value as NSNumber
             place!.latitude = mapPoint!.latitude as NSNumber?
             place!.longitude = mapPoint!.longitude as NSNumber?
             lm.startMonitoring(for: CLCircularRegion.init(center: mapPoint!, radius: radiusStepper.value, identifier: place!.uuid!))
@@ -98,10 +102,23 @@ class PlaceViewController: UIViewController {
         if sender.state != UIGestureRecognizerState.began {
             return
         }
-        
-        let tappedLocation = sender.location(in: mapView)
-        mapPoint = mapView.convert(tappedLocation, toCoordinateFrom: mapView)
-        showMonitoringRegion(center: mapPoint, radius: radiusStepper.value)
+        if place == nil && lm.monitoredRegions.count >= 2 {
+            let alert: UIAlertController = UIAlertController(title: "登録できる地点は20個までです。", message: "どれかを消して下さい。", preferredStyle:  UIAlertControllerStyle.alert)
+            let cancelAction: UIAlertAction = UIAlertAction(title: "一覧に戻る", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                self.navigationController!.popViewController(animated: true)
+            })
+            alert.addAction(cancelAction)
+            let mapResetAction: UIAlertAction = UIAlertAction(title: "地点を保存しない", style: UIAlertActionStyle.cancel, handler:{
+                (action: UIAlertAction!) -> Void in
+            })
+            alert.addAction(mapResetAction)
+            present(alert, animated: true, completion: nil)
+        } else {
+            let tappedLocation = sender.location(in: mapView)
+            mapPoint = mapView.convert(tappedLocation, toCoordinateFrom: mapView)
+            showMonitoringRegion(center: mapPoint, radius: radiusStepper.value)
+        }
     }
     
     @IBAction func save(_ sender: AnyObject) {
@@ -163,11 +180,7 @@ extension PlaceViewController: CLLocationManagerDelegate {
             CLLocationCoordinate2DMake(locations[0].coordinate.latitude, locations[0].coordinate.longitude),
             MKCoordinateSpanMake(0.005, 0.005)), animated:false)
     }
-    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
-        print("didStartMonitoringFor" + region.identifier)
-    }
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        print("enter region" + region.identifier)
         let predicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region.identifier])
         let place = Place.mr_findFirst(with: predicate)! as Place
         let alert: UIAlertController = UIAlertController(title: "到着", message: place.name! + "に到着", preferredStyle:  UIAlertControllerStyle.alert)
@@ -179,7 +192,6 @@ extension PlaceViewController: CLLocationManagerDelegate {
         
     }
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        print("exit region" + region.identifier)
         let predicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region.identifier])
         let place = Place.mr_findFirst(with: predicate)! as Place
         let alert: UIAlertController = UIAlertController(title: "出発", message: place.name! + "を出発", preferredStyle:  UIAlertControllerStyle.alert)
