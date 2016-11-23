@@ -8,13 +8,15 @@
 
 import UIKit
 import CoreData
+import CoreLocation
+
 import MagicalRecord
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var lm: CLLocationManager! = nil
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -22,6 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
         UIApplication.shared.registerUserNotificationSettings(settings)
         UIApplication.shared.registerForRemoteNotifications()
+
+        lm = CLLocationManager()
+        lm.delegate = self
+
         return true
     }
 
@@ -101,5 +107,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+}
+
+extension AppDelegate: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        let predicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region.identifier])
+        let place = Place.mr_findFirst(with: predicate)! as Place
+        let notification = UILocalNotification()
+        notification.alertBody = place.name! + "に到着"
+        UIApplication.shared.scheduleLocalNotification(notification)
+    }
 }
 
