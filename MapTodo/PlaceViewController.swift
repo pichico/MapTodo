@@ -6,94 +6,131 @@
 //  Copyright © 2016年 fukushima. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import CoreLocation
 import MapKit
+import UIKit
+
 
 class PlaceViewController: UIViewController {
-
+    
     @IBOutlet weak var placeNameTextField: UITextField!
+    @IBOutlet weak var radiusStepper: UIStepper!
     @IBOutlet weak var mapView: MKMapView!
-
+    
+    var lm: CLLocationManager! = nil
+    var mapPoint: CLLocationCoordinate2D? = nil
     var place: Place? = nil
-    var latitude: NSNumber? = nil
-    var longitude: NSNumber? = nil
     var todoEntities: [Todo] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        lm = CLLocationManager()
+        lm.delegate = self
+        mapView.delegate=self
+        mapView.showsUserLocation=true //地図上に現在地を表示
         if place != nil {
             if place!.latitude != nil &&  place!.longitude != nil {
-                mapView.setRegion(MKCoordinateRegionMake(CLLocationCoordinate2DMake(
-                    place!.latitude as! CLLocationDegrees, place!.longitude as! CLLocationDegrees),
-                    MKCoordinateSpanMake(0.005, 0.005)),
-                    animated:true)
+                mapPoint = CLLocationCoordinate2DMake(
+                    place!.latitude as! CLLocationDegrees, place!.longitude as! CLLocationDegrees)
+                mapView.setRegion(MKCoordinateRegionMake(mapPoint!, MKCoordinateSpanMake(0.005, 0.005)), animated:false)
+                radiusStepper.value = place?.radius as! Double
+                showMonitoringRegion(center: mapPoint, radius: radiusStepper.value)
             }
             placeNameTextField.text = place?.name
             let predicate: NSPredicate = NSPredicate(format: "place = %@", argumentArray: [place!])
             todoEntities = Todo.mr_findAll(with: predicate) as! [Todo]
-        } else {
-            // TODO それっぽい場所に移動
-            mapView.setRegion(MKCoordinateRegionMake(CLLocationCoordinate2DMake(35.6581, 139.701742),
-                                                 MKCoordinateSpanMake(0.005, 0.005)),
-                                                animated:true)
+        }
+        if place == nil || place!.latitude == nil {
+            //デフォルトのmap
+            lm.desiredAccuracy = kCLLocationAccuracyBest
+            lm.distanceFilter = 200
+            lm.startUpdatingLocation()
         }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func replacePlace() {
+        if place == nil {
+            place = Place.mr_createEntity()!
+            place!.uuid = NSUUID().uuidString
+        } else {
+            if place!.latitude != nil {
+                lm.stopMonitoring(for: CLCircularRegion.init(center: CLLocationCoordinate2DMake(
+                    place!.latitude as! CLLocationDegrees, place!.longitude as! CLLocationDegrees), radius: place!.radius as! CLLocationDistance, identifier: place!.uuid!))
+            }
+        }
+        place!.name = placeNameTextField.text
+        if mapPoint != nil {
+            place!.radius = radiusStepper.value as NSNumber
+            place!.latitude = mapPoint!.latitude as NSNumber?
+            place!.longitude = mapPoint!.longitude as NSNumber?
+            lm.startMonitoring(for: CLCircularRegion.init(center: mapPoint!, radius: radiusStepper.value, identifier: place!.uuid!))
+        }
+        place?.managedObjectContext?.mr_saveToPersistentStoreAndWait()
+        UIApplication.shared.cancelAllLocalNotifications()
+    }
+    
+    func showMonitoringRegion(center: CLLocationCoordinate2D!, radius: CLLocationDistance) {
+        // 既にあるpin、円を消す
+        mapView.removeAnnotations(self.mapView.annotations)
+        for id in mapView.overlays {
+            mapView.remove(id)
+        }
+        
+        //ピンをMapViewの上に置く
+        let pin = MKPointAnnotation()
+        pin.coordinate = center!
+        mapView.addAnnotation(pin)
+        
+        //ジオフェンスの範囲表示用
+        let center:CLLocationCoordinate2D = CLLocationCoordinate2DMake(center!.latitude, center!.longitude)
+        let circle:MKCircle = MKCircle(center:center , radius: radius)
+        mapView.add(circle)
+    }
+    
+    @IBAction func radiusStepperTapped(_ sender: UIStepper) {
+        if mapPoint != nil {
+            showMonitoringRegion(center: mapPoint, radius: sender.value)
+        }
+    }
+    
     @IBAction func mapLongPressed(_ sender: UILongPressGestureRecognizer) {
         if sender.state != UIGestureRecognizerState.began {
             return
         }
-
-        // 既にあるpinを消す
-        self.mapView.removeAnnotations(self.mapView.annotations)
-
-        //senderから長押しした地図上の座標を取得
-        let tappedLocation = sender.location(in: mapView)
-        let tappedPoint = mapView.convert(tappedLocation, toCoordinateFrom: mapView)
-        latitude = tappedPoint.latitude as NSNumber?
-        longitude = tappedPoint.longitude as NSNumber?
-
-        //ピンの生成
-        let pin = MKPointAnnotation()
-        //ピンを置く場所を指定
-        pin.coordinate = tappedPoint
-        //ピンをMapViewの上に置く
-        self.mapView.addAnnotation(pin)
-    }
-
-    func createPlace() {
-        let newPlace: Place = Place.mr_createEntity()!
-        newPlace.name = placeNameTextField.text
-        newPlace.latitude = latitude
-        newPlace.longitude = longitude
-        newPlace.managedObjectContext?.mr_saveToPersistentStoreAndWait()
-    }
-
-    func editTask() {
-        place?.name = placeNameTextField.text
-        place?.latitude = latitude
-        place?.longitude = longitude
-        place?.managedObjectContext?.mr_saveToPersistentStoreAndWait()
-    }
-
-    func replacePlace() {
-        if place == nil {
-            place = Place.mr_createEntity()!
+        if place == nil && lm.monitoredRegions.count >= 20 {
+            let alert: UIAlertController = UIAlertController(title: "登録できる地点は20個までです。", message: "どれかを消して下さい。", preferredStyle:  UIAlertControllerStyle.alert)
+            let cancelAction: UIAlertAction = UIAlertAction(title: "一覧に戻る", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                self.navigationController!.popViewController(animated: true)
+            })
+            alert.addAction(cancelAction)
+            let mapResetAction: UIAlertAction = UIAlertAction(title: "地点を保存しない", style: UIAlertActionStyle.cancel, handler:{
+                (action: UIAlertAction!) -> Void in
+            })
+            alert.addAction(mapResetAction)
+            present(alert, animated: true, completion: nil)
+        } else {
+            let tappedLocation = sender.location(in: mapView)
+            mapPoint = mapView.convert(tappedLocation, toCoordinateFrom: mapView)
+            showMonitoringRegion(center: mapPoint, radius: radiusStepper.value)
         }
-        place?.name = placeNameTextField.text
-        place?.latitude = latitude
-        place?.longitude = longitude
-        place?.managedObjectContext?.mr_saveToPersistentStoreAndWait()
     }
-
+    
     @IBAction func save(_ sender: AnyObject) {
-        if latitude == nil {
+        if placeNameTextField.text == "" {
+            let alert: UIAlertController = UIAlertController(title: "名前を設定して下さい", message: "", preferredStyle:  UIAlertControllerStyle.alert)
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler:{
+                (action: UIAlertAction!) -> Void in
+            })
+            alert.addAction(defaultAction)
+            present(alert, animated: true, completion: nil)
+        } else if mapPoint == nil {
             let alert: UIAlertController = UIAlertController(title: "場所の指定がされていません", message: "近くに来たときに通知するには、地図を長押しして地点を指定して下さい", preferredStyle:  UIAlertControllerStyle.alert)
             let defaultAction: UIAlertAction = UIAlertAction(title: "場所を指定せずに保存", style: UIAlertActionStyle.default, handler:{
                 (action: UIAlertAction!) -> Void in
@@ -111,7 +148,7 @@ class PlaceViewController: UIViewController {
             navigationController!.popViewController(animated: true)
         }
     }
-
+    
     @IBAction func cancel(_ sender: AnyObject) {
         navigationController!.popViewController(animated: true)
     }
@@ -121,13 +158,13 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoEntities.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem")
         cell.textLabel?.text = todoEntities[indexPath.row].item
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             todoEntities.remove(at: indexPath.row).mr_deleteEntity()
@@ -135,5 +172,23 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
             tableView.reloadData()
         }
     }
+    
+}
 
+extension PlaceViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.mapView.setRegion(MKCoordinateRegionMake(
+            CLLocationCoordinate2DMake(locations[0].coordinate.latitude, locations[0].coordinate.longitude),
+            MKCoordinateSpanMake(0.005, 0.005)), animated:false)
+    }
+}
+
+extension PlaceViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let render:MKCircleRenderer = MKCircleRenderer(overlay: overlay)
+        render.strokeColor = UIColor.red
+        render.fillColor = UIColor.red.withAlphaComponent(0.4)
+        render.lineWidth=1
+        return render
+    }
 }
