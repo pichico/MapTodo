@@ -2,12 +2,13 @@
 //  Place+CoreDataProperties.swift
 //  MapTodo
 //
-//  Created by Hitomi Fukushima on 2016/10/16.
+//  Created by Hitomi Fukushima on 2016/11/05.
 //  Copyright © 2016年 fukushima. All rights reserved.
 //
 
 import Foundation
 import CoreData
+
 
 extension Place {
 
@@ -15,9 +16,11 @@ extension Place {
         return NSFetchRequest<Place>(entityName: "Place");
     }
 
-    @NSManaged public var name: String?
     @NSManaged public var latitude: NSNumber?
     @NSManaged public var longitude: NSNumber?
+    @NSManaged public var name: String?
+    @NSManaged public var uuid: String?
+    @NSManaged public var radius: NSNumber?
     @NSManaged public var todo: NSSet?
 
 }

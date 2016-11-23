@@ -52,7 +52,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Todo List" id="yua-f5-ye5">
-                        <barButtonItem key="leftBarButtonItem" title="places" id="hrp-cm-k0w">
+                        <barButtonItem key="leftBarButtonItem" title="place" id="hrp-cm-k0w">
                             <connections>
                                 <segue destination="eh3-Mf-oBv" kind="show" id="myv-RJ-RBX"/>
                             </connections>
@@ -203,15 +203,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kG5-5r-bS7">
-                                <rect key="frame" x="139" y="100" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="j76-g7-uLZ">
-                                <rect key="frame" x="67" y="189" width="240" height="128"/>
+                                <rect key="frame" x="0.0" y="150" width="375" height="217"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
                                 <connections>
@@ -227,7 +220,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3qM-P3-o4A" id="Glk-Wg-5Rb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -237,6 +230,20 @@
                                     <outlet property="delegate" destination="7q1-3Y-g5j" id="INa-f0-YTh"/>
                                 </connections>
                             </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="地名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kG5-5r-bS7">
+                                <rect key="frame" x="22" y="92" width="193" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minimumValue="100" maximumValue="100000" stepValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="vtr-nT-BmB">
+                                <rect key="frame" x="265" y="93" width="94" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="radiusStepperTapped:" destination="7q1-3Y-g5j" eventType="valueChanged" id="WaL-Va-OvG"/>
+                                </connections>
+                            </stepper>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -255,6 +262,7 @@
                     <connections>
                         <outlet property="mapView" destination="j76-g7-uLZ" id="zXs-J4-42p"/>
                         <outlet property="placeNameTextField" destination="kG5-5r-bS7" id="YdH-DV-lX0"/>
+                        <outlet property="radiusStepper" destination="vtr-nT-BmB" id="HET-ws-Rts"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Afz-cZ-8as" userLabel="First Responder" sceneMemberID="firstResponder"/>
