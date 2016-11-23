@@ -26,10 +26,6 @@
 	<string>位置による通知のため</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>地図表示のため</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>location</string>
-	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
