@@ -16,16 +16,13 @@ import MagicalRecord
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var lm: CLLocationManager! = nil
+    let lm: LocationManager = LocationManager.sharedLocationManager
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         MagicalRecord.setupCoreDataStack(withAutoMigratingSqliteStoreNamed: "MapTodo.sqlite")
 
         let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
         UIApplication.shared.registerUserNotificationSettings(settings)
-
-        lm = CLLocationManager()
-        lm.delegate = self
 
         return true
     }
@@ -106,15 +103,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
-}
-
-extension AppDelegate: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        let predicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region.identifier])
-        let place = Place.mr_findFirst(with: predicate)! as Place
-        let notification = UILocalNotification()
-        notification.alertBody = place.name! + "に到着"
-        UIApplication.shared.scheduleLocalNotification(notification)
-    }
 }
 
