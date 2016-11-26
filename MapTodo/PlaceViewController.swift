@@ -18,16 +18,16 @@ class PlaceViewController: UIViewController {
     @IBOutlet weak var radiusStepper: UIStepper!
     @IBOutlet weak var mapView: MKMapView!
     
-    var lm: CLLocationManager! = nil
+    let lm: LocationManager = LocationManager.sharedLocationManager
+    let lmmap: CLLocationManager = CLLocationManager()
     var mapPoint: CLLocationCoordinate2D? = nil
     var place: Place? = nil
     var todoEntities: [Todo] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lm = CLLocationManager()
-        lm.delegate = self
-        mapView.delegate=self
+        mapView.delegate = self
+        lmmap.delegate = self
         mapView.showsUserLocation=true //地図上に現在地を表示
         if place != nil {
             if place!.latitude != nil &&  place!.longitude != nil {
@@ -43,9 +43,9 @@ class PlaceViewController: UIViewController {
         }
         if place == nil || place!.latitude == nil {
             //デフォルトのmap
-            lm.desiredAccuracy = kCLLocationAccuracyBest
-            lm.distanceFilter = 200
-            lm.startUpdatingLocation()
+            lmmap.desiredAccuracy = kCLLocationAccuracyBest
+            lmmap.distanceFilter = 200
+            lmmap.startUpdatingLocation()
         }
     }
     
@@ -60,8 +60,8 @@ class PlaceViewController: UIViewController {
             place!.uuid = NSUUID().uuidString
         } else {
             if place!.latitude != nil {
-                lm.stopMonitoring(for: CLCircularRegion.init(center: CLLocationCoordinate2DMake(
-                    place!.latitude as! CLLocationDegrees, place!.longitude as! CLLocationDegrees), radius: place!.radius as! CLLocationDistance, identifier: place!.uuid!))
+                lm.stopMonitoring(center: CLLocationCoordinate2DMake(
+                    place!.latitude as! CLLocationDegrees, place!.longitude as! CLLocationDegrees), radius: place!.radius as! CLLocationDistance, identifier: place!.uuid!)
             }
         }
         place!.name = placeNameTextField.text
@@ -69,7 +69,7 @@ class PlaceViewController: UIViewController {
             place!.radius = radiusStepper.value as NSNumber
             place!.latitude = mapPoint!.latitude as NSNumber?
             place!.longitude = mapPoint!.longitude as NSNumber?
-            lm.startMonitoring(for: CLCircularRegion.init(center: mapPoint!, radius: radiusStepper.value, identifier: place!.uuid!))
+            lm.startMonitoring(center: mapPoint!, radius: radiusStepper.value, identifier: place!.uuid!)
         }
         place?.managedObjectContext?.mr_saveToPersistentStoreAndWait()
         UIApplication.shared.cancelAllLocalNotifications()
@@ -103,7 +103,7 @@ class PlaceViewController: UIViewController {
         if sender.state != UIGestureRecognizerState.began {
             return
         }
-        if place == nil && lm.monitoredRegions.count >= 20 {
+        if place == nil && lm.monitoredRegionsCount() >= 20 {
             let alert: UIAlertController = UIAlertController(title: "登録できる地点は20個までです。", message: "どれかを消して下さい。", preferredStyle:  UIAlertControllerStyle.alert)
             let cancelAction: UIAlertAction = UIAlertAction(title: "一覧に戻る", style: UIAlertActionStyle.default, handler:{
                 (action: UIAlertAction!) -> Void in

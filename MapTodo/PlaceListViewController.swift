@@ -15,12 +15,10 @@ class PlaceListViewController: UIViewController {
     @IBOutlet weak var placeListTableView: UITableView!
 
     var placeEntities: [Place]!
-    var lm: CLLocationManager! = nil
+    let lm: LocationManager = LocationManager.sharedLocationManager
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        lm = CLLocationManager()
-        lm.delegate = self
         placeEntities = Place.mr_findAll() as! [Place]!
     }
 
@@ -62,16 +60,12 @@ extension PlaceListViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             let place = placeEntities[indexPath.row]
             if place.latitude != nil {
-                lm.stopMonitoring(for: CLCircularRegion.init(center: CLLocationCoordinate2DMake(
-                    place.latitude as! CLLocationDegrees, place.longitude as! CLLocationDegrees), radius: place.radius as! CLLocationDistance, identifier: place.uuid!))
+                lm.stopMonitoring(center: CLLocationCoordinate2DMake(
+                    place.latitude as! CLLocationDegrees, place.longitude as! CLLocationDegrees), radius: place.radius as! CLLocationDistance, identifier: place.uuid!)
             }
             placeEntities.remove(at: indexPath.row).mr_deleteEntity()
             NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
             placeListTableView.reloadData()
         }
     }
-}
-
-extension PlaceListViewController: CLLocationManagerDelegate {
-    
 }
