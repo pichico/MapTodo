@@ -22,6 +22,7 @@
 		7DAF7B4E1DAA9A8D009EDC07 /* Todo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF7B4C1DAA9A8D009EDC07 /* Todo+CoreDataProperties.swift */; };
 		7DAF7B511DAB857F009EDC07 /* Place+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF7B4F1DAB857F009EDC07 /* Place+CoreDataClass.swift */; };
 		7DAF7B521DAB857F009EDC07 /* Place+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF7B501DAB857F009EDC07 /* Place+CoreDataProperties.swift */; };
+		7DBE19611DE976C4008E20DC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE19601DE976C4008E20DC /* LocationManager.swift */; };
 		7DED36F31DB367F9002CB35C /* PlaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DED36F21DB367F9002CB35C /* PlaceListViewController.swift */; };
 		7DED36F91DB39FA3002CB35C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DED36F81DB39FA3002CB35C /* MapKit.framework */; };
 		86F249F6856FB96778277343 /* Pods_MapTodo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCCBA5EF7125B2EA95C64F6 /* Pods_MapTodo.framework */; };
@@ -69,6 +70,7 @@
 		7DAF7B4C1DAA9A8D009EDC07 /* Todo+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Todo+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7DAF7B4F1DAB857F009EDC07 /* Place+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Place+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7DAF7B501DAB857F009EDC07 /* Place+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Place+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7DBE19601DE976C4008E20DC /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7DED36F21DB367F9002CB35C /* PlaceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceListViewController.swift; sourceTree = "<group>"; };
 		7DED36F81DB39FA3002CB35C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -151,6 +153,7 @@
 				7D4072FB1DA92DBD005BBBCD /* Assets.xcassets */,
 				7D4073001DA92DBD005BBBCD /* Info.plist */,
 				7D4072F81DA92DBD005BBBCD /* MapTodo.xcdatamodeld */,
+				7DBE19601DE976C4008E20DC /* LocationManager.swift */,
 			);
 			path = MapTodo;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				7DAF7B521DAB857F009EDC07 /* Place+CoreDataProperties.swift in Sources */,
 				7D4073241DA94514005BBBCD /* TodoListItemTableViewCell.swift in Sources */,
 				7DAF7B511DAB857F009EDC07 /* Place+CoreDataClass.swift in Sources */,
+				7DBE19611DE976C4008E20DC /* LocationManager.swift in Sources */,
 				7D4072F21DA92DBD005BBBCD /* AppDelegate.swift in Sources */,
 				7D03CE4A1DABCDBB0096D2FE /* PlaceViewController.swift in Sources */,
 				7DAF7B4D1DAA9A8D009EDC07 /* Todo+CoreDataClass.swift in Sources */,

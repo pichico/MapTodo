@@ -13,13 +13,10 @@ import UIKit
 class TodoListViewController: UIViewController {
 
     @IBOutlet weak var todoListTableView: UITableView!
-    var lm: CLLocationManager! = nil
     var todoEntities: [Todo]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        lm = CLLocationManager()
-        lm.requestAlwaysAuthorization()
         todoEntities = Todo.mr_findAll() as! [Todo]
     }
 
