@@ -32,6 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         application.applicationIconBadgeNumber = 0
         application.cancelLocalNotification(notification)
+        if let userInfo = notification.userInfo {
+            if let region = userInfo["region"] as! String! {
+                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                let placeViewContoroller = storyboard.instantiateViewController(withIdentifier: "placeView") as! PlaceViewController
+                let predicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region])
+                placeViewContoroller.place = Place.mr_findFirst(with: predicate)! as Place
+                window!.rootViewController?.present(placeViewContoroller, animated: false, completion: nil)
+            }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
