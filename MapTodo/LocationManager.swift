@@ -44,6 +44,7 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
         let place = Place.mr_findFirst(with: predicate)! as Place
         let notification = UILocalNotification()
         notification.alertBody = place.name! + "に到着"
+        notification.applicationIconBadgeNumber = 1
         UIApplication.shared.scheduleLocalNotification(notification)
     }
 }

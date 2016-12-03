@@ -19,12 +19,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let lm: LocationManager = LocationManager.sharedLocationManager
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        application.applicationIconBadgeNumber = 0
         MagicalRecord.setupCoreDataStack(withAutoMigratingSqliteStoreNamed: "MapTodo.sqlite")
 
         let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
         UIApplication.shared.registerUserNotificationSettings(settings)
 
         return true
+    }
+
+    // 通知から起動したときに通知を消す
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        application.applicationIconBadgeNumber = 0
+        application.cancelLocalNotification(notification)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
