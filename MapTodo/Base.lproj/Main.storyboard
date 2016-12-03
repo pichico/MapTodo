@@ -194,7 +194,7 @@
         <!--Place-->
         <scene sceneID="qUF-VC-vNh">
             <objects>
-                <viewController id="7q1-3Y-g5j" customClass="PlaceViewController" customModule="MapTodo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="placeView" id="7q1-3Y-g5j" customClass="PlaceViewController" customModule="MapTodo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zfI-G5-AMK"/>
                         <viewControllerLayoutGuide type="bottom" id="cDX-An-8SP"/>
@@ -220,7 +220,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3qM-P3-o4A" id="Glk-Wg-5Rb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
