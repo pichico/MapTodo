@@ -34,10 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.cancelLocalNotification(notification)
         if let userInfo = notification.userInfo {
             if let region = userInfo["region"] as! String! {
-                let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                let placeViewContoroller = storyboard.instantiateViewController(withIdentifier: "placeView") as! PlaceViewController
                 let predicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region])
                 if let place = Place.mr_findFirst(with: predicate) {
+                    let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                    let placeViewContoroller = storyboard.instantiateViewController(withIdentifier: "placeView") as! PlaceViewController
                     placeViewContoroller.place = place
                     window!.rootViewController?.present(placeViewContoroller, animated: false, completion: nil)
                 }
