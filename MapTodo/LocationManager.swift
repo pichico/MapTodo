@@ -46,6 +46,7 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
         notification.alertBody = place.name! + "に到着"
         notification.userInfo = ["region":region.identifier]
         notification.applicationIconBadgeNumber = 1
+        notification.soundName = UILocalNotificationDefaultSoundName
         UIApplication.shared.scheduleLocalNotification(notification)
     }
 }
