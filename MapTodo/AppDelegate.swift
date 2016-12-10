@@ -28,10 +28,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    // 通知から起動したときに通知を消す
+    // 通知から起動したとき
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         application.applicationIconBadgeNumber = 0
         application.cancelLocalNotification(notification)
+        if let userInfo = notification.userInfo {
+            if let region = userInfo["region"] as! String! {
+                let predicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region])
+                if let place = Place.mr_findFirst(with: predicate) {
+                    let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+                    let placeViewContoroller = storyboard.instantiateViewController(withIdentifier: "placeView") as! PlaceViewController
+                    placeViewContoroller.place = place
+                    window!.rootViewController?.present(placeViewContoroller, animated: false, completion: nil)
+                }
+            }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
