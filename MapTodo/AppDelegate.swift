@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    // 通知から起動したときに通知を消す
+    // 通知から起動したとき
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         application.applicationIconBadgeNumber = 0
         application.cancelLocalNotification(notification)
@@ -37,8 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
                 let placeViewContoroller = storyboard.instantiateViewController(withIdentifier: "placeView") as! PlaceViewController
                 let predicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region])
-                placeViewContoroller.place = Place.mr_findFirst(with: predicate)! as Place
-                window!.rootViewController?.present(placeViewContoroller, animated: false, completion: nil)
+                if let place = Place.mr_findFirst(with: predicate) {
+                    placeViewContoroller.place = place
+                    window!.rootViewController?.present(placeViewContoroller, animated: false, completion: nil)
+                }
             }
         }
     }
