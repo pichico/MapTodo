@@ -29,16 +29,16 @@ class PlaceViewController: UIViewController {
         mapView.delegate = self
         lmmap.delegate = self
         mapView.showsUserLocation=true //地図上に現在地を表示
-        if place != nil {
-            if place!.latitude != nil &&  place!.longitude != nil {
+        if let place = place {
+            if place.latitude != nil &&  place.longitude != nil {
                 mapPoint = CLLocationCoordinate2DMake(
-                    place!.latitude as! CLLocationDegrees, place!.longitude as! CLLocationDegrees)
+                    place.latitude as! CLLocationDegrees, place.longitude as! CLLocationDegrees)
                 mapView.setRegion(MKCoordinateRegionMake(mapPoint!, MKCoordinateSpanMake(0.005, 0.005)), animated:false)
-                radiusStepper.value = place?.radius as! Double
+                radiusStepper.value = place.radius as! Double
                 showMonitoringRegion(center: mapPoint, radius: radiusStepper.value)
             }
-            placeNameTextField.text = place?.name
-            let predicate: NSPredicate = NSPredicate(format: "place = %@", argumentArray: [place!])
+            placeNameTextField.text = place.name
+            let predicate: NSPredicate = NSPredicate(format: "place = %@", argumentArray: [place])
             todoEntities = Todo.mr_findAll(with: predicate) as! [Todo]
         }
         if place == nil || place!.latitude == nil {
