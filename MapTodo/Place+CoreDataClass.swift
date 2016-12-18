@@ -10,6 +10,6 @@ import Foundation
 import CoreData
 import MagicalRecord
 
-public class Place: NSManagedObject {
+open class Place: NSManagedObject {
 
 }
