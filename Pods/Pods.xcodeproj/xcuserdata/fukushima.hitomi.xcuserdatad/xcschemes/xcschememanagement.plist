@@ -14,10 +14,20 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>R.swift.Library.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0F4997DFBBDD365EF94663D00560CBA6</key>
+		<key>600D687B4162B1E8F077C90216371AE2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>60EB4283AE57CF16FD99A7438FB7527B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
