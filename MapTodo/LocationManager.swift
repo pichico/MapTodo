@@ -14,8 +14,8 @@ import MapKit
 
 final class LocationManager: NSObject, CLLocationManagerDelegate {
     static let sharedLocationManager = LocationManager()
-    private let lm: CLLocationManager = CLLocationManager()
-    private override init() {
+    fileprivate let lm: CLLocationManager = CLLocationManager()
+    fileprivate override init() {
         super.init()
         lm.delegate = self
         //lm.requestWhenInUseAuthorization()
@@ -27,11 +27,11 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
 
     }
     
-    func startMonitoring(center: CLLocationCoordinate2D, radius: Double, identifier: String) {
+    func startMonitoring(_ center: CLLocationCoordinate2D, radius: Double, identifier: String) {
         lm.startMonitoring(for: CLCircularRegion.init(center: center, radius: radius, identifier: identifier))
     }
 
-    func stopMonitoring(center: CLLocationCoordinate2D, radius: Double, identifier: String) {
+    func stopMonitoring(_ center: CLLocationCoordinate2D, radius: Double, identifier: String) {
         lm.stopMonitoring(for: CLCircularRegion.init(center: center, radius: radius, identifier: identifier))
     }
     

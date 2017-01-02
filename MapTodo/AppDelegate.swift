@@ -32,14 +32,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         application.applicationIconBadgeNumber = 0
         application.cancelLocalNotification(notification)
+        NSLog("aaaaaa")
         if let userInfo = notification.userInfo {
             if let region = userInfo["region"] as! String! {
                 let predicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region])
                 if let place = Place.mr_findFirst(with: predicate) {
-                    let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-                    let placeViewContoroller = storyboard.instantiateViewController(withIdentifier: "placeView") as! PlaceViewController
-                    placeViewContoroller.place = place
-                    window!.rootViewController?.present(placeViewContoroller, animated: false, completion: nil)
+                    let placeViewController = R.storyboard.main.placeView()!
+                    placeViewController.place = place
+                    window!.rootViewController?.present(placeViewController, animated: false, completion: nil)
                 }
             }
         }
