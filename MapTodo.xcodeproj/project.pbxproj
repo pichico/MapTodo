@@ -25,6 +25,7 @@
 		7DBE19611DE976C4008E20DC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE19601DE976C4008E20DC /* LocationManager.swift */; };
 		7DED36F31DB367F9002CB35C /* PlaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DED36F21DB367F9002CB35C /* PlaceListViewController.swift */; };
 		7DED36F91DB39FA3002CB35C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DED36F81DB39FA3002CB35C /* MapKit.framework */; };
+		7DFD35631E06D05000F02FA0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFD35621E06D05000F02FA0 /* R.generated.swift */; };
 		86F249F6856FB96778277343 /* Pods_MapTodo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCCBA5EF7125B2EA95C64F6 /* Pods_MapTodo.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		7DBE19601DE976C4008E20DC /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7DED36F21DB367F9002CB35C /* PlaceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceListViewController.swift; sourceTree = "<group>"; };
 		7DED36F81DB39FA3002CB35C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		7DFD35621E06D05000F02FA0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 		7D4072F01DA92DBD005BBBCD /* MapTodo */ = {
 			isa = PBXGroup;
 			children = (
+				7DFD35621E06D05000F02FA0 /* R.generated.swift */,
 				7DED36F71DB399E9002CB35C /* Storyboard */,
 				7DED36F61DB399BC002CB35C /* View */,
 				7DED36F51DB398D5002CB35C /* CoreData */,
@@ -223,6 +226,7 @@
 			buildConfigurationList = 7D4073191DA92DBD005BBBCD /* Build configuration list for PBXNativeTarget "MapTodo" */;
 			buildPhases = (
 				A581A5DE3ED7D4A8509F4689 /* Check Pods Manifest.lock */,
+				7DFD35611E06CDEA00F02FA0 /* ShellScript */,
 				7D4072EA1DA92DBC005BBBCD /* Sources */,
 				7D4072EB1DA92DBC005BBBCD /* Frameworks */,
 				7D4072EC1DA92DBC005BBBCD /* Resources */,
@@ -287,6 +291,7 @@
 					7D4072ED1DA92DBC005BBBCD = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = A6FF7AML57;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -296,11 +301,13 @@
 					};
 					7D4073041DA92DBD005BBBCD = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 7D4072ED1DA92DBC005BBBCD;
 					};
 					7D40730F1DA92DBD005BBBCD = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 7D4072ED1DA92DBC005BBBCD;
 					};
@@ -384,6 +391,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapTodo/Pods-MapTodo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7DFD35611E06CDEA00F02FA0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" \"$SRCROOT\"";
+		};
 		A581A5DE3ED7D4A8509F4689 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -412,6 +432,7 @@
 				7D4072FA1DA92DBD005BBBCD /* MapTodo.xcdatamodeld in Sources */,
 				7DAF7B4E1DAA9A8D009EDC07 /* Todo+CoreDataProperties.swift in Sources */,
 				7DAF7B521DAB857F009EDC07 /* Place+CoreDataProperties.swift in Sources */,
+				7DFD35631E06D05000F02FA0 /* R.generated.swift in Sources */,
 				7D4073241DA94514005BBBCD /* TodoListItemTableViewCell.swift in Sources */,
 				7DAF7B511DAB857F009EDC07 /* Place+CoreDataClass.swift in Sources */,
 				7DBE19611DE976C4008E20DC /* LocationManager.swift in Sources */,
@@ -518,6 +539,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -559,6 +581,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 2.3;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

@@ -60,7 +60,7 @@ extension PlaceListViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete {
             let place = placeEntities[indexPath.row]
             if place.latitude != nil {
-                lm.stopMonitoring(center: CLLocationCoordinate2DMake(
+                lm.stopMonitoring(CLLocationCoordinate2DMake(
                     place.latitude as! CLLocationDegrees, place.longitude as! CLLocationDegrees), radius: place.radius as! CLLocationDistance, identifier: place.uuid!)
             }
             placeEntities.remove(at: indexPath.row).mr_deleteEntity()

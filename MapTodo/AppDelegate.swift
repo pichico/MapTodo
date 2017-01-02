@@ -19,12 +19,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let lm: LocationManager = LocationManager.sharedLocationManager
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        application.applicationIconBadgeNumber = 0
         MagicalRecord.setupCoreDataStack(withAutoMigratingSqliteStoreNamed: "MapTodo.sqlite")
 
         let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
         UIApplication.shared.registerUserNotificationSettings(settings)
 
         return true
+    }
+
+    // 通知から起動したとき
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
+        application.applicationIconBadgeNumber = 0
+        application.cancelLocalNotification(notification)
+        NSLog("aaaaaa")
+        if let userInfo = notification.userInfo {
+            if let region = userInfo["region"] as! String! {
+                let predicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region])
+                if let place = Place.mr_findFirst(with: predicate) {
+                    let placeViewController = R.storyboard.main.placeView()!
+                    placeViewController.place = place
+                    window!.rootViewController?.present(placeViewController, animated: false, completion: nil)
+                }
+            }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
