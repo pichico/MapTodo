@@ -35,7 +35,7 @@ class PlaceViewController: UIViewController {
                     place.latitude as! CLLocationDegrees, place.longitude as! CLLocationDegrees)
                 mapView.setRegion(MKCoordinateRegionMake(mapPoint!, MKCoordinateSpanMake(0.005, 0.005)), animated:false)
                 radiusStepper.value = place.radius as! Double
-                showMonitoringRegion(center: mapPoint, radius: radiusStepper.value)
+                showMonitoringRegion(mapPoint, radius: radiusStepper.value)
             }
             placeNameTextField.text = place.name
             let predicate: NSPredicate = NSPredicate(format: "place = %@", argumentArray: [place])
@@ -57,10 +57,10 @@ class PlaceViewController: UIViewController {
     func replacePlace() {
         if place == nil {
             place = Place.mr_createEntity()!
-            place!.uuid = NSUUID().uuidString
+            place!.uuid = UUID().uuidString
         } else {
             if place!.latitude != nil {
-                lm.stopMonitoring(center: CLLocationCoordinate2DMake(
+                lm.stopMonitoring(CLLocationCoordinate2DMake(
                     place!.latitude as! CLLocationDegrees, place!.longitude as! CLLocationDegrees), radius: place!.radius as! CLLocationDistance, identifier: place!.uuid!)
             }
         }
@@ -69,13 +69,13 @@ class PlaceViewController: UIViewController {
             place!.radius = radiusStepper.value as NSNumber
             place!.latitude = mapPoint!.latitude as NSNumber?
             place!.longitude = mapPoint!.longitude as NSNumber?
-            lm.startMonitoring(center: mapPoint!, radius: radiusStepper.value, identifier: place!.uuid!)
+            lm.startMonitoring(mapPoint!, radius: radiusStepper.value, identifier: place!.uuid!)
         }
         place?.managedObjectContext?.mr_saveToPersistentStoreAndWait()
         UIApplication.shared.cancelAllLocalNotifications()
     }
     
-    func showMonitoringRegion(center: CLLocationCoordinate2D!, radius: CLLocationDistance) {
+    func showMonitoringRegion(_ center: CLLocationCoordinate2D!, radius: CLLocationDistance) {
         // 既にあるpin、円を消す
         mapView.removeAnnotations(self.mapView.annotations)
         for id in mapView.overlays {
@@ -95,7 +95,7 @@ class PlaceViewController: UIViewController {
     
     @IBAction func radiusStepperTapped(_ sender: UIStepper) {
         if mapPoint != nil {
-            showMonitoringRegion(center: mapPoint, radius: sender.value)
+            showMonitoringRegion(mapPoint, radius: sender.value)
         }
     }
     
@@ -118,7 +118,7 @@ class PlaceViewController: UIViewController {
         } else {
             let tappedLocation = sender.location(in: mapView)
             mapPoint = mapView.convert(tappedLocation, toCoordinateFrom: mapView)
-            showMonitoringRegion(center: mapPoint, radius: radiusStepper.value)
+            showMonitoringRegion(mapPoint, radius: radiusStepper.value)
         }
     }
     

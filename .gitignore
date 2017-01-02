@@ -1,5 +1,9 @@
 .DS_Store
 *.swp 
+R.generated.swift
 
 UserInterfaceState.xcuserstate
 xcuserdata
+
+vendor/bundle/
+.bundle/

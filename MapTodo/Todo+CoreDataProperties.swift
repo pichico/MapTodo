@@ -11,8 +11,8 @@ import CoreData
 
 extension Todo {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Todo> {
-        return NSFetchRequest<Todo>(entityName: "Todo");
+    @nonobjc open override class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        return NSFetchRequest<Todo>(entityName: "Todo") as! NSFetchRequest<NSFetchRequestResult>;
     }
 
     @NSManaged public var item: String?

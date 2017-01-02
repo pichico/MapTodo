@@ -12,8 +12,8 @@ import CoreData
 
 extension Place {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Place> {
-        return NSFetchRequest<Place>(entityName: "Place");
+    @nonobjc open override class func fetchRequest() -> NSFetchRequest<NSFetchRequestResult> {
+        return NSFetchRequest<Place>(entityName: "Place") as! NSFetchRequest<NSFetchRequestResult>;
     }
 
     @NSManaged public var latitude: NSNumber?

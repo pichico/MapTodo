@@ -10,6 +10,6 @@ import Foundation
 import CoreData
 import MagicalRecord
 
-public class Todo: NSManagedObject {
+open class Todo: NSManagedObject {
 
 }
