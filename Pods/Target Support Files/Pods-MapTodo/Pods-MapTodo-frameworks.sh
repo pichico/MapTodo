@@ -85,7 +85,9 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-MapTodo/MagicalRecord.framework"
+  install_framework "Pods-MapTodo/Rswift.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-MapTodo/MagicalRecord.framework"
+  install_framework "Pods-MapTodo/Rswift.framework"
 fi

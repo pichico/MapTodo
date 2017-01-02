@@ -14,8 +14,8 @@ import MapKit
 
 final class LocationManager: NSObject, CLLocationManagerDelegate {
     static let sharedLocationManager = LocationManager()
-    private let lm: CLLocationManager = CLLocationManager()
-    private override init() {
+    fileprivate let lm: CLLocationManager = CLLocationManager()
+    fileprivate override init() {
         super.init()
         lm.delegate = self
         //lm.requestWhenInUseAuthorization()
@@ -27,11 +27,11 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
 
     }
     
-    func startMonitoring(center: CLLocationCoordinate2D, radius: Double, identifier: String) {
+    func startMonitoring(_ center: CLLocationCoordinate2D, radius: Double, identifier: String) {
         lm.startMonitoring(for: CLCircularRegion.init(center: center, radius: radius, identifier: identifier))
     }
 
-    func stopMonitoring(center: CLLocationCoordinate2D, radius: Double, identifier: String) {
+    func stopMonitoring(_ center: CLLocationCoordinate2D, radius: Double, identifier: String) {
         lm.stopMonitoring(for: CLCircularRegion.init(center: center, radius: radius, identifier: identifier))
     }
     
@@ -40,11 +40,19 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        let predicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region.identifier])
-        let place = Place.mr_findFirst(with: predicate)! as Place
-        let notification = UILocalNotification()
-        notification.alertBody = place.name! + "に到着"
-        UIApplication.shared.scheduleLocalNotification(notification)
+        let placePredicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region.identifier])
+        if let place = Place.mr_findFirst(with: placePredicate) {
+            let todoPredicate: NSPredicate = NSPredicate(format: "place = %@", argumentArray: [place])
+            if let todoEntities = Todo.mr_findFirst(with: todoPredicate) {
+                let notification = UILocalNotification()
+                notification.alertBody = place.name! + "に到着"
+                notification.userInfo = ["region":region.identifier]
+                notification.applicationIconBadgeNumber = 1
+                notification.soundName = UILocalNotificationDefaultSoundName
+                UIApplication.shared.scheduleLocalNotification(notification)
+            } else {
+            }
+        }
     }
 }
 
