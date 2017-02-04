@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LlG-fu-xYr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LlG-fu-xYr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,7 +12,7 @@
         <!--Todo List-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="TodoListViewController" customModule="MapTodo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="todoList" id="BYZ-38-t0r" customClass="TodoListViewController" customModule="MapTodo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -21,18 +21,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HZk-Ha-3sB">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="34" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HZk-Ha-3sB">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" id="xRm-I4-l2t" customClass="TodoListItemTableViewCell" customModule="MapTodo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="toDoListItemCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" rowHeight="34" id="xRm-I4-l2t" customClass="TodoListItemTableViewCell" customModule="MapTodo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="34"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xRm-I4-l2t" id="V5K-gf-91b">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="34"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0e1-zE-9rp">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="33.5"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="0e1-zE-9rp" secondAttribute="bottom" id="Hml-kG-PI4"/>
+                                                <constraint firstItem="0e1-zE-9rp" firstAttribute="top" secondItem="V5K-gf-91b" secondAttribute="top" id="dJd-s5-cEb"/>
+                                                <constraint firstAttribute="trailing" secondItem="0e1-zE-9rp" secondAttribute="trailing" id="f4B-5J-LZ1"/>
+                                                <constraint firstItem="0e1-zE-9rp" firstAttribute="leading" secondItem="V5K-gf-91b" secondAttribute="leading" id="qcI-PQ-JvY"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="todoTextField" destination="0e1-zE-9rp" id="l77-ev-ViK"/>
                                             <segue destination="A4b-Wc-znR" kind="show" identifier="edit" id="Qah-Cf-BY5"/>
                                         </connections>
                                     </tableViewCell>
@@ -294,8 +309,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Qah-Cf-BY5"/>
-        <segue reference="2qP-yv-E2m"/>
         <segue reference="hsU-Qs-lPa"/>
+        <segue reference="myv-RJ-RBX"/>
+        <segue reference="Qah-Cf-BY5"/>
     </inferredMetricsTieBreakers>
 </document>

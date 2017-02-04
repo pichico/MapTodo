@@ -13,6 +13,8 @@ import UIKit
 class TodoListViewController: UIViewController {
 
     @IBOutlet weak var todoListTableView: UITableView!
+    @IBOutlet weak var todoListItemCell: TodoListItemTableViewCell!
+
     var todoEntities: [Todo]!
 
     override func viewDidLoad() {
@@ -42,12 +44,16 @@ class TodoListViewController: UIViewController {
 extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoEntities.count
+        return todoEntities.count + 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem")
-        cell.textLabel?.text = todoEntities[indexPath.row].item
+        let cell: TodoListItemTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as! TodoListItemTableViewCell
+        cell.delegate = self
+        if todoEntities.count > indexPath.row {
+            cell.todoTextField.text = todoEntities[indexPath.row].item
+        }
+
         return cell
     }
 
@@ -57,5 +63,11 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
             NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
             tableView.reloadData()
         }
+    }
+}
+
+extension TodoListViewController: TodoListItemTableViewCellDelegate {
+    func textFieldDidEndEditing(cell: TodoListItemTableViewCell, value: NSString) {
+        NSLog(value as String)
     }
 }
