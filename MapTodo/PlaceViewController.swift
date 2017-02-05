@@ -204,18 +204,11 @@ extension PlaceViewController: MKMapViewDelegate {
 
 extension PlaceViewController: TextFieldTableViewCellDelegate {
     func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: NSString, indexPath: IndexPath) {
-        if indexPath.row >= todoEntities.count {
-            createTask(value: value)
-        } else {
-        }
+        let task :Todo = indexPath.row < todoEntities.count ? todoEntities[indexPath.row] : Todo.mr_createEntity()!
+        task.item = value as String
+        task.place = place
+        task.managedObjectContext!.mr_saveToPersistentStoreAndWait()
         updateValues()
         todoListTableView.reloadData()
-    }
-
-    func createTask(value: NSString) {
-        let newTask: Todo = Todo.mr_createEntity()!
-        newTask.item = value as String
-        newTask.place = place
-        newTask.managedObjectContext!.mr_saveToPersistentStoreAndWait()
     }
 }
