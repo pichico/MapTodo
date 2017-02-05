@@ -21,34 +21,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="34" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HZk-Ha-3sB">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HZk-Ha-3sB">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="toDoListItemCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" rowHeight="34" id="xRm-I4-l2t" customClass="TodoListItemTableViewCell" customModule="MapTodo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="34"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TodoListItem" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" id="7hL-bV-QZf">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xRm-I4-l2t" id="V5K-gf-91b">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="34"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7hL-bV-QZf" id="E5i-qw-ffz">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0e1-zE-9rp">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="33.5"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="0e1-zE-9rp" secondAttribute="bottom" id="Hml-kG-PI4"/>
-                                                <constraint firstItem="0e1-zE-9rp" firstAttribute="top" secondItem="V5K-gf-91b" secondAttribute="top" id="dJd-s5-cEb"/>
-                                                <constraint firstAttribute="trailing" secondItem="0e1-zE-9rp" secondAttribute="trailing" id="f4B-5J-LZ1"/>
-                                                <constraint firstItem="0e1-zE-9rp" firstAttribute="leading" secondItem="V5K-gf-91b" secondAttribute="leading" id="qcI-PQ-JvY"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="todoTextField" destination="0e1-zE-9rp" id="l77-ev-ViK"/>
-                                            <segue destination="A4b-Wc-znR" kind="show" identifier="edit" id="Qah-Cf-BY5"/>
+                                            <segue destination="A4b-Wc-znR" kind="show" identifier="edit" id="Mxk-Af-RST"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -170,7 +155,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tuE-dY-2Bd" id="RER-oA-BGr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -231,11 +216,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" id="3qM-P3-o4A">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" id="3qM-P3-o4A" customClass="TextFieldTableViewCell" customModule="MapTodo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3qM-P3-o4A" id="Glk-Wg-5Rb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -278,6 +263,7 @@
                         <outlet property="mapView" destination="j76-g7-uLZ" id="zXs-J4-42p"/>
                         <outlet property="placeNameTextField" destination="kG5-5r-bS7" id="YdH-DV-lX0"/>
                         <outlet property="radiusStepper" destination="vtr-nT-BmB" id="HET-ws-Rts"/>
+                        <outlet property="todoListTableView" destination="BAD-vf-XOZ" id="bNU-kl-wRY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Afz-cZ-8as" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -309,8 +295,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hsU-Qs-lPa"/>
+        <segue reference="Mxk-Af-RST"/>
         <segue reference="myv-RJ-RBX"/>
-        <segue reference="Qah-Cf-BY5"/>
+        <segue reference="hsU-Qs-lPa"/>
     </inferredMetricsTieBreakers>
 </document>

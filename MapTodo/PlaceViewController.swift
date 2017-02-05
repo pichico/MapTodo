@@ -17,6 +17,7 @@ class PlaceViewController: UIViewController {
     @IBOutlet weak var placeNameTextField: UITextField!
     @IBOutlet weak var radiusStepper: UIStepper!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var todoListTableView: UITableView!
     
     let lm: LocationManager = LocationManager.sharedLocationManager
     let lmmap: CLLocationManager = CLLocationManager()
@@ -29,6 +30,10 @@ class PlaceViewController: UIViewController {
         mapView.delegate = self
         lmmap.delegate = self
         mapView.showsUserLocation=true //地図上に現在地を表示
+        updateValues()
+    }
+    
+    func updateValues() {
         if let place = place {
             if place.latitude != nil &&  place.longitude != nil {
                 mapPoint = CLLocationCoordinate2DMake(
@@ -47,11 +52,6 @@ class PlaceViewController: UIViewController {
             lmmap.distanceFilter = 200
             lmmap.startUpdatingLocation()
         }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func replacePlace() {
@@ -156,20 +156,29 @@ class PlaceViewController: UIViewController {
 
 extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoEntities.count
+        return todoEntities.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem")
-        cell.textLabel?.text = todoEntities[indexPath.row].item
+        let cell: TextFieldTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as! TextFieldTableViewCell
+        cell.delegate = self
+        cell.indexPath = indexPath
+        if todoEntities.count > indexPath.row {
+            cell.textField.text = todoEntities[indexPath.row].item
+        } else {
+            cell.textField.text = ""
+        }
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            todoEntities.remove(at: indexPath.row).mr_deleteEntity()
-            NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
-            tableView.reloadData()
+            if todoEntities.count > indexPath.row {
+                todoEntities.remove(at: indexPath.row).mr_deleteEntity()
+                NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
+                updateValues()
+                todoListTableView.reloadData()
+            }
         }
     }
     
@@ -190,5 +199,23 @@ extension PlaceViewController: MKMapViewDelegate {
         render.fillColor = UIColor.red.withAlphaComponent(0.4)
         render.lineWidth=1
         return render
+    }
+}
+
+extension PlaceViewController: TextFieldTableViewCellDelegate {
+    func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: NSString, indexPath: IndexPath) {
+        if indexPath.row >= todoEntities.count {
+            createTask(value: value)
+        } else {
+        }
+        updateValues()
+        todoListTableView.reloadData()
+    }
+
+    func createTask(value: NSString) {
+        let newTask: Todo = Todo.mr_createEntity()!
+        newTask.item = value as String
+        newTask.place = place
+        newTask.managedObjectContext!.mr_saveToPersistentStoreAndWait()
     }
 }

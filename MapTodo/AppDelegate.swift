@@ -32,7 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         application.applicationIconBadgeNumber = 0
         application.cancelLocalNotification(notification)
-        NSLog("aaaaaa")
         if let userInfo = notification.userInfo {
             if let region = userInfo["region"] as! String! {
                 let predicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region])
