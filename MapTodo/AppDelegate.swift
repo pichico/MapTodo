@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.cancelLocalNotification(notification)
         if let userInfo = notification.userInfo {
             if let region = userInfo["region"] as! String! {
-                let realm = try! Realm()
+                let realm = MapTodoRealm.sharedRealm.realm
                 if let place = realm.objects(Place.self).filter(NSPredicate(format: "uuid = %@", argumentArray: [region])).first {
                     let placeViewController = R.storyboard.main.placeView()!
                     placeViewController.place = place

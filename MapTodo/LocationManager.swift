@@ -18,7 +18,6 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
     fileprivate override init() {
         super.init()
         lm.delegate = self
-        //lm.requestWhenInUseAuthorization()
         lm.requestAlwaysAuthorization()
 
         lm.desiredAccuracy = kCLLocationAccuracyBestForNavigation //測定の制度を設定
@@ -40,7 +39,7 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        let realm = try! Realm()
+        let realm = MapTodoRealm.sharedRealm.realm
         if let place = realm.objects(Place.self).filter(NSPredicate(format: "uuid = %@", argumentArray: [region.identifier])).first {
             if realm.objects(Todo.self).filter(NSPredicate(format: "place = %@", argumentArray: [place])).first != nil {
                 let notification = UILocalNotification()

@@ -11,23 +11,20 @@ import CoreLocation
 import RealmSwift
 import UIKit
 
-
 class TodoListViewController: UIViewController {
 
     @IBOutlet weak var todoListTableView: UITableView!
     @IBOutlet weak var todoListItemCell: UITableViewCell!
     var todoEntities: Results<Todo>!
-    var realm: Realm!
+    var realm: Realm! = MapTodoRealm.sharedRealm.realm
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        realm = try! Realm()
         todoEntities = realm.objects(Todo.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let realm = try! Realm()
         todoEntities = realm.objects(Todo.self)
         todoListTableView.reloadData()
     }
