@@ -6,30 +6,31 @@
 //  Copyright © 2016年 fukushima. All rights reserved.
 //
 
-import UIKit
-import CoreData
 import CoreLocation
+import RealmSwift
+import UIKit
 
 class PlaceListViewController: UIViewController {
 
     @IBOutlet weak var placeListTableView: UITableView!
 
-    var placeEntities: [Place]!
+    var placeEntities: Results<Place>!
     let lm: LocationManager = LocationManager.sharedLocationManager
+    var realm: Realm!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        placeEntities = Place.mr_findAll() as! [Place]!
+        realm = try! Realm()
+        placeEntities = realm.objects(Place.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        placeEntities = Place.mr_findAll() as! [Place]!
+        placeEntities = realm.objects(Place.self)
         placeListTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -59,12 +60,13 @@ extension PlaceListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let place = placeEntities[indexPath.row]
-            if place.latitude != nil {
+            if place.latitude.value != nil {
                 lm.stopMonitoring(CLLocationCoordinate2DMake(
-                    place.latitude as! CLLocationDegrees, place.longitude as! CLLocationDegrees), radius: place.radius as! CLLocationDistance, identifier: place.uuid!)
+                    place.latitude.value! as CLLocationDegrees, place.longitude.value! as CLLocationDegrees), radius: place.radius.value! as CLLocationDistance, identifier: place.uuid)
             }
-            placeEntities.remove(at: indexPath.row).mr_deleteEntity()
-            NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
+            try! realm.write {
+                realm.delete(place)
+            }
             placeListTableView.reloadData()
         }
     }

@@ -9,8 +9,8 @@
 import UIKit
 import CoreData
 import CoreLocation
+import RealmSwift
 
-import MagicalRecord
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,7 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         application.applicationIconBadgeNumber = 0
-        MagicalRecord.setupCoreDataStack(withAutoMigratingSqliteStoreNamed: "MapTodo.sqlite")
 
         let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
         UIApplication.shared.registerUserNotificationSettings(settings)
@@ -34,8 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.cancelLocalNotification(notification)
         if let userInfo = notification.userInfo {
             if let region = userInfo["region"] as! String! {
-                let predicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region])
-                if let place = Place.mr_findFirst(with: predicate) {
+                let realm = try! Realm()
+                if let place = realm.objects(Place.self).filter(NSPredicate(format: "uuid = %@", argumentArray: [region])).first {
                     let placeViewController = R.storyboard.main.placeView()!
                     placeViewController.place = place
                     window!.rootViewController?.present(placeViewController, animated: false, completion: nil)
@@ -65,7 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        MagicalRecord.cleanUp()
         if #available(iOS 10.0, *) {
             self.saveContext()
         } else {

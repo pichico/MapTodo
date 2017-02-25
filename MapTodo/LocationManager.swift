@@ -6,10 +6,10 @@
 //  Copyright © 2016年 fukushima. All rights reserved.
 //
 
-import Foundation
-import CoreData
 import CoreLocation
+import Foundation
 import MapKit
+import RealmSwift
 
 
 final class LocationManager: NSObject, CLLocationManagerDelegate {
@@ -40,17 +40,15 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        let placePredicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region.identifier])
-        if let place = Place.mr_findFirst(with: placePredicate) {
-            let todoPredicate: NSPredicate = NSPredicate(format: "place = %@", argumentArray: [place])
-            if let todoEntities = Todo.mr_findFirst(with: todoPredicate) {
+        let realm = try! Realm()
+        if let place = realm.objects(Place.self).filter(NSPredicate(format: "uuid = %@", argumentArray: [region.identifier])).first {
+            if realm.objects(Todo.self).filter(NSPredicate(format: "place = %@", argumentArray: [place])).first != nil {
                 let notification = UILocalNotification()
                 notification.alertBody = place.name! + "に到着"
                 notification.userInfo = ["region":region.identifier]
                 notification.applicationIconBadgeNumber = 1
                 notification.soundName = UILocalNotificationDefaultSoundName
                 UIApplication.shared.scheduleLocalNotification(notification)
-            } else {
             }
         }
     }

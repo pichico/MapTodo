@@ -6,8 +6,9 @@
 //  Copyright © 2016年 fukushima. All rights reserved.
 //
 
-import UIKit
 import CoreData
+import RealmSwift
+import UIKit
 
 class TodoItemViewController: UIViewController {
 
@@ -15,28 +16,28 @@ class TodoItemViewController: UIViewController {
     @IBOutlet weak var placePickerView: UIPickerView!
 
     var task: Todo? = nil
-    var places: [Place]!
+    var places: Results<Place>!
+    var realm: Realm!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        places = Place.mr_findAll() as! [Place]
+        realm = try! Realm()
+        places = realm.objects(Place.self)
         if let taskTodo = task {
             todoField.text = taskTodo.item
-            if let index = places.index(where: {$0 === taskTodo.place}) {
+            if let place = taskTodo.place, let index = places.index(of: place) {
                 placePickerView.selectRow(index, inComponent: 0, animated: false)
             }
         }
     }
-
+    // いる？
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        places = Place.mr_findAll() as! [Place]
         placePickerView.reloadAllComponents()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
@@ -45,26 +46,19 @@ class TodoItemViewController: UIViewController {
     }
 
     @IBAction func save(_ sender: UIBarButtonItem) {
-        if task != nil {
-            editTask()
-        } else {
-            createTask()
+        if task == nil {
+            task = Todo()
+            task!.uuid = UUID().uuidString
         }
+        realm.beginWrite()
+        task!.item = todoField.text
+        task!.place = places[placePickerView.selectedRow(inComponent: 0)]
+        realm.add(task!, update: true)
+        try! realm.commitWrite()
+
         navigationController!.popViewController(animated: true)
     }
 
-    func createTask() {
-        let newTask: Todo = Todo.mr_createEntity()!
-        newTask.item = todoField.text
-        newTask.place = places[placePickerView.selectedRow(inComponent: 0)]
-        newTask.managedObjectContext!.mr_saveToPersistentStoreAndWait()
-    }
-    
-    func editTask() {
-        task?.item = todoField.text
-        task?.place = places[placePickerView.selectedRow(inComponent: 0)]
-        task?.managedObjectContext!.mr_saveToPersistentStoreAndWait()
-    }
 }
 
 extension TodoItemViewController: UIPickerViewDelegate, UIPickerViewDataSource {

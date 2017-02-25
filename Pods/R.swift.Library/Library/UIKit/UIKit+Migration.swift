@@ -14,7 +14,7 @@ import UIKit
 public extension NibResourceType {
 
   @available(*, unavailable, renamed: "instantiate(withOwner:options:)")
-  public func instantiateWithOwner(_ ownerOrNil: AnyObject?, options optionsOrNil: [AnyHashable: Any]? = nil) -> [AnyObject] {
+  public func instantiateWithOwner(_ ownerOrNil: AnyObject?, options optionsOrNil: [NSObject : AnyObject]? = nil) -> [AnyObject] {
     fatalError()
   }
 }

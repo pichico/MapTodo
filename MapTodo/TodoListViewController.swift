@@ -8,29 +8,32 @@
 
 import CoreData
 import CoreLocation
+import RealmSwift
 import UIKit
+
 
 class TodoListViewController: UIViewController {
 
     @IBOutlet weak var todoListTableView: UITableView!
     @IBOutlet weak var todoListItemCell: UITableViewCell!
-
-    var todoEntities: [Todo]!
+    var todoEntities: Results<Todo>!
+    var realm: Realm!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        todoEntities = Todo.mr_findAll() as! [Todo]
+        realm = try! Realm()
+        todoEntities = realm.objects(Todo.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        todoEntities = Todo.mr_findAll() as! [Todo]
+        let realm = try! Realm()
+        todoEntities = realm.objects(Todo.self)
         todoListTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -55,8 +58,10 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            todoEntities.remove(at: indexPath.row).mr_deleteEntity()
-            NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
+            try! realm.write {
+                realm.delete(todoEntities[indexPath.row])
+            }
+            todoListTableView.reloadData()
             tableView.reloadData()
         }
     }

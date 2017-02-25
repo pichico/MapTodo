@@ -6,9 +6,9 @@
 //  Copyright © 2016年 fukushima. All rights reserved.
 //
 
-import CoreData
-import CoreLocation
+
 import MapKit
+import RealmSwift
 import UIKit
 
 
@@ -22,59 +22,64 @@ class PlaceViewController: UIViewController {
     let lm: LocationManager = LocationManager.sharedLocationManager
     let lmmap: CLLocationManager = CLLocationManager()
     var mapPoint: CLLocationCoordinate2D? = nil
-    var place: Place? = nil
-    var todoEntities: [Todo] = []
+    var place: Place!
+    var todoEntiries: Results<Todo>!
+    var realm: Realm!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        realm = try! Realm()
         mapView.delegate = self
         lmmap.delegate = self
         mapView.showsUserLocation=true //地図上に現在地を表示
+        if place == nil {
+            place = place ?? Place()
+            place!.uuid = UUID().uuidString
+        }
         updateValues()
     }
     
     func updateValues() {
         if let place = place {
-            if place.latitude != nil &&  place.longitude != nil {
-                mapPoint = CLLocationCoordinate2DMake(
-                    place.latitude as! CLLocationDegrees, place.longitude as! CLLocationDegrees)
-                mapView.setRegion(MKCoordinateRegionMake(mapPoint!, MKCoordinateSpanMake(0.005, 0.005)), animated:false)
-                radiusStepper.value = place.radius as! Double
-                showMonitoringRegion(mapPoint, radius: radiusStepper.value)
-            }
             placeNameTextField.text = place.name
-            let predicate: NSPredicate = NSPredicate(format: "place = %@", argumentArray: [place])
-            todoEntities = Todo.mr_findAll(with: predicate) as! [Todo]
-        }
-        if place == nil || place!.latitude == nil {
-            //デフォルトのmap
-            lmmap.desiredAccuracy = kCLLocationAccuracyBest
-            lmmap.distanceFilter = 200
-            lmmap.startUpdatingLocation()
+            if place.latitude.value != nil && place.longitude.value != nil { // 地図をあわせる
+                mapPoint = CLLocationCoordinate2DMake(
+                    place.latitude.value! as CLLocationDegrees, place.longitude.value! as CLLocationDegrees)
+                mapView.setRegion(MKCoordinateRegionMake(mapPoint!, MKCoordinateSpanMake(0.005, 0.005)), animated:false)
+                radiusStepper.value = place.radius.value!
+                showMonitoringRegion(mapPoint, radius: radiusStepper.value)
+            } else {
+                //デフォルトのmap
+                lmmap.desiredAccuracy = kCLLocationAccuracyBest
+                lmmap.distanceFilter = 200
+                lmmap.startUpdatingLocation()
+            }
+            todoEntiries = realm.objects(Todo.self).filter(NSPredicate(format: "place = %@", argumentArray: [place]))
         }
     }
     
     func replacePlace() {
-        if place == nil {
-            place = Place.mr_createEntity()!
-            place!.uuid = UUID().uuidString
-        } else {
-            if place!.latitude != nil {
+        if let place = place {
+            if place.latitude.value != nil {
                 lm.stopMonitoring(CLLocationCoordinate2DMake(
-                    place!.latitude as! CLLocationDegrees, place!.longitude as! CLLocationDegrees), radius: place!.radius as! CLLocationDistance, identifier: place!.uuid!)
+                    place.latitude.value! , place.longitude.value! ), radius: place.radius.value!, identifier: place.uuid)
             }
         }
-        place!.name = placeNameTextField.text
+
+        realm.beginWrite()
+        place!.name = placeNameTextField.text!
         if mapPoint != nil {
-            place!.radius = radiusStepper.value as NSNumber
-            place!.latitude = mapPoint!.latitude as NSNumber?
-            place!.longitude = mapPoint!.longitude as NSNumber?
-            lm.startMonitoring(mapPoint!, radius: radiusStepper.value, identifier: place!.uuid!)
+            place!.radius.value = radiusStepper.value
+            place!.latitude.value = mapPoint!.latitude
+            place!.longitude.value = mapPoint!.longitude
+            lm.startMonitoring(mapPoint!, radius: radiusStepper.value, identifier: place!.uuid)
         }
-        place?.managedObjectContext?.mr_saveToPersistentStoreAndWait()
+        realm.add(place!, update: true)
+        try! realm.commitWrite()
+
         UIApplication.shared.cancelAllLocalNotifications()
     }
-    
+
     func showMonitoringRegion(_ center: CLLocationCoordinate2D!, radius: CLLocationDistance) {
         // 既にあるpin、円を消す
         mapView.removeAnnotations(self.mapView.annotations)
@@ -156,15 +161,15 @@ class PlaceViewController: UIViewController {
 
 extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoEntities.count + 1
+        return todoEntiries.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TextFieldTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as! TextFieldTableViewCell
         cell.delegate = self
         cell.indexPath = indexPath
-        if todoEntities.count > indexPath.row {
-            cell.textField.text = todoEntities[indexPath.row].item
+        if todoEntiries.count > indexPath.row {
+            cell.textField.text = todoEntiries[indexPath.row].item
         } else {
             cell.textField.text = ""
         }
@@ -173,9 +178,10 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            if todoEntities.count > indexPath.row {
-                todoEntities.remove(at: indexPath.row).mr_deleteEntity()
-                NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
+            if todoEntiries.count > indexPath.row {
+                try! realm.write {
+                    realm.delete(todoEntiries[indexPath.row])
+                }
                 updateValues()
                 todoListTableView.reloadData()
             }
@@ -204,10 +210,12 @@ extension PlaceViewController: MKMapViewDelegate {
 
 extension PlaceViewController: TextFieldTableViewCellDelegate {
     func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: NSString, indexPath: IndexPath) {
-        let task :Todo = indexPath.row < todoEntities.count ? todoEntities[indexPath.row] : Todo.mr_createEntity()!
+        let task :Todo = indexPath.row < todoEntiries.count ? todoEntiries[indexPath.row] : Todo()
         task.item = value as String
         task.place = place
-        task.managedObjectContext!.mr_saveToPersistentStoreAndWait()
+        try! realm.write {
+            realm.add(task, update: true)
+        }
         updateValues()
         todoListTableView.reloadData()
     }
