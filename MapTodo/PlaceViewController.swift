@@ -24,11 +24,10 @@ class PlaceViewController: UIViewController {
     var mapPoint: CLLocationCoordinate2D? = nil
     var place: Place!
     var todoEntiries: Results<Todo>!
-    var realm: Realm!
-    
+    var realm: Realm! = MapTodoRealm.sharedRealm.realm
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        realm = try! Realm()
         mapView.delegate = self
         lmmap.delegate = self
         mapView.showsUserLocation=true //地図上に現在地を表示

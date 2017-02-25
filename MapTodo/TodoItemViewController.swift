@@ -17,11 +17,10 @@ class TodoItemViewController: UIViewController {
 
     var task: Todo? = nil
     var places: Results<Place>!
-    var realm: Realm!
+    var realm: Realm! = MapTodoRealm.sharedRealm.realm
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        realm = try! Realm()
         places = realm.objects(Place.self)
         if let taskTodo = task {
             todoField.text = taskTodo.item

@@ -16,11 +16,10 @@ class PlaceListViewController: UIViewController {
 
     var placeEntities: Results<Place>!
     let lm: LocationManager = LocationManager.sharedLocationManager
-    var realm: Realm!
+    var realm: Realm! = MapTodoRealm.sharedRealm.realm
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        realm = try! Realm()
         placeEntities = realm.objects(Place.self)
     }
 
