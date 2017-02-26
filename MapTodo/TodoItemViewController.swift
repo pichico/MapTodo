@@ -15,7 +15,7 @@ class TodoItemViewController: UIViewController {
     @IBOutlet weak var todoField: UITextField!
     @IBOutlet weak var placePickerView: UIPickerView!
 
-    var task: Todo? = nil
+    var task: Todo!
     var places: Results<Place>!
     var realm: Realm! = MapTodoRealm.sharedRealm.realm
 
@@ -31,7 +31,7 @@ class TodoItemViewController: UIViewController {
             task = Todo()
         }
     }
-    // いる？
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         placePickerView.reloadAllComponents()
@@ -48,7 +48,7 @@ class TodoItemViewController: UIViewController {
 
     @IBAction func save(_ sender: UIBarButtonItem) {
         realm.beginWrite()
-        task?.replace(item: todoField.text, place: places[placePickerView.selectedRow(inComponent: 0)])
+        task.replace(item: todoField.text, place: places[placePickerView.selectedRow(inComponent: 0)])
         try! realm.commitWrite()
         navigationController!.popViewController(animated: true)
     }
