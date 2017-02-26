@@ -21,12 +21,14 @@ class TodoItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        places = realm.objects(Place.self)
-        if let taskTodo = task {
-            todoField.text = taskTodo.item
-            if let place = taskTodo.place, let index = places.index(of: place) {
+        places = Place.getAll()
+        if let task = task {
+            todoField.text = task.item
+            if let place = task.place, let index = places.index(of: place) {
                 placePickerView.selectRow(index, inComponent: 0, animated: false)
             }
+        } else {
+            task = Todo()
         }
     }
     // いる？
@@ -45,16 +47,9 @@ class TodoItemViewController: UIViewController {
     }
 
     @IBAction func save(_ sender: UIBarButtonItem) {
-        if task == nil {
-            task = Todo()
-            task!.uuid = UUID().uuidString
-        }
         realm.beginWrite()
-        task!.item = todoField.text
-        task!.place = places[placePickerView.selectedRow(inComponent: 0)]
-        realm.add(task!, update: true)
+        task?.replace(item: todoField.text, place: places[placePickerView.selectedRow(inComponent: 0)])
         try! realm.commitWrite()
-
         navigationController!.popViewController(animated: true)
     }
 

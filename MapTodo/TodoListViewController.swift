@@ -20,12 +20,12 @@ class TodoListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        todoEntities = realm.objects(Todo.self)
+        todoEntities = Todo.getAll()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        todoEntities = realm.objects(Todo.self)
+        todoEntities = Todo.getAll()
         todoListTableView.reloadData()
     }
 
@@ -55,11 +55,8 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            try! realm.write {
-                realm.delete(todoEntities[indexPath.row])
-            }
+            todoEntities[indexPath.row].delete()
             todoListTableView.reloadData()
-            tableView.reloadData()
         }
     }
 }

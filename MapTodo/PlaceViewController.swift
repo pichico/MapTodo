@@ -24,7 +24,7 @@ class PlaceViewController: UIViewController {
     var mapPoint: CLLocationCoordinate2D? = nil
     var place: Place!
     var todoEntiries: Results<Todo>!
-    var realm: Realm! = MapTodoRealm.sharedRealm.realm
+    let realm: Realm! = MapTodoRealm.sharedRealm.realm
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +33,6 @@ class PlaceViewController: UIViewController {
         mapView.showsUserLocation=true //地図上に現在地を表示
         if place == nil {
             place = place ?? Place()
-            place!.uuid = UUID().uuidString
         }
         updateValues()
     }
@@ -53,29 +52,14 @@ class PlaceViewController: UIViewController {
                 lmmap.distanceFilter = 200
                 lmmap.startUpdatingLocation()
             }
-            todoEntiries = realm.objects(Todo.self).filter(NSPredicate(format: "place = %@", argumentArray: [place]))
+            todoEntiries = Todo.get(place: place)
         }
     }
     
     func replacePlace() {
-        if let place = place {
-            if place.latitude.value != nil {
-                lm.stopMonitoring(CLLocationCoordinate2DMake(
-                    place.latitude.value! , place.longitude.value! ), radius: place.radius.value!, identifier: place.uuid)
-            }
-        }
-
         realm.beginWrite()
-        place!.name = placeNameTextField.text!
-        if mapPoint != nil {
-            place!.radius.value = radiusStepper.value
-            place!.latitude.value = mapPoint!.latitude
-            place!.longitude.value = mapPoint!.longitude
-            lm.startMonitoring(mapPoint!, radius: radiusStepper.value, identifier: place!.uuid)
-        }
-        realm.add(place!, update: true)
+        place.replace(name: placeNameTextField.text!, radius: radiusStepper.value, point: mapPoint)
         try! realm.commitWrite()
-
         UIApplication.shared.cancelAllLocalNotifications()
     }
 
@@ -209,11 +193,9 @@ extension PlaceViewController: MKMapViewDelegate {
 
 extension PlaceViewController: TextFieldTableViewCellDelegate {
     func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: NSString, indexPath: IndexPath) {
-        let task :Todo = indexPath.row < todoEntiries.count ? todoEntiries[indexPath.row] : Todo()
-        task.item = value as String
-        task.place = place
+        let todo :Todo = indexPath.row < todoEntiries.count ? todoEntiries[indexPath.row] : Todo()
         try! realm.write {
-            realm.add(task, update: true)
+            todo.replace(item: value as String, place: place)
         }
         updateValues()
         todoListTableView.reloadData()
