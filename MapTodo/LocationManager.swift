@@ -39,9 +39,8 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        let realm = MapTodoRealm.sharedRealm.realm
-        if let place = realm.objects(Place.self).filter(NSPredicate(format: "uuid = %@", argumentArray: [region.identifier])).first {
-            if realm.objects(Todo.self).filter(NSPredicate(format: "place = %@", argumentArray: [place])).first != nil {
+        if let place = Place.get(uiid: region.identifier){
+            if Todo.get(place: place).count > 0 {
                 let notification = UILocalNotification()
                 notification.alertBody = place.name! + "に到着"
                 notification.userInfo = ["region":region.identifier]

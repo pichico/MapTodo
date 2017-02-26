@@ -16,15 +16,14 @@ class PlaceListViewController: UIViewController {
 
     var placeEntities: Results<Place>!
     let lm: LocationManager = LocationManager.sharedLocationManager
-    var realm: Realm! = MapTodoRealm.sharedRealm.realm
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        placeEntities = realm.objects(Place.self)
+        placeEntities = Place.getAll()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        placeEntities = realm.objects(Place.self)
+        placeEntities = Place.getAll()
         placeListTableView.reloadData()
     }
 
@@ -58,14 +57,7 @@ extension PlaceListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let place = placeEntities[indexPath.row]
-            if place.latitude.value != nil {
-                lm.stopMonitoring(CLLocationCoordinate2DMake(
-                    place.latitude.value! as CLLocationDegrees, place.longitude.value! as CLLocationDegrees), radius: place.radius.value! as CLLocationDistance, identifier: place.uuid)
-            }
-            try! realm.write {
-                realm.delete(place)
-            }
+            placeEntities[indexPath.row].delete()
             placeListTableView.reloadData()
         }
     }
