@@ -31,18 +31,15 @@ class PlaceViewController: UIViewController {
         mapView.delegate = self
         lmmap.delegate = self
         mapView.showsUserLocation=true //地図上に現在地を表示
-        if place == nil {
-            place = place ?? Place()
-        }
+        place = place ?? Place()
         updateValues()
     }
     
     func updateValues() {
         if let place = place {
             placeNameTextField.text = place.name
-            if place.latitude.value != nil && place.longitude.value != nil { // 地図をあわせる
-                mapPoint = CLLocationCoordinate2DMake(
-                    place.latitude.value! as CLLocationDegrees, place.longitude.value! as CLLocationDegrees)
+            if let CLLocationCoordinate2D = place.CLLocationCoordinate2D { // 地図をあわせる
+                mapPoint = CLLocationCoordinate2D
                 mapView.setRegion(MKCoordinateRegionMake(mapPoint!, MKCoordinateSpanMake(0.005, 0.005)), animated:false)
                 radiusStepper.value = place.radius.value!
                 showMonitoringRegion(mapPoint, radius: radiusStepper.value)
@@ -52,13 +49,15 @@ class PlaceViewController: UIViewController {
                 lmmap.distanceFilter = 200
                 lmmap.startUpdatingLocation()
             }
-            todoEntiries = Todo.get(place: place)
+            todoEntiries = Todo.getList(place: place)
         }
     }
     
     func replacePlace() {
         realm.beginWrite()
+        place.stopMonitoring()
         place.replace(name: placeNameTextField.text!, radius: radiusStepper.value, point: mapPoint)
+        place.startMonitoring()
         try! realm.commitWrite()
         UIApplication.shared.cancelAllLocalNotifications()
     }

@@ -57,7 +57,9 @@ extension PlaceListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            placeEntities[indexPath.row].delete()
+            let place = placeEntities[indexPath.row]
+            place.stopMonitoring()
+            place.delete()
             placeListTableView.reloadData()
         }
     }
