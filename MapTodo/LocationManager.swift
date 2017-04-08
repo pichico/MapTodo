@@ -40,7 +40,7 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         if let place = Place.get(uiid: region.identifier){
-            if Todo.get(place: place).count > 0 {
+            if Todo.getList(place: place).count > 0 {
                 let notification = UILocalNotification()
                 notification.alertBody = place.name! + "に到着"
                 notification.userInfo = ["region":region.identifier]

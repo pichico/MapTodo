@@ -19,12 +19,12 @@ class Todo: Object {
     }
 
     static func getAll() -> Results<Todo> {
-        return MapTodoRealm.sharedRealm.realm.objects(Todo.self)
+        return MapTodoRealm.sharedRealm.realm.objects(self)
     }
 
 
-    static func get(place: Place) -> Results<Todo> {
-        return MapTodoRealm.sharedRealm.realm.objects(Todo.self).filter(NSPredicate(format: "place = %@", argumentArray: [place]))
+    static func getList(place: Place) -> Results<Todo> {
+        return MapTodoRealm.sharedRealm.realm.objects(self).filter(NSPredicate(format: "place = %@", place))
     }
 
     public func delete() {
