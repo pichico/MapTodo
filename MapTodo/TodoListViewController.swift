@@ -8,27 +8,29 @@
 
 import CoreData
 import CoreLocation
+import RealmSwift
 import UIKit
 
 class TodoListViewController: UIViewController {
 
     @IBOutlet weak var todoListTableView: UITableView!
-    var todoEntities: [Todo]!
+    @IBOutlet weak var todoListItemCell: UITableViewCell!
+    var todoEntities: Results<Todo>!
+    var realm: Realm! = MapTodoRealm.sharedRealm.realm
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        todoEntities = Todo.mr_findAll() as! [Todo]
+        todoEntities = Todo.getAll()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        todoEntities = Todo.mr_findAll() as! [Todo]
+        todoEntities = Todo.getAll()
         todoListTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -53,9 +55,8 @@ extension TodoListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            todoEntities.remove(at: indexPath.row).mr_deleteEntity()
-            NSManagedObjectContext.mr_default().mr_saveToPersistentStoreAndWait()
-            tableView.reloadData()
+            todoEntities[indexPath.row].delete()
+            todoListTableView.reloadData()
         }
     }
 }

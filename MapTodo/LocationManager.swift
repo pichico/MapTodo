@@ -6,10 +6,10 @@
 //  Copyright © 2016年 fukushima. All rights reserved.
 //
 
-import Foundation
-import CoreData
 import CoreLocation
+import Foundation
 import MapKit
+import RealmSwift
 
 
 final class LocationManager: NSObject, CLLocationManagerDelegate {
@@ -18,7 +18,6 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
     fileprivate override init() {
         super.init()
         lm.delegate = self
-        //lm.requestWhenInUseAuthorization()
         lm.requestAlwaysAuthorization()
 
         lm.desiredAccuracy = kCLLocationAccuracyBestForNavigation //測定の制度を設定
@@ -40,17 +39,14 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        let placePredicate: NSPredicate = NSPredicate(format: "uuid = %@", argumentArray: [region.identifier])
-        if let place = Place.mr_findFirst(with: placePredicate) {
-            let todoPredicate: NSPredicate = NSPredicate(format: "place = %@", argumentArray: [place])
-            if let todoEntities = Todo.mr_findFirst(with: todoPredicate) {
+        if let place = Place.get(uiid: region.identifier){
+            if Todo.getList(place: place).count > 0 {
                 let notification = UILocalNotification()
                 notification.alertBody = place.name! + "に到着"
                 notification.userInfo = ["region":region.identifier]
                 notification.applicationIconBadgeNumber = 1
                 notification.soundName = UILocalNotificationDefaultSoundName
                 UIApplication.shared.scheduleLocalNotification(notification)
-            } else {
             }
         }
     }
