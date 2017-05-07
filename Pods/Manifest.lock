@@ -1,18 +1,23 @@
 PODS:
-  - MagicalRecord (2.3.2):
-    - MagicalRecord/Core (= 2.3.2)
-  - MagicalRecord/Core (2.3.2)
   - R.swift (3.1.0):
     - R.swift.Library (~> 3.0.2)
   - R.swift.Library (3.0.2)
+  - Realm (2.1.1):
+    - Realm/Headers (= 2.1.1)
+  - Realm/Headers (2.1.1)
+  - RealmSwift (2.1.1):
+    - Realm (= 2.1.1)
 
 DEPENDENCIES:
-  - MagicalRecord
   - R.swift
+  - RealmSwift
 
 SPEC CHECKSUMS:
-  MagicalRecord: 53bed74b4323b930992a725be713e53b37d19755
   R.swift: 14400e5784224d1e4e59a8fc5549198c7e8fe360
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
+  Realm: a55959c0b171a5fe5267406d17f314fec3cefaae
+  RealmSwift: 749fd955bf8d6471c21d218b9389a47aaeccfe3f
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: fc0413ff1961cbfe208eb317c65c46c66ca169e6
+
+COCOAPODS: 1.2.0
