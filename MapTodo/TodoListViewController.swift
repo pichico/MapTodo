@@ -48,8 +48,9 @@ extension TodoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell: AppTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "PlaceItem") as! AppTableViewCell
         cell.textLabel?.text = placeEntities[section].name
-        cell.isFirstCellInsection = true
-        cell.isLastCellInsection = (tableView.numberOfRows(inSection: section) == 0)
+        cell.bounds.size.width = tableView.bounds.width
+        cell.isRoundTopCorner = true
+        cell.isRoundBottomCorner = (tableView.numberOfRows(inSection: section) == 0)
         return cell
     }
 
@@ -71,7 +72,8 @@ extension TodoListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: AppTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as! AppTableViewCell
-        cell.isLastCellInsection = (indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1)
+        cell.bounds.size.width = tableView.bounds.width
+        cell.isRoundBottomCorner = (indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1)
         cell.textLabel?.text = todoEntities.filter("place = %@", placeEntities[indexPath.section])[indexPath.row].item
         return cell
     }
