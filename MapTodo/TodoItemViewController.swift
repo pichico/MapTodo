@@ -10,7 +10,7 @@ import CoreData
 import RealmSwift
 import UIKit
 
-class TodoItemViewController: UIViewController {
+class TodoItemViewController: AppViewController {
 
     @IBOutlet weak var todoField: UITextField!
     @IBOutlet weak var placePickerView: UIPickerView!

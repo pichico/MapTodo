@@ -12,7 +12,7 @@ import RealmSwift
 import UIKit
 
 
-class PlaceViewController: UIViewController {
+class PlaceViewController: AppViewController {
     
     @IBOutlet weak var placeNameTextField: UITextField!
     @IBOutlet weak var radiusStepper: UIStepper!
