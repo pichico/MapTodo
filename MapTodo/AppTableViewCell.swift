@@ -11,26 +11,28 @@ import UIKit
 class AppTableViewCell: UITableViewCell {
     @IBInspectable var cornerRadius: CGFloat = 0
 
-    dynamic var isFirstCellInsection: Bool = false {
+    var isRoundTopCorner: Bool = false {
         didSet {
             drawCornerRadius()
         }
     }
 
-    dynamic var isLastCellInsection: Bool = false {
+    var isRoundBottomCorner: Bool = false {
         didSet {
             drawCornerRadius()
         }
     }
 
     func drawCornerRadius() {
-        let rcfirst: UIRectCorner = isFirstCellInsection ? [UIRectCorner.topLeft, UIRectCorner.topRight] : []
-        let rclast:  UIRectCorner = isLastCellInsection  ? [UIRectCorner.bottomLeft, UIRectCorner.bottomRight] : []
-        let maskPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: [rcfirst, rclast], cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
-        let maskLayer = CAShapeLayer()
-        maskLayer.frame = bounds
-        maskLayer.path = maskPath.cgPath
-        layer.mask = maskLayer
+        if isRoundTopCorner || isRoundBottomCorner {
+            let rcfirst: UIRectCorner = isRoundTopCorner ? [UIRectCorner.topLeft, UIRectCorner.topRight] : []
+            let rclast:  UIRectCorner = isRoundBottomCorner  ? [UIRectCorner.bottomLeft, UIRectCorner.bottomRight] : []
+            let maskPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: [rcfirst, rclast], cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
+            let maskLayer = CAShapeLayer()
+            maskLayer.frame = bounds
+            maskLayer.path = maskPath.cgPath
+            layer.mask = maskLayer
+        }
     }
 
 }
