@@ -13,8 +13,16 @@ class AppTableViewCell: UITableViewCell {
     @IBInspectable var borderColor: UIColor = UIColor.black
     @IBInspectable var cornerRadius: CGFloat = 0
     @IBInspectable var borderWidth: CGFloat = 1
-    var isTop: Bool = false
-    var isBottom: Bool = false
+    var isTop: Bool = false {
+        didSet {
+            updateBorder()
+        }
+    }
+    var isBottom: Bool = false {
+        didSet {
+            updateBorder()
+        }
+    }
     var borderLayer: CAShapeLayer = CAShapeLayer()
 
     override func layoutSubviews() {
