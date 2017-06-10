@@ -46,7 +46,7 @@ class TodoListViewController: UIViewController {
 
 extension TodoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell: AppTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "PlaceItem") as! AppTableViewCell
+        let cell: AppTableViewCell = tableView.dequeueReusableCell(withIdentifier: "PlaceItem") as! AppTableViewCell
         cell.textLabel?.text = placeEntities[section].name
         cell.isTop = true
         cell.isBottom = (tableView.numberOfRows(inSection: section) == 0)
