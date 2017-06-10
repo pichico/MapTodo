@@ -23,7 +23,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HZk-Ha-3sB">
                                 <rect key="frame" x="10" y="10" width="355" height="667"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.22148609159999999" green="0.51977270840000001" blue="0.69272351259999998" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="PlaceItem" id="kWL-IZ-seq" customClass="AppTableViewCell" customModule="MapTodo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="56" width="355" height="44"/>
