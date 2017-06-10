@@ -37,11 +37,12 @@ class AppTableViewCell: UITableViewCell {
         // 境界線 + 枠をつける。 上下のcellで二重に線が描画されるので、下のcellの上の辺を上のcellの下の辺に重ねる
         let borderBounds = isTop ? bounds : CGRect(x: bounds.origin.x, y: bounds.origin.y - borderWidth, width: bounds.width, height: bounds.height + borderWidth)
         let borderPath = UIBezierPath(roundedRect: borderBounds, byRoundingCorners: [rcfirst, rclast], cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
-        borderLayer.removeFromSuperlayer() // これしておかないと大きい画面のときとかに線が複数描画される
         borderLayer.fillColor = UIColor.clear.cgColor
         borderLayer.strokeColor = borderColor.cgColor
         borderLayer.path = borderPath.cgPath
         borderLayer.lineWidth = borderWidth
-        layer.addSublayer(borderLayer)
+        if borderLayer.superlayer == nil {
+            layer.addSublayer(borderLayer)
+        }
     }
 }
