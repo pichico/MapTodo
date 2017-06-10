@@ -11,7 +11,7 @@ import CoreLocation
 import RealmSwift
 import UIKit
 
-class TodoListViewController: UIViewController {
+class TodoListViewController: AppViewController {
 
     @IBOutlet weak var todoListTableView: UITableView!
     @IBOutlet weak var todoListItemCell: UITableViewCell!

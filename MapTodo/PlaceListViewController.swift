@@ -10,7 +10,7 @@ import CoreLocation
 import RealmSwift
 import UIKit
 
-class PlaceListViewController: UIViewController {
+class PlaceListViewController: AppViewController {
 
     @IBOutlet weak var placeListTableView: UITableView!
 
