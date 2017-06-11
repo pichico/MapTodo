@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kcv-0c-ohA">
-                    <rect key="frame" x="0.0" y="0.0" width="284" height="82"/>
+                    <rect key="frame" x="15" y="0.0" width="254" height="82"/>
                     <nil key="textColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
@@ -28,8 +28,8 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Kcv-0c-ohA" secondAttribute="bottom" id="Rft-BE-bvo"/>
                 <constraint firstItem="Kcv-0c-ohA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Roy-6v-BRB"/>
-                <constraint firstAttribute="trailing" secondItem="Kcv-0c-ohA" secondAttribute="trailing" id="bdN-lk-otx"/>
-                <constraint firstItem="Kcv-0c-ohA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="d8E-gh-H86"/>
+                <constraint firstAttribute="trailing" secondItem="Kcv-0c-ohA" secondAttribute="trailing" constant="15" id="bdN-lk-otx"/>
+                <constraint firstItem="Kcv-0c-ohA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="d8E-gh-H86"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
