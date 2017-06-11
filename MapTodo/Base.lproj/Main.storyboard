@@ -47,7 +47,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TodoListItem" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" id="7hL-bV-QZf" customClass="AppTableViewCell" customModule="MapTodo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TodoListItem" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" id="7hL-bV-QZf" customClass="TextFieldTableViewCell" customModule="MapTodo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="100" width="355" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7hL-bV-QZf" id="E5i-qw-ffz">
