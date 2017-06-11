@@ -98,6 +98,9 @@
                         </barButtonItem>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="iconImage" value="header_icon"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </navigationItem>
                     <connections>
