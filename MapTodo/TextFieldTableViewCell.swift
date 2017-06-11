@@ -14,7 +14,7 @@ protocol TextFieldTableViewCellDelegate {
     func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: NSString, indexPath: IndexPath) -> ()
 }
 
-class TextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
+class TextFieldTableViewCell: AppTableViewCell, UITextFieldDelegate {
     var delegate: TextFieldTableViewCellDelegate! = nil
     var indexPath: IndexPath?
     @IBOutlet weak var textField: UITextField!

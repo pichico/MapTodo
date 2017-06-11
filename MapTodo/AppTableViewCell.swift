@@ -40,6 +40,8 @@ class AppTableViewCell: UITableViewCell {
             let maskLayer = CAShapeLayer()
             maskLayer.path = maskPath.cgPath
             layer.mask = maskLayer
+        } else {
+            layer.mask = nil
         }
 
         // 境界線 + 枠をつける。 上下のcellで二重に線が描画されるので、下のcellの上の辺を上のcellの下の辺に重ねる
