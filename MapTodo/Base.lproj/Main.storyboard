@@ -85,7 +85,7 @@
                             <constraint firstItem="HZk-Ha-3sB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="10" id="rM8-2m-C9h"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="HOME" id="yua-f5-ye5">
+                    <navigationItem key="navigationItem" title="HOME" id="yua-f5-ye5" customClass="AppNavigationItem" customModule="MapTodo" customModuleProvider="target">
                         <barButtonItem key="leftBarButtonItem" title="place" id="hrp-cm-k0w">
                             <connections>
                                 <segue destination="eh3-Mf-oBv" kind="show" id="myv-RJ-RBX"/>
@@ -96,6 +96,9 @@
                                 <segue destination="A4b-Wc-znR" kind="show" id="Ej2-4d-CEX"/>
                             </connections>
                         </barButtonItem>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="iconImage" value="header_icon"/>
+                        </userDefinedRuntimeAttributes>
                     </navigationItem>
                     <connections>
                         <outlet property="todoListTableView" destination="HZk-Ha-3sB" id="oRu-ia-fg8"/>
@@ -189,7 +192,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tuE-dY-2Bd" id="RER-oA-BGr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -254,7 +257,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3qM-P3-o4A" id="Glk-Wg-5Rb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -335,6 +338,9 @@
             <point key="canvasLocation" x="136.80000000000001" y="106.59670164917542"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="header_icon" width="12" height="16"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="myv-RJ-RBX"/>
         <segue reference="Mxk-Af-RST"/>
