@@ -23,6 +23,7 @@
 		7D40730A1DA92DBD005BBBCD /* MapTodoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4073091DA92DBD005BBBCD /* MapTodoTests.swift */; };
 		7D4073151DA92DBD005BBBCD /* MapTodoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4073141DA92DBD005BBBCD /* MapTodoUITests.swift */; };
 		7D4073241DA94514005BBBCD /* TextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4073231DA94514005BBBCD /* TextFieldTableViewCell.swift */; };
+		7D4E66C91EED1CE20099F3CA /* AppNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4E66C81EED1CE20099F3CA /* AppNavigationItem.swift */; };
 		7D5504FA1E50B118006D9B81 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5504F91E50B118006D9B81 /* Realm.framework */; };
 		7D5504FC1E50B120006D9B81 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5504FB1E50B120006D9B81 /* RealmSwift.framework */; };
 		7D7994561E61CDB900A2E9B7 /* MapTodoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7994551E61CDB900A2E9B7 /* MapTodoRealm.swift */; };
@@ -76,6 +77,7 @@
 		7D4073141DA92DBD005BBBCD /* MapTodoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTodoUITests.swift; sourceTree = "<group>"; };
 		7D4073161DA92DBD005BBBCD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D4073231DA94514005BBBCD /* TextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		7D4E66C81EED1CE20099F3CA /* AppNavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavigationItem.swift; sourceTree = "<group>"; };
 		7D5504F91E50B118006D9B81 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/MapTodo-fpshqbficmwlgjawnqpwaqfgfjza/Build/Products/Debug-iphonesimulator/Realm/Realm.framework"; sourceTree = "<group>"; };
 		7D5504FB1E50B120006D9B81 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		7D7994551E61CDB900A2E9B7 /* MapTodoRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTodoRealm.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			children = (
 				7D4073231DA94514005BBBCD /* TextFieldTableViewCell.swift */,
 				7D9E30211EC9EECD007F2D21 /* AppTableViewCell.swift */,
+				7D4E66C81EED1CE20099F3CA /* AppNavigationItem.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D1DB8A71E59D856006FFEA7 /* Place.swift in Sources */,
+				7D4E66C91EED1CE20099F3CA /* AppNavigationItem.swift in Sources */,
 				7DED36F31DB367F9002CB35C /* PlaceListViewController.swift in Sources */,
 				7D4072F41DA92DBD005BBBCD /* TodoListViewController.swift in Sources */,
 				7DAF7B3E1DAA5270009EDC07 /* TodoItemViewController.swift in Sources */,
