@@ -9,10 +9,12 @@
 import UIKit
 
 class AppTableViewCell: UITableViewCell {
-
     @IBInspectable var borderColor: UIColor = UIColor.black
     @IBInspectable var cornerRadius: CGFloat = 0
     @IBInspectable var borderWidth: CGFloat = 1
+    @IBInspectable var showDetailButtonImage: UIImage? = nil
+    let showDetailButton = UIButton()
+
     var isTop: Bool = false {
         didSet {
             updateBorder()
@@ -28,6 +30,7 @@ class AppTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         updateBorder()
+        updateShowDetailButton()
     }
 
     func updateBorder() {
@@ -53,6 +56,16 @@ class AppTableViewCell: UITableViewCell {
         borderLayer.lineWidth = borderWidth
         if borderLayer.superlayer == nil {
             layer.addSublayer(borderLayer)
+        }
+    }
+
+    func updateShowDetailButton() {
+        if let showDetailButtonImage = showDetailButtonImage {
+            showDetailButton.setImage(showDetailButtonImage, for: UIControlState.normal)
+            let margin: CGFloat = 5
+            showDetailButton.frame = CGRect(x: self.bounds.width - self.bounds.height + margin, y: margin , width: self.bounds.height - 2 * margin, height: self.bounds.height - 2 * margin)
+            addSubview(showDetailButton)
+            textLabel?.frame.size.width = (textLabel?.frame.width)! - (margin + showDetailButton.bounds.width)
         }
     }
 }
