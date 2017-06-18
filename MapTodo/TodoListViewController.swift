@@ -48,18 +48,12 @@ class TodoListViewController: AppViewController {
     }
 
     func todoEntries(section: Int) -> Results<Todo>? {
-        if let p = place(section: section) {
-            return todoEntries.filter("place = %@", p)
-        } else {
-            return nil
-        }
+        return place(section: section).map { todoEntries.filter("place = %@", $0) }
     }
 
     func todo(indexPath: IndexPath) -> Todo? {
-        if let todoList = todoEntries(section: indexPath.section) {
-            if todoList.count > indexPath.row {
+        if let todoList = todoEntries(section: indexPath.section), todoList.count > indexPath.row {
                 return todoList[indexPath.row]
-            }
         }
         return nil
     }
@@ -117,11 +111,13 @@ extension TodoListViewController: UITableViewDataSource {
 }
 
 extension TodoListViewController: TextFieldTableViewCellDelegate {
-    func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: NSString, indexPath: IndexPath) {
+    func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String?, indexPath: IndexPath) {
         let todo: Todo = self.todo(indexPath: indexPath) ?? Todo()
-        try! realm.write {
-            todo.replace(item: value as String, place: place(section: indexPath.section)!)
+        if value != todo.item {
+            try! realm.write {
+                todo.replace(item: value, place: place(section: indexPath.section)!)
+            }
+            todoListTableView.reloadData()
         }
-        todoListTableView.reloadData()
     }
 }

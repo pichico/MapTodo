@@ -191,10 +191,10 @@ extension PlaceViewController: MKMapViewDelegate {
 }
 
 extension PlaceViewController: TextFieldTableViewCellDelegate {
-    func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: NSString, indexPath: IndexPath) {
+    func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String?, indexPath: IndexPath) {
         let todo :Todo = indexPath.row < todoEntiries.count ? todoEntiries[indexPath.row] : Todo()
         try! realm.write {
-            todo.replace(item: value as String, place: place)
+            todo.replace(item: value, place: place)
         }
         updateValues()
         todoListTableView.reloadData()
