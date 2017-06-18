@@ -45,6 +45,7 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="showDetailButtonImage" value="showDetailButton"/>
                                         </userDefinedRuntimeAttributes>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TodoListItem" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" id="7hL-bV-QZf" customClass="TextFieldTableViewCell" customModule="MapTodo" customModuleProvider="target">
@@ -66,9 +67,6 @@
                                                 <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <segue destination="A4b-Wc-znR" kind="show" identifier="edit" id="Mxk-Af-RST"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -97,7 +95,7 @@
                             </connections>
                         </barButtonItem>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="iconImage" value="header_icon"/>
+                            <userDefinedRuntimeAttribute type="image" keyPath="iconImage" value="headerIcon"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
                                 <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
@@ -195,7 +193,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tuE-dY-2Bd" id="RER-oA-BGr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
@@ -260,7 +258,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3qM-P3-o4A" id="Glk-Wg-5Rb">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -342,11 +340,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="header_icon" width="12" height="16"/>
+        <image name="headerIcon" width="12" height="16"/>
+        <image name="showDetailButton" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="myv-RJ-RBX"/>
-        <segue reference="Mxk-Af-RST"/>
         <segue reference="hsU-Qs-lPa"/>
     </inferredMetricsTieBreakers>
 </document>
