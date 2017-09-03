@@ -53,7 +53,7 @@ class TodoListViewController: AppViewController {
 
     func placeButtonTapped(sender: UIButton) {
         let controller = R.storyboard.main.placeView()!
-        controller.place = place(section: Int(sender.restorationIdentifier!)!)
+        controller.place = place(section: sender.tag)
         navigationController?.pushViewController(controller, animated: true)
     }
 }
@@ -64,8 +64,9 @@ extension TodoListViewController: UITableViewDelegate {
         cell.textLabel?.text = place(section: section)!.name
         cell.isTop = true
         cell.isBottom = (tableView.numberOfRows(inSection: section) == 0)
-        cell.showDetailButton.restorationIdentifier = String(section)
-        cell.showDetailButton.addTarget(self, action: #selector(TodoListViewController.placeButtonTapped), for: .touchUpInside)
+        cell.initializeShowDetailButton()
+        cell.showDetailButton!.tag = section
+        cell.showDetailButton!.addTarget(self, action: #selector(TodoListViewController.placeButtonTapped), for: .touchUpInside)
         return cell
     }
 
@@ -76,7 +77,6 @@ extension TodoListViewController: UITableViewDelegate {
 }
 
 extension TodoListViewController: UITableViewDataSource {
-
     func numberOfSections(in tableView: UITableView) -> Int {
         return placeEntries.count
     }
