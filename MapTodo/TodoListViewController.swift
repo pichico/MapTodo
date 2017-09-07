@@ -64,9 +64,9 @@ extension TodoListViewController: UITableViewDelegate {
         cell.textLabel?.text = place(section: section)!.name
         cell.isTop = true
         cell.isBottom = (tableView.numberOfRows(inSection: section) == 0)
-        cell.initializeShowDetailButton()
-        cell.showDetailButton!.tag = section
-        cell.showDetailButton!.addTarget(self, action: #selector(TodoListViewController.placeButtonTapped), for: .touchUpInside)
+        let placeButton = cell.initializeShowDetailButton()
+        placeButton.tag = section
+        placeButton.addTarget(self, action: #selector(TodoListViewController.placeButtonTapped), for: .touchUpInside)
         return cell
     }
 
