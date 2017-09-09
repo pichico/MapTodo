@@ -59,13 +59,12 @@ class AppTableViewCell: UITableViewCell {
 
     //showDetailButtonImage がある前提なので、ないのに呼び出すとエラーになる
     func initializeShowDetailButton() -> UIButton {
-        var showDetailButton: UIButton? = nil
-        showDetailButton = UIButton()
-        showDetailButton!.setImage(showDetailButtonImage!, for: UIControlState.normal)
+        let showDetailButton: UIButton = UIButton()
+        showDetailButton.setImage(showDetailButtonImage!, for: UIControlState.normal)
         let margin: CGFloat = 5
-        showDetailButton!.frame = CGRect(x: self.bounds.width - self.bounds.height + margin, y: margin , width: self.bounds.height - 2 * margin, height: self.bounds.height - 2 * margin)
-        addSubview(showDetailButton!)
-        textLabel?.frame.size.width = (textLabel?.frame.width)! - (margin + showDetailButton!.bounds.width)
-        return showDetailButton!
+        showDetailButton.frame = CGRect(x: self.bounds.width - self.bounds.height + margin, y: margin , width: self.bounds.height - 2 * margin, height: self.bounds.height - 2 * margin)
+        addSubview(showDetailButton)
+        textLabel?.frame.size.width = (textLabel?.frame.width)! - (margin + showDetailButton.bounds.width)
+        return showDetailButton
     }
 }

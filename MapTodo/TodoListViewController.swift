@@ -113,11 +113,11 @@ extension TodoListViewController: UITableViewDataSource {
 
 extension TodoListViewController: TextFieldTableViewCellDelegate {
     func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String, indexPath: IndexPath) {
-        var todo: Todo? = self.todo(indexPath: indexPath)
-        if todo == nil && !value.isEmpty {
-            todo = Todo();
+        if value.isEmpty {
+            return;
         }
-        if let todo = todo, value != todo.item {
+        let todo: Todo = self.todo(indexPath: indexPath) ?? Todo();
+        if value != todo.item {
             try! realm.write {
                 todo.replace(item: value, place: place(section: indexPath.section)!)
             }
