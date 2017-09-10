@@ -36,13 +36,6 @@ class TodoListViewController: AppViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "edit" {
-            let todoController = segue.destination as! TodoItemViewController
-            todoController.task = todo(indexPath: todoListTableView.indexPathForSelectedRow!)
-        }
-    }
-
     func place(section: Int) -> Place? {
         return placeEntries.count > section ? placeEntries[section] : nil
     }
@@ -57,6 +50,12 @@ class TodoListViewController: AppViewController {
         }
         return nil
     }
+
+    func placeButtonTapped(sender: UIButton) {
+        let controller = R.storyboard.main.placeView()!
+        controller.place = place(section: sender.tag)
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 extension TodoListViewController: UITableViewDelegate {
@@ -65,6 +64,9 @@ extension TodoListViewController: UITableViewDelegate {
         cell.textLabel?.text = place(section: section)!.name
         cell.isTop = true
         cell.isBottom = (tableView.numberOfRows(inSection: section) == 0)
+        let placeButton = cell.initializeShowDetailButton()
+        placeButton.tag = section
+        placeButton.addTarget(self, action: #selector(TodoListViewController.placeButtonTapped), for: .touchUpInside)
         return cell
     }
 
@@ -75,7 +77,6 @@ extension TodoListViewController: UITableViewDelegate {
 }
 
 extension TodoListViewController: UITableViewDataSource {
-
     func numberOfSections(in tableView: UITableView) -> Int {
         return placeEntries.count
     }
@@ -111,8 +112,11 @@ extension TodoListViewController: UITableViewDataSource {
 }
 
 extension TodoListViewController: TextFieldTableViewCellDelegate {
-    func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String?, indexPath: IndexPath) {
-        let todo: Todo = self.todo(indexPath: indexPath) ?? Todo()
+    func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String, indexPath: IndexPath) {
+        if value.isEmpty {
+            return;
+        }
+        let todo: Todo = self.todo(indexPath: indexPath) ?? Todo();
         if value != todo.item {
             try! realm.write {
                 todo.replace(item: value, place: place(section: indexPath.section)!)
