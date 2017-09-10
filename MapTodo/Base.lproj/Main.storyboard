@@ -45,9 +45,10 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="image" keyPath="showDetailButtonImage" value="showDetailButton"/>
                                         </userDefinedRuntimeAttributes>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TodoListItem" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" id="7hL-bV-QZf" customClass="AppTableViewCell" customModule="MapTodo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TodoListItem" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" id="7hL-bV-QZf" customClass="TextFieldTableViewCell" customModule="MapTodo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="100" width="355" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7hL-bV-QZf" id="E5i-qw-ffz">
@@ -66,9 +67,6 @@
                                                 <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <segue destination="A4b-Wc-znR" kind="show" identifier="edit" id="Mxk-Af-RST"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -85,7 +83,7 @@
                             <constraint firstItem="HZk-Ha-3sB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="10" id="rM8-2m-C9h"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="HOME" id="yua-f5-ye5">
+                    <navigationItem key="navigationItem" title="HOME" id="yua-f5-ye5" customClass="AppNavigationItem" customModule="MapTodo" customModuleProvider="target">
                         <barButtonItem key="leftBarButtonItem" title="place" id="hrp-cm-k0w">
                             <connections>
                                 <segue destination="eh3-Mf-oBv" kind="show" id="myv-RJ-RBX"/>
@@ -96,6 +94,12 @@
                                 <segue destination="A4b-Wc-znR" kind="show" id="Ej2-4d-CEX"/>
                             </connections>
                         </barButtonItem>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="image" keyPath="iconImage" value="headerIcon"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="titleColor">
+                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </navigationItem>
                     <connections>
                         <outlet property="todoListTableView" destination="HZk-Ha-3sB" id="oRu-ia-fg8"/>
@@ -335,9 +339,12 @@
             <point key="canvasLocation" x="136.80000000000001" y="106.59670164917542"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="headerIcon" width="12" height="16"/>
+        <image name="showDetailButton" width="24" height="24"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="myv-RJ-RBX"/>
-        <segue reference="Mxk-Af-RST"/>
         <segue reference="hsU-Qs-lPa"/>
     </inferredMetricsTieBreakers>
 </document>

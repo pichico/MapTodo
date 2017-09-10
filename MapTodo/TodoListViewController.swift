@@ -15,20 +15,20 @@ class TodoListViewController: AppViewController {
 
     @IBOutlet weak var todoListTableView: UITableView!
     @IBOutlet weak var todoListItemCell: UITableViewCell!
-    var todoEntities: Results<Todo>!
-    var placeEntities: Results<Place>!
+    var todoEntries: Results<Todo>!
+    var placeEntries: Results<Place>!
 
     var realm: Realm! = MapTodoRealm.sharedRealm.realm
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        todoEntities = Todo.getAll()
-        placeEntities = Place.getAll()
+        todoEntries = Todo.getAll()
+        placeEntries = Place.getAll()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        todoEntities = Todo.getAll()
+        todoEntries = Todo.getAll()
         todoListTableView.reloadData()
     }
 
@@ -36,20 +36,37 @@ class TodoListViewController: AppViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "edit" {
-            let todoController = segue.destination as! TodoItemViewController
-            todoController.task = todoEntities[todoListTableView.indexPathForSelectedRow!.row]
+    func place(section: Int) -> Place? {
+        return placeEntries.count > section ? placeEntries[section] : nil
+    }
+
+    func todoEntries(section: Int) -> Results<Todo>? {
+        return place(section: section).map { todoEntries.filter("place = %@", $0) }
+    }
+
+    func todo(indexPath: IndexPath) -> Todo? {
+        if let todoList = todoEntries(section: indexPath.section), todoList.count > indexPath.row {
+                return todoList[indexPath.row]
         }
-    }    
+        return nil
+    }
+
+    func placeButtonTapped(sender: UIButton) {
+        let controller = R.storyboard.main.placeView()!
+        controller.place = place(section: sender.tag)
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 extension TodoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell: AppTableViewCell = tableView.dequeueReusableCell(withIdentifier: "PlaceItem") as! AppTableViewCell
-        cell.textLabel?.text = placeEntities[section].name
+        cell.textLabel?.text = place(section: section)!.name
         cell.isTop = true
         cell.isBottom = (tableView.numberOfRows(inSection: section) == 0)
+        let placeButton = cell.initializeShowDetailButton()
+        placeButton.tag = section
+        placeButton.addTarget(self, action: #selector(TodoListViewController.placeButtonTapped), for: .touchUpInside)
         return cell
     }
 
@@ -60,19 +77,25 @@ extension TodoListViewController: UITableViewDelegate {
 }
 
 extension TodoListViewController: UITableViewDataSource {
-
     func numberOfSections(in tableView: UITableView) -> Int {
-        return placeEntities.count
+        return placeEntries.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return todoEntities.filter("place = %@", placeEntities[section]).count
+        return todoEntries(section: section)!.count + 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: AppTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as! AppTableViewCell
-        cell.isBottom = (indexPath.row == tableView.numberOfRows(inSection: indexPath.section) - 1)
-        cell.textLabel?.text = todoEntities.filter("place = %@", placeEntities[indexPath.section])[indexPath.row].item
+        let cell: TextFieldTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as! TextFieldTableViewCell
+        cell.delegate = self
+        cell.indexPath = indexPath
+        if let todo = todo(indexPath: indexPath) {
+            cell.textField.text = todo.item
+            cell.isBottom = false
+        } else {
+            cell.textField.text = ""
+            cell.isBottom = true
+        }
         return cell
     }
 
@@ -82,7 +105,22 @@ extension TodoListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            todoEntities.filter("place = %@", placeEntities[indexPath.section])[indexPath.row].delete()
+            todo(indexPath: indexPath)?.delete()
+            todoListTableView.reloadData()
+        }
+    }
+}
+
+extension TodoListViewController: TextFieldTableViewCellDelegate {
+    func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String, indexPath: IndexPath) {
+        if value.isEmpty {
+            return;
+        }
+        let todo: Todo = self.todo(indexPath: indexPath) ?? Todo();
+        if value != todo.item {
+            try! realm.write {
+                todo.replace(item: value, place: place(section: indexPath.section)!)
+            }
             todoListTableView.reloadData()
         }
     }

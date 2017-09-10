@@ -11,10 +11,10 @@ import UIKit
 
 
 protocol TextFieldTableViewCellDelegate {
-    func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: NSString, indexPath: IndexPath) -> ()
+    func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String, indexPath: IndexPath) -> ()
 }
 
-class TextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
+class TextFieldTableViewCell: AppTableViewCell, UITextFieldDelegate {
     var delegate: TextFieldTableViewCellDelegate! = nil
     var indexPath: IndexPath?
     @IBOutlet weak var textField: UITextField!
@@ -32,7 +32,7 @@ class TextFieldTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
 
     internal func textFieldDidEndEditing(_ textField: UITextField) {
-        self.delegate.textFieldDidEndEditing(cell: self, value: (textField.text as NSString!), indexPath: self.indexPath!)
+        self.delegate.textFieldDidEndEditing(cell: self, value: textField.text!, indexPath: self.indexPath!)
     }
 
     internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
