@@ -191,12 +191,20 @@ extension PlaceViewController: MKMapViewDelegate {
 }
 
 extension PlaceViewController: TextFieldTableViewCellDelegate {
-    func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: NSString, indexPath: IndexPath) {
-        let todo :Todo = indexPath.row < todoEntiries.count ? todoEntiries[indexPath.row] : Todo()
-        try! realm.write {
-            todo.replace(item: value as String, place: place)
+    func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String, indexPath: IndexPath) {
+        let todo: Todo
+        if indexPath.row < todoEntiries.count {
+            todo = todoEntiries[indexPath.row]
+        } else if !value.isEmpty {
+            todo = Todo()
+        } else {
+            return
         }
-        updateValues()
-        todoListTableView.reloadData()
+        if value != todo.item {
+            try! realm.write {
+                todo.replace(item: value, place: place)
+            }
+            todoListTableView.reloadData()
+        }
     }
 }
