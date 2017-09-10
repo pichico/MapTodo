@@ -9,10 +9,11 @@
 import UIKit
 
 class AppTableViewCell: UITableViewCell {
-
     @IBInspectable var borderColor: UIColor = UIColor.black
     @IBInspectable var cornerRadius: CGFloat = 0
     @IBInspectable var borderWidth: CGFloat = 1
+    @IBInspectable var showDetailButtonImage: UIImage? = nil
+
     var isTop: Bool = false {
         didSet {
             updateBorder()
@@ -54,5 +55,16 @@ class AppTableViewCell: UITableViewCell {
         if borderLayer.superlayer == nil {
             layer.addSublayer(borderLayer)
         }
+    }
+
+    //showDetailButtonImage がある前提なので、ないのに呼び出すとエラーになる
+    func initializeShowDetailButton() -> UIButton {
+        let showDetailButton: UIButton = UIButton()
+        showDetailButton.setImage(showDetailButtonImage!, for: UIControlState.normal)
+        let margin: CGFloat = 5
+        showDetailButton.frame = CGRect(x: self.bounds.width - self.bounds.height + margin, y: margin , width: self.bounds.height - 2 * margin, height: self.bounds.height - 2 * margin)
+        addSubview(showDetailButton)
+        textLabel?.frame.size.width = (textLabel?.frame.width)! - (margin + showDetailButton.bounds.width)
+        return showDetailButton
     }
 }
