@@ -40,9 +40,13 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         if let place = Place.get(uiid: region.identifier){
-            if Todo.getList(place: place).count > 0 {
+            let todoList = Todo.getList(place: place)
+            if todoList.count > 0 {
                 let notification = UILocalNotification()
-                notification.alertBody = place.name! + "に到着"
+                let showCount = 3
+                notification.alertTitle = place.name! + "でのToDo登録されています。"
+                notification.alertBody = todoList.map {$0.item!}.prefix(showCount).joined(separator: ", ")
+                    + (todoList.count > showCount ? " 他" : "")
                 notification.userInfo = ["region":region.identifier]
                 notification.applicationIconBadgeNumber = 1
                 notification.soundName = UILocalNotificationDefaultSoundName
