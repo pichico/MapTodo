@@ -28,10 +28,8 @@
 		7D5504FC1E50B120006D9B81 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5504FB1E50B120006D9B81 /* RealmSwift.framework */; };
 		7D7994561E61CDB900A2E9B7 /* MapTodoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7994551E61CDB900A2E9B7 /* MapTodoRealm.swift */; };
 		7D9E30221EC9EECD007F2D21 /* AppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9E30211EC9EECD007F2D21 /* AppTableViewCell.swift */; };
-		7DAF7B3E1DAA5270009EDC07 /* TodoItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAF7B3D1DAA5270009EDC07 /* TodoItemViewController.swift */; };
 		7DBE19611DE976C4008E20DC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE19601DE976C4008E20DC /* LocationManager.swift */; };
 		7DE87F221EDB02EA00944734 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE87F211EDB02EA00944734 /* AppViewController.swift */; };
-		7DED36F31DB367F9002CB35C /* PlaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DED36F21DB367F9002CB35C /* PlaceListViewController.swift */; };
 		7DED36F91DB39FA3002CB35C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DED36F81DB39FA3002CB35C /* MapKit.framework */; };
 		7DFD35631E06D05000F02FA0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFD35621E06D05000F02FA0 /* R.generated.swift */; };
 /* End PBXBuildFile section */
@@ -82,10 +80,8 @@
 		7D5504FB1E50B120006D9B81 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		7D7994551E61CDB900A2E9B7 /* MapTodoRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTodoRealm.swift; sourceTree = "<group>"; };
 		7D9E30211EC9EECD007F2D21 /* AppTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTableViewCell.swift; sourceTree = "<group>"; };
-		7DAF7B3D1DAA5270009EDC07 /* TodoItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoItemViewController.swift; sourceTree = "<group>"; };
 		7DBE19601DE976C4008E20DC /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7DE87F211EDB02EA00944734 /* AppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
-		7DED36F21DB367F9002CB35C /* PlaceListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceListViewController.swift; sourceTree = "<group>"; };
 		7DED36F81DB39FA3002CB35C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7DFD35621E06D05000F02FA0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		900097914FFA7E45509D8403 /* Pods-MapTodo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapTodo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapTodo/Pods-MapTodo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -223,9 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				7D4072F31DA92DBD005BBBCD /* TodoListViewController.swift */,
-				7DAF7B3D1DAA5270009EDC07 /* TodoItemViewController.swift */,
 				7D03CE491DABCDBB0096D2FE /* PlaceViewController.swift */,
-				7DED36F21DB367F9002CB35C /* PlaceListViewController.swift */,
 				7DE87F211EDB02EA00944734 /* AppViewController.swift */,
 			);
 			name = Controller;
@@ -558,9 +552,7 @@
 			files = (
 				7D1DB8A71E59D856006FFEA7 /* Place.swift in Sources */,
 				7D4E66C91EED1CE20099F3CA /* AppNavigationItem.swift in Sources */,
-				7DED36F31DB367F9002CB35C /* PlaceListViewController.swift in Sources */,
 				7D4072F41DA92DBD005BBBCD /* TodoListViewController.swift in Sources */,
-				7DAF7B3E1DAA5270009EDC07 /* TodoItemViewController.swift in Sources */,
 				7DE87F221EDB02EA00944734 /* AppViewController.swift in Sources */,
 				7D4072FA1DA92DBD005BBBCD /* MapTodo.xcdatamodeld in Sources */,
 				7D7994561E61CDB900A2E9B7 /* MapTodoRealm.swift in Sources */,
