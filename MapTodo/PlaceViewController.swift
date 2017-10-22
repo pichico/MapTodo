@@ -30,6 +30,7 @@ class PlaceViewController: AppViewController {
         super.viewDidLoad()
         mapView.delegate = self
         lmmap.delegate = self
+        placeNameTextField.returnKeyType = .done
         mapView.showsUserLocation=true //地図上に現在地を表示
         place = place ?? Place()
         updateValues()

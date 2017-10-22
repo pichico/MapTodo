@@ -24,6 +24,7 @@ class TextFieldTableViewCell: AppTableViewCell, UITextFieldDelegate {
         let view = Bundle.main.loadNibNamed("TextFieldTableViewCell", owner: self, options: nil)?.first as! UIView
         view.frame = CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
         textField.delegate = self
+        textField.returnKeyType = .done
         self.addSubview(view)
     }
 
