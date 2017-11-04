@@ -60,14 +60,12 @@ class TodoListViewController: AppViewController {
 
 extension TodoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell: AppTableViewCell = tableView.dequeueReusableCell(withIdentifier: "PlaceItem") as! AppTableViewCell
-        cell.textLabel?.text = place(section: section)!.name
-        cell.isTop = true
-        cell.isBottom = (tableView.numberOfRows(inSection: section) == 0)
-        let placeButton = cell.initializeShowDetailButton()
+        let headerView: AppTableViewHeaderView = AppTableViewHeaderView()
+        headerView.setLabel(text: place(section: section)!.name)
+        let placeButton = headerView.showDetailButton!
         placeButton.tag = section
         placeButton.addTarget(self, action: #selector(TodoListViewController.placeButtonTapped), for: .touchUpInside)
-        return cell
+        return headerView
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
