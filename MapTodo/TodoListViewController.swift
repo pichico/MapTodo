@@ -61,7 +61,7 @@ class TodoListViewController: AppViewController {
 extension TodoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: AppTableViewHeaderView = AppTableViewHeaderView()
-        headerView.setLabel(text: place(section: section)!.name)
+        headerView.setLabelText(text: place(section: section)!.name)
         let placeButton = headerView.showDetailButton!
         placeButton.tag = section
         placeButton.addTarget(self, action: #selector(TodoListViewController.placeButtonTapped), for: .touchUpInside)

@@ -21,7 +21,7 @@ class AppTableViewHeaderView: UIView {
         super.init(frame: frame)
         loadNib()
     }
-    
+
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         updateBorder()
@@ -34,20 +34,19 @@ class AppTableViewHeaderView: UIView {
 
     func loadNib() {
         let view = R.nib.appTableViewHeaderView.firstView(owner: self)!
-            //R.nib.appTableViewHeaderView.firstView(owner: self)!
         view.frame = CGRect.init(x: 0, y: 0, width: bounds.width, height: bounds.height)
         self.addSubview(view)
     }
-    
+
     func updateBorder() {
         let rcfirst: UIRectCorner = [UIRectCorner.topLeft, UIRectCorner.topRight]
-        
+
         let maskPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: rcfirst, cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
         let maskLayer = CAShapeLayer()
         maskLayer.path = maskPath.cgPath
         layer.mask = maskLayer
-        
-        // 境界線 + 枠をつける。 上下のcellで二重に線が描画されるので、下のcellの上の辺を上のcellの下の辺に重ねる
+
+        // 枠をつける。
         let borderLayer: CAShapeLayer = CAShapeLayer()
         let borderBounds = bounds
         let borderPath = UIBezierPath(roundedRect: borderBounds, byRoundingCorners: [rcfirst], cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
@@ -57,9 +56,9 @@ class AppTableViewHeaderView: UIView {
         borderLayer.lineWidth = borderWidth
         layer.addSublayer(borderLayer)
     }
-    
-    func setLabel(text: String?) {
+
+    func setLabelText(text: String?) {
         textLabel.text = text
     }
-    
+
 }
