@@ -18,7 +18,7 @@ class TodoListViewController: AppViewController {
     var todoEntries: Results<Todo>!
     var placeEntries: Results<Place>!
 
-    var realm: Realm! = MapTodoRealm.sharedRealm.realm
+    let realm: Realm! = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
