@@ -27,10 +27,7 @@ class Todo: Object {
     }
 
     public func delete() {
-        let realm = try! Realm()
-        try! realm.write {
-            realm.delete(self)
-        }
+        try! Realm().delete(self)
     }
 
     public func replace(item: String!, place: Place!) {
