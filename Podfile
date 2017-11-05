@@ -4,7 +4,9 @@ platform :ios, '8.3'
 use_frameworks!
 
 target 'MapTodo' do
-	pod 'RealmSwift'
+    pod 'Fabric'
+    pod 'Crashlytics'
+    pod 'RealmSwift'
 	pod 'R.swift'
 end
 
