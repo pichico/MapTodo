@@ -55,11 +55,11 @@ class PlaceViewController: AppViewController {
     }
     
     func replacePlace() {
-        realm.beginWrite()
-        place.stopMonitoring()
-        place.replace(name: placeNameTextField.text!, radius: radiusStepper.value, point: mapPoint)
-        place.startMonitoring()
-        try! realm.commitWrite()
+        try! realm.write {
+            place.stopMonitoring()
+            place.replace(name: placeNameTextField.text!, radius: radiusStepper.value, point: mapPoint)
+            place.startMonitoring()
+        }
         UIApplication.shared.cancelAllLocalNotifications()
     }
 
