@@ -105,7 +105,9 @@ extension TodoListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            todo(indexPath: indexPath)?.delete()
+            try! realm.write {
+                todo(indexPath: indexPath)?.delete()
+            }
             todoListTableView.reloadData()
         }
     }
