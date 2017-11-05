@@ -26,7 +26,6 @@
 		7D4E66C91EED1CE20099F3CA /* AppNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4E66C81EED1CE20099F3CA /* AppNavigationItem.swift */; };
 		7D5504FA1E50B118006D9B81 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5504F91E50B118006D9B81 /* Realm.framework */; };
 		7D5504FC1E50B120006D9B81 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5504FB1E50B120006D9B81 /* RealmSwift.framework */; };
-		7D7994561E61CDB900A2E9B7 /* MapTodoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7994551E61CDB900A2E9B7 /* MapTodoRealm.swift */; };
 		7D9E30221EC9EECD007F2D21 /* AppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9E30211EC9EECD007F2D21 /* AppTableViewCell.swift */; };
 		7DBE19611DE976C4008E20DC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE19601DE976C4008E20DC /* LocationManager.swift */; };
 		7DE87F221EDB02EA00944734 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE87F211EDB02EA00944734 /* AppViewController.swift */; };
@@ -78,7 +77,6 @@
 		7D4E66C81EED1CE20099F3CA /* AppNavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavigationItem.swift; sourceTree = "<group>"; };
 		7D5504F91E50B118006D9B81 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/MapTodo-fpshqbficmwlgjawnqpwaqfgfjza/Build/Products/Debug-iphonesimulator/Realm/Realm.framework"; sourceTree = "<group>"; };
 		7D5504FB1E50B120006D9B81 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
-		7D7994551E61CDB900A2E9B7 /* MapTodoRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapTodoRealm.swift; sourceTree = "<group>"; };
 		7D9E30211EC9EECD007F2D21 /* AppTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTableViewCell.swift; sourceTree = "<group>"; };
 		7DBE19601DE976C4008E20DC /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7DE87F211EDB02EA00944734 /* AppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 				7D4073001DA92DBD005BBBCD /* Info.plist */,
 				7D4072F81DA92DBD005BBBCD /* MapTodo.xcdatamodeld */,
 				7DBE19601DE976C4008E20DC /* LocationManager.swift */,
-				7D7994551E61CDB900A2E9B7 /* MapTodoRealm.swift */,
 			);
 			path = MapTodo;
 			sourceTree = "<group>";
@@ -555,7 +552,6 @@
 				7D4072F41DA92DBD005BBBCD /* TodoListViewController.swift in Sources */,
 				7DE87F221EDB02EA00944734 /* AppViewController.swift in Sources */,
 				7D4072FA1DA92DBD005BBBCD /* MapTodo.xcdatamodeld in Sources */,
-				7D7994561E61CDB900A2E9B7 /* MapTodoRealm.swift in Sources */,
 				7DFD35631E06D05000F02FA0 /* R.generated.swift in Sources */,
 				7D9E30221EC9EECD007F2D21 /* AppTableViewCell.swift in Sources */,
 				7D1DB8A51E59BB07006FFEA7 /* Todo.swift in Sources */,

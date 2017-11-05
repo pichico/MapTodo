@@ -23,15 +23,15 @@ class Place: Object {
     }
 
     public static func getAll() -> Results<Place> {
-        return MapTodoRealm.sharedRealm.realm.objects(self)
+        return try! Realm().objects(self)
     }
 
     public static func get(uiid: String) -> Place? {
-        return MapTodoRealm.sharedRealm.realm.object(ofType: self, forPrimaryKey: uiid)
+        return try! Realm().object(ofType: self, forPrimaryKey: uiid)
     }
 
     public func delete() {
-        let realm = MapTodoRealm.sharedRealm.realm
+        let realm = try! Realm()
         try! realm.write {
             realm.delete(self)
         }
@@ -45,7 +45,7 @@ class Place: Object {
             self.latitude.value = point.latitude
             self.longitude.value = point.longitude
         }
-        MapTodoRealm.sharedRealm.realm.add(self, update: true)
+       try! Realm().add(self, update: true)
     }
 }
 

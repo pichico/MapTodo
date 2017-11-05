@@ -24,7 +24,7 @@ class PlaceViewController: AppViewController {
     var mapPoint: CLLocationCoordinate2D? = nil
     var place: Place!
     var todoEntiries: Results<Todo>!
-    let realm: Realm! = MapTodoRealm.sharedRealm.realm
+    let realm: Realm! = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()

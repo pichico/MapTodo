@@ -19,17 +19,16 @@ class Todo: Object {
     }
 
     static func getAll() -> Results<Todo> {
-        return MapTodoRealm.sharedRealm.realm.objects(self)
+        return try! Realm().objects(self)
     }
 
-
     static func getList(place: Place) -> Results<Todo> {
-        return MapTodoRealm.sharedRealm.realm.objects(self).filter(NSPredicate(format: "place = %@", place))
+        return try! Realm().objects(self).filter(NSPredicate(format: "place = %@", place))
     }
 
     public func delete() {
-        let realm = MapTodoRealm.sharedRealm.realm
-        try! MapTodoRealm.sharedRealm.realm.write {
+        let realm = try! Realm()
+        try! realm.write {
             realm.delete(self)
         }
     }
@@ -37,6 +36,6 @@ class Todo: Object {
     public func replace(item: String!, place: Place!) {
         self.item = item
         self.place = place
-        MapTodoRealm.sharedRealm.realm.add(self, update: true)
+        try! Realm().add(self, update: true)
     }
 }
