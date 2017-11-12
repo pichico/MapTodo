@@ -9,11 +9,10 @@
 import UIKit
 
 class AppTableViewHeaderView: UIView {
-    var cornerRadius: CGFloat = 5
-    var borderWidth: CGFloat = 2
-    var borderColor: UIColor = UIColor.init(red: 0.62745098039215685, green: 0.63529411764705879, blue: 0.63921568627450975, alpha: 1)
+    let cornerRadius = CGFloat(5)
+    let borderWidth = CGFloat(2)
+    let borderColor = UIColor(red: 160 / 255.0, green: 162 / 255.0, blue: 163 / 255.0, alpha: 1)
 
-    @IBOutlet var backgroundView: UIView!
     @IBOutlet weak var showDetailButton: UIButton!
     @IBOutlet weak var textLabel: UILabel!
 
@@ -34,7 +33,7 @@ class AppTableViewHeaderView: UIView {
 
     func loadNib() {
         let view = R.nib.appTableViewHeaderView.firstView(owner: self)!
-        view.frame = CGRect.init(x: 0, y: 0, width: bounds.width, height: bounds.height)
+        view.frame = bounds
         self.addSubview(view)
     }
 
