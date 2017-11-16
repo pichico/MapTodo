@@ -24,31 +24,8 @@
                                 <rect key="frame" x="10" y="10" width="355" height="667"/>
                                 <color key="backgroundColor" red="0.22148609159999999" green="0.51977270840000001" blue="0.69272351259999998" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="PlaceItem" id="kWL-IZ-seq" customClass="AppTableViewCell" customModule="MapTodo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="355" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kWL-IZ-seq" id="dp8-S5-pED">
-                                            <rect key="frame" x="0.0" y="0.0" width="355" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" red="0.59607843140000005" green="0.81568627449999997" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="tintColor" red="0.12941176469999999" green="0.30196078430000001" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.59607843140000005" green="0.81568627449999997" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.62745098039215685" green="0.63529411764705879" blue="0.63921568627450975" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="image" keyPath="showDetailButtonImage" value="showDetailButton"/>
-                                        </userDefinedRuntimeAttributes>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TodoListItem" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" id="7hL-bV-QZf" customClass="TextFieldTableViewCell" customModule="MapTodo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="99.5" width="355" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="355" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7hL-bV-QZf" id="E5i-qw-ffz">
                                             <rect key="frame" x="0.0" y="0.0" width="355" height="44"/>
@@ -215,6 +192,5 @@
     </scenes>
     <resources>
         <image name="headerIcon" width="12" height="16"/>
-        <image name="showDetailButton" width="24" height="24"/>
     </resources>
 </document>
