@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let placeViewController = R.storyboard.main.placeView()!
                     placeViewController.place = place
                     let navController = window?.rootViewController as! UINavigationController
-                    (navController).setViewControllers([navController.viewControllers.first!, placeViewController], animated: false)
+                    navController.setViewControllers([navController.viewControllers.first!, placeViewController], animated: false)
                 }
             }
         }
