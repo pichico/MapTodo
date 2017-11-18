@@ -18,21 +18,21 @@ class Todo: Object {
         return "uuid"
     }
 
-    static func getAll() -> Results<Todo> {
-        return try! Realm().objects(self)
+    static func getAll(realm: Realm) -> Results<Todo> {
+        return realm.objects(self)
     }
 
-    static func getList(place: Place) -> Results<Todo> {
-        return try! Realm().objects(self).filter(NSPredicate(format: "place = %@", place))
+    static func getList(realm: Realm, place: Place) -> Results<Todo> {
+        return realm.objects(self).filter(NSPredicate(format: "place = %@", place))
     }
 
-    public func delete() {
-        try! Realm().delete(self)
+    public func delete(realm: Realm) {
+        realm.delete(self)
     }
 
-    public func replace(item: String!, place: Place!) {
+    public func replace(realm: Realm, item: String!, place: Place!) {
         self.item = item
         self.place = place
-        try! Realm().add(self, update: true)
+        realm.add(self, update: true)
     }
 }

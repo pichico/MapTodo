@@ -39,8 +39,9 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        if let place = Place.get(uiid: region.identifier){
-            let todoList = Todo.getList(place: place)
+        let realm: Realm = try! Realm()
+        if let place = Place.get(realm: realm, uiid: region.identifier){
+            let todoList = Todo.getList(realm: realm, place: place)
             if todoList.count > 0 {
                 let notification = UILocalNotification()
                 let showCount = 3
