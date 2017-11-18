@@ -24,7 +24,7 @@ class PlaceViewController: AppViewController {
     var mapPoint: CLLocationCoordinate2D? = nil
     var place: Place!
     var todoEntiries: Results<Todo>!
-    let realm: Realm! = try! Realm()
+    let realm: Realm = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,14 +50,14 @@ class PlaceViewController: AppViewController {
                 lmmap.distanceFilter = 200
                 lmmap.startUpdatingLocation()
             }
-            todoEntiries = Todo.getList(place: place)
+            todoEntiries = Todo.getList(realm: realm, place: place)
         }
     }
     
     func replacePlace() {
         try! realm.write {
             place.stopMonitoring()
-            place.replace(name: placeNameTextField.text!, radius: radiusStepper.value, point: mapPoint)
+            place.replace(realm: realm, name: placeNameTextField.text!, radius: radiusStepper.value, point: mapPoint)
             place.startMonitoring()
         }
         UIApplication.shared.cancelAllLocalNotifications()
@@ -203,7 +203,7 @@ extension PlaceViewController: TextFieldTableViewCellDelegate {
         }
         if value != todo.item {
             try! realm.write {
-                todo.replace(item: value, place: place)
+                todo.replace(realm: realm, item: value, place: place)
             }
             todoListTableView.reloadData()
         }

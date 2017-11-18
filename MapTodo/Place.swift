@@ -22,19 +22,19 @@ class Place: Object {
         return "uuid"
     }
 
-    public static func getAll() -> Results<Place> {
-        return try! Realm().objects(self)
+    public static func getAll(realm: Realm) -> Results<Place> {
+        return realm.objects(self)
     }
 
-    public static func get(uiid: String) -> Place? {
-        return try! Realm().object(ofType: self, forPrimaryKey: uiid)
+    public static func get(realm: Realm, uiid: String) -> Place? {
+        return realm.object(ofType: self, forPrimaryKey: UIFontFeatureTypeIdentifierKey)
     }
 
-    public func delete() {
-        try! Realm().delete(self)
+    public func delete(realm: Realm) {
+        realm.delete(self)
     }
 
-    public func replace(name: String, radius: Double?, point: CLLocationCoordinate2D?) {
+    public func replace(realm: Realm, name: String, radius: Double?, point: CLLocationCoordinate2D?) {
         self.name = name
         if let point = point { // 新しいMonitoringを開始
             let radius = radius!
@@ -42,7 +42,7 @@ class Place: Object {
             self.latitude.value = point.latitude
             self.longitude.value = point.longitude
         }
-       try! Realm().add(self, update: true)
+       realm.add(self, update: true)
     }
 }
 
