@@ -92,14 +92,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="j76-g7-uLZ">
-                                <rect key="frame" x="0.0" y="150" width="375" height="217"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDG-wG-UWm">
+                                <rect key="frame" x="0.0" y="64" width="375" height="300"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="fzO-lc-t3K" appends="YES" id="eho-ce-OsQ"/>
-                                </connections>
-                            </mapView>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="NeA-Lk-UEG"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BAD-vf-XOZ">
                                 <rect key="frame" x="0.0" y="366" width="375" height="281"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -135,6 +134,11 @@
                             </stepper>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="xDG-wG-UWm" secondAttribute="trailing" id="EwW-x1-gE6"/>
+                            <constraint firstItem="xDG-wG-UWm" firstAttribute="top" secondItem="zfI-G5-AMK" secondAttribute="bottom" id="TeY-7M-imR"/>
+                            <constraint firstItem="xDG-wG-UWm" firstAttribute="leading" secondItem="rZX-pf-TFS" secondAttribute="leading" id="dpk-WA-oWS"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Place" id="qt4-Pw-Mvf">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="yhh-FN-Hhn">
@@ -149,27 +153,22 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="mapView" destination="j76-g7-uLZ" id="zXs-J4-42p"/>
+                        <outlet property="mapView" destination="xDG-wG-UWm" id="2k0-Vd-ahA"/>
                         <outlet property="placeNameTextField" destination="kG5-5r-bS7" id="YdH-DV-lX0"/>
                         <outlet property="radiusStepper" destination="vtr-nT-BmB" id="HET-ws-Rts"/>
                         <outlet property="todoListTableView" destination="BAD-vf-XOZ" id="bNU-kl-wRY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Afz-cZ-8as" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="fzO-lc-t3K">
-                    <connections>
-                        <action selector="mapLongPressed:" destination="7q1-3Y-g5j" id="FD2-sl-xeu"/>
-                    </connections>
-                </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1750" y="107"/>
+            <point key="canvasLocation" x="1749.5999999999999" y="106.59670164917542"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wxk-3m-xAb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LlG-fu-xYr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="oBG-IR-Gac">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="oBG-IR-Gac">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.0039215686274509803" green="0.51764705882352935" blue="0.69019607843137254" alpha="1" colorSpace="calibratedRGB"/>
