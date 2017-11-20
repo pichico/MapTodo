@@ -18,17 +18,17 @@ class TodoListViewController: AppViewController {
     var todoEntries: Results<Todo>!
     var placeEntries: Results<Place>!
 
-    var realm: Realm! = MapTodoRealm.sharedRealm.realm
+    let realm: Realm = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        todoEntries = Todo.getAll()
-        placeEntries = Place.getAll()
+        todoEntries = Todo.getAll(realm: realm)
+        placeEntries = Place.getAll(realm: realm)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        todoEntries = Todo.getAll()
+        todoEntries = Todo.getAll(realm: realm)
         todoListTableView.reloadData()
     }
 
@@ -103,7 +103,9 @@ extension TodoListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            todo(indexPath: indexPath)?.delete()
+            try! realm.write {
+                todo(indexPath: indexPath)?.delete(realm: realm)
+            }
             todoListTableView.reloadData()
         }
     }
@@ -117,7 +119,7 @@ extension TodoListViewController: TextFieldTableViewCellDelegate {
         let todo: Todo = self.todo(indexPath: indexPath) ?? Todo();
         if value != todo.item {
             try! realm.write {
-                todo.replace(item: value, place: place(section: indexPath.section)!)
+                todo.replace(realm: realm, item: value, place: place(section: indexPath.section)!)
             }
             todoListTableView.reloadData()
         }
