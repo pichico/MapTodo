@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.cancelLocalNotification(notification)
         if let userInfo = notification.userInfo {
             if let region = userInfo["region"] as! String! {
-                if let place = Place.get(uiid: region) {
+                if let place = Place.get(realm: try! Realm(), uiid: region) {
                     let placeViewController = R.storyboard.main.placeView()!
                     placeViewController.place = place
                     let navController = window?.rootViewController as! UINavigationController
