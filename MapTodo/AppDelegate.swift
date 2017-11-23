@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CoreLocation
+import GoogleMaps
 import RealmSwift
 
 
@@ -19,6 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let lm: LocationManager = LocationManager.sharedLocationManager
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+        let keyFilePath = Bundle.main.path(forResource: "Keys", ofType: "plist")!
+        let keyMap = NSDictionary(contentsOfFile: keyFilePath)!
+        GMSServices.provideAPIKey(keyMap["GMSServicesProvideAPIKey"] as! String!)
+
         application.applicationIconBadgeNumber = 0
 
         let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
