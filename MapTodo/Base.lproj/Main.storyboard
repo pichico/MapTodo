@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -92,17 +93,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="j76-g7-uLZ">
-                                <rect key="frame" x="0.0" y="150" width="375" height="217"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <gestureRecognizers/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="地名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kG5-5r-bS7">
+                                <rect key="frame" x="26" y="94" width="199" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minimumValue="100" maximumValue="100000" stepValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="vtr-nT-BmB">
+                                <rect key="frame" x="245" y="95" width="94" height="29"/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="fzO-lc-t3K" appends="YES" id="eho-ce-OsQ"/>
+                                    <action selector="radiusStepperTapped:" destination="7q1-3Y-g5j" eventType="valueChanged" id="WaL-Va-OvG"/>
                                 </connections>
-                            </mapView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BAD-vf-XOZ">
-                                <rect key="frame" x="0.0" y="366" width="375" height="281"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </stepper>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GT6-t3-fOE">
+                                <rect key="frame" x="0.0" y="134" width="375" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="F1Q-Za-Owd"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BAD-vf-XOZ">
+                                <rect key="frame" x="0.0" y="434" width="375" height="233"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" id="3qM-P3-o4A" customClass="TextFieldTableViewCell" customModule="MapTodo" customModuleProvider="target">
@@ -119,22 +130,22 @@
                                     <outlet property="delegate" destination="7q1-3Y-g5j" id="INa-f0-YTh"/>
                                 </connections>
                             </tableView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="地名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kG5-5r-bS7">
-                                <rect key="frame" x="22" y="92" width="193" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minimumValue="100" maximumValue="100000" stepValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="vtr-nT-BmB">
-                                <rect key="frame" x="265" y="93" width="94" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="radiusStepperTapped:" destination="7q1-3Y-g5j" eventType="valueChanged" id="WaL-Va-OvG"/>
-                                </connections>
-                            </stepper>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="vtr-nT-BmB" firstAttribute="centerY" secondItem="kG5-5r-bS7" secondAttribute="centerY" id="3dk-1N-mdr"/>
+                            <constraint firstItem="kG5-5r-bS7" firstAttribute="top" secondItem="zfI-G5-AMK" secondAttribute="bottom" constant="30" id="AiM-wm-j47"/>
+                            <constraint firstItem="GT6-t3-fOE" firstAttribute="leading" secondItem="rZX-pf-TFS" secondAttribute="leading" id="B3V-Xa-PXP"/>
+                            <constraint firstItem="BAD-vf-XOZ" firstAttribute="top" secondItem="GT6-t3-fOE" secondAttribute="bottom" id="Nhs-pV-Ecs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vtr-nT-BmB" secondAttribute="trailing" constant="20" id="TOJ-5I-VXS"/>
+                            <constraint firstItem="kG5-5r-bS7" firstAttribute="leading" secondItem="rZX-pf-TFS" secondAttribute="leadingMargin" constant="10" id="TWX-Lw-em1"/>
+                            <constraint firstItem="cDX-An-8SP" firstAttribute="top" secondItem="BAD-vf-XOZ" secondAttribute="bottom" id="XEr-9l-1T1"/>
+                            <constraint firstAttribute="trailing" secondItem="GT6-t3-fOE" secondAttribute="trailing" id="cF3-3y-9UJ"/>
+                            <constraint firstItem="GT6-t3-fOE" firstAttribute="top" secondItem="vtr-nT-BmB" secondAttribute="bottom" constant="10" id="eEA-W4-eAo"/>
+                            <constraint firstAttribute="trailing" secondItem="BAD-vf-XOZ" secondAttribute="trailing" id="kyo-mb-L4u"/>
+                            <constraint firstItem="vtr-nT-BmB" firstAttribute="leading" secondItem="kG5-5r-bS7" secondAttribute="trailing" constant="20" id="nvX-Ch-VtK"/>
+                            <constraint firstItem="BAD-vf-XOZ" firstAttribute="leading" secondItem="rZX-pf-TFS" secondAttribute="leading" id="z13-Oo-V8E"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Place" id="qt4-Pw-Mvf">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="yhh-FN-Hhn">
@@ -149,27 +160,22 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="mapView" destination="j76-g7-uLZ" id="zXs-J4-42p"/>
+                        <outlet property="mapView" destination="GT6-t3-fOE" id="fld-rd-pq9"/>
                         <outlet property="placeNameTextField" destination="kG5-5r-bS7" id="YdH-DV-lX0"/>
                         <outlet property="radiusStepper" destination="vtr-nT-BmB" id="HET-ws-Rts"/>
                         <outlet property="todoListTableView" destination="BAD-vf-XOZ" id="bNU-kl-wRY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Afz-cZ-8as" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="fzO-lc-t3K">
-                    <connections>
-                        <action selector="mapLongPressed:" destination="7q1-3Y-g5j" id="FD2-sl-xeu"/>
-                    </connections>
-                </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1750" y="107"/>
+            <point key="canvasLocation" x="1749.5999999999999" y="106.59670164917542"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wxk-3m-xAb">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LlG-fu-xYr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="oBG-IR-Gac">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="oBG-IR-Gac">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.0039215686274509803" green="0.51764705882352935" blue="0.69019607843137254" alpha="1" colorSpace="calibratedRGB"/>
