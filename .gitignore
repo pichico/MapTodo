@@ -7,3 +7,5 @@ xcuserdata
 
 vendor/bundle/
 .bundle/
+
+MapTodo/Keys.plist

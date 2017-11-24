@@ -27,7 +27,7 @@ class Place: Object {
     }
 
     public static func get(realm: Realm, uiid: String) -> Place? {
-        return realm.object(ofType: self, forPrimaryKey: UIFontFeatureTypeIdentifierKey)
+        return realm.object(ofType: self, forPrimaryKey: uiid)
     }
 
     public func delete(realm: Realm) {

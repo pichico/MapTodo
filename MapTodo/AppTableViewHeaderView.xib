@@ -10,7 +10,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AppTableViewHeaderView" customModule="MapTodo" customModuleProvider="target">
             <connections>
-                <outlet property="backgroundView" destination="iN0-l3-epB" id="weW-GM-tWG"/>
                 <outlet property="showDetailButton" destination="gAh-bp-uY2" id="shV-vz-fQ7"/>
                 <outlet property="textLabel" destination="E1I-1h-5h8" id="V2t-qh-7bU"/>
             </connections>

@@ -7,7 +7,7 @@
 //
 
 
-import MapKit
+import GoogleMaps
 import RealmSwift
 import UIKit
 
@@ -16,22 +16,33 @@ class PlaceViewController: AppViewController {
     
     @IBOutlet weak var placeNameTextField: UITextField!
     @IBOutlet weak var radiusStepper: UIStepper!
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var todoListTableView: UITableView!
-    
+
+    let defaultZoom: Float = 15.0
+    var gmView: GMSMapView!
     let lm: LocationManager = LocationManager.sharedLocationManager
     let lmmap: CLLocationManager = CLLocationManager()
     var mapPoint: CLLocationCoordinate2D? = nil
     var place: Place!
-    var todoEntiries: Results<Todo>!
     let realm: Realm = try! Realm()
+    var todoEntiries: Results<Todo>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView.delegate = self
+
+        // map
+        let camera = GMSCameraPosition.camera(withLatitude: 0, longitude: 0, zoom: defaultZoom)
+        gmView = GMSMapView.map(withFrame: mapView.bounds, camera: camera)
+        gmView.isMyLocationEnabled = true
+        gmView.settings.zoomGestures = true
+        gmView.settings.scrollGestures = true
+        gmView.delegate = self
+        mapView.addSubview(gmView)
+
         lmmap.delegate = self
+
         placeNameTextField.returnKeyType = .done
-        mapView.showsUserLocation=true //地図上に現在地を表示
         place = place ?? Place()
         updateValues()
     }
@@ -41,7 +52,8 @@ class PlaceViewController: AppViewController {
             placeNameTextField.text = place.name
             if let CLLocationCoordinate2D = place.CLLocationCoordinate2D { // 地図をあわせる
                 mapPoint = CLLocationCoordinate2D
-                mapView.setRegion(MKCoordinateRegionMake(mapPoint!, MKCoordinateSpanMake(0.005, 0.005)), animated:false)
+                let camera = GMSCameraPosition.camera(withTarget: CLLocationCoordinate2D, zoom: defaultZoom)
+                gmView.moveCamera(GMSCameraUpdate.setCamera(camera))
                 radiusStepper.value = place.radius.value!
                 showMonitoringRegion(mapPoint, radius: radiusStepper.value)
             } else {
@@ -65,48 +77,21 @@ class PlaceViewController: AppViewController {
 
     func showMonitoringRegion(_ center: CLLocationCoordinate2D!, radius: CLLocationDistance) {
         // 既にあるpin、円を消す
-        mapView.removeAnnotations(self.mapView.annotations)
-        for id in mapView.overlays {
-            mapView.remove(id)
-        }
+        gmView.clear()
         
         //ピンをMapViewの上に置く
-        let pin = MKPointAnnotation()
-        pin.coordinate = center!
-        mapView.addAnnotation(pin)
+        let marker = GMSMarker(position: center)
+        marker.map = gmView
         
         //ジオフェンスの範囲表示用
-        let center:CLLocationCoordinate2D = CLLocationCoordinate2DMake(center!.latitude, center!.longitude)
-        let circle:MKCircle = MKCircle(center:center , radius: radius)
-        mapView.add(circle)
+        let circle = GMSCircle(position: center, radius: radius)
+        circle.strokeColor = UIColor(red: 160 / 255.0, green: 162 / 255.0, blue: 163 / 255.0, alpha: 1)
+        circle.map = gmView
     }
     
     @IBAction func radiusStepperTapped(_ sender: UIStepper) {
         if mapPoint != nil {
             showMonitoringRegion(mapPoint, radius: sender.value)
-        }
-    }
-    
-    @IBAction func mapLongPressed(_ sender: UILongPressGestureRecognizer) {
-        if sender.state != UIGestureRecognizerState.began {
-            return
-        }
-        if place == nil && lm.monitoredRegionsCount() >= 20 {
-            let alert: UIAlertController = UIAlertController(title: "登録できる地点は20個までです。", message: "どれかを消して下さい。", preferredStyle:  UIAlertControllerStyle.alert)
-            let cancelAction: UIAlertAction = UIAlertAction(title: "一覧に戻る", style: UIAlertActionStyle.default, handler:{
-                (action: UIAlertAction!) -> Void in
-                self.navigationController!.popViewController(animated: true)
-            })
-            alert.addAction(cancelAction)
-            let mapResetAction: UIAlertAction = UIAlertAction(title: "地点を保存しない", style: UIAlertActionStyle.cancel, handler:{
-                (action: UIAlertAction!) -> Void in
-            })
-            alert.addAction(mapResetAction)
-            present(alert, animated: true, completion: nil)
-        } else {
-            let tappedLocation = sender.location(in: mapView)
-            mapPoint = mapView.convert(tappedLocation, toCoordinateFrom: mapView)
-            showMonitoringRegion(mapPoint, radius: radiusStepper.value)
         }
     }
     
@@ -173,21 +158,31 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension PlaceViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        self.mapView.setRegion(MKCoordinateRegionMake(
-            CLLocationCoordinate2DMake(locations[0].coordinate.latitude, locations[0].coordinate.longitude),
-            MKCoordinateSpanMake(0.005, 0.005)), animated:false)
+extension PlaceViewController: GMSMapViewDelegate {
+    func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
+        if place.CLLocationCoordinate2D == nil && lm.monitoredRegionsCount() >= 20 {
+            let alert: UIAlertController = UIAlertController(title: "登録できる地点は20個までです。", message: "どれかを消して下さい。", preferredStyle:  UIAlertControllerStyle.alert)
+            let cancelAction: UIAlertAction = UIAlertAction(title: "一覧に戻る", style: UIAlertActionStyle.default, handler:{
+                (action: UIAlertAction!) -> Void in
+                self.navigationController!.popViewController(animated: true)
+            })
+            alert.addAction(cancelAction)
+            let mapResetAction: UIAlertAction = UIAlertAction(title: "地点を保存しない", style: UIAlertActionStyle.cancel, handler:{
+                (action: UIAlertAction!) -> Void in
+            })
+            alert.addAction(mapResetAction)
+            present(alert, animated: true, completion: nil)
+        } else {
+            mapPoint = coordinate
+            showMonitoringRegion(coordinate, radius: radiusStepper.value)
+        }
     }
 }
 
-extension PlaceViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        let render:MKCircleRenderer = MKCircleRenderer(overlay: overlay)
-        render.strokeColor = UIColor.red
-        render.fillColor = UIColor.red.withAlphaComponent(0.4)
-        render.lineWidth=1
-        return render
+extension PlaceViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let camera = GMSCameraPosition.camera(withTarget: locations[0].coordinate, zoom: defaultZoom)
+        gmView.moveCamera(GMSCameraUpdate.setCamera(camera))
     }
 }
 
