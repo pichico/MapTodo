@@ -6,6 +6,8 @@ use_frameworks!
 target 'MapTodo' do
 	pod 'RealmSwift'
 	pod 'R.swift'
+	pod 'GoogleMaps'
+	pod 'GooglePlaces'
 end
 
 target 'MapTodoTests' do

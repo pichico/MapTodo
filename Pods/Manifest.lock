@@ -1,4 +1,11 @@
 PODS:
+  - GoogleMaps (2.5.0):
+    - GoogleMaps/Maps (= 2.5.0)
+  - GoogleMaps/Base (2.5.0)
+  - GoogleMaps/Maps (2.5.0):
+    - GoogleMaps/Base
+  - GooglePlaces (2.5.0):
+    - GoogleMaps/Base (= 2.5.0)
   - R.swift (3.1.0):
     - R.swift.Library (~> 3.0.2)
   - R.swift.Library (3.0.2)
@@ -9,15 +16,19 @@ PODS:
     - Realm (= 2.1.1)
 
 DEPENDENCIES:
+  - GoogleMaps
+  - GooglePlaces
   - R.swift
   - RealmSwift
 
 SPEC CHECKSUMS:
+  GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
+  GooglePlaces: dd70d9d71ea1c7944846afe67de3712c99b30a77
   R.swift: 14400e5784224d1e4e59a8fc5549198c7e8fe360
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
   Realm: a55959c0b171a5fe5267406d17f314fec3cefaae
   RealmSwift: 749fd955bf8d6471c21d218b9389a47aaeccfe3f
 
-PODFILE CHECKSUM: fc0413ff1961cbfe208eb317c65c46c66ca169e6
+PODFILE CHECKSUM: e775aa6c781269b58ea3850d675834da497d7a90
 
 COCOAPODS: 1.2.0
