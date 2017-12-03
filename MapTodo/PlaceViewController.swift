@@ -17,6 +17,7 @@ class PlaceViewController: AppViewController {
     @IBOutlet weak var placeNameTextField: UITextField!
     @IBOutlet weak var radiusStepper: UIStepper!
     @IBOutlet weak var mapView: UIView!
+    @IBOutlet weak var mapViewFrame: UIView!
     @IBOutlet weak var todoListTableView: UITableView!
 
     let defaultZoom: Float = 15.0
@@ -128,6 +129,14 @@ class PlaceViewController: AppViewController {
 }
 
 extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return mapViewFrame
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 430
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoEntiries.count + 1
     }
