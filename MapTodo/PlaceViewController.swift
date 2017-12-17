@@ -51,6 +51,7 @@ class PlaceViewController: AppViewController {
     func updateValues() {
         if let place = place {
             placeNameTextField.text = place.name
+            navigationItem.title = place.name
             if let CLLocationCoordinate2D = place.CLLocationCoordinate2D { // 地図をあわせる
                 mapPoint = CLLocationCoordinate2D
                 let camera = GMSCameraPosition.camera(withTarget: CLLocationCoordinate2D, zoom: defaultZoom)
@@ -145,10 +146,12 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
         let cell: TextFieldTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as! TextFieldTableViewCell
         cell.delegate = self
         cell.indexPath = indexPath
+        cell.isTop = indexPath.row == 0
         if todoEntiries.count > indexPath.row {
             cell.textField.text = todoEntiries[indexPath.row].item
         } else {
             cell.textField.text = ""
+            cell.isBottom = true
         }
         return cell
     }
