@@ -46,6 +46,12 @@ class PlaceViewController: AppViewController {
         placeNameTextField.returnKeyType = .done
         place = place ?? Place()
         updateValues()
+        if let tableHeaderView = todoListTableView.tableHeaderView {
+            var frame = todoListTableView.frame
+            frame.size.height = 450
+            tableHeaderView.frame = frame
+            todoListTableView.tableHeaderView = tableHeaderView
+        }
     }
     
     func updateValues() {
@@ -130,13 +136,6 @@ class PlaceViewController: AppViewController {
 }
 
 extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return mapViewFrame
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 430
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoEntiries.count + 1
@@ -149,6 +148,7 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
         cell.isTop = indexPath.row == 0
         if todoEntiries.count > indexPath.row {
             cell.textField.text = todoEntiries[indexPath.row].item
+            cell.isBottom = false
         } else {
             cell.textField.text = ""
             cell.isBottom = true
