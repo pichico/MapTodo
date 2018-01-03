@@ -1,0 +1,243 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+provides-nominal:
+provides-member:
+- ["6Rswift15NibResourceTypeP", ""]
+- ["6Rswift43StoryboardResourceWithInitialControllerTypeP", ""]
+- ["So16UICollectionViewC", ""]
+- ["So11UITableViewC", ""]
+- ["6Rswift18SeguePerformerTypeP", ""]
+- ["6Rswift15NibResourceTypeP", "instantiateWithOwner"]
+- ["6Rswift43StoryboardResourceWithInitialControllerTypeP", "initialViewController"]
+- ["So16UICollectionViewC", "dequeueReusableCellWithReuseIdentifier"]
+- ["So16UICollectionViewC", "dequeueReusableSupplementaryViewOfKind"]
+- ["So16UICollectionViewC", "registerNib"]
+- ["So16UICollectionViewC", "registerNib"]
+- ["So11UITableViewC", "dequeueReusableCellWithIdentifier"]
+- ["So11UITableViewC", "dequeueReusableCellWithIdentifier"]
+- ["So11UITableViewC", "dequeueReusableHeaderFooterViewWithIdentifier"]
+- ["So11UITableViewC", "registerNib"]
+- ["So11UITableViewC", "registerNibForHeaderFooterView"]
+- ["6Rswift18SeguePerformerTypeP", "performSegueWithIdentifier"]
+- ["6Rswift18SeguePerformerTypeP", "performSegueWithIdentifier"]
+provides-dynamic-lookup:
+depends-top-level:
+- "AnyObject"
+- "IndexPath"
+- "NSObject"
+- "NibResourceType"
+- "ReuseIdentifierType"
+- "SeguePerformerType"
+- "StoryboardResourceWithInitialControllerType"
+- "StoryboardSegueIdentifier"
+- "String"
+- !private "StringLiteralType"
+- "UICollectionReusableView"
+- "UICollectionView"
+- "UICollectionViewCell"
+- "UITableView"
+- "UITableViewCell"
+- "UITableViewHeaderFooterView"
+- "UIView"
+- !private "fatalError"
+depends-member:
+- !private ["So15CALayerDelegateP", "fatalError"]
+- !private ["s7CVarArgP", "fatalError"]
+- !private ["s28CustomDebugStringConvertibleP", "fatalError"]
+- !private ["s28CustomDebugStringConvertibleP", "init"]
+- !private ["s17CustomReflectableP", "init"]
+- !private ["s23CustomStringConvertibleP", "fatalError"]
+- !private ["s23CustomStringConvertibleP", "init"]
+- !private ["s9EquatableP", "fatalError"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "init"]
+- !private ["s26ExpressibleByStringLiteralP", "init"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "init"]
+- !private ["s8HashableP", "fatalError"]
+- !private ["So8NSCodingP", "fatalError"]
+- ["So8NSObjectC", "IndexPath"]
+- ["So8NSObjectC", "NibResourceType"]
+- ["So8NSObjectC", "ReuseIdentifierType"]
+- ["So8NSObjectC", "String"]
+- ["So8NSObjectC", "UICollectionReusableView"]
+- ["So8NSObjectC", "UICollectionViewCell"]
+- ["So8NSObjectC", "UITableViewCell"]
+- ["So8NSObjectC", "UITableViewHeaderFooterView"]
+- ["So8NSObjectC", "UIView"]
+- ["So8NSObjectC", "dequeueReusableCellWithIdentifier"]
+- ["So8NSObjectC", "dequeueReusableCellWithReuseIdentifier"]
+- ["So8NSObjectC", "dequeueReusableHeaderFooterViewWithIdentifier"]
+- ["So8NSObjectC", "dequeueReusableSupplementaryViewOfKind"]
+- !private ["So8NSObjectC", "fatalError"]
+- ["So8NSObjectC", "registerNib"]
+- ["So8NSObjectC", "registerNibForHeaderFooterView"]
+- !private ["So16NSObjectProtocolP", "fatalError"]
+- ["6Rswift15NibResourceTypeP", "AnyObject"]
+- ["6Rswift15NibResourceTypeP", "NSObject"]
+- !private ["6Rswift15NibResourceTypeP", "fatalError"]
+- ["6Rswift15NibResourceTypeP", "instantiateWithOwner"]
+- ["6Rswift18SeguePerformerTypeP", "Self"]
+- ["6Rswift18SeguePerformerTypeP", "StoryboardSegueIdentifier"]
+- ["6Rswift18SeguePerformerTypeP", "String"]
+- !private ["6Rswift18SeguePerformerTypeP", "fatalError"]
+- ["6Rswift18SeguePerformerTypeP", "performSegueWithIdentifier"]
+- !private ["s12StaticStringV", "init"]
+- ["6Rswift22StoryboardResourceTypeP", "InitialController"]
+- !private ["6Rswift22StoryboardResourceTypeP", "fatalError"]
+- ["6Rswift43StoryboardResourceWithInitialControllerTypeP", "InitialController"]
+- !private ["6Rswift43StoryboardResourceWithInitialControllerTypeP", "fatalError"]
+- ["6Rswift43StoryboardResourceWithInitialControllerTypeP", "initialViewController"]
+- !private ["So29UIAccessibilityIdentificationP", "fatalError"]
+- !private ["So12UIAppearanceP", "fatalError"]
+- !private ["So21UIAppearanceContainerP", "fatalError"]
+- ["So16UICollectionViewC", "IndexPath"]
+- ["So16UICollectionViewC", "NibResourceType"]
+- ["So16UICollectionViewC", "ReuseIdentifierType"]
+- ["So16UICollectionViewC", "String"]
+- ["So16UICollectionViewC", "UICollectionReusableView"]
+- ["So16UICollectionViewC", "UICollectionViewCell"]
+- ["So16UICollectionViewC", "dequeueReusableCellWithReuseIdentifier"]
+- ["So16UICollectionViewC", "dequeueReusableSupplementaryViewOfKind"]
+- !private ["So16UICollectionViewC", "fatalError"]
+- ["So16UICollectionViewC", "registerNib"]
+- !private ["So17UICoordinateSpaceP", "fatalError"]
+- !private ["So23UIDataSourceTranslatingP", "fatalError"]
+- !private ["So13UIDynamicItemP", "fatalError"]
+- !private ["So18UIFocusEnvironmentP", "fatalError"]
+- !private ["So11UIFocusItemP", "fatalError"]
+- !private ["So30UIPasteConfigurationSupportingP", "fatalError"]
+- ["So11UIResponderC", "IndexPath"]
+- ["So11UIResponderC", "NibResourceType"]
+- ["So11UIResponderC", "ReuseIdentifierType"]
+- ["So11UIResponderC", "String"]
+- ["So11UIResponderC", "UICollectionReusableView"]
+- ["So11UIResponderC", "UICollectionViewCell"]
+- ["So11UIResponderC", "UITableViewCell"]
+- ["So11UIResponderC", "UITableViewHeaderFooterView"]
+- ["So11UIResponderC", "UIView"]
+- ["So11UIResponderC", "dequeueReusableCellWithIdentifier"]
+- ["So11UIResponderC", "dequeueReusableCellWithReuseIdentifier"]
+- ["So11UIResponderC", "dequeueReusableHeaderFooterViewWithIdentifier"]
+- ["So11UIResponderC", "dequeueReusableSupplementaryViewOfKind"]
+- !private ["So11UIResponderC", "fatalError"]
+- ["So11UIResponderC", "registerNib"]
+- ["So11UIResponderC", "registerNibForHeaderFooterView"]
+- !private ["So30UIResponderStandardEditActionsP", "fatalError"]
+- ["So12UIScrollViewC", "IndexPath"]
+- ["So12UIScrollViewC", "NibResourceType"]
+- ["So12UIScrollViewC", "ReuseIdentifierType"]
+- ["So12UIScrollViewC", "String"]
+- ["So12UIScrollViewC", "UICollectionReusableView"]
+- ["So12UIScrollViewC", "UICollectionViewCell"]
+- ["So12UIScrollViewC", "UITableViewCell"]
+- ["So12UIScrollViewC", "UITableViewHeaderFooterView"]
+- ["So12UIScrollViewC", "UIView"]
+- ["So12UIScrollViewC", "dequeueReusableCellWithIdentifier"]
+- ["So12UIScrollViewC", "dequeueReusableCellWithReuseIdentifier"]
+- ["So12UIScrollViewC", "dequeueReusableHeaderFooterViewWithIdentifier"]
+- ["So12UIScrollViewC", "dequeueReusableSupplementaryViewOfKind"]
+- !private ["So12UIScrollViewC", "fatalError"]
+- ["So12UIScrollViewC", "registerNib"]
+- ["So12UIScrollViewC", "registerNibForHeaderFooterView"]
+- !private ["So35UISpringLoadedInteractionSupportingP", "fatalError"]
+- ["So11UITableViewC", "IndexPath"]
+- ["So11UITableViewC", "NibResourceType"]
+- ["So11UITableViewC", "ReuseIdentifierType"]
+- ["So11UITableViewC", "UITableViewCell"]
+- ["So11UITableViewC", "UITableViewHeaderFooterView"]
+- ["So11UITableViewC", "UIView"]
+- ["So11UITableViewC", "dequeueReusableCellWithIdentifier"]
+- ["So11UITableViewC", "dequeueReusableHeaderFooterViewWithIdentifier"]
+- !private ["So11UITableViewC", "fatalError"]
+- ["So11UITableViewC", "registerNib"]
+- ["So11UITableViewC", "registerNibForHeaderFooterView"]
+- !private ["So18UITraitEnvironmentP", "fatalError"]
+- ["So6UIViewC", "IndexPath"]
+- ["So6UIViewC", "NibResourceType"]
+- ["So6UIViewC", "ReuseIdentifierType"]
+- ["So6UIViewC", "String"]
+- ["So6UIViewC", "UICollectionReusableView"]
+- ["So6UIViewC", "UICollectionViewCell"]
+- ["So6UIViewC", "UITableViewCell"]
+- ["So6UIViewC", "UITableViewHeaderFooterView"]
+- ["So6UIViewC", "UIView"]
+- ["So6UIViewC", "dequeueReusableCellWithIdentifier"]
+- ["So6UIViewC", "dequeueReusableCellWithReuseIdentifier"]
+- ["So6UIViewC", "dequeueReusableHeaderFooterViewWithIdentifier"]
+- ["So6UIViewC", "dequeueReusableSupplementaryViewOfKind"]
+- !private ["So6UIViewC", "fatalError"]
+- ["So6UIViewC", "registerNib"]
+- ["So6UIViewC", "registerNibForHeaderFooterView"]
+- !private ["s37_DefaultCustomPlaygroundQuickLookableP", "fatalError"]
+- !private ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "init"]
+- !private ["s34_ExpressibleByBuiltinStringLiteralP", "init"]
+- !private ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "init"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "fatalError"]
+depends-nominal:
+- !private "So15CALayerDelegateP"
+- !private "s7CVarArgP"
+- !private "s28CustomDebugStringConvertibleP"
+- !private "s17CustomReflectableP"
+- !private "s23CustomStringConvertibleP"
+- !private "s9EquatableP"
+- !private "s43ExpressibleByExtendedGraphemeClusterLiteralP"
+- !private "s26ExpressibleByStringLiteralP"
+- !private "s33ExpressibleByUnicodeScalarLiteralP"
+- !private "s8HashableP"
+- !private "So8NSCodingP"
+- "So8NSObjectC"
+- !private "So16NSObjectProtocolP"
+- "6Rswift15NibResourceTypeP"
+- "6Rswift18SeguePerformerTypeP"
+- !private "s12StaticStringV"
+- "6Rswift22StoryboardResourceTypeP"
+- "6Rswift43StoryboardResourceWithInitialControllerTypeP"
+- !private "So29UIAccessibilityIdentificationP"
+- !private "So12UIAppearanceP"
+- !private "So21UIAppearanceContainerP"
+- "So16UICollectionViewC"
+- !private "So17UICoordinateSpaceP"
+- !private "So23UIDataSourceTranslatingP"
+- !private "So13UIDynamicItemP"
+- !private "So18UIFocusEnvironmentP"
+- !private "So11UIFocusItemP"
+- !private "So30UIPasteConfigurationSupportingP"
+- "So11UIResponderC"
+- !private "So30UIResponderStandardEditActionsP"
+- "So12UIScrollViewC"
+- !private "So35UISpringLoadedInteractionSupportingP"
+- "So11UITableViewC"
+- !private "So18UITraitEnvironmentP"
+- "So6UIViewC"
+- !private "s37_DefaultCustomPlaygroundQuickLookableP"
+- !private "s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP"
+- !private "s34_ExpressibleByBuiltinStringLiteralP"
+- !private "s41_ExpressibleByBuiltinUnicodeScalarLiteralP"
+- !private "10Foundation27_KeyValueCodingAndObservingP"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Metal.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreFoundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Target Support Files/R.swift.Library/R.swift.Library-umbrella.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/R.swift.Library.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/usr/include/objc/ObjectiveC.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/OpenGLES.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/CoreImage.framework/Headers/CoreImage.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/QuartzCore.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/Metal.framework/Headers/Metal.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/usr/include/Darwin.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CoreGraphics.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/CoreText.framework/Headers/CoreText.apinotes"
+interface-hash: "c25d7eb63b44888af765c4d662cc6deb"

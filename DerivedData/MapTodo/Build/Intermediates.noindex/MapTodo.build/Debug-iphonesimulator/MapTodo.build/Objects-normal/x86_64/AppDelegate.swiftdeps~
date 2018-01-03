@@ -1,0 +1,1042 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "AppDelegate"
+provides-nominal:
+- "7MapTodo11AppDelegateC"
+provides-member:
+- ["7MapTodo11AppDelegateC", ""]
+provides-dynamic-lookup:
+- "application"
+- "applicationDidBecomeActive"
+- "applicationDidEnterBackground"
+- "applicationWillEnterForeground"
+- "applicationWillResignActive"
+- "applicationWillTerminate"
+- "lm"
+- "persistentContainer"
+- "saveContext"
+- "window"
+depends-top-level:
+- "AppDelegate"
+- !private "Array"
+- "AssignmentPrecedence"
+- "Bool"
+- !private "BooleanLiteralType"
+- !private "Bundle"
+- "CastingPrecedence"
+- !private "GMSServices"
+- "LocationManager"
+- !private "NSDictionary"
+- !private "NSError"
+- "NSPersistentContainer"
+- !private "Place"
+- !private "R"
+- !private "Realm"
+- !private "String"
+- "StringLiteralType"
+- "UIApplication"
+- "UIApplicationDelegate"
+- "UIApplicationLaunchOptionsKey"
+- "UILocalNotification"
+- !private "UINavigationController"
+- "UIResponder"
+- !private "UIUserNotificationSettings"
+- "UIWindow"
+- !private "fatalError"
+depends-member:
+- ["7MapTodo11AppDelegateC", "Bool"]
+- !private ["7MapTodo11AppDelegateC", "Bundle"]
+- !private ["7MapTodo11AppDelegateC", "GMSServices"]
+- ["7MapTodo11AppDelegateC", "LocationManager"]
+- !private ["7MapTodo11AppDelegateC", "NSDictionary"]
+- !private ["7MapTodo11AppDelegateC", "NSError"]
+- ["7MapTodo11AppDelegateC", "NSPersistentContainer"]
+- !private ["7MapTodo11AppDelegateC", "Place"]
+- !private ["7MapTodo11AppDelegateC", "R"]
+- !private ["7MapTodo11AppDelegateC", "Realm"]
+- !private ["7MapTodo11AppDelegateC", "String"]
+- ["7MapTodo11AppDelegateC", "UIApplication"]
+- ["7MapTodo11AppDelegateC", "UIApplicationLaunchOptionsKey"]
+- ["7MapTodo11AppDelegateC", "UILocalNotification"]
+- !private ["7MapTodo11AppDelegateC", "UINavigationController"]
+- !private ["7MapTodo11AppDelegateC", "UIUserNotificationSettings"]
+- ["7MapTodo11AppDelegateC", "UIWindow"]
+- ["7MapTodo11AppDelegateC", "application"]
+- ["7MapTodo11AppDelegateC", "applicationDidBecomeActive"]
+- ["7MapTodo11AppDelegateC", "applicationDidEnterBackground"]
+- ["7MapTodo11AppDelegateC", "applicationDidFinishLaunching"]
+- ["7MapTodo11AppDelegateC", "applicationDidReceiveMemoryWarning"]
+- ["7MapTodo11AppDelegateC", "applicationProtectedDataDidBecomeAvailable"]
+- ["7MapTodo11AppDelegateC", "applicationProtectedDataWillBecomeUnavailable"]
+- ["7MapTodo11AppDelegateC", "applicationShouldRequestHealthAuthorization"]
+- ["7MapTodo11AppDelegateC", "applicationSignificantTimeChange"]
+- ["7MapTodo11AppDelegateC", "applicationWillEnterForeground"]
+- ["7MapTodo11AppDelegateC", "applicationWillResignActive"]
+- ["7MapTodo11AppDelegateC", "applicationWillTerminate"]
+- ["7MapTodo11AppDelegateC", "deinit"]
+- !private ["7MapTodo11AppDelegateC", "fatalError"]
+- ["7MapTodo11AppDelegateC", "init"]
+- ["7MapTodo11AppDelegateC", "lm"]
+- ["7MapTodo11AppDelegateC", "persistentContainer"]
+- !private ["7MapTodo11AppDelegateC", "persistentContainer.storage"]
+- ["7MapTodo11AppDelegateC", "saveContext"]
+- ["7MapTodo11AppDelegateC", "window"]
+- !private ["7MapTodo17AppViewControllerC", "place"]
+- !private ["Sa", "first"]
+- !private ["10RealmSwift28AssistedObjectiveCBridgeableP", "get"]
+- !private ["s23BidirectionalCollectionP", "first"]
+- !private ["s23BidirectionalCollectionP", "init"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["So6BundleC", "main"]
+- !private ["So6BundleC", "path"]
+- !private ["So15CALayerDelegateP", "rootViewController"]
+- !private ["So25CLLocationManagerDelegateP", "place"]
+- ["So25CLLocationManagerDelegateP", "sharedLocationManager"]
+- !private ["s7CVarArgP", "Bundle"]
+- !private ["s7CVarArgP", "GMSServices"]
+- ["s7CVarArgP", "LocationManager"]
+- !private ["s7CVarArgP", "NSDictionary"]
+- !private ["s7CVarArgP", "NSPersistentContainer"]
+- !private ["s7CVarArgP", "Place"]
+- !private ["s7CVarArgP", "R"]
+- !private ["s7CVarArgP", "Realm"]
+- !private ["s7CVarArgP", "UIApplication"]
+- !private ["s7CVarArgP", "UIUserNotificationSettings"]
+- ["s7CVarArgP", "application"]
+- ["s7CVarArgP", "applicationDidBecomeActive"]
+- ["s7CVarArgP", "applicationDidEnterBackground"]
+- ["s7CVarArgP", "applicationDidFinishLaunching"]
+- ["s7CVarArgP", "applicationDidReceiveMemoryWarning"]
+- !private ["s7CVarArgP", "applicationIconBadgeNumber"]
+- ["s7CVarArgP", "applicationProtectedDataDidBecomeAvailable"]
+- ["s7CVarArgP", "applicationProtectedDataWillBecomeUnavailable"]
+- ["s7CVarArgP", "applicationShouldRequestHealthAuthorization"]
+- ["s7CVarArgP", "applicationSignificantTimeChange"]
+- ["s7CVarArgP", "applicationWillEnterForeground"]
+- ["s7CVarArgP", "applicationWillResignActive"]
+- ["s7CVarArgP", "applicationWillTerminate"]
+- !private ["s7CVarArgP", "cancelLocalNotification"]
+- !private ["s7CVarArgP", "fatalError"]
+- !private ["s7CVarArgP", "first"]
+- !private ["s7CVarArgP", "get"]
+- !private ["s7CVarArgP", "hasChanges"]
+- !private ["s7CVarArgP", "init"]
+- !private ["s7CVarArgP", "loadPersistentStores"]
+- !private ["s7CVarArgP", "main"]
+- !private ["s7CVarArgP", "path"]
+- !private ["s7CVarArgP", "persistentContainer"]
+- !private ["s7CVarArgP", "place"]
+- !private ["s7CVarArgP", "provideAPIKey"]
+- !private ["s7CVarArgP", "registerUserNotificationSettings"]
+- !private ["s7CVarArgP", "rootViewController"]
+- !private ["s7CVarArgP", "save"]
+- !private ["s7CVarArgP", "saveContext"]
+- !private ["s7CVarArgP", "setViewControllers"]
+- !private ["s7CVarArgP", "shared"]
+- ["s7CVarArgP", "sharedLocationManager"]
+- !private ["s7CVarArgP", "subscript"]
+- !private ["s7CVarArgP", "userInfo"]
+- !private ["s7CVarArgP", "viewContext"]
+- !private ["s7CVarArgP", "viewControllers"]
+- ["s7CVarArgP", "window"]
+- ["s7CVarArgP", ""]
+- !private ["s10CollectionP", "first"]
+- !private ["s10CollectionP", "init"]
+- !private ["s10CollectionP", "subscript"]
+- !private ["s10ComparableP", "init"]
+- !private ["s28CustomDebugStringConvertibleP", "Bundle"]
+- !private ["s28CustomDebugStringConvertibleP", "GMSServices"]
+- ["s28CustomDebugStringConvertibleP", "LocationManager"]
+- !private ["s28CustomDebugStringConvertibleP", "NSDictionary"]
+- !private ["s28CustomDebugStringConvertibleP", "NSPersistentContainer"]
+- !private ["s28CustomDebugStringConvertibleP", "Place"]
+- !private ["s28CustomDebugStringConvertibleP", "R"]
+- !private ["s28CustomDebugStringConvertibleP", "Realm"]
+- !private ["s28CustomDebugStringConvertibleP", "UIApplication"]
+- !private ["s28CustomDebugStringConvertibleP", "UIUserNotificationSettings"]
+- ["s28CustomDebugStringConvertibleP", "application"]
+- ["s28CustomDebugStringConvertibleP", "applicationDidBecomeActive"]
+- ["s28CustomDebugStringConvertibleP", "applicationDidEnterBackground"]
+- ["s28CustomDebugStringConvertibleP", "applicationDidFinishLaunching"]
+- ["s28CustomDebugStringConvertibleP", "applicationDidReceiveMemoryWarning"]
+- !private ["s28CustomDebugStringConvertibleP", "applicationIconBadgeNumber"]
+- ["s28CustomDebugStringConvertibleP", "applicationProtectedDataDidBecomeAvailable"]
+- ["s28CustomDebugStringConvertibleP", "applicationProtectedDataWillBecomeUnavailable"]
+- ["s28CustomDebugStringConvertibleP", "applicationShouldRequestHealthAuthorization"]
+- ["s28CustomDebugStringConvertibleP", "applicationSignificantTimeChange"]
+- ["s28CustomDebugStringConvertibleP", "applicationWillEnterForeground"]
+- ["s28CustomDebugStringConvertibleP", "applicationWillResignActive"]
+- ["s28CustomDebugStringConvertibleP", "applicationWillTerminate"]
+- !private ["s28CustomDebugStringConvertibleP", "cancelLocalNotification"]
+- !private ["s28CustomDebugStringConvertibleP", "fatalError"]
+- !private ["s28CustomDebugStringConvertibleP", "first"]
+- !private ["s28CustomDebugStringConvertibleP", "get"]
+- !private ["s28CustomDebugStringConvertibleP", "hasChanges"]
+- !private ["s28CustomDebugStringConvertibleP", "init"]
+- !private ["s28CustomDebugStringConvertibleP", "loadPersistentStores"]
+- !private ["s28CustomDebugStringConvertibleP", "main"]
+- !private ["s28CustomDebugStringConvertibleP", "path"]
+- !private ["s28CustomDebugStringConvertibleP", "persistentContainer"]
+- !private ["s28CustomDebugStringConvertibleP", "place"]
+- !private ["s28CustomDebugStringConvertibleP", "provideAPIKey"]
+- !private ["s28CustomDebugStringConvertibleP", "registerUserNotificationSettings"]
+- !private ["s28CustomDebugStringConvertibleP", "rootViewController"]
+- !private ["s28CustomDebugStringConvertibleP", "save"]
+- !private ["s28CustomDebugStringConvertibleP", "saveContext"]
+- !private ["s28CustomDebugStringConvertibleP", "setViewControllers"]
+- !private ["s28CustomDebugStringConvertibleP", "shared"]
+- ["s28CustomDebugStringConvertibleP", "sharedLocationManager"]
+- !private ["s28CustomDebugStringConvertibleP", "subscript"]
+- !private ["s28CustomDebugStringConvertibleP", "userInfo"]
+- !private ["s28CustomDebugStringConvertibleP", "viewContext"]
+- !private ["s28CustomDebugStringConvertibleP", "viewControllers"]
+- ["s28CustomDebugStringConvertibleP", "window"]
+- ["s28CustomDebugStringConvertibleP", ""]
+- !private ["s29CustomPlaygroundQuickLookableP", "_getBuiltinLogicValue"]
+- !private ["s29CustomPlaygroundQuickLookableP", "init"]
+- !private ["s17CustomReflectableP", "_getBuiltinLogicValue"]
+- !private ["s17CustomReflectableP", "first"]
+- !private ["s17CustomReflectableP", "init"]
+- !private ["s17CustomReflectableP", "subscript"]
+- !private ["s23CustomStringConvertibleP", "Bundle"]
+- !private ["s23CustomStringConvertibleP", "GMSServices"]
+- ["s23CustomStringConvertibleP", "LocationManager"]
+- !private ["s23CustomStringConvertibleP", "NSDictionary"]
+- !private ["s23CustomStringConvertibleP", "NSPersistentContainer"]
+- !private ["s23CustomStringConvertibleP", "Place"]
+- !private ["s23CustomStringConvertibleP", "R"]
+- !private ["s23CustomStringConvertibleP", "Realm"]
+- !private ["s23CustomStringConvertibleP", "UIApplication"]
+- !private ["s23CustomStringConvertibleP", "UIUserNotificationSettings"]
+- !private ["s23CustomStringConvertibleP", "_getBuiltinLogicValue"]
+- ["s23CustomStringConvertibleP", "application"]
+- ["s23CustomStringConvertibleP", "applicationDidBecomeActive"]
+- ["s23CustomStringConvertibleP", "applicationDidEnterBackground"]
+- ["s23CustomStringConvertibleP", "applicationDidFinishLaunching"]
+- ["s23CustomStringConvertibleP", "applicationDidReceiveMemoryWarning"]
+- !private ["s23CustomStringConvertibleP", "applicationIconBadgeNumber"]
+- ["s23CustomStringConvertibleP", "applicationProtectedDataDidBecomeAvailable"]
+- ["s23CustomStringConvertibleP", "applicationProtectedDataWillBecomeUnavailable"]
+- ["s23CustomStringConvertibleP", "applicationShouldRequestHealthAuthorization"]
+- ["s23CustomStringConvertibleP", "applicationSignificantTimeChange"]
+- ["s23CustomStringConvertibleP", "applicationWillEnterForeground"]
+- ["s23CustomStringConvertibleP", "applicationWillResignActive"]
+- ["s23CustomStringConvertibleP", "applicationWillTerminate"]
+- !private ["s23CustomStringConvertibleP", "cancelLocalNotification"]
+- !private ["s23CustomStringConvertibleP", "fatalError"]
+- !private ["s23CustomStringConvertibleP", "first"]
+- !private ["s23CustomStringConvertibleP", "get"]
+- !private ["s23CustomStringConvertibleP", "hasChanges"]
+- !private ["s23CustomStringConvertibleP", "init"]
+- !private ["s23CustomStringConvertibleP", "loadPersistentStores"]
+- !private ["s23CustomStringConvertibleP", "main"]
+- !private ["s23CustomStringConvertibleP", "path"]
+- !private ["s23CustomStringConvertibleP", "persistentContainer"]
+- !private ["s23CustomStringConvertibleP", "place"]
+- !private ["s23CustomStringConvertibleP", "provideAPIKey"]
+- !private ["s23CustomStringConvertibleP", "registerUserNotificationSettings"]
+- !private ["s23CustomStringConvertibleP", "rootViewController"]
+- !private ["s23CustomStringConvertibleP", "save"]
+- !private ["s23CustomStringConvertibleP", "saveContext"]
+- !private ["s23CustomStringConvertibleP", "setViewControllers"]
+- !private ["s23CustomStringConvertibleP", "shared"]
+- ["s23CustomStringConvertibleP", "sharedLocationManager"]
+- !private ["s23CustomStringConvertibleP", "subscript"]
+- !private ["s23CustomStringConvertibleP", "userInfo"]
+- !private ["s23CustomStringConvertibleP", "viewContext"]
+- !private ["s23CustomStringConvertibleP", "viewControllers"]
+- ["s23CustomStringConvertibleP", "window"]
+- ["s23CustomStringConvertibleP", ""]
+- !private ["s9DecodableP", "_getBuiltinLogicValue"]
+- !private ["s9DecodableP", "first"]
+- !private ["s9DecodableP", "init"]
+- !private ["s9DecodableP", "subscript"]
+- !private ["s10DictionaryV", "subscript"]
+- !private ["s9EncodableP", "_getBuiltinLogicValue"]
+- !private ["s9EncodableP", "first"]
+- !private ["s9EncodableP", "init"]
+- !private ["s9EncodableP", "subscript"]
+- !private ["s9EquatableP", "Bundle"]
+- !private ["s9EquatableP", "GMSServices"]
+- ["s9EquatableP", "LocationManager"]
+- !private ["s9EquatableP", "NSDictionary"]
+- !private ["s9EquatableP", "NSPersistentContainer"]
+- !private ["s9EquatableP", "Place"]
+- !private ["s9EquatableP", "R"]
+- !private ["s9EquatableP", "Realm"]
+- !private ["s9EquatableP", "UIApplication"]
+- !private ["s9EquatableP", "UIUserNotificationSettings"]
+- !private ["s9EquatableP", "_getBuiltinLogicValue"]
+- !private ["s9EquatableP", "alert"]
+- ["s9EquatableP", "application"]
+- ["s9EquatableP", "applicationDidBecomeActive"]
+- ["s9EquatableP", "applicationDidEnterBackground"]
+- ["s9EquatableP", "applicationDidFinishLaunching"]
+- ["s9EquatableP", "applicationDidReceiveMemoryWarning"]
+- !private ["s9EquatableP", "applicationIconBadgeNumber"]
+- ["s9EquatableP", "applicationProtectedDataDidBecomeAvailable"]
+- ["s9EquatableP", "applicationProtectedDataWillBecomeUnavailable"]
+- ["s9EquatableP", "applicationShouldRequestHealthAuthorization"]
+- ["s9EquatableP", "applicationSignificantTimeChange"]
+- ["s9EquatableP", "applicationWillEnterForeground"]
+- ["s9EquatableP", "applicationWillResignActive"]
+- ["s9EquatableP", "applicationWillTerminate"]
+- !private ["s9EquatableP", "badge"]
+- !private ["s9EquatableP", "cancelLocalNotification"]
+- !private ["s9EquatableP", "fatalError"]
+- !private ["s9EquatableP", "get"]
+- !private ["s9EquatableP", "hasChanges"]
+- !private ["s9EquatableP", "init"]
+- !private ["s9EquatableP", "loadPersistentStores"]
+- !private ["s9EquatableP", "main"]
+- !private ["s9EquatableP", "path"]
+- !private ["s9EquatableP", "persistentContainer"]
+- !private ["s9EquatableP", "place"]
+- !private ["s9EquatableP", "provideAPIKey"]
+- !private ["s9EquatableP", "registerUserNotificationSettings"]
+- !private ["s9EquatableP", "rootViewController"]
+- !private ["s9EquatableP", "save"]
+- !private ["s9EquatableP", "saveContext"]
+- !private ["s9EquatableP", "setViewControllers"]
+- !private ["s9EquatableP", "shared"]
+- ["s9EquatableP", "sharedLocationManager"]
+- !private ["s9EquatableP", "sound"]
+- !private ["s9EquatableP", "userInfo"]
+- !private ["s9EquatableP", "viewContext"]
+- !private ["s9EquatableP", "viewControllers"]
+- ["s9EquatableP", "window"]
+- ["s9EquatableP", ""]
+- !private ["s5ErrorP", "userInfo"]
+- !private ["s25ExpressibleByArrayLiteralP", "alert"]
+- !private ["s25ExpressibleByArrayLiteralP", "badge"]
+- !private ["s25ExpressibleByArrayLiteralP", "first"]
+- !private ["s25ExpressibleByArrayLiteralP", "sound"]
+- !private ["s27ExpressibleByBooleanLiteralP", "_getBuiltinLogicValue"]
+- !private ["s30ExpressibleByDictionaryLiteralP", "init"]
+- !private ["s30ExpressibleByDictionaryLiteralP", "subscript"]
+- !private ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "init"]
+- !private ["s26ExpressibleByStringLiteralP", "init"]
+- !private ["s33ExpressibleByUnicodeScalarLiteralP", "init"]
+- !private ["So18GMSMapViewDelegateP", "place"]
+- !private ["So11GMSServicesC", "provideAPIKey"]
+- !private ["s8HashableP", "Bundle"]
+- !private ["s8HashableP", "GMSServices"]
+- ["s8HashableP", "LocationManager"]
+- !private ["s8HashableP", "NSDictionary"]
+- !private ["s8HashableP", "NSPersistentContainer"]
+- !private ["s8HashableP", "Place"]
+- !private ["s8HashableP", "R"]
+- !private ["s8HashableP", "Realm"]
+- !private ["s8HashableP", "UIApplication"]
+- !private ["s8HashableP", "UIUserNotificationSettings"]
+- !private ["s8HashableP", "_getBuiltinLogicValue"]
+- ["s8HashableP", "application"]
+- ["s8HashableP", "applicationDidBecomeActive"]
+- ["s8HashableP", "applicationDidEnterBackground"]
+- ["s8HashableP", "applicationDidFinishLaunching"]
+- ["s8HashableP", "applicationDidReceiveMemoryWarning"]
+- !private ["s8HashableP", "applicationIconBadgeNumber"]
+- ["s8HashableP", "applicationProtectedDataDidBecomeAvailable"]
+- ["s8HashableP", "applicationProtectedDataWillBecomeUnavailable"]
+- ["s8HashableP", "applicationShouldRequestHealthAuthorization"]
+- ["s8HashableP", "applicationSignificantTimeChange"]
+- ["s8HashableP", "applicationWillEnterForeground"]
+- ["s8HashableP", "applicationWillResignActive"]
+- ["s8HashableP", "applicationWillTerminate"]
+- !private ["s8HashableP", "cancelLocalNotification"]
+- !private ["s8HashableP", "fatalError"]
+- !private ["s8HashableP", "get"]
+- !private ["s8HashableP", "hasChanges"]
+- !private ["s8HashableP", "init"]
+- !private ["s8HashableP", "loadPersistentStores"]
+- !private ["s8HashableP", "main"]
+- !private ["s8HashableP", "path"]
+- !private ["s8HashableP", "persistentContainer"]
+- !private ["s8HashableP", "place"]
+- !private ["s8HashableP", "provideAPIKey"]
+- !private ["s8HashableP", "registerUserNotificationSettings"]
+- !private ["s8HashableP", "rootViewController"]
+- !private ["s8HashableP", "save"]
+- !private ["s8HashableP", "saveContext"]
+- !private ["s8HashableP", "setViewControllers"]
+- !private ["s8HashableP", "shared"]
+- ["s8HashableP", "sharedLocationManager"]
+- !private ["s8HashableP", "userInfo"]
+- !private ["s8HashableP", "viewContext"]
+- !private ["s8HashableP", "viewControllers"]
+- ["s8HashableP", "window"]
+- ["s8HashableP", ""]
+- ["7MapTodo15LocationManagerC", "sharedLocationManager"]
+- !private ["s25LosslessStringConvertibleP", "_getBuiltinLogicValue"]
+- !private ["s25LosslessStringConvertibleP", "init"]
+- !private ["s10MirrorPathP", "init"]
+- !private ["s17MutableCollectionP", "first"]
+- !private ["So8NSCodingP", "hasChanges"]
+- !private ["So8NSCodingP", "init"]
+- !private ["So8NSCodingP", "place"]
+- !private ["So8NSCodingP", "rootViewController"]
+- !private ["So8NSCodingP", "save"]
+- !private ["So8NSCodingP", "setViewControllers"]
+- !private ["So8NSCodingP", "userInfo"]
+- !private ["So8NSCodingP", "viewControllers"]
+- !private ["So9NSCopyingP", "init"]
+- !private ["So9NSCopyingP", "userInfo"]
+- !private ["So12NSDictionaryC", "init"]
+- !private ["So7NSErrorC", "userInfo"]
+- !private ["So26NSExtensionRequestHandlingP", "place"]
+- !private ["So26NSExtensionRequestHandlingP", "setViewControllers"]
+- !private ["So26NSExtensionRequestHandlingP", "viewControllers"]
+- !private ["So17NSFastEnumerationP", "init"]
+- !private ["So20NSFetchRequestResultP", "init"]
+- !private ["So21NSItemProviderReadingP", "init"]
+- !private ["So21NSItemProviderWritingP", "init"]
+- !private ["So9NSLockingP", "hasChanges"]
+- !private ["So9NSLockingP", "save"]
+- !private ["So22NSManagedObjectContextC", "hasChanges"]
+- !private ["So22NSManagedObjectContextC", "save"]
+- !private ["So16NSMutableCopyingP", "init"]
+- ["So8NSObjectC", "Bool"]
+- !private ["So8NSObjectC", "Bundle"]
+- !private ["So8NSObjectC", "GMSServices"]
+- ["So8NSObjectC", "LocationManager"]
+- !private ["So8NSObjectC", "NSDictionary"]
+- !private ["So8NSObjectC", "NSError"]
+- ["So8NSObjectC", "NSPersistentContainer"]
+- !private ["So8NSObjectC", "Place"]
+- !private ["So8NSObjectC", "R"]
+- !private ["So8NSObjectC", "Realm"]
+- !private ["So8NSObjectC", "String"]
+- ["So8NSObjectC", "UIApplication"]
+- ["So8NSObjectC", "UIApplicationLaunchOptionsKey"]
+- ["So8NSObjectC", "UILocalNotification"]
+- !private ["So8NSObjectC", "UINavigationController"]
+- !private ["So8NSObjectC", "UIUserNotificationSettings"]
+- ["So8NSObjectC", "UIWindow"]
+- ["So8NSObjectC", "application"]
+- ["So8NSObjectC", "applicationDidBecomeActive"]
+- ["So8NSObjectC", "applicationDidEnterBackground"]
+- ["So8NSObjectC", "applicationDidFinishLaunching"]
+- ["So8NSObjectC", "applicationDidReceiveMemoryWarning"]
+- !private ["So8NSObjectC", "applicationIconBadgeNumber"]
+- ["So8NSObjectC", "applicationProtectedDataDidBecomeAvailable"]
+- ["So8NSObjectC", "applicationProtectedDataWillBecomeUnavailable"]
+- ["So8NSObjectC", "applicationShouldRequestHealthAuthorization"]
+- ["So8NSObjectC", "applicationSignificantTimeChange"]
+- ["So8NSObjectC", "applicationWillEnterForeground"]
+- ["So8NSObjectC", "applicationWillResignActive"]
+- ["So8NSObjectC", "applicationWillTerminate"]
+- !private ["So8NSObjectC", "cancelLocalNotification"]
+- !private ["So8NSObjectC", "fatalError"]
+- !private ["So8NSObjectC", "get"]
+- !private ["So8NSObjectC", "hasChanges"]
+- ["So8NSObjectC", "init"]
+- ["So8NSObjectC", "lm"]
+- !private ["So8NSObjectC", "loadPersistentStores"]
+- !private ["So8NSObjectC", "main"]
+- !private ["So8NSObjectC", "path"]
+- ["So8NSObjectC", "persistentContainer"]
+- ["So8NSObjectC", "persistentContainer.storage"]
+- !private ["So8NSObjectC", "place"]
+- !private ["So8NSObjectC", "provideAPIKey"]
+- !private ["So8NSObjectC", "registerUserNotificationSettings"]
+- !private ["So8NSObjectC", "rootViewController"]
+- !private ["So8NSObjectC", "save"]
+- ["So8NSObjectC", "saveContext"]
+- !private ["So8NSObjectC", "setViewControllers"]
+- !private ["So8NSObjectC", "shared"]
+- ["So8NSObjectC", "sharedLocationManager"]
+- !private ["So8NSObjectC", "userInfo"]
+- !private ["So8NSObjectC", "viewContext"]
+- !private ["So8NSObjectC", "viewControllers"]
+- ["So8NSObjectC", "window"]
+- !private ["So16NSObjectProtocolP", "Bundle"]
+- !private ["So16NSObjectProtocolP", "GMSServices"]
+- ["So16NSObjectProtocolP", "LocationManager"]
+- !private ["So16NSObjectProtocolP", "NSDictionary"]
+- !private ["So16NSObjectProtocolP", "NSPersistentContainer"]
+- !private ["So16NSObjectProtocolP", "Place"]
+- !private ["So16NSObjectProtocolP", "R"]
+- !private ["So16NSObjectProtocolP", "Realm"]
+- !private ["So16NSObjectProtocolP", "UIApplication"]
+- !private ["So16NSObjectProtocolP", "UIUserNotificationSettings"]
+- ["So16NSObjectProtocolP", "application"]
+- ["So16NSObjectProtocolP", "applicationDidBecomeActive"]
+- ["So16NSObjectProtocolP", "applicationDidEnterBackground"]
+- ["So16NSObjectProtocolP", "applicationDidFinishLaunching"]
+- ["So16NSObjectProtocolP", "applicationDidReceiveMemoryWarning"]
+- !private ["So16NSObjectProtocolP", "applicationIconBadgeNumber"]
+- ["So16NSObjectProtocolP", "applicationProtectedDataDidBecomeAvailable"]
+- ["So16NSObjectProtocolP", "applicationProtectedDataWillBecomeUnavailable"]
+- ["So16NSObjectProtocolP", "applicationShouldRequestHealthAuthorization"]
+- ["So16NSObjectProtocolP", "applicationSignificantTimeChange"]
+- ["So16NSObjectProtocolP", "applicationWillEnterForeground"]
+- ["So16NSObjectProtocolP", "applicationWillResignActive"]
+- ["So16NSObjectProtocolP", "applicationWillTerminate"]
+- !private ["So16NSObjectProtocolP", "cancelLocalNotification"]
+- !private ["So16NSObjectProtocolP", "fatalError"]
+- !private ["So16NSObjectProtocolP", "get"]
+- !private ["So16NSObjectProtocolP", "hasChanges"]
+- !private ["So16NSObjectProtocolP", "init"]
+- !private ["So16NSObjectProtocolP", "loadPersistentStores"]
+- !private ["So16NSObjectProtocolP", "main"]
+- !private ["So16NSObjectProtocolP", "path"]
+- !private ["So16NSObjectProtocolP", "persistentContainer"]
+- !private ["So16NSObjectProtocolP", "place"]
+- !private ["So16NSObjectProtocolP", "provideAPIKey"]
+- !private ["So16NSObjectProtocolP", "registerUserNotificationSettings"]
+- !private ["So16NSObjectProtocolP", "rootViewController"]
+- !private ["So16NSObjectProtocolP", "save"]
+- !private ["So16NSObjectProtocolP", "saveContext"]
+- !private ["So16NSObjectProtocolP", "setViewControllers"]
+- !private ["So16NSObjectProtocolP", "shared"]
+- ["So16NSObjectProtocolP", "sharedLocationManager"]
+- !private ["So16NSObjectProtocolP", "userInfo"]
+- !private ["So16NSObjectProtocolP", "viewContext"]
+- !private ["So16NSObjectProtocolP", "viewControllers"]
+- ["So16NSObjectProtocolP", "window"]
+- ["So16NSObjectProtocolP", ""]
+- !private ["So21NSPersistentContainerC", "init"]
+- !private ["So21NSPersistentContainerC", "loadPersistentStores"]
+- !private ["So21NSPersistentContainerC", "viewContext"]
+- !private ["So14NSSecureCodingP", "init"]
+- !private ["So14NSSecureCodingP", "userInfo"]
+- !private ["So8NSStringC", "init"]
+- !private ["10RealmSwift6ObjectC", "get"]
+- !private ["s9OptionSetP", "alert"]
+- !private ["s9OptionSetP", "badge"]
+- !private ["s9OptionSetP", "sound"]
+- !private ["7MapTodo5PlaceC", "get"]
+- !private ["7MapTodo19PlaceViewControllerC", "place"]
+- !private ["7MapTodo1RV", "storyboard"]
+- !private ["So13RLMObjectBaseC", "get"]
+- !private ["s22RandomAccessCollectionP", "first"]
+- !private ["s26RangeReplaceableCollectionP", "first"]
+- !private ["s26RangeReplaceableCollectionP", "init"]
+- !private ["s16RawRepresentableP", "alert"]
+- !private ["s16RawRepresentableP", "badge"]
+- !private ["s16RawRepresentableP", "sound"]
+- !private ["10RealmSwift0A0C", "init"]
+- !private ["10RealmSwift0A12OptionalTypeP", "_getBuiltinLogicValue"]
+- !private ["6Rswift18SeguePerformerTypeP", "place"]
+- !private ["6Rswift18SeguePerformerTypeP", "setViewControllers"]
+- !private ["6Rswift18SeguePerformerTypeP", "viewControllers"]
+- !private ["s8SequenceP", "first"]
+- !private ["s8SequenceP", "init"]
+- !private ["s8SequenceP", "subscript"]
+- !private ["s10SetAlgebraP", "alert"]
+- !private ["s10SetAlgebraP", "badge"]
+- !private ["s10SetAlgebraP", "sound"]
+- !private ["s12StaticStringV", "init"]
+- !private ["6Rswift22StoryboardResourceTypeP", "placeView"]
+- !private ["6Rswift43StoryboardResourceWithInitialControllerTypeP", "placeView"]
+- !private ["SS", "init"]
+- !private ["s14StringProtocolP", "init"]
+- !private ["7MapTodo30TextFieldTableViewCellDelegateP", "place"]
+- !private ["s16TextOutputStreamP", "init"]
+- !private ["s20TextOutputStreamableP", "init"]
+- !private ["10RealmSwift14ThreadConfinedP", "get"]
+- !private ["So29UIAccessibilityIdentificationP", "rootViewController"]
+- !private ["So12UIAppearanceP", "rootViewController"]
+- !private ["So21UIAppearanceContainerP", "place"]
+- !private ["So21UIAppearanceContainerP", "rootViewController"]
+- !private ["So21UIAppearanceContainerP", "setViewControllers"]
+- !private ["So21UIAppearanceContainerP", "viewControllers"]
+- !private ["So13UIApplicationC", "applicationIconBadgeNumber"]
+- !private ["So13UIApplicationC", "cancelLocalNotification"]
+- !private ["So13UIApplicationC", "registerUserNotificationSettings"]
+- !private ["So13UIApplicationC", "shared"]
+- !private ["So21UIApplicationDelegateP", "Bundle"]
+- !private ["So21UIApplicationDelegateP", "GMSServices"]
+- ["So21UIApplicationDelegateP", "LocationManager"]
+- !private ["So21UIApplicationDelegateP", "NSDictionary"]
+- !private ["So21UIApplicationDelegateP", "NSPersistentContainer"]
+- !private ["So21UIApplicationDelegateP", "Place"]
+- !private ["So21UIApplicationDelegateP", "R"]
+- !private ["So21UIApplicationDelegateP", "Realm"]
+- !private ["So21UIApplicationDelegateP", "UIApplication"]
+- !private ["So21UIApplicationDelegateP", "UIUserNotificationSettings"]
+- ["So21UIApplicationDelegateP", "application"]
+- ["So21UIApplicationDelegateP", "applicationDidBecomeActive"]
+- ["So21UIApplicationDelegateP", "applicationDidEnterBackground"]
+- ["So21UIApplicationDelegateP", "applicationDidFinishLaunching"]
+- ["So21UIApplicationDelegateP", "applicationDidReceiveMemoryWarning"]
+- ["So21UIApplicationDelegateP", "applicationProtectedDataDidBecomeAvailable"]
+- ["So21UIApplicationDelegateP", "applicationProtectedDataWillBecomeUnavailable"]
+- ["So21UIApplicationDelegateP", "applicationShouldRequestHealthAuthorization"]
+- ["So21UIApplicationDelegateP", "applicationSignificantTimeChange"]
+- ["So21UIApplicationDelegateP", "applicationWillEnterForeground"]
+- ["So21UIApplicationDelegateP", "applicationWillResignActive"]
+- ["So21UIApplicationDelegateP", "applicationWillTerminate"]
+- !private ["So21UIApplicationDelegateP", "fatalError"]
+- !private ["So21UIApplicationDelegateP", "persistentContainer"]
+- !private ["So21UIApplicationDelegateP", "saveContext"]
+- ["So21UIApplicationDelegateP", "window"]
+- ["So21UIApplicationDelegateP", ""]
+- !private ["So18UIContentContainerP", "place"]
+- !private ["So18UIContentContainerP", "setViewControllers"]
+- !private ["So18UIContentContainerP", "viewControllers"]
+- !private ["So17UICoordinateSpaceP", "rootViewController"]
+- !private ["So13UIDynamicItemP", "rootViewController"]
+- !private ["So18UIFocusEnvironmentP", "place"]
+- !private ["So18UIFocusEnvironmentP", "rootViewController"]
+- !private ["So18UIFocusEnvironmentP", "setViewControllers"]
+- !private ["So18UIFocusEnvironmentP", "viewControllers"]
+- !private ["So11UIFocusItemP", "rootViewController"]
+- !private ["So19UILocalNotificationC", "userInfo"]
+- !private ["So22UINavigationControllerC", "setViewControllers"]
+- !private ["So22UINavigationControllerC", "viewControllers"]
+- !private ["So30UIPasteConfigurationSupportingP", "Bundle"]
+- !private ["So30UIPasteConfigurationSupportingP", "GMSServices"]
+- ["So30UIPasteConfigurationSupportingP", "LocationManager"]
+- !private ["So30UIPasteConfigurationSupportingP", "NSDictionary"]
+- !private ["So30UIPasteConfigurationSupportingP", "NSPersistentContainer"]
+- !private ["So30UIPasteConfigurationSupportingP", "Place"]
+- !private ["So30UIPasteConfigurationSupportingP", "R"]
+- !private ["So30UIPasteConfigurationSupportingP", "Realm"]
+- !private ["So30UIPasteConfigurationSupportingP", "UIApplication"]
+- !private ["So30UIPasteConfigurationSupportingP", "UIUserNotificationSettings"]
+- ["So30UIPasteConfigurationSupportingP", "application"]
+- ["So30UIPasteConfigurationSupportingP", "applicationDidBecomeActive"]
+- ["So30UIPasteConfigurationSupportingP", "applicationDidEnterBackground"]
+- ["So30UIPasteConfigurationSupportingP", "applicationDidFinishLaunching"]
+- ["So30UIPasteConfigurationSupportingP", "applicationDidReceiveMemoryWarning"]
+- !private ["So30UIPasteConfigurationSupportingP", "applicationIconBadgeNumber"]
+- ["So30UIPasteConfigurationSupportingP", "applicationProtectedDataDidBecomeAvailable"]
+- ["So30UIPasteConfigurationSupportingP", "applicationProtectedDataWillBecomeUnavailable"]
+- ["So30UIPasteConfigurationSupportingP", "applicationShouldRequestHealthAuthorization"]
+- ["So30UIPasteConfigurationSupportingP", "applicationSignificantTimeChange"]
+- ["So30UIPasteConfigurationSupportingP", "applicationWillEnterForeground"]
+- ["So30UIPasteConfigurationSupportingP", "applicationWillResignActive"]
+- ["So30UIPasteConfigurationSupportingP", "applicationWillTerminate"]
+- !private ["So30UIPasteConfigurationSupportingP", "cancelLocalNotification"]
+- !private ["So30UIPasteConfigurationSupportingP", "fatalError"]
+- !private ["So30UIPasteConfigurationSupportingP", "init"]
+- !private ["So30UIPasteConfigurationSupportingP", "persistentContainer"]
+- !private ["So30UIPasteConfigurationSupportingP", "place"]
+- !private ["So30UIPasteConfigurationSupportingP", "registerUserNotificationSettings"]
+- !private ["So30UIPasteConfigurationSupportingP", "rootViewController"]
+- !private ["So30UIPasteConfigurationSupportingP", "saveContext"]
+- !private ["So30UIPasteConfigurationSupportingP", "setViewControllers"]
+- !private ["So30UIPasteConfigurationSupportingP", "shared"]
+- !private ["So30UIPasteConfigurationSupportingP", "viewControllers"]
+- ["So30UIPasteConfigurationSupportingP", "window"]
+- ["So30UIPasteConfigurationSupportingP", ""]
+- ["So11UIResponderC", "Bool"]
+- !private ["So11UIResponderC", "Bundle"]
+- !private ["So11UIResponderC", "GMSServices"]
+- ["So11UIResponderC", "LocationManager"]
+- !private ["So11UIResponderC", "NSDictionary"]
+- !private ["So11UIResponderC", "NSError"]
+- ["So11UIResponderC", "NSPersistentContainer"]
+- !private ["So11UIResponderC", "Place"]
+- !private ["So11UIResponderC", "R"]
+- !private ["So11UIResponderC", "Realm"]
+- !private ["So11UIResponderC", "String"]
+- ["So11UIResponderC", "UIApplication"]
+- ["So11UIResponderC", "UIApplicationLaunchOptionsKey"]
+- ["So11UIResponderC", "UILocalNotification"]
+- !private ["So11UIResponderC", "UINavigationController"]
+- !private ["So11UIResponderC", "UIUserNotificationSettings"]
+- ["So11UIResponderC", "UIWindow"]
+- ["So11UIResponderC", "application"]
+- ["So11UIResponderC", "applicationDidBecomeActive"]
+- ["So11UIResponderC", "applicationDidEnterBackground"]
+- ["So11UIResponderC", "applicationDidFinishLaunching"]
+- ["So11UIResponderC", "applicationDidReceiveMemoryWarning"]
+- !private ["So11UIResponderC", "applicationIconBadgeNumber"]
+- ["So11UIResponderC", "applicationProtectedDataDidBecomeAvailable"]
+- ["So11UIResponderC", "applicationProtectedDataWillBecomeUnavailable"]
+- ["So11UIResponderC", "applicationShouldRequestHealthAuthorization"]
+- ["So11UIResponderC", "applicationSignificantTimeChange"]
+- ["So11UIResponderC", "applicationWillEnterForeground"]
+- ["So11UIResponderC", "applicationWillResignActive"]
+- ["So11UIResponderC", "applicationWillTerminate"]
+- !private ["So11UIResponderC", "cancelLocalNotification"]
+- !private ["So11UIResponderC", "fatalError"]
+- ["So11UIResponderC", "init"]
+- ["So11UIResponderC", "lm"]
+- ["So11UIResponderC", "persistentContainer"]
+- ["So11UIResponderC", "persistentContainer.storage"]
+- !private ["So11UIResponderC", "place"]
+- !private ["So11UIResponderC", "registerUserNotificationSettings"]
+- !private ["So11UIResponderC", "rootViewController"]
+- ["So11UIResponderC", "saveContext"]
+- !private ["So11UIResponderC", "setViewControllers"]
+- !private ["So11UIResponderC", "shared"]
+- !private ["So11UIResponderC", "viewControllers"]
+- ["So11UIResponderC", "window"]
+- ["So11UIResponderC", ""]
+- !private ["So30UIResponderStandardEditActionsP", "Bundle"]
+- !private ["So30UIResponderStandardEditActionsP", "GMSServices"]
+- ["So30UIResponderStandardEditActionsP", "LocationManager"]
+- !private ["So30UIResponderStandardEditActionsP", "NSDictionary"]
+- !private ["So30UIResponderStandardEditActionsP", "NSPersistentContainer"]
+- !private ["So30UIResponderStandardEditActionsP", "Place"]
+- !private ["So30UIResponderStandardEditActionsP", "R"]
+- !private ["So30UIResponderStandardEditActionsP", "Realm"]
+- !private ["So30UIResponderStandardEditActionsP", "UIApplication"]
+- !private ["So30UIResponderStandardEditActionsP", "UIUserNotificationSettings"]
+- ["So30UIResponderStandardEditActionsP", "application"]
+- ["So30UIResponderStandardEditActionsP", "applicationDidBecomeActive"]
+- ["So30UIResponderStandardEditActionsP", "applicationDidEnterBackground"]
+- ["So30UIResponderStandardEditActionsP", "applicationDidFinishLaunching"]
+- ["So30UIResponderStandardEditActionsP", "applicationDidReceiveMemoryWarning"]
+- !private ["So30UIResponderStandardEditActionsP", "applicationIconBadgeNumber"]
+- ["So30UIResponderStandardEditActionsP", "applicationProtectedDataDidBecomeAvailable"]
+- ["So30UIResponderStandardEditActionsP", "applicationProtectedDataWillBecomeUnavailable"]
+- ["So30UIResponderStandardEditActionsP", "applicationShouldRequestHealthAuthorization"]
+- ["So30UIResponderStandardEditActionsP", "applicationSignificantTimeChange"]
+- ["So30UIResponderStandardEditActionsP", "applicationWillEnterForeground"]
+- ["So30UIResponderStandardEditActionsP", "applicationWillResignActive"]
+- ["So30UIResponderStandardEditActionsP", "applicationWillTerminate"]
+- !private ["So30UIResponderStandardEditActionsP", "cancelLocalNotification"]
+- !private ["So30UIResponderStandardEditActionsP", "fatalError"]
+- !private ["So30UIResponderStandardEditActionsP", "init"]
+- !private ["So30UIResponderStandardEditActionsP", "persistentContainer"]
+- !private ["So30UIResponderStandardEditActionsP", "place"]
+- !private ["So30UIResponderStandardEditActionsP", "registerUserNotificationSettings"]
+- !private ["So30UIResponderStandardEditActionsP", "rootViewController"]
+- !private ["So30UIResponderStandardEditActionsP", "saveContext"]
+- !private ["So30UIResponderStandardEditActionsP", "setViewControllers"]
+- !private ["So30UIResponderStandardEditActionsP", "shared"]
+- !private ["So30UIResponderStandardEditActionsP", "viewControllers"]
+- ["So30UIResponderStandardEditActionsP", "window"]
+- ["So30UIResponderStandardEditActionsP", ""]
+- !private ["So20UIScrollViewDelegateP", "place"]
+- !private ["So16UIStateRestoringP", "place"]
+- !private ["So16UIStateRestoringP", "setViewControllers"]
+- !private ["So16UIStateRestoringP", "viewControllers"]
+- !private ["So21UITableViewDataSourceP", "place"]
+- !private ["So19UITableViewDelegateP", "place"]
+- !private ["So18UITraitEnvironmentP", "place"]
+- !private ["So18UITraitEnvironmentP", "rootViewController"]
+- !private ["So18UITraitEnvironmentP", "setViewControllers"]
+- !private ["So18UITraitEnvironmentP", "viewControllers"]
+- !private ["So26UIUserNotificationSettingsC", "init"]
+- !private ["SC22UIUserNotificationTypeV", "alert"]
+- !private ["SC22UIUserNotificationTypeV", "badge"]
+- !private ["SC22UIUserNotificationTypeV", "sound"]
+- !private ["So6UIViewC", "rootViewController"]
+- !private ["So16UIViewControllerC", "place"]
+- !private ["So16UIViewControllerC", "setViewControllers"]
+- !private ["So16UIViewControllerC", "viewControllers"]
+- !private ["So8UIWindowC", "rootViewController"]
+- !private ["6Rswift11ValidatableP", "placeView"]
+- !private ["6Rswift11ValidatableP", "storyboard"]
+- !private ["s14_ArrayProtocolP", "first"]
+- !private ["s23_BidirectionalIndexableP", "first"]
+- !private ["s23_BidirectionalIndexableP", "init"]
+- !private ["s37_DefaultCustomPlaygroundQuickLookableP", "rootViewController"]
+- !private ["s24_DestructorSafeContainerP", "first"]
+- !private ["s35_ExpressibleByBuiltinBooleanLiteralP", "_getBuiltinLogicValue"]
+- !private ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "init"]
+- !private ["s34_ExpressibleByBuiltinStringLiteralP", "init"]
+- !private ["s39_ExpressibleByBuiltinUTF16StringLiteralP", "init"]
+- !private ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "init"]
+- !private ["s33_ExpressibleByStringInterpolationP", "init"]
+- !private ["s35_HasCustomAnyHashableRepresentationP", "init"]
+- !private ["s10_IndexableP", "first"]
+- !private ["s10_IndexableP", "init"]
+- !private ["s10_IndexableP", "subscript"]
+- !private ["s14_IndexableBaseP", "first"]
+- !private ["s14_IndexableBaseP", "init"]
+- !private ["s14_IndexableBaseP", "subscript"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "Bundle"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "GMSServices"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "LocationManager"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "NSDictionary"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "NSPersistentContainer"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "Place"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "R"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "Realm"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "UIApplication"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "UIUserNotificationSettings"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "application"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "applicationDidBecomeActive"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "applicationDidEnterBackground"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "applicationDidFinishLaunching"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "applicationDidReceiveMemoryWarning"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "applicationIconBadgeNumber"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "applicationProtectedDataDidBecomeAvailable"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "applicationProtectedDataWillBecomeUnavailable"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "applicationShouldRequestHealthAuthorization"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "applicationSignificantTimeChange"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "applicationWillEnterForeground"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "applicationWillResignActive"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "applicationWillTerminate"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "cancelLocalNotification"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "fatalError"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "get"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "hasChanges"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "init"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "loadPersistentStores"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "main"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "path"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "persistentContainer"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "place"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "provideAPIKey"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "registerUserNotificationSettings"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "rootViewController"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "save"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "saveContext"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "setViewControllers"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "shared"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "sharedLocationManager"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "userInfo"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "viewContext"]
+- !private ["10Foundation27_KeyValueCodingAndObservingP", "viewControllers"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "window"]
+- ["10Foundation27_KeyValueCodingAndObservingP", ""]
+- !private ["s17_MutableIndexableP", "first"]
+- !private ["s21_ObjectiveCBridgeableP", "_getBuiltinLogicValue"]
+- !private ["s21_ObjectiveCBridgeableP", "first"]
+- !private ["s21_ObjectiveCBridgeableP", "init"]
+- !private ["s21_ObjectiveCBridgeableP", "subscript"]
+- !private ["s22_RandomAccessIndexableP", "first"]
+- !private ["s26_RangeReplaceableIndexableP", "first"]
+- !private ["s26_RangeReplaceableIndexableP", "init"]
+- !private ["s16_SwiftStringViewP", "init"]
+- !private ["7MapTodo2_RV10storyboardV4mainV", "placeView"]
+- !private ["7MapTodo1RV10storyboardV", "main"]
+depends-nominal:
+- "7MapTodo11AppDelegateC"
+- !private "7MapTodo17AppViewControllerC"
+- !private "Sa"
+- !private "10RealmSwift28AssistedObjectiveCBridgeableP"
+- !private "s23BidirectionalCollectionP"
+- !private "Sb"
+- !private "So6BundleC"
+- !private "So15CALayerDelegateP"
+- "So25CLLocationManagerDelegateP"
+- "s7CVarArgP"
+- !private "s10CollectionP"
+- !private "s10ComparableP"
+- "s28CustomDebugStringConvertibleP"
+- !private "s29CustomPlaygroundQuickLookableP"
+- !private "s17CustomReflectableP"
+- "s23CustomStringConvertibleP"
+- !private "s9DecodableP"
+- !private "s10DictionaryV"
+- !private "s9EncodableP"
+- "s9EquatableP"
+- !private "s5ErrorP"
+- !private "s25ExpressibleByArrayLiteralP"
+- !private "s27ExpressibleByBooleanLiteralP"
+- !private "s30ExpressibleByDictionaryLiteralP"
+- !private "s43ExpressibleByExtendedGraphemeClusterLiteralP"
+- !private "s26ExpressibleByStringLiteralP"
+- !private "s33ExpressibleByUnicodeScalarLiteralP"
+- !private "So18GMSMapViewDelegateP"
+- !private "So11GMSServicesC"
+- "s8HashableP"
+- "7MapTodo15LocationManagerC"
+- !private "s25LosslessStringConvertibleP"
+- !private "s10MirrorPathP"
+- !private "s17MutableCollectionP"
+- !private "So8NSCodingP"
+- !private "So9NSCopyingP"
+- !private "So12NSDictionaryC"
+- !private "So7NSErrorC"
+- !private "So26NSExtensionRequestHandlingP"
+- !private "So17NSFastEnumerationP"
+- !private "So20NSFetchRequestResultP"
+- !private "So21NSItemProviderReadingP"
+- !private "So21NSItemProviderWritingP"
+- !private "So9NSLockingP"
+- !private "So22NSManagedObjectContextC"
+- !private "So16NSMutableCopyingP"
+- "So8NSObjectC"
+- "So16NSObjectProtocolP"
+- !private "So21NSPersistentContainerC"
+- !private "So14NSSecureCodingP"
+- !private "So8NSStringC"
+- !private "10RealmSwift6ObjectC"
+- !private "s9OptionSetP"
+- !private "7MapTodo5PlaceC"
+- !private "7MapTodo19PlaceViewControllerC"
+- !private "7MapTodo1RV"
+- !private "So13RLMObjectBaseC"
+- !private "s22RandomAccessCollectionP"
+- !private "s26RangeReplaceableCollectionP"
+- !private "s16RawRepresentableP"
+- !private "10RealmSwift0A0C"
+- !private "10RealmSwift0A12OptionalTypeP"
+- !private "6Rswift18SeguePerformerTypeP"
+- !private "s8SequenceP"
+- !private "s10SetAlgebraP"
+- !private "s12StaticStringV"
+- !private "6Rswift22StoryboardResourceTypeP"
+- !private "6Rswift43StoryboardResourceWithInitialControllerTypeP"
+- !private "SS"
+- !private "s14StringProtocolP"
+- !private "7MapTodo30TextFieldTableViewCellDelegateP"
+- !private "s16TextOutputStreamP"
+- !private "s20TextOutputStreamableP"
+- !private "10RealmSwift14ThreadConfinedP"
+- !private "So29UIAccessibilityIdentificationP"
+- !private "So12UIAppearanceP"
+- !private "So21UIAppearanceContainerP"
+- !private "So13UIApplicationC"
+- "So21UIApplicationDelegateP"
+- !private "So18UIContentContainerP"
+- !private "So17UICoordinateSpaceP"
+- !private "So13UIDynamicItemP"
+- !private "So18UIFocusEnvironmentP"
+- !private "So11UIFocusItemP"
+- !private "So19UILocalNotificationC"
+- !private "So22UINavigationControllerC"
+- "So30UIPasteConfigurationSupportingP"
+- "So11UIResponderC"
+- "So30UIResponderStandardEditActionsP"
+- !private "So20UIScrollViewDelegateP"
+- !private "So16UIStateRestoringP"
+- !private "So21UITableViewDataSourceP"
+- !private "So19UITableViewDelegateP"
+- !private "So18UITraitEnvironmentP"
+- !private "So26UIUserNotificationSettingsC"
+- !private "SC22UIUserNotificationTypeV"
+- !private "So6UIViewC"
+- !private "So16UIViewControllerC"
+- !private "So8UIWindowC"
+- !private "6Rswift11ValidatableP"
+- !private "s14_ArrayProtocolP"
+- !private "s23_BidirectionalIndexableP"
+- !private "s37_DefaultCustomPlaygroundQuickLookableP"
+- !private "s24_DestructorSafeContainerP"
+- !private "s35_ExpressibleByBuiltinBooleanLiteralP"
+- !private "s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP"
+- !private "s34_ExpressibleByBuiltinStringLiteralP"
+- !private "s39_ExpressibleByBuiltinUTF16StringLiteralP"
+- !private "s41_ExpressibleByBuiltinUnicodeScalarLiteralP"
+- !private "s33_ExpressibleByStringInterpolationP"
+- !private "s35_HasCustomAnyHashableRepresentationP"
+- !private "s10_IndexableP"
+- !private "s14_IndexableBaseP"
+- "10Foundation27_KeyValueCodingAndObservingP"
+- !private "s17_MutableIndexableP"
+- !private "s21_ObjectiveCBridgeableP"
+- !private "s22_RandomAccessIndexableP"
+- !private "s26_RangeReplaceableIndexableP"
+- !private "s16_SwiftStringViewP"
+- !private "7MapTodo2_RV10storyboardV4mainV"
+- !private "7MapTodo1RV10storyboardV"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.apinotesc"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework/Modules/RealmSwift.swiftmodule/x86_64.swiftmodule"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/R.swift.Library/Rswift.framework/Modules/Rswift.swiftmodule/x86_64.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreData.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Metal.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreLocation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreFoundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/MapKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework/Headers/RealmSwift-umbrella.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/R.swift.Library/Rswift.framework/Headers/R.swift.Library-umbrella.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSPanorama.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSchema.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMObjectSchema.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSPanoramaCamera.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMObjectBase_Dynamic.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMRealm_Dynamic.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMRealmConfiguration+Sync.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/NSError+RLMSync.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSPanoramaService.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMThreadSafeReference.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncPermissionChange.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSCircle.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSMapStyle.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSPolyline.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMObjectStore.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMOptionalBase.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Base/Frameworks/GoogleMapsBase.framework/Headers/GoogleMapsBase.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMObjectBase.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMListBase.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncPermissionOfferResponse.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSCameraUpdate.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSPanoramaCameraUpdate.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMSchema_Private.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMObjectSchema_Private.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMSyncUtil_Private.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMRealm_Private.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMSyncConfiguration_Private.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMRealmConfiguration_Private.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMResults_Private.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMObject_Private.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMArray_Private.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMProperty_Private.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncPermissionValue.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSIndoorBuilding.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSPath.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSMutablePath.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSPanoramaLink.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSIndoorLevel.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncUtil.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/Realm.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMRealm.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMPlatform.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSPolygon.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncSession.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncPermission.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSMapView+Animation.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMMigration.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncConfiguration.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMRealmConfiguration.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSOrientation.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSProjection.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMCollection.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSCameraPosition.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSGeocoder.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncPermissionOffer.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncManager.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSMarker.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncUser.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSCALayer.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSPanoramaLayer.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSURLTileLayer.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSTileLayer.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSSyncTileLayer.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSMapLayer.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSMarkerLayer.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMAccessor.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Base/Frameworks/GoogleMapsBase.framework/Headers/GMSCoordinateBounds.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSServices.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSUISettings.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncCredentials.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSGeometryUtils.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Base/Frameworks/GoogleMapsBase.framework/Headers/GMSDeprecationMacros.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Base/Frameworks/GoogleMapsBase.framework/Headers/GMSCompatabilityMacros.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSCoordinateBounds+GoogleMaps.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GoogleMaps.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSAddress.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMResults.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncPermissionResults.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMConstants.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMObject.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework/Headers/RealmSwift-Swift.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/R.swift.Library/Rswift.framework/Headers/Rswift-Swift.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSPanoramaView.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSMapView.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSIndoorDisplay.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSOverlay.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSGroundOverlay.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMArray.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMProperty.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Base/Frameworks/GoogleMapsBase.framework/Modules/module.modulemap"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Modules/module.modulemap"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Modules/module.modulemap"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework/Modules/module.modulemap"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/R.swift.Library/Rswift.framework/Modules/module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/CoreData.framework/Headers/CoreData.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/CoreLocation.framework/Headers/CoreLocation.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/MapKit.framework/Headers/MapKit.apinotes"
+interface-hash: "1c036ea4abd4da8d627649507c7a0edf"
