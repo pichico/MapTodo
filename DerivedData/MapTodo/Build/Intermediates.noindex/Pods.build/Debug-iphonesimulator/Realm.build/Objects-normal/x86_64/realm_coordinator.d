@@ -20,7 +20,9 @@ dependencies: \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/object_schema.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/object_store.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/property.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/util/tagged_bool.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/sync/sync_config.hpp \
-  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/sync/sync_manager.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/sync/sync_user.hpp \
-  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/sync/sync_session.hpp
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/sync/sync_manager.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/sync/sync_session.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/feature_checks.hpp

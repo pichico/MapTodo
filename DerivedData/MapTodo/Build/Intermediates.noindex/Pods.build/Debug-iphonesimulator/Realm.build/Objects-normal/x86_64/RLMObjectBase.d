@@ -20,7 +20,21 @@ dependencies: \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMArray.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMCollection.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMCollection_Private.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMCollection_Private.h \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMResults_Private.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMResults_Private.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMResults.h \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/results.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/collection_notifications.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/index_set.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/util/atomic_shared_ptr.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/descriptor_ordering.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/feature_checks.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/impl/collection_notifier.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/impl/collection_change_builder.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/property.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/util/compiler.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/util/tagged_bool.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMListBase.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMObjectSchema_Private.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMObjectSchema_Private.h \
@@ -29,7 +43,6 @@ dependencies: \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMObjectStore.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMObservation.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/binding_context.hpp \
-  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/index_set.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMProperty_Private.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMProperty.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMSchema_Private.h \
@@ -38,12 +51,7 @@ dependencies: \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMThreadSafeReference_Private.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/thread_safe_reference.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/object.hpp \
-  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/impl/collection_notifier.hpp \
-  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/impl/collection_change_builder.hpp \
-  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/collection_notifications.hpp \
-  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/util/atomic_shared_ptr.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/shared_realm.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/execution_context_id.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/util/aligned_union.hpp \
-  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/schema.hpp \
-  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/util/compiler.hpp
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/schema.hpp

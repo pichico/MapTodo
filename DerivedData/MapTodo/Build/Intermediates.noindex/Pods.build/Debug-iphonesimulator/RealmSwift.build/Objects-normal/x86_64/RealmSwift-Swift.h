@@ -228,13 +228,13 @@ SWIFT_MODULE_NAMESPACE_PUSH("RealmSwift")
 ///     <code>Data</code>, <code>NSData</code>
 ///   </li>
 ///   <li>
-///     <code>RealmOptional<T></code> for optional numeric properties
+///     <code>RealmOptional<Value></code> for optional numeric properties
 ///   </li>
 ///   <li>
 ///     <code>Object</code> subclasses, to model many-to-one relationships
 ///   </li>
 ///   <li>
-///     <code>List<T></code>, to model many-to-many relationships
+///     <code>List<Element></code>, to model many-to-many relationships
 ///   </li>
 /// </ul>
 /// <code>String</code>, <code>NSString</code>, <code>Date</code>, <code>NSDate</code>, <code>Data</code>, <code>NSData</code> and <code>Object</code> subclass properties can be declared as optional.
@@ -250,6 +250,7 @@ SWIFT_MODULE_NAMESPACE_PUSH("RealmSwift")
 /// See our <a href="http://realm.io/docs/cocoa">Cocoa guide</a> for more details.
 SWIFT_CLASS_NAMED("Object")
 @interface RealmSwiftObject : RLMObjectBase
++ (RLMArray<id> * _Nonnull)_rlmArray SWIFT_WARN_UNUSED_RESULT;
 /// Creates an unmanaged instance of a Realm object.
 /// Call <code>add(_:)</code> on a <code>Realm</code> instance to add an unmanaged object into that Realm.
 /// <ul>
@@ -275,9 +276,8 @@ SWIFT_CLASS_NAMED("Object")
 @property (nonatomic, readonly, getter=isInvalidated) BOOL invalidated;
 /// A human-readable description of the object.
 @property (nonatomic, readonly, copy) NSString * _Nonnull description;
-/// Helper to return the class name for an Object subclass.
-@property (nonatomic, readonly, copy) NSString * _Nonnull className;
 /// WARNING: This is an internal helper method not intended for public use.
+/// It is not considered part of the public API.
 /// :nodoc:
 + (Class _Nonnull)objectUtilClass:(BOOL)isSwift SWIFT_WARN_UNUSED_RESULT;
 /// Override this method to specify the name of a property to be used as the primary key.
@@ -302,12 +302,19 @@ SWIFT_CLASS_NAMED("Object")
 + (NSArray<NSString *> * _Nonnull)indexedProperties SWIFT_WARN_UNUSED_RESULT;
 - (id _Nullable)objectForKeyedSubscript:(NSString * _Nonnull)key SWIFT_WARN_UNUSED_RESULT;
 - (void)setObject:(id _Nullable)value forKeyedSubscript:(NSString * _Nonnull)key;
-/// Returns whether two Realm objects are equal.
-/// Objects are considered equal if and only if they are both managed by the same Realm and point to the same
-/// underlying object in the database.
+/// Returns whether two Realm objects are the same.
+/// Objects are considered the same if and only if they are both managed by the same
+/// Realm and point to the same underlying object in the database.
+/// note:
+/// Equality comparison is implemented by <code>isEqual(_:)</code>. If the object type
+/// is defined with a primary key, <code>isEqual(_:)</code> behaves identically to this
+/// method. If the object type is not defined with a primary key,
+/// <code>isEqual(_:)</code> uses the <code>NSObject</code> behavior of comparing object identity.
+/// This method can be used to compare two objects for database equality
+/// whether or not their object type defines a primary key.
 /// \param object The object to compare the receiver to.
 ///
-- (BOOL)isEqual:(id _Nullable)object SWIFT_WARN_UNUSED_RESULT;
+- (BOOL)isSameObjectAs:(RealmSwiftObject * _Nullable)object SWIFT_WARN_UNUSED_RESULT;
 /// WARNING: This is an internal initializer not intended for public use.
 /// :nodoc:
 - (nonnull instancetype)initWithRealm:(RLMRealm * _Nonnull)realm schema:(RLMObjectSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
@@ -342,7 +349,7 @@ SWIFT_CLASS("_TtC10RealmSwift18LinkingObjectsBase")
 @interface LinkingObjectsBase : NSObject <NSFastEnumeration>
 @property (nonatomic, readonly, copy) NSString * _Nonnull objectClassName;
 @property (nonatomic, readonly, copy) NSString * _Nonnull propertyName;
-@property (nonatomic, readonly, strong) RLMResults<RLMObject *> * _Nonnull rlmResults;
+@property (nonatomic, readonly, strong) RLMResults<id> * _Nonnull rlmResults;
 - (nonnull instancetype)initFromClassName:(NSString * _Nonnull)objectClassName property:(NSString * _Nonnull)propertyName OBJC_DESIGNATED_INITIALIZER;
 - (NSInteger)countByEnumeratingWithState:(NSFastEnumerationState * _Nonnull)state objects:(id _Nullable * _Nonnull)buffer count:(NSInteger)len SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
@@ -357,7 +364,7 @@ SWIFT_CLASS("_TtC10RealmSwift8ListBase")
 @property (nonatomic, readonly, copy) NSString * _Nonnull description;
 /// Returns the number of objects in this List.
 @property (nonatomic, readonly) NSInteger count;
-- (nonnull instancetype)initWithArray:(RLMArray<RLMObject *> * _Nonnull)array OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithArray:(RLMArray<id> * _Nonnull)array OBJC_DESIGNATED_INITIALIZER;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -368,9 +375,16 @@ SWIFT_CLASS("_TtC10RealmSwift8ListBase")
 
 
 
+@class RLMObject;
 
 @interface RealmSwiftObject (SWIFT_EXTENSION(RealmSwift))
 - (RLMObject * _Nonnull)unsafeCastToRLMObject SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+@interface RealmSwiftObject (SWIFT_EXTENSION(RealmSwift))
+/// :nodoc:
+- (BOOL)isEqualTo:(id _Nullable)object SWIFT_WARN_UNUSED_RESULT SWIFT_UNAVAILABLE_MSG("'isEqual' has been renamed to 'isSameObject(as:)'");
 @end
 
 
@@ -389,20 +403,15 @@ SWIFT_CLASS_NAMED("ObjectUtil")
 
 
 
+
+
 @interface RLMSyncManager (SWIFT_EXTENSION(RealmSwift))
 /// The sole instance of the singleton.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RLMSyncManager * _Nonnull shared;)
 + (RLMSyncManager * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
 @end
 
-@class RLMSyncPermissionValue;
 
-@interface RLMSyncPermissionResults (SWIFT_EXTENSION(RealmSwift))
-- (RLMSyncPermissionValue * _Nonnull)objectAtIndexedSubscript:(NSInteger)index SWIFT_WARN_UNUSED_RESULT;
-- (NSInteger)indexAfter:(NSInteger)i SWIFT_WARN_UNUSED_RESULT;
-@property (nonatomic, readonly) NSInteger startIndex;
-@property (nonatomic, readonly) NSInteger endIndex;
-@end
 
 
 
@@ -417,169 +426,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, copy) NSDictionary<N
 /// Throws an Objective-C exception if more than one logged-in user exists.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) RLMSyncUser * _Nullable current;)
 + (RLMSyncUser * _Nullable)current SWIFT_WARN_UNUSED_RESULT;
-@end
-
-
-/// This model is used to reflect permissions.
-/// It should be used in conjunction with a <code>SyncUser</code>’s Permission Realm.
-/// You can only read this Realm. Use the objects in Management Realm to
-/// make request for modifications of permissions.
-/// See https://realm.io/docs/realm-object-server/#permissions for general
-/// documentation.
-SWIFT_CLASS("_TtC10RealmSwift14SyncPermission") SWIFT_DEPRECATED_MSG("Use `SyncPermissionValue`")
-@interface SyncPermission : RealmSwiftObject
-/// The date this object was last modified.
-@property (nonatomic, copy) NSDate * _Nonnull updatedAt;
-/// The ID of the affected user by the permission.
-@property (nonatomic, copy) NSString * _Nonnull userId;
-/// The path to the realm.
-@property (nonatomic, copy) NSString * _Nonnull path;
-/// Whether the affected user is allowed to read from the Realm.
-@property (nonatomic) BOOL mayRead;
-/// Whether the affected user is allowed to write to the Realm.
-@property (nonatomic) BOOL mayWrite;
-/// Whether the affected user is allowed to manage the access rights for others.
-@property (nonatomic) BOOL mayManage;
-/// :nodoc:
-+ (BOOL)shouldIncludeInDefaultSchema SWIFT_WARN_UNUSED_RESULT;
-/// :nodoc:
-+ (NSString * _Nullable)_realmObjectName SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithValue:(id _Nonnull)value OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithRealm:(RLMRealm * _Nonnull)realm schema:(RLMObjectSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithValue:(id _Nonnull)value schema:(RLMSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-/// This model is used for requesting changes to a Realm’s permissions.
-/// It should be used in conjunction with a <code>SyncUser</code>’s Management Realm.
-/// See https://realm.io/docs/realm-object-server/#permissions for general
-/// documentation.
-SWIFT_CLASS("_TtC10RealmSwift20SyncPermissionChange") SWIFT_DEPRECATED_MSG("Use `SyncUser.applyPermission()` and `SyncUser.revokePermission()`")
-@interface SyncPermissionChange : RealmSwiftObject
-/// The globally unique ID string of this permission change object.
-@property (nonatomic, copy) NSString * _Nonnull id;
-/// The date this object was initially created.
-@property (nonatomic, copy) NSDate * _Nonnull createdAt;
-/// The date this object was last modified.
-@property (nonatomic, copy) NSDate * _Nonnull updatedAt;
-/// An error or informational message, typically written to by the Realm Object Server.
-@property (nonatomic, copy) NSString * _Nullable statusMessage;
-/// Sync management object status.
-@property (nonatomic, readonly) RLMSyncManagementObjectStatus status;
-/// The remote URL to the realm.
-@property (nonatomic, copy) NSString * _Nonnull realmUrl;
-/// The identity of a user affected by this permission change.
-@property (nonatomic, copy) NSString * _Nonnull userId;
-/// :nodoc:
-+ (NSString * _Nullable)primaryKey SWIFT_WARN_UNUSED_RESULT;
-/// :nodoc:
-+ (BOOL)shouldIncludeInDefaultSchema SWIFT_WARN_UNUSED_RESULT;
-/// :nodoc:
-+ (NSString * _Nullable)_realmObjectName SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithValue:(id _Nonnull)value OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithRealm:(RLMRealm * _Nonnull)realm schema:(RLMObjectSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithValue:(id _Nonnull)value schema:(RLMSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-/// This model is used for offering permission changes to other users.
-/// It should be used in conjunction with a <code>SyncUser</code>’s Management Realm.
-/// See https://realm.io/docs/realm-object-server/#permissions for general
-/// documentation.
-SWIFT_CLASS("_TtC10RealmSwift19SyncPermissionOffer")
-@interface SyncPermissionOffer : RealmSwiftObject
-/// The globally unique ID string of this permission offer object.
-@property (nonatomic, copy) NSString * _Nonnull id;
-/// The date this object was initially created.
-@property (nonatomic, copy) NSDate * _Nonnull createdAt;
-/// The date this object was last modified.
-@property (nonatomic, copy) NSDate * _Nonnull updatedAt;
-/// An error or informational message, typically written to by the Realm Object Server.
-@property (nonatomic, copy) NSString * _Nullable statusMessage;
-/// Sync management object status.
-@property (nonatomic, readonly) RLMSyncManagementObjectStatus status;
-/// A token which uniquely identifies this offer. Generated by the server.
-@property (nonatomic, copy) NSString * _Nullable token;
-/// The remote URL to the realm.
-@property (nonatomic, copy) NSString * _Nonnull realmUrl;
-/// Whether this offer allows the receiver to read from the Realm.
-@property (nonatomic) BOOL mayRead;
-/// Whether this offer allows the receiver to write to the Realm.
-@property (nonatomic) BOOL mayWrite;
-/// Whether this offer allows the receiver to manage the access rights for others.
-@property (nonatomic) BOOL mayManage;
-/// When this token will expire and become invalid.
-@property (nonatomic, copy) NSDate * _Nullable expiresAt;
-/// Construct a permission offer object used to offer permission changes to other users.
-/// \param realmURL The URL to the Realm on which to apply these permission changes
-/// to, once the offer is accepted.
-///
-/// \param expiresAt When this token will expire and become invalid.
-/// Pass <code>nil</code> if this offer should not expire.
-///
-/// \param mayRead Grant or revoke read access.
-///
-/// \param mayWrite Grant or revoked read-write access.
-///
-/// \param mayManage Grant or revoke administrative access.
-///
-- (nonnull instancetype)initWithRealmURL:(NSString * _Nonnull)realmURL expiresAt:(NSDate * _Nullable)expiresAt mayRead:(BOOL)mayRead mayWrite:(BOOL)mayWrite mayManage:(BOOL)mayManage;
-/// :nodoc:
-+ (NSArray<NSString *> * _Nonnull)indexedProperties SWIFT_WARN_UNUSED_RESULT;
-/// :nodoc:
-+ (NSString * _Nullable)primaryKey SWIFT_WARN_UNUSED_RESULT;
-/// :nodoc:
-+ (BOOL)shouldIncludeInDefaultSchema SWIFT_WARN_UNUSED_RESULT;
-/// :nodoc:
-+ (NSString * _Nullable)_realmObjectName SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithValue:(id _Nonnull)value OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithRealm:(RLMRealm * _Nonnull)realm schema:(RLMObjectSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithValue:(id _Nonnull)value schema:(RLMSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
-@end
-
-
-/// This model is used to apply permission changes defined in the permission offer
-/// object represented by the specified token, which was created by another user’s
-/// <code>SyncPermissionOffer</code> object.
-/// It should be used in conjunction with a <code>SyncUser</code>’s Management Realm.
-/// See https://realm.io/docs/realm-object-server/#permissions for general
-/// documentation.
-SWIFT_CLASS("_TtC10RealmSwift27SyncPermissionOfferResponse")
-@interface SyncPermissionOfferResponse : RealmSwiftObject
-/// The globally unique ID string of this permission offer response object.
-@property (nonatomic, copy) NSString * _Nonnull id;
-/// The date this object was initially created.
-@property (nonatomic, copy) NSDate * _Nonnull createdAt;
-/// The date this object was last modified.
-@property (nonatomic, copy) NSDate * _Nonnull updatedAt;
-/// An error or informational message, typically written to by the Realm Object Server.
-@property (nonatomic, copy) NSString * _Nullable statusMessage;
-/// Sync management object status.
-@property (nonatomic, readonly) RLMSyncManagementObjectStatus status;
-/// The received token which uniquely identifies another user’s <code>SyncPermissionOffer</code>.
-@property (nonatomic, copy) NSString * _Nonnull token;
-/// The remote URL to the realm on which these permission changes were applied.
-@property (nonatomic, copy) NSString * _Nullable realmUrl;
-/// Construct a permission offer response object used to apply permission changes
-/// defined in the permission offer object represented by the specified token,
-/// which was created by another user’s <code>SyncPermissionOffer</code> object.
-/// \param token The received token which uniquely identifies another user’s
-/// <code>SyncPermissionOffer</code>.
-///
-- (nonnull instancetype)initWithToken:(NSString * _Nonnull)token;
-/// :nodoc:
-+ (NSString * _Nullable)primaryKey SWIFT_WARN_UNUSED_RESULT;
-/// :nodoc:
-+ (BOOL)shouldIncludeInDefaultSchema SWIFT_WARN_UNUSED_RESULT;
-/// :nodoc:
-+ (NSString * _Nullable)_realmObjectName SWIFT_WARN_UNUSED_RESULT;
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithValue:(id _Nonnull)value OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithRealm:(RLMRealm * _Nonnull)realm schema:(RLMObjectSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
-- (nonnull instancetype)initWithValue:(id _Nonnull)value schema:(RLMSchema * _Nonnull)schema OBJC_DESIGNATED_INITIALIZER;
 @end
 
 SWIFT_MODULE_NAMESPACE_POP

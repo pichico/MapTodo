@@ -19,6 +19,7 @@ dependencies: \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMConstants.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/property.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/util/compiler.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/util/tagged_bool.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMRealm_Dynamic.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMRealm.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMRealm_Private.hpp \
