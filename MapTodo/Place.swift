@@ -14,8 +14,8 @@ class Place: Object {
 
     var latitude = RealmOptional<Double>(nil)
     var longitude = RealmOptional<Double>(nil)
-    dynamic var name: String? = nil
-    dynamic var uuid = UUID().uuidString
+    @objc dynamic var name: String? = nil
+    @objc dynamic var uuid = UUID().uuidString
     var radius = RealmOptional<Double>(nil)
 
     override static func primaryKey() -> String? {

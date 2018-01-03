@@ -51,7 +51,7 @@ class TodoListViewController: AppViewController {
         return nil
     }
 
-    func placeButtonTapped(sender: UIButton) {
+    @objc func placeButtonTapped(sender: UIButton) {
         let controller = R.storyboard.main.placeView()!
         controller.place = place(section: sender.tag)
         navigationController?.pushViewController(controller, animated: true)

@@ -10,9 +10,9 @@ import Foundation
 import RealmSwift
 
 class Todo: Object {
-    dynamic var item: String?
-    dynamic var place: Place? = nil
-    dynamic var uuid = UUID().uuidString
+    @objc dynamic var item: String?
+    @objc dynamic var place: Place? = nil
+    @objc dynamic var uuid = UUID().uuidString
 
     override static func primaryKey() -> String? {
         return "uuid"
