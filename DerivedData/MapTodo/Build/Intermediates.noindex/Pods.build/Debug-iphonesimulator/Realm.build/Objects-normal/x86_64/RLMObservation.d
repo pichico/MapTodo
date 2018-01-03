@@ -10,10 +10,23 @@ dependencies: \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMArray.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMCollection.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMThreadSafeReference.h \
-  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMCollection_Private.hpp \
-  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMRealm.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMConstants.h \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMCollection_Private.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMCollection_Private.h \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMRealm.h \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMResults_Private.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMResults_Private.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMResults.h \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/results.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/collection_notifications.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/util/atomic_shared_ptr.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/descriptor_ordering.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/feature_checks.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/impl/collection_notifier.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/impl/collection_change_builder.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/property.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/util/compiler.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/util/tagged_bool.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMListBase.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMObjectSchema_Private.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMObjectSchema_Private.h \

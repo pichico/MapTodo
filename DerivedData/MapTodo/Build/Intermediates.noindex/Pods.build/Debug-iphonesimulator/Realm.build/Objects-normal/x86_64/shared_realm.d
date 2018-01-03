@@ -15,10 +15,16 @@ dependencies: \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/impl/transact_log_handler.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/binding_context.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/list.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/property.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/util/tagged_bool.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/object.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/object_schema.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/object_store.hpp \
-  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/property.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/results.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/descriptor_ordering.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/feature_checks.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/thread_safe_reference.hpp \
-  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/util/format.hpp
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/util/format.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/sync/impl/sync_file.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/sync/sync_user.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/sync/sync_manager.hpp

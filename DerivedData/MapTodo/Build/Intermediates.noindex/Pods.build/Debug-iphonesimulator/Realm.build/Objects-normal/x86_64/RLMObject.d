@@ -18,6 +18,8 @@ dependencies: \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMArray.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMCollection.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMCollection_Private.hpp \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMCollection_Private.h \
+  /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMObjectBase_Private.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMObjectSchema_Private.hpp \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMObjectSchema_Private.h \
   /Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Realm/include/RLMObjectSchema.h \
