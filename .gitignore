@@ -8,4 +8,8 @@ xcuserdata
 vendor/bundle/
 .bundle/
 
+## Build generated
+build/
+DerivedData
+
 MapTodo/Keys.plist
