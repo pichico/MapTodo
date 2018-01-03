@@ -1,0 +1,109 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Pods_MapTodo.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "Pods-MapTodo-umbrella.h",
+          'external-contents': "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Target Support Files/Pods-MapTodo/Pods-MapTodo-umbrella.h"
+        },
+        {
+          'type': 'file',
+          'name': "Pods_MapTodo-Swift.h",
+          'external-contents': "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Pods_MapTodo.framework/Headers/Pods_MapTodo-Swift.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Pods_MapTodo.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Pods-MapTodo.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/R.swift.Library/Rswift.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "R.swift.Library-umbrella.h",
+          'external-contents': "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Target Support Files/R.swift.Library/R.swift.Library-umbrella.h"
+        },
+        {
+          'type': 'file',
+          'name': "Rswift-Swift.h",
+          'external-contents': "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/R.swift.Library/Rswift.framework/Headers/Rswift-Swift.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/R.swift.Library/Rswift.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/R.swift.Library.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "Realm-Swift.h",
+          'external-contents': "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/Realm-Swift.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/Realm.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "RealmSwift-Swift.h",
+          'external-contents': "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework/Headers/RealmSwift-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "RealmSwift-umbrella.h",
+          'external-contents': "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Target Support Files/RealmSwift/RealmSwift-umbrella.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/RealmSwift.build/module.modulemap"
+        }
+      ]
+    }
+  ]
+}

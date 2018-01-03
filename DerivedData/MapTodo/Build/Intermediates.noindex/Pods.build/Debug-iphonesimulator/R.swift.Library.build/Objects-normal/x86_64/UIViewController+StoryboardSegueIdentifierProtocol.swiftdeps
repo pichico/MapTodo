@@ -1,0 +1,107 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "SeguePerformerType"
+provides-nominal:
+- "6Rswift18SeguePerformerTypeP"
+- "So16UIViewControllerC"
+provides-member:
+- ["6Rswift18SeguePerformerTypeP", ""]
+- ["So16UIViewControllerC", ""]
+- ["6Rswift15StoryboardSegueV", ""]
+- ["6Rswift18SeguePerformerTypeP", "performSegue"]
+- ["6Rswift15StoryboardSegueV", "performSegue"]
+provides-dynamic-lookup:
+depends-top-level:
+- "SeguePerformerType"
+- "StoryboardSegue"
+- "StoryboardSegueIdentifier"
+- "String"
+- "UIViewController"
+depends-member:
+- ["s7CVarArgP", "performSegue"]
+- ["s28CustomDebugStringConvertibleP", "performSegue"]
+- !private ["s23CustomStringConvertibleP", "identifier"]
+- ["s23CustomStringConvertibleP", "performSegue"]
+- ["s9EquatableP", "performSegue"]
+- ["s8HashableP", "performSegue"]
+- !private ["6Rswift14IdentifierTypeP", "identifier"]
+- ["So8NSCodingP", "performSegue"]
+- ["So26NSExtensionRequestHandlingP", "performSegue"]
+- ["So8NSObjectC", "performSegue"]
+- ["So16NSObjectProtocolP", "performSegue"]
+- ["6Rswift18SeguePerformerTypeP", "Self"]
+- ["6Rswift18SeguePerformerTypeP", "StoryboardSegueIdentifier"]
+- ["6Rswift18SeguePerformerTypeP", "String"]
+- ["6Rswift18SeguePerformerTypeP", "performSegue"]
+- ["6Rswift18SeguePerformerTypeP", ""]
+- ["6Rswift15StoryboardSegueV", "UIViewController"]
+- !private ["6Rswift15StoryboardSegueV", "identifier"]
+- ["6Rswift15StoryboardSegueV", "performSegue"]
+- !private ["6Rswift15StoryboardSegueV", "source"]
+- !private ["6Rswift25StoryboardSegueIdentifierV", "deinit"]
+- !private ["6Rswift25StoryboardSegueIdentifierV", "identifier"]
+- !private ["6Rswift29StoryboardSegueIdentifierTypeP", "identifier"]
+- ["So21UIAppearanceContainerP", "performSegue"]
+- ["So18UIContentContainerP", "performSegue"]
+- ["So18UIFocusEnvironmentP", "performSegue"]
+- ["So30UIPasteConfigurationSupportingP", "performSegue"]
+- ["So11UIResponderC", "performSegue"]
+- ["So30UIResponderStandardEditActionsP", "performSegue"]
+- ["So16UIStateRestoringP", "performSegue"]
+- ["So18UITraitEnvironmentP", "performSegue"]
+- ["So16UIViewControllerC", "deinit"]
+- ["So16UIViewControllerC", "performSegue"]
+- ["10Foundation27_KeyValueCodingAndObservingP", "performSegue"]
+depends-nominal:
+- "s7CVarArgP"
+- "s28CustomDebugStringConvertibleP"
+- "s23CustomStringConvertibleP"
+- "s9EquatableP"
+- "s8HashableP"
+- !private "6Rswift14IdentifierTypeP"
+- "So8NSCodingP"
+- "So26NSExtensionRequestHandlingP"
+- "So8NSObjectC"
+- "So16NSObjectProtocolP"
+- "6Rswift18SeguePerformerTypeP"
+- "6Rswift15StoryboardSegueV"
+- !private "6Rswift25StoryboardSegueIdentifierV"
+- !private "6Rswift29StoryboardSegueIdentifierTypeP"
+- "So21UIAppearanceContainerP"
+- "So18UIContentContainerP"
+- "So18UIFocusEnvironmentP"
+- "So30UIPasteConfigurationSupportingP"
+- "So11UIResponderC"
+- "So30UIResponderStandardEditActionsP"
+- "So16UIStateRestoringP"
+- "So18UITraitEnvironmentP"
+- "So16UIViewControllerC"
+- "10Foundation27_KeyValueCodingAndObservingP"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.apinotesc"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreImage.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/QuartzCore.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Metal.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreFoundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/Target Support Files/R.swift.Library/R.swift.Library-umbrella.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Intermediates.noindex/Pods.build/Debug-iphonesimulator/R.swift.Library.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/usr/include/objc/ObjectiveC.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/OpenGLES.framework/Headers/OpenGLES.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/CoreImage.framework/Headers/CoreImage.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/QuartzCore.framework/Headers/QuartzCore.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/Metal.framework/Headers/Metal.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/usr/include/Darwin.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CoreGraphics.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIKit.apinotes"
+- "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator11.2.sdk/System/Library/Frameworks/CoreText.framework/Headers/CoreText.apinotes"
+interface-hash: "b01563160747657fcebdfcd0aa03cbb7"

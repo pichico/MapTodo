@@ -25,6 +25,10 @@
 #include <vector>
 #include <string>
 #include <stdint.h>
+#include <stddef.h>
+#include <memory>
+
+#include <realm/binary_data.hpp>
 
 namespace realm {
 namespace util {
@@ -62,10 +66,54 @@ namespace compression {
 class Alloc {
 public:
     // Returns null on "out of memory"
-    virtual void* alloc(std::size_t size) = 0;
+    virtual void* alloc(size_t size) = 0;
     virtual void free(void* addr) noexcept = 0;
     virtual ~Alloc() {}
 };
+
+class CompressMemoryArena: public Alloc {
+public:
+    void* alloc(size_t size) override final
+    {
+        size_t offset = m_offset;
+        size_t padding = offset % alignof (std::max_align_t);
+        if (padding > m_size - offset)
+            return nullptr;
+        offset += padding;
+        void* addr = m_buffer.get() + offset;
+        if (size > m_size - offset)
+            return nullptr;
+        m_offset = offset + size;
+        return addr;
+    }
+
+    void free(void*) noexcept override final
+    {
+        // No-op
+    }
+
+    void reset() noexcept
+    {
+        m_offset = 0;
+    }
+
+    size_t size() const noexcept
+    {
+        return m_size;
+    }
+
+    void resize(size_t size)
+    {
+        m_buffer = std::make_unique<char[]>(size); // Throws
+        m_size = size;
+        m_offset = 0;
+    }
+
+private:
+    size_t m_size = 0, m_offset = 0;
+    std::unique_ptr<char[]> m_buffer;
+};
+
 
 /// compress_bound() calculates an upper bound on the size of the compressed
 /// data. The caller can use this function to allocate memory buffer calling
@@ -96,6 +144,13 @@ std::error_code compress(const char* uncompressed_buf, size_t uncompressed_size,
 /// compression::error_category.
 std::error_code decompress(const char* compressed_buf, size_t compressed_size,
                            char* decompressed_buf, size_t decompressed_size);
+
+
+size_t allocate_and_compress(CompressMemoryArena& compress_memory_arena,
+                             BinaryData uncompressed_buf,
+                             std::vector<char>& compressed_buf);
+
+
 
 } // namespace compression
 } // namespace util
