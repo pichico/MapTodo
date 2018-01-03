@@ -791,6 +791,8 @@ depends-member:
 - !private ["10RealmSwift6ObjectC", "replace"]
 - !private ["s9OptionSetP", "touchUpInside"]
 - !private ["Sq", "map"]
+- !private ["10RealmSwift16OptionalProtocolP", "map"]
+- ["7MapTodo5PlaceC", "deinit"]
 - !private ["7MapTodo5PlaceC", "getAll"]
 - !private ["7MapTodo5PlaceC", "name"]
 - !private ["7MapTodo19PlaceViewControllerC", "place"]
@@ -818,6 +820,15 @@ depends-member:
 - !private ["10RealmSwift0A14CollectionBaseP", "count"]
 - !private ["10RealmSwift0A14CollectionBaseP", "filter"]
 - !private ["10RealmSwift0A14CollectionBaseP", "subscript"]
+- !private ["10RealmSwift0A15CollectionValueP", "_getBuiltinLogicValue"]
+- !private ["10RealmSwift0A15CollectionValueP", "delete"]
+- !private ["10RealmSwift0A15CollectionValueP", "getAll"]
+- !private ["10RealmSwift0A15CollectionValueP", "init"]
+- !private ["10RealmSwift0A15CollectionValueP", "isEmpty"]
+- !private ["10RealmSwift0A15CollectionValueP", "item"]
+- !private ["10RealmSwift0A15CollectionValueP", "map"]
+- !private ["10RealmSwift0A15CollectionValueP", "name"]
+- !private ["10RealmSwift0A15CollectionValueP", "replace"]
 - !private ["10RealmSwift0A12OptionalTypeP", "_getBuiltinLogicValue"]
 - !private ["10Foundation20ReferenceConvertibleP", "row"]
 - !private ["10Foundation20ReferenceConvertibleP", "section"]
@@ -937,6 +948,7 @@ depends-member:
 - !private ["10RealmSwift14ThreadConfinedP", "name"]
 - !private ["10RealmSwift14ThreadConfinedP", "replace"]
 - !private ["10RealmSwift14ThreadConfinedP", "subscript"]
+- ["7MapTodo0B0C", "deinit"]
 - !private ["7MapTodo0B0C", "delete"]
 - !private ["7MapTodo0B0C", "getAll"]
 - !private ["7MapTodo0B0C", "init"]
@@ -1878,7 +1890,8 @@ depends-nominal:
 - !private "10RealmSwift6ObjectC"
 - !private "s9OptionSetP"
 - !private "Sq"
-- !private "7MapTodo5PlaceC"
+- !private "10RealmSwift16OptionalProtocolP"
+- "7MapTodo5PlaceC"
 - !private "7MapTodo19PlaceViewControllerC"
 - !private "7MapTodo1RV"
 - !private "So13RLMObjectBaseC"
@@ -1888,6 +1901,7 @@ depends-nominal:
 - "10RealmSwift0A0C"
 - !private "10RealmSwift0A10CollectionP"
 - !private "10RealmSwift0A14CollectionBaseP"
+- !private "10RealmSwift0A15CollectionValueP"
 - !private "10RealmSwift0A12OptionalTypeP"
 - !private "10Foundation20ReferenceConvertibleP"
 - !private "10RealmSwift7ResultsC"
@@ -1903,7 +1917,7 @@ depends-nominal:
 - !private "s16TextOutputStreamP"
 - !private "s20TextOutputStreamableP"
 - !private "10RealmSwift14ThreadConfinedP"
-- !private "7MapTodo0B0C"
+- "7MapTodo0B0C"
 - "7MapTodo0B18ListViewControllerC"
 - !private "So48UIAccessibilityContentSizeCategoryImageAdjustingP"
 - !private "So29UIAccessibilityIdentificationP"
@@ -1992,11 +2006,11 @@ depends-external:
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSPanoramaCamera.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMObjectBase_Dynamic.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMRealm_Dynamic.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMRealm+Sync.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMRealmConfiguration+Sync.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/NSError+RLMSync.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSPanoramaService.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMThreadSafeReference.h"
-- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncPermissionChange.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSCircle.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSMapStyle.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSPolyline.h"
@@ -2005,20 +2019,20 @@ depends-external:
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Base/Frameworks/GoogleMapsBase.framework/Headers/GoogleMapsBase.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMObjectBase.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMListBase.h"
-- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncPermissionOfferResponse.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSCameraUpdate.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSPanoramaCameraUpdate.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMSchema_Private.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMObjectSchema_Private.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMObjectBase_Private.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMSyncUtil_Private.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMRealm_Private.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMSyncConfiguration_Private.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMRealmConfiguration_Private.h"
+- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMCollection_Private.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMResults_Private.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMObject_Private.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMArray_Private.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/PrivateHeaders/RLMProperty_Private.h"
-- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncPermissionValue.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSIndoorBuilding.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSPath.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSMutablePath.h"
@@ -2040,7 +2054,6 @@ depends-external:
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMCollection.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSCameraPosition.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSGeocoder.h"
-- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncPermissionOffer.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncManager.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSMarker.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncUser.h"
@@ -2063,7 +2076,6 @@ depends-external:
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GoogleMaps.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Headers/GMSAddress.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMResults.h"
-- "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMSyncPermissionResults.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMConstants.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/Realm/Realm.framework/Headers/RLMObject.h"
 - "/Users/fukushima.hitomi/Documents/swift/MapTodo/DerivedData/MapTodo/Build/Products/Debug-iphonesimulator/RealmSwift/RealmSwift.framework/Headers/RealmSwift-Swift.h"

@@ -229,9 +229,9 @@ SWIFT_CLASS("_TtC7MapTodo17AppNavigationItem")
 
 SWIFT_CLASS("_TtC7MapTodo16AppTableViewCell")
 @interface AppTableViewCell : UITableViewCell
-@property (nonatomic, strong) UIColor * _Nonnull tableBorderColor;
-@property (nonatomic) CGFloat tableBorderWidth;
-@property (nonatomic) CGFloat tableCornerRadius;
+@property (nonatomic, strong) UIColor * _Nonnull borderColor;
+@property (nonatomic) CGFloat cornerRadius;
+@property (nonatomic) CGFloat borderWidth;
 @property (nonatomic) BOOL isTop;
 @property (nonatomic) BOOL isBottom;
 @property (nonatomic, strong) CAShapeLayer * _Nonnull borderLayer;
@@ -246,9 +246,9 @@ SWIFT_CLASS("_TtC7MapTodo16AppTableViewCell")
 
 SWIFT_CLASS("_TtC7MapTodo22AppTableViewHeaderView")
 @interface AppTableViewHeaderView : UIView
-@property (nonatomic, readonly) CGFloat tableCornerRadius;
-@property (nonatomic, readonly) CGFloat tableBorderWidth;
-@property (nonatomic, readonly, strong) UIColor * _Nonnull tableBorderColor;
+@property (nonatomic, readonly) CGFloat cornerRadius;
+@property (nonatomic, readonly) CGFloat borderWidth;
+@property (nonatomic, readonly, strong) UIColor * _Nonnull borderColor;
 @property (nonatomic, weak) IBOutlet UIButton * _Null_unspecified showDetailButton;
 @property (nonatomic, weak) IBOutlet UILabel * _Null_unspecified textLabel;
 - (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
@@ -313,7 +313,6 @@ SWIFT_CLASS("_TtC7MapTodo19PlaceViewController")
 @property (nonatomic, weak) IBOutlet UITextField * _Null_unspecified placeNameTextField;
 @property (nonatomic, weak) IBOutlet UIStepper * _Null_unspecified radiusStepper;
 @property (nonatomic, weak) IBOutlet UIView * _Null_unspecified mapView;
-@property (nonatomic, weak) IBOutlet UIView * _Null_unspecified mapViewFrame;
 @property (nonatomic, weak) IBOutlet UITableView * _Null_unspecified todoListTableView;
 @property (nonatomic, readonly) float defaultZoom;
 @property (nonatomic, strong) GMSMapView * _Null_unspecified gmView;
@@ -413,13 +412,6 @@ SWIFT_CLASS("_TtC7MapTodo22TodoListViewController")
 - (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 - (CGFloat)tableView:(UITableView * _Nonnull)tableView heightForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 - (void)tableView:(UITableView * _Nonnull)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
-@end
-
-
-@interface UIView (SWIFT_EXTENSION(MapTodo))
-@property (nonatomic, strong) UIColor * _Nullable borderColor;
-@property (nonatomic) CGFloat borderWidth;
-@property (nonatomic) CGFloat cornerRadius;
 @end
 
 SWIFT_MODULE_NAMESPACE_POP

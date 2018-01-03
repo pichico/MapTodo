@@ -1,17 +1,16 @@
 version: "Apple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)"
 options: "b06d2867adc68838857039564ead8810"
-build_time: [1514882351, 489601000]
+build_time: [1514970992, 633225000]
 inputs:
   "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/Place.swift": [1514687798, 0]
   "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/AppNavigationItem.swift": [1514687798, 0]
   "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/TodoListViewController.swift": [1514687798, 0]
   "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/AppViewController.swift": [1514687798, 0]
-  "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/UIView+Border.swift": [1514730924, 0]
-  "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/R.generated.swift": [1514712946, 0]
-  "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/AppTableViewCell.swift": [1514731306, 0]
+  "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/R.generated.swift": [1514969137, 0]
+  "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/AppTableViewCell.swift": [1514966501, 0]
   "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/Todo.swift": [1514687798, 0]
   "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/TextFieldTableViewCell.swift": [1514687798, 0]
   "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/LocationManager.swift": [1514687798, 0]
-  "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/AppDelegate.swift": [1514730880, 0]
-  "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/PlaceViewController.swift": [1514882140, 0]
-  "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/AppTableViewHeaderView.swift": [1514730924, 0]
+  "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/AppDelegate.swift": [1514970577, 0]
+  "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/PlaceViewController.swift": [1514966501, 0]
+  "/Users/fukushima.hitomi/Documents/swift/MapTodo/MapTodo/AppTableViewHeaderView.swift": [1514966501, 0]
