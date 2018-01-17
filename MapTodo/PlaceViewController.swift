@@ -17,6 +17,7 @@ class PlaceViewController: AppViewController {
     @IBOutlet weak var placeNameTextField: UITextField!
     @IBOutlet weak var radiusStepper: UIStepper!
     @IBOutlet weak var mapView: UIView!
+    @IBOutlet weak var mapViewFrame: UIView!
     @IBOutlet weak var todoListTableView: UITableView!
 
     let defaultZoom: Float = 15.0
@@ -45,11 +46,18 @@ class PlaceViewController: AppViewController {
         placeNameTextField.returnKeyType = .done
         place = place ?? Place()
         updateValues()
+        if let tableHeaderView = todoListTableView.tableHeaderView {
+            var frame = todoListTableView.frame
+            frame.size.height = 450
+            tableHeaderView.frame = frame
+            todoListTableView.tableHeaderView = tableHeaderView
+        }
     }
     
     func updateValues() {
         if let place = place {
             placeNameTextField.text = place.name
+            navigationItem.title = place.name
             if let CLLocationCoordinate2D = place.CLLocationCoordinate2D { // 地図をあわせる
                 mapPoint = CLLocationCoordinate2D
                 let camera = GMSCameraPosition.camera(withTarget: CLLocationCoordinate2D, zoom: defaultZoom)
@@ -128,6 +136,7 @@ class PlaceViewController: AppViewController {
 }
 
 extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoEntiries.count + 1
     }
@@ -136,10 +145,13 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
         let cell: TextFieldTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as! TextFieldTableViewCell
         cell.delegate = self
         cell.indexPath = indexPath
+        cell.isTop = indexPath.row == 0
         if todoEntiries.count > indexPath.row {
             cell.textField.text = todoEntiries[indexPath.row].item
+            cell.isBottom = false
         } else {
             cell.textField.text = ""
+            cell.isBottom = true
         }
         return cell
     }
