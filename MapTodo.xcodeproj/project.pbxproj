@@ -31,6 +31,9 @@
 		7D5504FC1E50B120006D9B81 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5504FB1E50B120006D9B81 /* RealmSwift.framework */; };
 		7D9E30221EC9EECD007F2D21 /* AppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9E30211EC9EECD007F2D21 /* AppTableViewCell.swift */; };
 		7DBE19611DE976C4008E20DC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE19601DE976C4008E20DC /* LocationManager.swift */; };
+		7DCAA9E120147666006E109A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DCAA9E020147666006E109A /* GoogleService-Info.plist */; };
+		7DCAA9E220147666006E109A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DCAA9E020147666006E109A /* GoogleService-Info.plist */; };
+		7DCAA9E320147666006E109A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DCAA9E020147666006E109A /* GoogleService-Info.plist */; };
 		7DE87F221EDB02EA00944734 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE87F211EDB02EA00944734 /* AppViewController.swift */; };
 		7DED36F91DB39FA3002CB35C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DED36F81DB39FA3002CB35C /* MapKit.framework */; };
 		7DFD35631E06D05000F02FA0 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DFD35621E06D05000F02FA0 /* R.generated.swift */; };
@@ -85,6 +88,7 @@
 		7D5504FB1E50B120006D9B81 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		7D9E30211EC9EECD007F2D21 /* AppTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTableViewCell.swift; sourceTree = "<group>"; };
 		7DBE19601DE976C4008E20DC /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		7DCAA9E020147666006E109A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7DE87F211EDB02EA00944734 /* AppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		7DED36F81DB39FA3002CB35C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7DFD35621E06D05000F02FA0 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 		7D4072F01DA92DBD005BBBCD /* MapTodo */ = {
 			isa = PBXGroup;
 			children = (
+				7DCAA9E020147666006E109A /* GoogleService-Info.plist */,
 				7D1DB89F1E59BAAA006FFEA7 /* Model */,
 				7DFD35621E06D05000F02FA0 /* R.generated.swift */,
 				7DED36F71DB399E9002CB35C /* Storyboard */,
@@ -383,6 +388,7 @@
 				7D4072FC1DA92DBD005BBBCD /* Assets.xcassets in Resources */,
 				7D4072F71DA92DBD005BBBCD /* Main.storyboard in Resources */,
 				7D0A424A1E4565D100D7297B /* TextFieldTableViewCell.xib in Resources */,
+				7DCAA9E120147666006E109A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +396,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DCAA9E220147666006E109A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +404,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DCAA9E320147666006E109A /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,15 +451,19 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MapTodo/Pods-MapTodo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
