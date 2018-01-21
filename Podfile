@@ -9,6 +9,7 @@ target 'MapTodo' do
 	pod 'R.swift'
 	pod 'GoogleMaps'
 	pod 'GooglePlaces'
+	pod 'SwiftLint'
 end
 
 target 'MapTodoTests' do
