@@ -5,6 +5,7 @@ swift_version = '4.0'
 use_frameworks!
 
 target 'MapTodo' do
+	pod 'Firebase/Core'
 	pod 'RealmSwift'
 	pod 'R.swift'
 	pod 'GoogleMaps'
