@@ -6,14 +6,11 @@
 //  Copyright © 2016年 fukushima. All rights reserved.
 //
 
-
 import GoogleMaps
 import RealmSwift
 import UIKit
 
-
 class PlaceViewController: AppViewController {
-    
     @IBOutlet weak var placeNameTextField: UITextField!
     @IBOutlet weak var radiusStepper: UIStepper!
     @IBOutlet weak var mapView: UIView!
@@ -25,6 +22,7 @@ class PlaceViewController: AppViewController {
     let lmmap: CLLocationManager = CLLocationManager()
     var mapPoint: CLLocationCoordinate2D? = nil
     var place: Place!
+    // swiftlint:disable force_try
     let realm: Realm = try! Realm()
     var todoEntiries: Results<Todo>!
 
@@ -46,7 +44,7 @@ class PlaceViewController: AppViewController {
         place = place ?? Place()
         updateValues()
     }
-    
+
     func updateValues() {
         if let place = place {
             placeNameTextField.text = place.name
@@ -62,45 +60,59 @@ class PlaceViewController: AppViewController {
                 lmmap.distanceFilter = 200
                 lmmap.startUpdatingLocation()
             }
-            todoEntiries = Todo.getList(realm: realm, place: place)
+            do {
+                todoEntiries = Todo.getList(realm: try Realm(), place: place)
+            } catch let error as NSError {
+            }
         }
     }
-    
+
     func replacePlace() {
-        try! realm.write {
-            place.stopMonitoring()
-            place.replace(realm: realm, name: placeNameTextField.text!, radius: radiusStepper.value, point: mapPoint)
-            place.startMonitoring()
+        do {
+            try realm.write {
+                place.stopMonitoring()
+                place.replace(realm: realm, name: placeNameTextField.text!, radius: radiusStepper.value, point: mapPoint)
+                place.startMonitoring()
+            }
+            UIApplication.shared.cancelAllLocalNotifications()
+        } catch let error as NSError {
         }
-        UIApplication.shared.cancelAllLocalNotifications()
     }
 
     func showMonitoringRegion(_ center: CLLocationCoordinate2D!, radius: CLLocationDistance) {
         // 既にあるpin、円を消す
         gmView.clear()
-        
+
         //ピンをMapViewの上に置く
         let marker = GMSMarker(position: center)
         marker.map = gmView
-        
+
         //ジオフェンスの範囲表示用
         let circle = GMSCircle(position: center, radius: radius)
         circle.strokeColor = UIColor(red: 160 / 255.0, green: 162 / 255.0, blue: 163 / 255.0, alpha: 1)
         circle.map = gmView
     }
-    
+
     @IBAction func radiusStepperTapped(_ sender: UIStepper) {
         if mapPoint != nil {
             showMonitoringRegion(mapPoint, radius: sender.value)
         }
     }
-    
+
     @IBAction func save(_ sender: AnyObject) {
         if placeNameTextField.text == "" {
-            let alert: UIAlertController = UIAlertController(title: "名前を設定して下さい", message: "", preferredStyle:  UIAlertControllerStyle.alert)
-            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler:{
-                (action: UIAlertAction!) -> Void in
-            })
+            let alert: UIAlertController = UIAlertController(
+                title: "名前を設定して下さい",
+                message: "",
+                preferredStyle: UIAlertControllerStyle.alert
+            )
+            let defaultAction: UIAlertAction = UIAlertAction(
+                    title: "OK",
+                    style: UIAlertActionStyle.cancel,
+                    handler: {
+                        (action: UIAlertAction!) -> Void in
+                    }
+            )
             alert.addAction(defaultAction)
             present(alert, animated: true, completion: nil)
         } else if mapPoint == nil {
@@ -121,7 +133,6 @@ class PlaceViewController: AppViewController {
             navigationController!.popViewController(animated: true)
         }
     }
-    
     @IBAction func cancel(_ sender: AnyObject) {
         navigationController!.popViewController(animated: true)
     }
@@ -131,9 +142,9 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoEntiries.count + 1
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: TextFieldTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as! TextFieldTableViewCell
+        let cell: TextFieldTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as? TextFieldTableViewCell
         cell.delegate = self
         cell.indexPath = indexPath
         if todoEntiries.count > indexPath.row {
@@ -147,15 +158,17 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if todoEntiries.count > indexPath.row {
-                try! realm.write {
-                    realm.delete(todoEntiries[indexPath.row])
+                do {
+                    try realm.write {
+                        realm.delete(todoEntiries[indexPath.row])
+                    }
+                } catch let error as NSError {
                 }
                 updateValues()
                 todoListTableView.reloadData()
             }
         }
     }
-    
 }
 
 extension PlaceViewController: GMSMapViewDelegate {
@@ -197,8 +210,11 @@ extension PlaceViewController: TextFieldTableViewCellDelegate {
             return
         }
         if value != todo.item {
-            try! realm.write {
-                todo.replace(realm: realm, item: value, place: place)
+            do {
+                try realm.write {
+                    todo.replace(realm: realm, item: value, place: place)
+                }
+            } catch let error as NSError {
             }
             todoListTableView.reloadData()
         }

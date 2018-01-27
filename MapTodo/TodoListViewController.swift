@@ -17,25 +17,32 @@ class TodoListViewController: AppViewController {
     @IBOutlet weak var todoListItemCell: UITableViewCell!
     var todoEntries: Results<Todo>!
     var placeEntries: Results<Place>!
-
+    // swiftlint:disable force_try
     let realm: Realm = try! Realm()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        todoEntries = Todo.getAll(realm: realm)
-        placeEntries = Place.getAll(realm: realm)
+        do {
+            todoEntries = Todo.getAll(realm: realm)
+            placeEntries = Place.getAll(realm: realm)
+        } catch let error as NSError {
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        todoEntries = Todo.getAll(realm: realm)
+        do {
+            todoEntries = Todo.getAll(realm: try Realm())
+        } catch let error as NSError {
+        }
         todoListTableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     func place(section: Int) -> Place? {
         return placeEntries.count > section ? placeEntries[section] : nil
     }
@@ -84,7 +91,7 @@ extension TodoListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: TextFieldTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as! TextFieldTableViewCell
+        let cell: TextFieldTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as? TextFieldTableViewCell
         cell.delegate = self
         cell.indexPath = indexPath
         if let todo = todo(indexPath: indexPath) {
@@ -103,10 +110,13 @@ extension TodoListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            try! realm.write {
-                todo(indexPath: indexPath)?.delete(realm: realm)
+            do {
+                try realm.write {
+                    todo(indexPath: indexPath)?.delete(realm: realm)
+                }
+                todoListTableView.reloadData()
+            } catch let error as NSError {
             }
-            todoListTableView.reloadData()
         }
     }
 }
@@ -114,14 +124,17 @@ extension TodoListViewController: UITableViewDataSource {
 extension TodoListViewController: TextFieldTableViewCellDelegate {
     func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String, indexPath: IndexPath) {
         if value.isEmpty {
-            return;
+            return
         }
-        let todo: Todo = self.todo(indexPath: indexPath) ?? Todo();
+        let todo: Todo = self.todo(indexPath: indexPath) ?? Todo()
         if value != todo.item {
-            try! realm.write {
-                todo.replace(realm: realm, item: value, place: place(section: indexPath.section)!)
+            do {
+                try realm.write {
+                    todo.replace(realm: realm, item: value, place: place(section: indexPath.section)!)
+                }
+                todoListTableView.reloadData()
+            } catch let error as NSError {
             }
-            todoListTableView.reloadData()
         }
     }
 }
