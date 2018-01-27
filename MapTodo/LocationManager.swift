@@ -11,7 +11,6 @@ import Foundation
 import MapKit
 import RealmSwift
 
-
 final class LocationManager: NSObject, CLLocationManagerDelegate {
     static let sharedLocationManager = LocationManager()
     fileprivate let lm: CLLocationManager = CLLocationManager()
@@ -25,7 +24,7 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
         lm.distanceFilter=100.0// 100m以上移動した場合に位置情報を取得
 
     }
-    
+
     func startMonitoring(_ center: CLLocationCoordinate2D, radius: Double, identifier: String) {
         lm.startMonitoring(for: CLCircularRegion.init(center: center, radius: radius, identifier: identifier))
     }
@@ -33,27 +32,30 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
     func stopMonitoring(_ center: CLLocationCoordinate2D, radius: Double, identifier: String) {
         lm.stopMonitoring(for: CLCircularRegion.init(center: center, radius: radius, identifier: identifier))
     }
-    
+
     func monitoredRegionsCount() -> Int {
         return lm.monitoredRegions.count
     }
 
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        let realm: Realm = try! Realm()
-        if let place = Place.get(realm: realm, uiid: region.identifier){
-            let todoList = Todo.getList(realm: realm, place: place)
-            if todoList.count > 0 {
-                let notification = UILocalNotification()
-                let showCount = 3
-                notification.alertTitle = place.name! + "でのToDo登録されています。"
-                notification.alertBody = todoList.map {$0.item!}.prefix(showCount).joined(separator: ", ")
-                    + (todoList.count > showCount ? " 他" : "")
-                notification.userInfo = ["region":region.identifier]
-                notification.applicationIconBadgeNumber = 1
-                notification.soundName = UILocalNotificationDefaultSoundName
-                UIApplication.shared.scheduleLocalNotification(notification)
+        do {
+            let realm: Realm = try Realm()
+            if let place = Place.get(realm: realm, uiid: region.identifier){
+                let todoList = Todo.getList(realm: realm, place: place)
+                if todoList.count > 0 {
+                    let notification = UILocalNotification()
+                    let showCount = 3
+                    notification.alertTitle = place.name! + "でのToDo登録されています。"
+                    notification.alertBody = todoList.map {$0.item!}.prefix(showCount).joined(separator: ", ")
+                        + (todoList.count > showCount ? " 他" : "")
+                    notification.userInfo = ["region": region.identifier]
+                    notification.applicationIconBadgeNumber = 1
+                    notification.soundName = UILocalNotificationDefaultSoundName
+                    UIApplication.shared.scheduleLocalNotification(notification)
+                }
             }
+        } catch let error as NSError {
+
         }
     }
 }
-
