@@ -38,24 +38,22 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        do {
-            let realm: Realm = try Realm()
-            if let place = Place.get(realm: realm, uiid: region.identifier){
-                let todoList = Todo.getList(realm: realm, place: place)
-                if todoList.count > 0 {
-                    let notification = UILocalNotification()
-                    let showCount = 3
-                    notification.alertTitle = place.name! + "でのToDo登録されています。"
-                    notification.alertBody = todoList.map {$0.item!}.prefix(showCount).joined(separator: ", ")
-                        + (todoList.count > showCount ? " 他" : "")
-                    notification.userInfo = ["region": region.identifier]
-                    notification.applicationIconBadgeNumber = 1
-                    notification.soundName = UILocalNotificationDefaultSoundName
-                    UIApplication.shared.scheduleLocalNotification(notification)
-                }
+        // swiftlint:disable force_try
+        let realm: Realm = try! Realm()
+        // swiftlint:enable force_try
+        if let place = Place.get(realm: realm, uiid: region.identifier){
+            let todoList = Todo.getList(realm: realm, place: place)
+            if todoList.count > 0 {
+                let notification = UILocalNotification()
+                let showCount = 3
+                notification.alertTitle = place.name! + "でのToDo登録されています。"
+                notification.alertBody = todoList.map {$0.item!}.prefix(showCount).joined(separator: ", ")
+                    + (todoList.count > showCount ? " 他" : "")
+                notification.userInfo = ["region": region.identifier]
+                notification.applicationIconBadgeNumber = 1
+                notification.soundName = UILocalNotificationDefaultSoundName
+                UIApplication.shared.scheduleLocalNotification(notification)
             }
-        } catch let error as NSError {
-
         }
     }
 }
