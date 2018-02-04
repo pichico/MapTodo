@@ -19,23 +19,17 @@ class TodoListViewController: AppViewController {
     var placeEntries: Results<Place>!
     // swiftlint:disable force_try
     let realm: Realm = try! Realm()
-
+    // swiftlint:enable force_try
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        do {
-            todoEntries = Todo.getAll(realm: realm)
-            placeEntries = Place.getAll(realm: realm)
-        } catch let error as NSError {
-        }
+        todoEntries = Todo.getAll(realm: realm)
+        placeEntries = Place.getAll(realm: realm)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        do {
-            todoEntries = Todo.getAll(realm: try Realm())
-        } catch let error as NSError {
-        }
+        todoEntries = Todo.getAll(realm: realm)
         todoListTableView.reloadData()
     }
 
@@ -110,13 +104,12 @@ extension TodoListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            do {
-                try realm.write {
-                    todo(indexPath: indexPath)?.delete(realm: realm)
-                }
-                todoListTableView.reloadData()
-            } catch let error as NSError {
+            // swiftlint:disable force_try
+            try! realm.write {
+                todo(indexPath: indexPath)?.delete(realm: realm)
             }
+            // swiftlint:enable force_try
+            todoListTableView.reloadData()
         }
     }
 }
@@ -128,13 +121,12 @@ extension TodoListViewController: TextFieldTableViewCellDelegate {
         }
         let todo: Todo = self.todo(indexPath: indexPath) ?? Todo()
         if value != todo.item {
-            do {
-                try realm.write {
-                    todo.replace(realm: realm, item: value, place: place(section: indexPath.section)!)
-                }
-                todoListTableView.reloadData()
-            } catch let error as NSError {
+            // swiftlint:disable force_try
+            try! realm.write {
+                todo.replace(realm: realm, item: value, place: place(section: indexPath.section)!)
             }
+            // swiftlint:enable force_try
+            todoListTableView.reloadData()
         }
     }
 }

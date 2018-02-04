@@ -24,6 +24,7 @@ class PlaceViewController: AppViewController {
     var place: Place!
     // swiftlint:disable force_try
     let realm: Realm = try! Realm()
+    // swiftlint:enable force_try
     var todoEntiries: Results<Todo>!
 
     override func viewDidLoad() {
@@ -60,23 +61,19 @@ class PlaceViewController: AppViewController {
                 lmmap.distanceFilter = 200
                 lmmap.startUpdatingLocation()
             }
-            do {
-                todoEntiries = Todo.getList(realm: try Realm(), place: place)
-            } catch let error as NSError {
-            }
+            todoEntiries = Todo.getList(realm: realm, place: place)
         }
     }
 
     func replacePlace() {
-        do {
-            try realm.write {
-                place.stopMonitoring()
-                place.replace(realm: realm, name: placeNameTextField.text!, radius: radiusStepper.value, point: mapPoint)
-                place.startMonitoring()
-            }
-            UIApplication.shared.cancelAllLocalNotifications()
-        } catch let error as NSError {
+        // swiftlint:disable force_try
+        try! realm.write {
+            place.stopMonitoring()
+            place.replace(realm: realm, name: placeNameTextField.text!, radius: radiusStepper.value, point: mapPoint)
+            place.startMonitoring()
         }
+        // swiftlint:enable force_try
+        UIApplication.shared.cancelAllLocalNotifications()
     }
 
     func showMonitoringRegion(_ center: CLLocationCoordinate2D!, radius: CLLocationDistance) {
@@ -158,12 +155,11 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if todoEntiries.count > indexPath.row {
-                do {
-                    try realm.write {
-                        realm.delete(todoEntiries[indexPath.row])
-                    }
-                } catch let error as NSError {
+                // swiftlint:disable force_try
+                try! realm.write {
+                    realm.delete(todoEntiries[indexPath.row])
                 }
+                // swiftlint:enable force_try
                 updateValues()
                 todoListTableView.reloadData()
             }
@@ -210,12 +206,11 @@ extension PlaceViewController: TextFieldTableViewCellDelegate {
             return
         }
         if value != todo.item {
-            do {
-                try realm.write {
-                    todo.replace(realm: realm, item: value, place: place)
-                }
-            } catch let error as NSError {
+            // swiftlint:disable force_try
+            try! realm.write {
+                todo.replace(realm: realm, item: value, place: place)
             }
+            // swiftlint:enable force_try
             todoListTableView.reloadData()
         }
     }
