@@ -198,10 +198,13 @@ extension PlaceViewController: CLLocationManagerDelegate {
 extension PlaceViewController: TextFieldTableViewCellDelegate {
     func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String, indexPath: IndexPath) {
         let todo: Todo
+        let isNew: Bool
         if indexPath.row < todoEntiries.count {
             todo = todoEntiries[indexPath.row]
+            isNew = false
         } else if !value.isEmpty {
             todo = Todo()
+            isNew = true
         } else {
             return
         }
@@ -212,6 +215,11 @@ extension PlaceViewController: TextFieldTableViewCellDelegate {
             }
             // swiftlint:enable force_try
             todoListTableView.reloadData()
+            if isNew {
+                if let cell = todoListTableView.cellForRow(at: IndexPath.init(row: indexPath.row + 1, section: indexPath.section)) as? TextFieldTableViewCell {
+                    cell.textField.becomeFirstResponder()
+                }
+            }
         }
     }
 }

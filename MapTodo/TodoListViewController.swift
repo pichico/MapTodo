@@ -116,10 +116,17 @@ extension TodoListViewController: UITableViewDataSource {
 
 extension TodoListViewController: TextFieldTableViewCellDelegate {
     func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String, indexPath: IndexPath) {
-        if value.isEmpty {
+        let todo: Todo
+        let isNew: Bool
+        if self.todo(indexPath: indexPath) != nil {
+            todo = self.todo(indexPath: indexPath)!
+            isNew = false
+        } else if !value.isEmpty {
+            todo = Todo()
+            isNew = true
+        } else {
             return
         }
-        let todo: Todo = self.todo(indexPath: indexPath) ?? Todo()
         if value != todo.item {
             // swiftlint:disable force_try
             try! realm.write {
@@ -127,6 +134,11 @@ extension TodoListViewController: TextFieldTableViewCellDelegate {
             }
             // swiftlint:enable force_try
             todoListTableView.reloadData()
+            if isNew {
+                if let cell = todoListTableView.cellForRow(at: IndexPath.init(row: indexPath.row + 1, section: indexPath.section)) as? TextFieldTableViewCell {
+                    cell.textField.becomeFirstResponder()
+                }
+            }
         }
     }
 }
