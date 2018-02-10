@@ -9,9 +9,9 @@
 import UIKit
 
 class AppTableViewHeaderView: UIView {
-    let cornerRadius = CGFloat(5)
-    let borderWidth = CGFloat(2)
-    let borderColor = UIColor(red: 160 / 255.0, green: 162 / 255.0, blue: 163 / 255.0, alpha: 1)
+    let tableCornerRadius = CGFloat(5)
+    let tableBorderWidth = CGFloat(2)
+    let tableBorderColor = UIColor(red: 160 / 255.0, green: 162 / 255.0, blue: 163 / 255.0, alpha: 1)
 
     @IBOutlet weak var showDetailButton: UIButton!
     @IBOutlet weak var textLabel: UILabel!
@@ -40,7 +40,7 @@ class AppTableViewHeaderView: UIView {
     func updateBorder() {
         let rcfirst: UIRectCorner = [UIRectCorner.topLeft, UIRectCorner.topRight]
 
-        let maskPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: rcfirst, cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
+        let maskPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: rcfirst, cornerRadii: CGSize(width: tableCornerRadius, height: tableCornerRadius))
         let maskLayer = CAShapeLayer()
         maskLayer.path = maskPath.cgPath
         layer.mask = maskLayer
@@ -48,11 +48,11 @@ class AppTableViewHeaderView: UIView {
         // 枠をつける。
         let borderLayer: CAShapeLayer = CAShapeLayer()
         let borderBounds = bounds
-        let borderPath = UIBezierPath(roundedRect: borderBounds, byRoundingCorners: [rcfirst], cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
+        let borderPath = UIBezierPath(roundedRect: borderBounds, byRoundingCorners: [rcfirst], cornerRadii: CGSize(width: tableCornerRadius, height: tableCornerRadius))
         borderLayer.fillColor = UIColor.clear.cgColor
-        borderLayer.strokeColor = borderColor.cgColor
+        borderLayer.strokeColor = tableBorderColor.cgColor
         borderLayer.path = borderPath.cgPath
-        borderLayer.lineWidth = borderWidth
+        borderLayer.lineWidth = tableBorderWidth
         layer.addSublayer(borderLayer)
     }
 
