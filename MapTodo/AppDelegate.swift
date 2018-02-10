@@ -37,9 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.applicationIconBadgeNumber = 0
         application.cancelLocalNotification(notification)
         if let userInfo = notification.userInfo {
-            // swiftlint:disable force_try
             if let region = userInfo["region"] as? String, let place = Place.get(realm: try! Realm(), uiid: region) {
-            // swiftlint:enable force_try
                 let placeViewController = R.storyboard.main.placeView()!
                 placeViewController.place = place
                 if let navController = window?.rootViewController as? UINavigationController {
