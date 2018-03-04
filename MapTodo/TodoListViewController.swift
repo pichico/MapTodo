@@ -61,9 +61,11 @@ extension TodoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: AppTableViewHeaderView = AppTableViewHeaderView()
         headerView.setLabelText(text: place(section: section)!.name)
+
         let placeButton = headerView.showDetailButton!
         placeButton.tag = section
         placeButton.addTarget(self, action: #selector(TodoListViewController.placeButtonTapped), for: .touchUpInside)
+
         return headerView
     }
 
@@ -123,13 +125,15 @@ extension TodoListViewController: TextFieldTableViewCellDelegate {
         } else {
             return
         }
+
         if value != todo.item {
             try! realm.write {
                 todo.replace(realm: realm, item: value, place: place(section: indexPath.section)!)
             }
+            // 追加した場合、次の空白行にフォーカスをあててキーボードを出す
             todoListTableView.reloadData()
             if isNew {
-                if let cell = todoListTableView.cellForRow(at: IndexPath.init(row: indexPath.row + 1, section: indexPath.section)) as? TextFieldTableViewCell {
+                if let cell = todoListTableView.cellForRow(at: IndexPath(row: indexPath.row + 1, section: indexPath.section)) as? TextFieldTableViewCell {
                     cell.textField.becomeFirstResponder()
                 }
             }
