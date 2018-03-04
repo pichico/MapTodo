@@ -38,9 +38,7 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        // swiftlint:disable force_try
         let realm: Realm = try! Realm()
-        // swiftlint:enable force_try
         if let place = Place.get(realm: realm, uiid: region.identifier){
             let todoList = Todo.getList(realm: realm, place: place)
             if todoList.count > 0 {

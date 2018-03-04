@@ -22,9 +22,7 @@ class PlaceViewController: AppViewController {
     let lmmap: CLLocationManager = CLLocationManager()
     var mapPoint: CLLocationCoordinate2D? = nil
     var place: Place!
-    // swiftlint:disable force_try
     let realm: Realm = try! Realm()
-    // swiftlint:enable force_try
     var todoEntiries: Results<Todo>!
 
     override func viewDidLoad() {
@@ -66,13 +64,11 @@ class PlaceViewController: AppViewController {
     }
 
     func replacePlace() {
-        // swiftlint:disable force_try
         try! realm.write {
             place.stopMonitoring()
             place.replace(realm: realm, name: placeNameTextField.text!, radius: radiusStepper.value, point: mapPoint)
             place.startMonitoring()
         }
-        // swiftlint:enable force_try
         UIApplication.shared.cancelAllLocalNotifications()
     }
 
@@ -155,11 +151,9 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if todoEntiries.count > indexPath.row {
-                // swiftlint:disable force_try
                 try! realm.write {
                     realm.delete(todoEntiries[indexPath.row])
                 }
-                // swiftlint:enable force_try
                 updateValues()
                 todoListTableView.reloadData()
             }
@@ -209,11 +203,9 @@ extension PlaceViewController: TextFieldTableViewCellDelegate {
             return
         }
         if value != todo.item {
-            // swiftlint:disable force_try
             try! realm.write {
                 todo.replace(realm: realm, item: value, place: place)
             }
-            // swiftlint:enable force_try
             todoListTableView.reloadData()
             if isNew {
                 if let cell = todoListTableView.cellForRow(at: IndexPath.init(row: indexPath.row + 1, section: indexPath.section)) as? TextFieldTableViewCell {
