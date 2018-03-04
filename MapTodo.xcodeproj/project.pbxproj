@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		065E3C033770B115BCF5696C /* Pods_MapTodoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC27D6FAD2F05AF50CDFA07C /* Pods_MapTodoTests.framework */; };
 		06D9EA0969424EC21C3C4710 /* Pods_MapTodoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9A080260C49D4BE5C7B8777 /* Pods_MapTodoUITests.framework */; };
-		5BB1C6B41FD2E7A400266C98 /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB1C6B31FD2E7A400266C98 /* UIView+Border.swift */; };
 		5BCF5D0F1FAD878800F17043 /* AppTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCF5D0E1FAD878800F17043 /* AppTableViewHeaderView.swift */; };
 		5BCF5D141FAD8E2900F17043 /* AppTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BCF5D131FAD8E2900F17043 /* AppTableViewHeaderView.xib */; };
 		5BCF5D181FC46D5200F17043 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BCF5D171FC46D5200F17043 /* Keys.plist */; };
@@ -59,7 +58,6 @@
 		012DA89AD8296A2BE609DEFC /* Pods-MapTodoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapTodoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapTodoTests/Pods-MapTodoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		135FDA1CC3C1B9E7ABA59F41 /* Pods_MapTodo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapTodo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D9D9DF8FA87DE319A7D4C1 /* Pods-MapTodoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapTodoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapTodoUITests/Pods-MapTodoUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		5BB1C6B31FD2E7A400266C98 /* UIView+Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
 		5BCF5D0E1FAD878800F17043 /* AppTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTableViewHeaderView.swift; sourceTree = "<group>"; };
 		5BCF5D131FAD8E2900F17043 /* AppTableViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppTableViewHeaderView.xib; sourceTree = "<group>"; };
 		5BCF5D171FC46D5200F17043 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Keys.plist; path = ../MapTodo/Keys.plist; sourceTree = "<group>"; };
@@ -234,7 +232,6 @@
 		7DED36F61DB399BC002CB35C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5BB1C6B31FD2E7A400266C98 /* UIView+Border.swift */,
 				7D4073231DA94514005BBBCD /* TextFieldTableViewCell.swift */,
 				7D9E30211EC9EECD007F2D21 /* AppTableViewCell.swift */,
 				7D4E66C81EED1CE20099F3CA /* AppNavigationItem.swift */,
@@ -585,7 +582,6 @@
 				7D4E66C91EED1CE20099F3CA /* AppNavigationItem.swift in Sources */,
 				7D4072F41DA92DBD005BBBCD /* TodoListViewController.swift in Sources */,
 				7DE87F221EDB02EA00944734 /* AppViewController.swift in Sources */,
-				5BB1C6B41FD2E7A400266C98 /* UIView+Border.swift in Sources */,
 				7D4072FA1DA92DBD005BBBCD /* MapTodo.xcdatamodeld in Sources */,
 				7DFD35631E06D05000F02FA0 /* R.generated.swift in Sources */,
 				7D9E30221EC9EECD007F2D21 /* AppTableViewCell.swift in Sources */,

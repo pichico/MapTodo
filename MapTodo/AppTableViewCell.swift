@@ -9,9 +9,9 @@
 import UIKit
 
 class AppTableViewCell: UITableViewCell {
-    @IBInspectable var tableBorderColor: UIColor = UIColor.black
-    @IBInspectable var tableBorderWidth: CGFloat = 1
-    @IBInspectable var tableCornerRadius: CGFloat = 0
+    @IBInspectable var borderColor: UIColor = UIColor.black
+    @IBInspectable var cornerRadius: CGFloat = 0
+    @IBInspectable var borderWidth: CGFloat = 1
 
     var isTop: Bool = false {
         didSet {
@@ -35,8 +35,8 @@ class AppTableViewCell: UITableViewCell {
         let rclast:  UIRectCorner = isBottom  ? [UIRectCorner.bottomLeft, UIRectCorner.bottomRight] : []
 
         // 角丸
-        if (isTop || isBottom) && tableCornerRadius > 0 {
-            let maskPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: [rcfirst, rclast], cornerRadii: CGSize(width: tableCornerRadius, height: tableCornerRadius))
+        if (isTop || isBottom) && cornerRadius > 0 {
+            let maskPath = UIBezierPath(roundedRect: bounds, byRoundingCorners: [rcfirst, rclast], cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
             let maskLayer = CAShapeLayer()
             maskLayer.path = maskPath.cgPath
             layer.mask = maskLayer
@@ -45,12 +45,12 @@ class AppTableViewCell: UITableViewCell {
         }
 
         // 境界線 + 枠をつける。 上下のcellで二重に線が描画されるので、下のcellの上の辺を上のcellの下の辺に重ねる
-        let borderBounds = isTop ? bounds : CGRect(x: bounds.origin.x, y: bounds.origin.y - tableBorderWidth, width: bounds.width, height: bounds.height + tableBorderWidth)
-        let borderPath = UIBezierPath(roundedRect: borderBounds, byRoundingCorners: [rcfirst, rclast], cornerRadii: CGSize(width: tableCornerRadius, height: tableCornerRadius))
+        let borderBounds = isTop ? bounds : CGRect(x: bounds.origin.x, y: bounds.origin.y - borderWidth, width: bounds.width, height: bounds.height + borderWidth)
+        let borderPath = UIBezierPath(roundedRect: borderBounds, byRoundingCorners: [rcfirst, rclast], cornerRadii: CGSize(width: cornerRadius, height: cornerRadius))
         borderLayer.fillColor = UIColor.clear.cgColor
-        borderLayer.strokeColor = tableBorderColor.cgColor
+        borderLayer.strokeColor = borderColor.cgColor
         borderLayer.path = borderPath.cgPath
-        borderLayer.lineWidth = tableBorderWidth
+        borderLayer.lineWidth = borderWidth
         if borderLayer.superlayer == nil {
             layer.addSublayer(borderLayer)
         }
