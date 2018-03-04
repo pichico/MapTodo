@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -33,13 +34,13 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="tableCornerRadius">
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="5"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="tableBorderColor">
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                 <color key="value" red="0.62745098039215685" green="0.63529411764705879" blue="0.63921568627450975" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="tableBorderWidth">
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="2"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
@@ -83,7 +84,7 @@
         <!--Place-->
         <scene sceneID="qUF-VC-vNh">
             <objects>
-                <viewController storyboardIdentifier="placeView" automaticallyAdjustsScrollViewInsets="NO" id="7q1-3Y-g5j" customClass="PlaceViewController" customModule="MapTodo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="placeView" id="7q1-3Y-g5j" customClass="PlaceViewController" customModule="MapTodo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zfI-G5-AMK"/>
                         <viewControllerLayoutGuide type="bottom" id="cDX-An-8SP"/>
@@ -92,75 +93,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="地名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kG5-5r-bS7">
+                                <rect key="frame" x="26" y="94" width="199" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minimumValue="100" maximumValue="100000" stepValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="vtr-nT-BmB">
+                                <rect key="frame" x="245" y="95" width="94" height="29"/>
+                                <connections>
+                                    <action selector="radiusStepperTapped:" destination="7q1-3Y-g5j" eventType="valueChanged" id="WaL-Va-OvG"/>
+                                </connections>
+                            </stepper>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GT6-t3-fOE">
+                                <rect key="frame" x="0.0" y="134" width="375" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="F1Q-Za-Owd"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BAD-vf-XOZ">
-                                <rect key="frame" x="10" y="64" width="355" height="603"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <view key="tableHeaderView" contentMode="scaleToFill" id="0Gz-k0-AHA" userLabel="MapViewFrame">
-                                    <rect key="frame" x="0.0" y="0.0" width="355" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GT6-t3-fOE">
-                                            <rect key="frame" x="0.0" y="10" width="355" height="410"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="410" id="F1Q-Za-Owd"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="5"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </view>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="地名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kG5-5r-bS7">
-                                            <rect key="frame" x="20" y="20" width="211" height="30"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                        <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minimumValue="100" maximumValue="100000" stepValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="vtr-nT-BmB">
-                                            <rect key="frame" x="241" y="20" width="94" height="29"/>
-                                            <connections>
-                                                <action selector="radiusStepperTapped:" destination="7q1-3Y-g5j" eventType="valueChanged" id="WaL-Va-OvG"/>
-                                            </connections>
-                                        </stepper>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstItem="kG5-5r-bS7" firstAttribute="top" secondItem="0Gz-k0-AHA" secondAttribute="top" constant="20" id="52V-21-j6O"/>
-                                        <constraint firstItem="vtr-nT-BmB" firstAttribute="leading" secondItem="kG5-5r-bS7" secondAttribute="trailing" constant="10" id="CRP-Zq-RuG"/>
-                                        <constraint firstItem="vtr-nT-BmB" firstAttribute="top" secondItem="0Gz-k0-AHA" secondAttribute="top" constant="20" id="EUm-65-M2F"/>
-                                        <constraint firstAttribute="trailing" secondItem="vtr-nT-BmB" secondAttribute="trailing" constant="20" id="Khu-r6-6ev"/>
-                                        <constraint firstItem="kG5-5r-bS7" firstAttribute="leading" secondItem="0Gz-k0-AHA" secondAttribute="leading" constant="20" id="Teq-Z1-Gdh"/>
-                                        <constraint firstAttribute="trailing" secondItem="GT6-t3-fOE" secondAttribute="trailing" id="dB7-BB-M1f"/>
-                                        <constraint firstItem="GT6-t3-fOE" firstAttribute="leading" secondItem="0Gz-k0-AHA" secondAttribute="leading" id="dGp-rb-6bN"/>
-                                        <constraint firstItem="GT6-t3-fOE" firstAttribute="top" secondItem="0Gz-k0-AHA" secondAttribute="top" constant="10" id="rHh-Sk-1Vl"/>
-                                    </constraints>
-                                </view>
+                                <rect key="frame" x="0.0" y="434" width="375" height="233"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" id="3qM-P3-o4A" customClass="TextFieldTableViewCell" customModule="MapTodo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="72" width="355" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3qM-P3-o4A" id="Glk-Wg-5Rb">
-                                            <rect key="frame" x="0.0" y="0.0" width="355" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="tableBorderColor">
-                                                <color key="value" red="0.62745098040000002" green="0.63529411759999999" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="tableBorderWidth">
-                                                <real key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="tableCornerRadius">
-                                                <real key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -169,12 +131,20 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="cDX-An-8SP" firstAttribute="top" secondItem="BAD-vf-XOZ" secondAttribute="bottom" id="2X3-Tw-6o5"/>
-                            <constraint firstAttribute="trailing" secondItem="BAD-vf-XOZ" secondAttribute="trailing" constant="10" id="YCh-ee-SZu"/>
-                            <constraint firstItem="BAD-vf-XOZ" firstAttribute="top" secondItem="zfI-G5-AMK" secondAttribute="bottom" id="adk-xN-ntB"/>
-                            <constraint firstItem="BAD-vf-XOZ" firstAttribute="leading" secondItem="rZX-pf-TFS" secondAttribute="leading" constant="10" id="asz-kB-0JS"/>
+                            <constraint firstItem="vtr-nT-BmB" firstAttribute="centerY" secondItem="kG5-5r-bS7" secondAttribute="centerY" id="3dk-1N-mdr"/>
+                            <constraint firstItem="kG5-5r-bS7" firstAttribute="top" secondItem="zfI-G5-AMK" secondAttribute="bottom" constant="30" id="AiM-wm-j47"/>
+                            <constraint firstItem="GT6-t3-fOE" firstAttribute="leading" secondItem="rZX-pf-TFS" secondAttribute="leading" id="B3V-Xa-PXP"/>
+                            <constraint firstItem="BAD-vf-XOZ" firstAttribute="top" secondItem="GT6-t3-fOE" secondAttribute="bottom" id="Nhs-pV-Ecs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="vtr-nT-BmB" secondAttribute="trailing" constant="20" id="TOJ-5I-VXS"/>
+                            <constraint firstItem="kG5-5r-bS7" firstAttribute="leading" secondItem="rZX-pf-TFS" secondAttribute="leadingMargin" constant="10" id="TWX-Lw-em1"/>
+                            <constraint firstItem="cDX-An-8SP" firstAttribute="top" secondItem="BAD-vf-XOZ" secondAttribute="bottom" id="XEr-9l-1T1"/>
+                            <constraint firstAttribute="trailing" secondItem="GT6-t3-fOE" secondAttribute="trailing" id="cF3-3y-9UJ"/>
+                            <constraint firstItem="GT6-t3-fOE" firstAttribute="top" secondItem="vtr-nT-BmB" secondAttribute="bottom" constant="10" id="eEA-W4-eAo"/>
+                            <constraint firstAttribute="trailing" secondItem="BAD-vf-XOZ" secondAttribute="trailing" id="kyo-mb-L4u"/>
+                            <constraint firstItem="vtr-nT-BmB" firstAttribute="leading" secondItem="kG5-5r-bS7" secondAttribute="trailing" constant="20" id="nvX-Ch-VtK"/>
+                            <constraint firstItem="BAD-vf-XOZ" firstAttribute="leading" secondItem="rZX-pf-TFS" secondAttribute="leading" id="z13-Oo-V8E"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Place" id="qt4-Pw-Mvf">
@@ -191,7 +161,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="GT6-t3-fOE" id="fld-rd-pq9"/>
-                        <outlet property="mapViewFrame" destination="0Gz-k0-AHA" id="LxN-LC-txx"/>
                         <outlet property="placeNameTextField" destination="kG5-5r-bS7" id="YdH-DV-lX0"/>
                         <outlet property="radiusStepper" destination="vtr-nT-BmB" id="HET-ws-Rts"/>
                         <outlet property="todoListTableView" destination="BAD-vf-XOZ" id="bNU-kl-wRY"/>
