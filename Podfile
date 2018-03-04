@@ -18,7 +18,4 @@ end
 target 'MapTodoUITests' do
 
 end
-post_install do | installer |
-  require 'fileutils'
-  FileUtils.cp_r('Pods/Target Support Files/Pods-MapTodo/Pods-MapTodo-acknowledgements.plist', 'MapTodo/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
-end
+
