@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		065E3C033770B115BCF5696C /* Pods_MapTodoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC27D6FAD2F05AF50CDFA07C /* Pods_MapTodoTests.framework */; };
 		06D9EA0969424EC21C3C4710 /* Pods_MapTodoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9A080260C49D4BE5C7B8777 /* Pods_MapTodoUITests.framework */; };
-		5B4536DA201305690034CCFC /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B4536D9201305690034CCFC /* Settings.bundle */; };
 		5BB1C6B41FD2E7A400266C98 /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB1C6B31FD2E7A400266C98 /* UIView+Border.swift */; };
 		5BCF5D0F1FAD878800F17043 /* AppTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCF5D0E1FAD878800F17043 /* AppTableViewHeaderView.swift */; };
 		5BCF5D141FAD8E2900F17043 /* AppTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BCF5D131FAD8E2900F17043 /* AppTableViewHeaderView.xib */; };
@@ -60,7 +59,6 @@
 		012DA89AD8296A2BE609DEFC /* Pods-MapTodoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapTodoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapTodoTests/Pods-MapTodoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		135FDA1CC3C1B9E7ABA59F41 /* Pods_MapTodo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapTodo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D9D9DF8FA87DE319A7D4C1 /* Pods-MapTodoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapTodoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapTodoUITests/Pods-MapTodoUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		5B4536D9201305690034CCFC /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		5BB1C6B31FD2E7A400266C98 /* UIView+Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
 		5BCF5D0E1FAD878800F17043 /* AppTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTableViewHeaderView.swift; sourceTree = "<group>"; };
 		5BCF5D131FAD8E2900F17043 /* AppTableViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppTableViewHeaderView.xib; sourceTree = "<group>"; };
@@ -200,7 +198,6 @@
 				7D4073001DA92DBD005BBBCD /* Info.plist */,
 				7D4072F81DA92DBD005BBBCD /* MapTodo.xcdatamodeld */,
 				7DBE19601DE976C4008E20DC /* LocationManager.swift */,
-				5B4536D9201305690034CCFC /* Settings.bundle */,
 			);
 			path = MapTodo;
 			sourceTree = "<group>";
@@ -271,7 +268,6 @@
 				7D4072EC1DA92DBC005BBBCD /* Resources */,
 				725A3590C240E861FB6F9ADE /* [CP] Embed Pods Frameworks */,
 				73BDB9D1EB75EB6F7C844605 /* [CP] Copy Pods Resources */,
-				5B4536DB201342F40034CCFC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -390,7 +386,6 @@
 				7D4072FC1DA92DBD005BBBCD /* Assets.xcassets in Resources */,
 				7D4072F71DA92DBD005BBBCD /* Main.storyboard in Resources */,
 				7D0A424A1E4565D100D7297B /* TextFieldTableViewCell.xib in Resources */,
-				5B4536DA201305690034CCFC /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,19 +438,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
-		5B4536DB201342F40034CCFC /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "APP_VERSION=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:1:DefaultValue ${APP_VERSION}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"\n\nBUILD_NUMBER=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" $PRODUCT_SETTINGS_PATH)\n/usr/libexec/PlistBuddy -c \"Set :PreferenceSpecifiers:2:DefaultValue ${BUILD_NUMBER}\" \"${BUILT_PRODUCTS_DIR}/${WRAPPER_NAME}/Settings.bundle/Root.plist\"\n";
 		};
 		725A3590C240E861FB6F9ADE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
