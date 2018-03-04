@@ -202,13 +202,15 @@ extension PlaceViewController: TextFieldTableViewCellDelegate {
         } else {
             return
         }
+
         if value != todo.item {
             try! realm.write {
                 todo.replace(realm: realm, item: value, place: place)
             }
             todoListTableView.reloadData()
+            // 追加した場合、次の空白行にフォーカスをあててキーボードを出す
             if isNew {
-                if let cell = todoListTableView.cellForRow(at: IndexPath.init(row: indexPath.row + 1, section: indexPath.section)) as? TextFieldTableViewCell {
+                if let cell = todoListTableView.cellForRow(at: IndexPath(row: indexPath.row + 1, section: indexPath.section)) as? TextFieldTableViewCell {
                     cell.textField.becomeFirstResponder()
                 }
             }
