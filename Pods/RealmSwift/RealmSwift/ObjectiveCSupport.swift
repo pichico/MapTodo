@@ -30,30 +30,28 @@ import Realm
  **/
 public final class ObjectiveCSupport {
 
-#if swift(>=3.0)
-
     /// Convert a `Results` to a `RLMResults`.
-    public static func convert<T>(object: Results<T>) -> RLMResults<RLMObject> {
+    public static func convert<T>(object: Results<T>) -> RLMResults<AnyObject> {
         return object.rlmResults
     }
 
     /// Convert a `RLMResults` to a `Results`.
-    public static func convert(object: RLMResults<RLMObject>) -> Results<Object> {
+    public static func convert(object: RLMResults<AnyObject>) -> Results<Object> {
         return Results(object)
     }
 
     /// Convert a `List` to a `RLMArray`.
-    public static func convert<T>(object: List<T>) -> RLMArray<RLMObject> {
+    public static func convert<T>(object: List<T>) -> RLMArray<AnyObject> {
         return object._rlmArray
     }
 
     /// Convert a `RLMArray` to a `List`.
-    public static func convert(object: RLMArray<RLMObject>) -> List<Object> {
+    public static func convert(object: RLMArray<AnyObject>) -> List<Object> {
         return List(rlmArray: object)
     }
 
     /// Convert a `LinkingObjects` to a `RLMResults`.
-    public static func convert<T>(object: LinkingObjects<T>) -> RLMResults<RLMObject> {
+    public static func convert<T>(object: LinkingObjects<T>) -> RLMResults<AnyObject> {
         return object.rlmResults
     }
 
@@ -61,40 +59,6 @@ public final class ObjectiveCSupport {
     public static func convert(object: RLMLinkingObjects<RLMObject>) -> Results<Object> {
         return Results(object)
     }
-
-#else
-
-    /// Convert a `Results` to a `RLMResults`.
-    public static func convert<T>(object: Results<T>) -> RLMResults {
-        return object.rlmResults
-    }
-
-    /// Convert a `RLMResults` to a `Results`.
-    public static func convert(object: RLMResults) -> Results<Object> {
-        return Results(object)
-    }
-
-    /// Convert a `List` to a `RLMArray`.
-    public static func convert<T>(object: List<T>) -> RLMArray {
-        return object._rlmArray
-    }
-
-    /// Convert a `RLMArray` to a `List`.
-    public static func convert(object: RLMArray) -> List<Object> {
-        return List(rlmArray: object)
-    }
-
-    /// Convert a `LinkingObjects` to a `RLMResults`.
-    public static func convert<T>(object: LinkingObjects<T>) -> RLMResults {
-        return object.rlmResults
-    }
-
-    /// Convert a `RLMLinkingObjects` to a `Results`.
-    public static func convert(object: RLMLinkingObjects) -> Results<Object> {
-        return Results(object)
-    }
-
-#endif
 
     /// Convert a `Realm` to a `RLMRealm`.
     public static func convert(object: Realm) -> RLMRealm {
@@ -163,7 +127,7 @@ public final class ObjectiveCSupport {
 
     /// Convert a `RLMSortDescriptor` to a `SortDescriptor`.
     public static func convert(object: RLMSortDescriptor) -> SortDescriptor {
-        return SortDescriptor(property: object.property, ascending: object.ascending)
+        return SortDescriptor(keyPath: object.keyPath, ascending: object.ascending)
     }
 
     /// Convert a `SyncCredentials` to a `RLMSyncCredentials`.
@@ -174,5 +138,29 @@ public final class ObjectiveCSupport {
     /// Convert a `RLMSyncCredentials` to a `SyncCredentials`.
     public static func convert(object: RLMSyncCredentials) -> SyncCredentials {
         return SyncCredentials(object)
+    }
+
+    /// Convert a `RLMShouldCompactOnLaunchBlock` to a Realm Swift compact block.
+    public static func convert(object: @escaping RLMShouldCompactOnLaunchBlock) -> (Int, Int) -> Bool {
+        return { totalBytes, usedBytes in
+            return object(UInt(totalBytes), UInt(usedBytes))
+        }
+    }
+
+    /// Convert a Realm Swift compact block to a `RLMShouldCompactOnLaunchBlock`.
+    public static func convert(object: @escaping (Int, Int) -> Bool) -> RLMShouldCompactOnLaunchBlock {
+        return { totalBytes, usedBytes in
+            return object(Int(totalBytes), Int(usedBytes))
+        }
+    }
+
+    /// Convert a `SyncConfiguration` to a `RLMSyncConfiguration`.
+    public static func convert(object: SyncConfiguration) -> RLMSyncConfiguration {
+        return object.asConfig()
+    }
+
+    /// Convert a `RLMSyncConfiguration` to a `SyncConfiguration`.
+    public static func convert(object: RLMSyncConfiguration) -> SyncConfiguration {
+        return SyncConfiguration(config: object)
     }
 }
