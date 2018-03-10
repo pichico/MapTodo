@@ -77,6 +77,7 @@ public:
     void dump();
 #endif
 
+    size_t get_free_space();
 private:
     class MapWindow;
     Group& m_group;
@@ -86,6 +87,7 @@ private:
     ArrayInteger m_free_versions;  // 6th slot in Group::m_top
     uint64_t m_current_version;
     uint64_t m_readlock_version;
+    size_t m_alloc_position;
 
     // Currently cached memory mappings. We keep as many as 16 1MB windows
     // open for writing. The allocator will favor sequential allocation
@@ -94,7 +96,7 @@ private:
     // needed, the least recently used is sync'ed and closed to make room
     // for a new one. The windows are kept in MRU (most recently used) order.
     const static int num_map_windows = 16;
-    std::vector<MapWindow*> m_map_windows;
+    std::vector<std::unique_ptr<MapWindow>> m_map_windows;
 
     // Get a suitable memory mapping for later access:
     // potentially adding it to the cache, potentially closing
