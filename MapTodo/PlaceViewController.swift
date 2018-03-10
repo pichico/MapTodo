@@ -192,18 +192,28 @@ extension PlaceViewController: CLLocationManagerDelegate {
 extension PlaceViewController: TextFieldTableViewCellDelegate {
     func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String, indexPath: IndexPath) {
         let todo: Todo
+        let isNew: Bool
         if indexPath.row < todoEntiries.count {
             todo = todoEntiries[indexPath.row]
+            isNew = false
         } else if !value.isEmpty {
             todo = Todo()
+            isNew = true
         } else {
             return
         }
+
         if value != todo.item {
             try! realm.write {
                 todo.replace(realm: realm, item: value, place: place)
             }
             todoListTableView.reloadData()
+            // 追加した場合、次の空白行にフォーカスをあててキーボードを出す
+            if isNew {
+                if let cell = todoListTableView.cellForRow(at: IndexPath(row: indexPath.row + 1, section: indexPath.section)) as? TextFieldTableViewCell {
+                    cell.textField.becomeFirstResponder()
+                }
+            }
         }
     }
 }
