@@ -30,7 +30,7 @@ class Todo: Object {
         realm.delete(self)
     }
 
-    public func replace(realm: Realm, item: String!, place: Place!) {
+    public func replace(realm: Realm, item: String, place: Place!) {
         self.item = item
         self.place = place
         realm.add(self, update: true)

@@ -6,14 +6,11 @@
 //  Copyright © 2016年 fukushima. All rights reserved.
 //
 
-
 import GoogleMaps
 import RealmSwift
 import UIKit
 
-
 class PlaceViewController: AppViewController {
-    
     @IBOutlet weak var placeNameTextField: UITextField!
     @IBOutlet weak var radiusStepper: UIStepper!
     @IBOutlet weak var mapView: UIView!
@@ -53,7 +50,7 @@ class PlaceViewController: AppViewController {
             todoListTableView.tableHeaderView = tableHeaderView
         }
     }
-    
+
     func updateValues() {
         if let place = place {
             placeNameTextField.text = place.name
@@ -73,7 +70,7 @@ class PlaceViewController: AppViewController {
             todoEntiries = Todo.getList(realm: realm, place: place)
         }
     }
-    
+
     func replacePlace() {
         try! realm.write {
             place.stopMonitoring()
@@ -86,29 +83,37 @@ class PlaceViewController: AppViewController {
     func showMonitoringRegion(_ center: CLLocationCoordinate2D!, radius: CLLocationDistance) {
         // 既にあるpin、円を消す
         gmView.clear()
-        
+
         //ピンをMapViewの上に置く
         let marker = GMSMarker(position: center)
         marker.map = gmView
-        
+
         //ジオフェンスの範囲表示用
         let circle = GMSCircle(position: center, radius: radius)
         circle.strokeColor = UIColor(red: 160 / 255.0, green: 162 / 255.0, blue: 163 / 255.0, alpha: 1)
         circle.map = gmView
     }
-    
+
     @IBAction func radiusStepperTapped(_ sender: UIStepper) {
         if mapPoint != nil {
             showMonitoringRegion(mapPoint, radius: sender.value)
         }
     }
-    
+
     @IBAction func save(_ sender: AnyObject) {
         if placeNameTextField.text == "" {
-            let alert: UIAlertController = UIAlertController(title: "名前を設定して下さい", message: "", preferredStyle:  UIAlertControllerStyle.alert)
-            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.cancel, handler:{
-                (action: UIAlertAction!) -> Void in
-            })
+            let alert: UIAlertController = UIAlertController(
+                title: "名前を設定して下さい",
+                message: "",
+                preferredStyle: UIAlertControllerStyle.alert
+            )
+            let defaultAction: UIAlertAction = UIAlertAction(
+                    title: "OK",
+                    style: UIAlertActionStyle.cancel,
+                    handler: {
+                        (action: UIAlertAction!) -> Void in
+                    }
+            )
             alert.addAction(defaultAction)
             present(alert, animated: true, completion: nil)
         } else if mapPoint == nil {
@@ -129,7 +134,6 @@ class PlaceViewController: AppViewController {
             navigationController!.popViewController(animated: true)
         }
     }
-    
     @IBAction func cancel(_ sender: AnyObject) {
         navigationController!.popViewController(animated: true)
     }
@@ -140,9 +144,9 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoEntiries.count + 1
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: TextFieldTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as! TextFieldTableViewCell
+        let cell: TextFieldTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as? TextFieldTableViewCell
         cell.delegate = self
         cell.indexPath = indexPath
         cell.isTop = indexPath.row == 0
@@ -167,7 +171,6 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
-    
 }
 
 extension PlaceViewController: GMSMapViewDelegate {
@@ -201,18 +204,28 @@ extension PlaceViewController: CLLocationManagerDelegate {
 extension PlaceViewController: TextFieldTableViewCellDelegate {
     func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String, indexPath: IndexPath) {
         let todo: Todo
+        let isNew: Bool
         if indexPath.row < todoEntiries.count {
             todo = todoEntiries[indexPath.row]
+            isNew = false
         } else if !value.isEmpty {
             todo = Todo()
+            isNew = true
         } else {
             return
         }
+
         if value != todo.item {
             try! realm.write {
                 todo.replace(realm: realm, item: value, place: place)
             }
             todoListTableView.reloadData()
+            // 追加した場合、次の空白行にフォーカスをあててキーボードを出す
+            if isNew {
+                if let cell = todoListTableView.cellForRow(at: IndexPath(row: indexPath.row + 1, section: indexPath.section)) as? TextFieldTableViewCell {
+                    cell.textField.becomeFirstResponder()
+                }
+            }
         }
     }
 }

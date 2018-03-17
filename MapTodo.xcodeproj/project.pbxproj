@@ -271,6 +271,7 @@
 				7D4072EC1DA92DBC005BBBCD /* Resources */,
 				725A3590C240E861FB6F9ADE /* [CP] Embed Pods Frameworks */,
 				73BDB9D1EB75EB6F7C844605 /* [CP] Copy Pods Resources */,
+				7DCAA9E520149EF4006E109A /* ShellScript */,
 				5B4536DB201342F40034CCFC /* ShellScript */,
 			);
 			buildRules = (
@@ -499,6 +500,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapTodo/Pods-MapTodo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7DCAA9E520149EF4006E109A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
+		};
 		7DFD35611E06CDEA00F02FA0 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -510,7 +524,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT\"";
+			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/MapTodo\"";
 		};
 		8F118DFDAF3B3E23707B62E9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

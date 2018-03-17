@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 protocol TextFieldTableViewCellDelegate {
     func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String, indexPath: IndexPath) -> ()
 }
@@ -21,11 +20,12 @@ class TextFieldTableViewCell: AppTableViewCell, UITextFieldDelegate {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        let view = Bundle.main.loadNibNamed("TextFieldTableViewCell", owner: self, options: nil)?.first as! UIView
-        view.frame = CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
-        textField.delegate = self
-        textField.returnKeyType = .done
-        self.addSubview(view)
+        if let view = Bundle.main.loadNibNamed("TextFieldTableViewCell", owner: self, options: nil)?.first as? UIView {
+            view.frame = CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
+            textField.delegate = self
+            textField.returnKeyType = .done
+            self.addSubview(view)
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -41,5 +41,3 @@ class TextFieldTableViewCell: AppTableViewCell, UITextFieldDelegate {
         return true
     }
 }
-
-

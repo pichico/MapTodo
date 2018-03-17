@@ -23,8 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let keyFilePath = Bundle.main.path(forResource: "Keys", ofType: "plist")!
         let keyMap = NSDictionary(contentsOfFile: keyFilePath)!
-        GMSServices.provideAPIKey(keyMap["GMSServicesProvideAPIKey"] as! String!)
-
+        GMSServices.provideAPIKey(keyMap["GMSServicesProvideAPIKey"] as! String)
         application.applicationIconBadgeNumber = 0
 
         let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
@@ -38,25 +37,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.applicationIconBadgeNumber = 0
         application.cancelLocalNotification(notification)
         if let userInfo = notification.userInfo {
-            if let region = userInfo["region"] as! String! {
-                if let place = Place.get(realm: try! Realm(), uiid: region) {
-                    let placeViewController = R.storyboard.main.placeView()!
-                    placeViewController.place = place
-                    let navController = window?.rootViewController as! UINavigationController
-                    navController.setViewControllers([navController.viewControllers.first!, placeViewController], animated: false)
+            if let region = userInfo["region"] as? String, let place = Place.get(realm: try! Realm(), uiid: region) {
+                let placeViewController = R.storyboard.main.placeView()!
+                placeViewController.place = place
+                if let navController = window?.rootViewController as? UINavigationController {
+                    navController.setViewControllers(
+                        [navController.viewControllers.first!,
+                        placeViewController],
+                        animated: false)
                 }
             }
         }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
