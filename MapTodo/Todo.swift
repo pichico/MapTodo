@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 import RealmSwift
 
 class Todo: Object {
@@ -28,11 +29,21 @@ class Todo: Object {
 
     public func delete(realm: Realm) {
         realm.delete(self)
+
+        Analytics.logEvent("delete_todo", parameters: [
+            "uuid": uuid as NSObject,
+            "place": place!.uuid as NSObject
+            ])
     }
 
     public func replace(realm: Realm, item: String, place: Place!) {
         self.item = item
         self.place = place
         realm.add(self, update: true)
+
+        Analytics.logEvent("replace_todo", parameters: [
+            "uuid": uuid as NSObject,
+            "place": place.uuid as NSObject
+            ])
     }
 }
