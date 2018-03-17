@@ -17,7 +17,6 @@ class TodoListViewController: AppViewController {
     @IBOutlet weak var todoListItemCell: UITableViewCell!
     var todoEntries: Results<Todo>!
     var placeEntries: Results<Place>!
-
     let realm: Realm = try! Realm()
 
     override func viewDidLoad() {
@@ -35,7 +34,7 @@ class TodoListViewController: AppViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     func place(section: Int) -> Place? {
         return placeEntries.count > section ? placeEntries[section] : nil
     }
@@ -62,9 +61,11 @@ extension TodoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: AppTableViewHeaderView = AppTableViewHeaderView()
         headerView.setLabelText(text: place(section: section)!.name)
+
         let placeButton = headerView.showDetailButton!
         placeButton.tag = section
         placeButton.addTarget(self, action: #selector(TodoListViewController.placeButtonTapped), for: .touchUpInside)
+
         return headerView
     }
 
@@ -84,7 +85,7 @@ extension TodoListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: TextFieldTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as! TextFieldTableViewCell
+        let cell: TextFieldTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as? TextFieldTableViewCell
         cell.delegate = self
         cell.indexPath = indexPath
         if let todo = todo(indexPath: indexPath) {
@@ -113,15 +114,29 @@ extension TodoListViewController: UITableViewDataSource {
 
 extension TodoListViewController: TextFieldTableViewCellDelegate {
     func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String, indexPath: IndexPath) {
-        if value.isEmpty {
-            return;
+        let todo: Todo
+        let isNew: Bool
+        if self.todo(indexPath: indexPath) != nil {
+            todo = self.todo(indexPath: indexPath)!
+            isNew = false
+        } else if !value.isEmpty {
+            todo = Todo()
+            isNew = true
+        } else {
+            return
         }
-        let todo: Todo = self.todo(indexPath: indexPath) ?? Todo();
+
         if value != todo.item {
             try! realm.write {
                 todo.replace(realm: realm, item: value, place: place(section: indexPath.section)!)
             }
+            // 追加した場合、次の空白行にフォーカスをあててキーボードを出す
             todoListTableView.reloadData()
+            if isNew {
+                if let cell = todoListTableView.cellForRow(at: IndexPath(row: indexPath.row + 1, section: indexPath.section)) as? TextFieldTableViewCell {
+                    cell.textField.becomeFirstResponder()
+                }
+            }
         }
     }
 }

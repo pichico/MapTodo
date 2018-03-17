@@ -14,12 +14,14 @@ PODS:
   - Realm/Headers (3.1.1)
   - RealmSwift (3.1.1):
     - Realm (= 3.1.1)
+  - SwiftLint (0.25.0)
 
 DEPENDENCIES:
   - GoogleMaps
   - GooglePlaces
   - R.swift
   - RealmSwift
+  - SwiftLint
 
 SPEC CHECKSUMS:
   GoogleMaps: 42f91c68b7fa2f84d5c86597b18ceb99f5414c7f
@@ -28,7 +30,8 @@ SPEC CHECKSUMS:
   R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
   Realm: 42d1c38a5b1bbcc828b48a7ce702cb86fc68adf4
   RealmSwift: d31937ca6a6ee54acde64ec839523c0a3c04924b
+  SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
 
-PODFILE CHECKSUM: cad7916c918e7d34254c488e5ced271c00950377
+PODFILE CHECKSUM: 90f9f916ed0468b5eb2ece8b01b823f6f18744ea
 
 COCOAPODS: 1.4.0
