@@ -47,6 +47,7 @@ class Place: Object {
             self.longitude.value = point.longitude
         }
         realm.add(self, update: true)
+
         Analytics.logEvent("replace_place", parameters: [
             "uiid": uuid as NSObject,
             "with_place": (point != nil) as NSObject
