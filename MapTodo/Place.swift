@@ -32,10 +32,10 @@ class Place: Object {
     }
 
     public func delete(realm: Realm) {
-        realm.delete(self)
         Analytics.logEvent("delete_place", parameters: [
             "uiid": uuid as NSObject
             ])
+        realm.delete(self)
     }
 
     public func replace(realm: Realm, name: String, radius: Double?, point: CLLocationCoordinate2D?) {
