@@ -32,6 +32,7 @@
 		7D5504FA1E50B118006D9B81 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5504F91E50B118006D9B81 /* Realm.framework */; };
 		7D5504FC1E50B120006D9B81 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5504FB1E50B120006D9B81 /* RealmSwift.framework */; };
 		7D9E30221EC9EECD007F2D21 /* AppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9E30211EC9EECD007F2D21 /* AppTableViewCell.swift */; };
+		7DBC85D7205D048F00011811 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DBC85D6205D048F00011811 /* GoogleService-Info.plist */; };
 		7DBE19611DE976C4008E20DC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE19601DE976C4008E20DC /* LocationManager.swift */; };
 		7DE87F221EDB02EA00944734 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE87F211EDB02EA00944734 /* AppViewController.swift */; };
 		7DED36F91DB39FA3002CB35C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DED36F81DB39FA3002CB35C /* MapKit.framework */; };
@@ -88,6 +89,7 @@
 		7D5504F91E50B118006D9B81 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/MapTodo-fpshqbficmwlgjawnqpwaqfgfjza/Build/Products/Debug-iphonesimulator/Realm/Realm.framework"; sourceTree = "<group>"; };
 		7D5504FB1E50B120006D9B81 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		7D9E30211EC9EECD007F2D21 /* AppTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTableViewCell.swift; sourceTree = "<group>"; };
+		7DBC85D6205D048F00011811 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7DBE19601DE976C4008E20DC /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7DE87F211EDB02EA00944734 /* AppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		7DED36F81DB39FA3002CB35C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -198,6 +200,7 @@
 				7D4072F11DA92DBD005BBBCD /* AppDelegate.swift */,
 				7D4072FB1DA92DBD005BBBCD /* Assets.xcassets */,
 				7D4073001DA92DBD005BBBCD /* Info.plist */,
+				7DBC85D6205D048F00011811 /* GoogleService-Info.plist */,
 				7D4072F81DA92DBD005BBBCD /* MapTodo.xcdatamodeld */,
 				7DBE19601DE976C4008E20DC /* LocationManager.swift */,
 				5B4536D9201305690034CCFC /* Settings.bundle */,
@@ -386,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BCF5D181FC46D5200F17043 /* Keys.plist in Resources */,
+				7DBC85D7205D048F00011811 /* GoogleService-Info.plist in Resources */,
 				5BCF5D141FAD8E2900F17043 /* AppTableViewHeaderView.xib in Resources */,
 				7D4072FF1DA92DBD005BBBCD /* LaunchScreen.storyboard in Resources */,
 				7D4072FC1DA92DBD005BBBCD /* Assets.xcassets in Resources */,
