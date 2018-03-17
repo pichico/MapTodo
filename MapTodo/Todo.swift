@@ -28,12 +28,11 @@ class Todo: Object {
     }
 
     public func delete(realm: Realm) {
-        realm.delete(self)
-
         Analytics.logEvent("delete_todo", parameters: [
             "uuid": uuid as NSObject,
             "place": place!.uuid as NSObject
             ])
+        realm.delete(self)
     }
 
     public func replace(realm: Realm, item: String, place: Place!) {
