@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let keyFilePath = Bundle.main.path(forResource: "Keys", ofType: "plist")!
         let keyMap = NSDictionary(contentsOfFile: keyFilePath)!
-        GMSServices.provideAPIKey(keyMap["GMSServicesProvideAPIKey"] as! String!)
+        GMSServices.provideAPIKey(keyMap["GMSServicesProvideAPIKey"] as! String)
         application.applicationIconBadgeNumber = 0
 
         let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
