@@ -4,10 +4,11 @@ platform :ios, '8.3'
 use_frameworks!
 
 target 'MapTodo' do
-	pod 'RealmSwift'
-	pod 'R.swift'
+	pod 'Firebase/Core'
 	pod 'GoogleMaps'
 	pod 'GooglePlaces'
+	pod 'RealmSwift'
+	pod 'R.swift'
 	pod 'SwiftLint'
 end
 
