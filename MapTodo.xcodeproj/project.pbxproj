@@ -816,6 +816,7 @@
 			baseConfigurationReference = 900097914FFA7E45509D8403 /* Pods-MapTodo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = A6FF7AML57;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
