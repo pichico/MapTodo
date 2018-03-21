@@ -80,6 +80,14 @@ class PlaceViewController: AppViewController {
         UIApplication.shared.cancelAllLocalNotifications()
     }
 
+    func deletePlace() {
+        try! realm.write {
+            todoEntiries.forEach { $0.delete(realm: self.realm) }
+            place.delete(realm: realm)
+        }
+        navigationController!.popViewController(animated: true)
+    }
+
     func showMonitoringRegion(_ center: CLLocationCoordinate2D!, radius: CLLocationDistance) {
         // 既にあるpin、円を消す
         gmView.clear()
@@ -92,6 +100,21 @@ class PlaceViewController: AppViewController {
         let circle = GMSCircle(position: center, radius: radius)
         circle.strokeColor = UIColor(red: 160 / 255.0, green: 162 / 255.0, blue: 163 / 255.0, alpha: 1)
         circle.map = gmView
+    }
+
+    @IBAction func deletePlaceButtonClicked(_ sender: Any) {
+        let alert: UIAlertController = UIAlertController(title: "この場所を削除しますか？", message: "登録されているToDoも削除されます。", preferredStyle:  UIAlertControllerStyle.alert)
+        let defaultAction: UIAlertAction = UIAlertAction(title: "削除する", style: UIAlertActionStyle.default, handler:{
+            (action: UIAlertAction!) -> Void in
+            self.deletePlace()
+            self.navigationController!.popViewController(animated: true)
+        })
+        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
+            (action: UIAlertAction!) -> Void in
+        })
+        alert.addAction(cancelAction)
+        alert.addAction(defaultAction)
+        present(alert, animated: true, completion: nil)
     }
 
     @IBAction func radiusStepperTapped(_ sender: UIStepper) {
