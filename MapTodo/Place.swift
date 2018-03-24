@@ -33,7 +33,7 @@ class Place: Object {
 
     public func delete(realm: Realm) {
         Analytics.logEvent("delete_place", parameters: [
-            "uiid": uuid as NSObject
+            "uiid": uuid
             ])
         realm.delete(self)
     }
@@ -49,8 +49,8 @@ class Place: Object {
         realm.add(self, update: true)
 
         Analytics.logEvent("replace_place", parameters: [
-            "uiid": uuid as NSObject,
-            "with_place": (point != nil) as NSObject
+            "uiid": uuid,
+            "with_place": (point != nil)
             ])
     }
 }
