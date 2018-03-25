@@ -226,6 +226,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="footerView" destination="Peg-Va-e8R" id="byh-Ld-nON"/>
                         <outlet property="mapView" destination="GT6-t3-fOE" id="fld-rd-pq9"/>
                         <outlet property="mapViewFrame" destination="0Gz-k0-AHA" id="LxN-LC-txx"/>
                         <outlet property="placeNameTextField" destination="kG5-5r-bS7" id="YdH-DV-lX0"/>
