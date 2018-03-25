@@ -16,6 +16,7 @@ class PlaceViewController: AppViewController {
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var mapViewFrame: UIView!
     @IBOutlet weak var todoListTableView: UITableView!
+    @IBOutlet weak var footerView: UIView!
 
     let defaultZoom: Float = 15.0
     var gmView: GMSMapView!
@@ -23,11 +24,14 @@ class PlaceViewController: AppViewController {
     let lmmap: CLLocationManager = CLLocationManager()
     var mapPoint: CLLocationCoordinate2D? = nil
     var place: Place!
+    var isNew: Bool = true
     let realm: Realm = try! Realm()
     var todoEntiries: Results<Todo>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        isNew = place == nil
+        if isNew { place = Place() }
 
         // map
         let camera = GMSCameraPosition.camera(withLatitude: 0, longitude: 0, zoom: defaultZoom)
@@ -41,7 +45,6 @@ class PlaceViewController: AppViewController {
         lmmap.delegate = self
 
         placeNameTextField.returnKeyType = .done
-        place = place ?? Place()
         updateValues()
         if let tableHeaderView = todoListTableView.tableHeaderView {
             var frame = todoListTableView.frame
@@ -52,6 +55,7 @@ class PlaceViewController: AppViewController {
     }
 
     func updateValues() {
+        footerView.isHidden = isNew
         if let place = place {
             placeNameTextField.text = place.name
             navigationItem.title = place.name
@@ -104,16 +108,11 @@ class PlaceViewController: AppViewController {
 
     @IBAction func deletePlaceButtonClicked(_ sender: Any) {
         let alert: UIAlertController = UIAlertController(title: "この場所を削除しますか？", message: "登録されているToDoも削除されます。", preferredStyle:  UIAlertControllerStyle.alert)
-        let defaultAction: UIAlertAction = UIAlertAction(title: "削除する", style: UIAlertActionStyle.default, handler:{
-            (action: UIAlertAction!) -> Void in
+        alert.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel))
+        alert.addAction(UIAlertAction(title: "削除する", style: UIAlertActionStyle.default) { _ in
             self.deletePlace()
             self.navigationController!.popViewController(animated: true)
         })
-        let cancelAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel, handler:{
-            (action: UIAlertAction!) -> Void in
-        })
-        alert.addAction(cancelAction)
-        alert.addAction(defaultAction)
         present(alert, animated: true, completion: nil)
     }
 
@@ -130,27 +129,19 @@ class PlaceViewController: AppViewController {
                 message: "",
                 preferredStyle: UIAlertControllerStyle.alert
             )
-            let defaultAction: UIAlertAction = UIAlertAction(
+            alert.addAction(UIAlertAction(
                     title: "OK",
-                    style: UIAlertActionStyle.cancel,
-                    handler: {
-                        (action: UIAlertAction!) -> Void in
-                    }
-            )
-            alert.addAction(defaultAction)
+                    style: UIAlertActionStyle.cancel
+            ))
             present(alert, animated: true, completion: nil)
         } else if mapPoint == nil {
-            let alert: UIAlertController = UIAlertController(title: "場所の指定がされていません", message: "近くに来たときに通知するには、地図を長押しして地点を指定して下さい", preferredStyle:  UIAlertControllerStyle.alert)
-            let defaultAction: UIAlertAction = UIAlertAction(title: "場所を指定せずに保存", style: UIAlertActionStyle.default, handler:{
-                (action: UIAlertAction!) -> Void in
+            let alert: UIAlertController = UIAlertController(title: "場所の指定がされていません", message: "近くに来たときに通知するには、地図を長押しして地点を指定して下さい", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "場所を指定せずに保存", style: UIAlertActionStyle.default) { _ in
                 self.replacePlace()
                 self.navigationController!.popViewController(animated: true)
             })
-            let cancelAction: UIAlertAction = UIAlertAction(title: "場所を指定する", style: UIAlertActionStyle.cancel, handler:{
-                (action: UIAlertAction!) -> Void in
-            })
-            alert.addAction(cancelAction)
-            alert.addAction(defaultAction)
+            alert.addAction(UIAlertAction(title: "場所を指定する", style: UIAlertActionStyle.cancel))
+
             present(alert, animated: true, completion: nil)
         } else {
             replacePlace()
