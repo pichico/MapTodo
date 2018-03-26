@@ -1,4 +1,7 @@
 PODS:
+  - Crashlytics (3.9.3):
+    - Fabric (~> 1.7.2)
+  - Fabric (1.7.5)
   - Firebase/Core (4.10.1):
     - FirebaseAnalytics (= 4.1.0)
     - FirebaseCore (= 4.0.17)
@@ -37,6 +40,8 @@ PODS:
   - SwiftLint (0.25.0)
 
 DEPENDENCIES:
+  - Crashlytics (~> 3.9.3)
+  - Fabric (~> 1.7.2)
   - Firebase/Core
   - GoogleMaps
   - GooglePlaces
@@ -45,6 +50,8 @@ DEPENDENCIES:
   - SwiftLint
 
 SPEC CHECKSUMS:
+  Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
+  Fabric: ae7146a5f505ea370a1e44820b4b1dc8890e2890
   Firebase: 92c6ba593e32db0defde464a9adc981d5cb49f97
   FirebaseAnalytics: 3dfae28d4a5e06f86c4fae830efc2ad3fadb19bc
   FirebaseCore: 872307b001bbefda1dfa0dbfffa50a6919023d4a
@@ -59,6 +66,6 @@ SPEC CHECKSUMS:
   RealmSwift: d31937ca6a6ee54acde64ec839523c0a3c04924b
   SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
 
-PODFILE CHECKSUM: 4d33dfdb15bd72505dd0b3be60da1155b88949df
+PODFILE CHECKSUM: 2b3548a7710867bd65d0f930d0b3fca643e26527
 
 COCOAPODS: 1.4.0

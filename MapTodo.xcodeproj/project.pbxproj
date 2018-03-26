@@ -276,6 +276,8 @@
 				73BDB9D1EB75EB6F7C844605 /* [CP] Copy Pods Resources */,
 				7DCAA9E520149EF4006E109A /* ShellScript */,
 				5B4536DB201342F40034CCFC /* ShellScript */,
+				7DBC85DA205D59C200011811 /* ShellScript */,
+				7D3A840D2066395C004CC0CC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -507,6 +509,32 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapTodo/Pods-MapTodo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		7D3A840D2066395C004CC0CC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "find ${SRCROOT}/ -name \"*.dSYM\" | xargs -I {} ${PODS_ROOT}/Fabric/upload-symbols -gsp ${SRCROOT}/MapTodo/GoogleService-Info.plist -p ios {}";
+		};
+		7DBC85DA205D59C200011811 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
 		};
 		7DCAA9E520149EF4006E109A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -802,6 +830,7 @@
 			baseConfigurationReference = 900097914FFA7E45509D8403 /* Pods-MapTodo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = A6FF7AML57;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
