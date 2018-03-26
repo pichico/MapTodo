@@ -32,6 +32,7 @@
 		7D5504FA1E50B118006D9B81 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5504F91E50B118006D9B81 /* Realm.framework */; };
 		7D5504FC1E50B120006D9B81 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D5504FB1E50B120006D9B81 /* RealmSwift.framework */; };
 		7D9E30221EC9EECD007F2D21 /* AppTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D9E30211EC9EECD007F2D21 /* AppTableViewCell.swift */; };
+		7DBC85D7205D048F00011811 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7DBC85D6205D048F00011811 /* GoogleService-Info.plist */; };
 		7DBE19611DE976C4008E20DC /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBE19601DE976C4008E20DC /* LocationManager.swift */; };
 		7DE87F221EDB02EA00944734 /* AppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE87F211EDB02EA00944734 /* AppViewController.swift */; };
 		7DED36F91DB39FA3002CB35C /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DED36F81DB39FA3002CB35C /* MapKit.framework */; };
@@ -88,6 +89,7 @@
 		7D5504F91E50B118006D9B81 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Library/Developer/Xcode/DerivedData/MapTodo-fpshqbficmwlgjawnqpwaqfgfjza/Build/Products/Debug-iphonesimulator/Realm/Realm.framework"; sourceTree = "<group>"; };
 		7D5504FB1E50B120006D9B81 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift/RealmSwift.framework"; sourceTree = "<group>"; };
 		7D9E30211EC9EECD007F2D21 /* AppTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTableViewCell.swift; sourceTree = "<group>"; };
+		7DBC85D6205D048F00011811 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7DBE19601DE976C4008E20DC /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7DE87F211EDB02EA00944734 /* AppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppViewController.swift; sourceTree = "<group>"; };
 		7DED36F81DB39FA3002CB35C /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -198,6 +200,7 @@
 				7D4072F11DA92DBD005BBBCD /* AppDelegate.swift */,
 				7D4072FB1DA92DBD005BBBCD /* Assets.xcassets */,
 				7D4073001DA92DBD005BBBCD /* Info.plist */,
+				7DBC85D6205D048F00011811 /* GoogleService-Info.plist */,
 				7D4072F81DA92DBD005BBBCD /* MapTodo.xcdatamodeld */,
 				7DBE19601DE976C4008E20DC /* LocationManager.swift */,
 				5B4536D9201305690034CCFC /* Settings.bundle */,
@@ -273,6 +276,8 @@
 				73BDB9D1EB75EB6F7C844605 /* [CP] Copy Pods Resources */,
 				7DCAA9E520149EF4006E109A /* ShellScript */,
 				5B4536DB201342F40034CCFC /* ShellScript */,
+				7DBC85DA205D59C200011811 /* ShellScript */,
+				7D3A840D2066395C004CC0CC /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -386,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BCF5D181FC46D5200F17043 /* Keys.plist in Resources */,
+				7DBC85D7205D048F00011811 /* GoogleService-Info.plist in Resources */,
 				5BCF5D141FAD8E2900F17043 /* AppTableViewHeaderView.xib in Resources */,
 				7D4072FF1DA92DBD005BBBCD /* LaunchScreen.storyboard in Resources */,
 				7D4072FC1DA92DBD005BBBCD /* Assets.xcassets in Resources */,
@@ -465,15 +471,19 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MapTodo/Pods-MapTodo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -499,6 +509,32 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapTodo/Pods-MapTodo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		7D3A840D2066395C004CC0CC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "find ${SRCROOT}/ -name \"*.dSYM\" | xargs -I {} ${PODS_ROOT}/Fabric/upload-symbols -gsp ${SRCROOT}/MapTodo/GoogleService-Info.plist -p ios {}";
+		};
+		7DBC85DA205D59C200011811 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
 		};
 		7DCAA9E520149EF4006E109A /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -794,6 +830,7 @@
 			baseConfigurationReference = 900097914FFA7E45509D8403 /* Pods-MapTodo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = A6FF7AML57;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
