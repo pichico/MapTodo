@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CoreLocation
+import Firebase
 import GoogleMaps
 import RealmSwift
 
@@ -20,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let lm: LocationManager = LocationManager.sharedLocationManager
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
 
         let keyFilePath = Bundle.main.path(forResource: "Keys", ofType: "plist")!
         let keyMap = NSDictionary(contentsOfFile: keyFilePath)!

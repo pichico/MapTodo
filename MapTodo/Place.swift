@@ -7,6 +7,7 @@
 //
 
 import CoreLocation
+import Firebase
 import Foundation
 import RealmSwift
 
@@ -31,6 +32,9 @@ class Place: Object {
     }
 
     public func delete(realm: Realm) {
+        Analytics.logEvent("delete_place", parameters: [
+            "uiid": uuid
+            ])
         realm.delete(self)
     }
 
@@ -42,7 +46,12 @@ class Place: Object {
             self.latitude.value = point.latitude
             self.longitude.value = point.longitude
         }
-       realm.add(self, update: true)
+        realm.add(self, update: true)
+
+        Analytics.logEvent("replace_place", parameters: [
+            "uiid": uuid,
+            "with_place": (point != nil)
+            ])
     }
 }
 

@@ -13,3 +13,4 @@ build/
 DerivedData
 
 MapTodo/Keys.plist
+MapTodo/GoogleService-Info.plist
