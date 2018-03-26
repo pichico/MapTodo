@@ -24,14 +24,18 @@ class PlaceViewController: AppViewController {
     let lmmap: CLLocationManager = CLLocationManager()
     var mapPoint: CLLocationCoordinate2D? = nil
     var place: Place!
-    var isNew: Bool = true
+    var isNew: Bool!
     let realm: Realm = try! Realm()
     var todoEntiries: Results<Todo>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        isNew = place == nil
-        if isNew { place = Place() }
+        if place == nil {
+            place = Place()
+            isNew = true
+        } else {
+            isNew = false
+        }
 
         // map
         let camera = GMSCameraPosition.camera(withLatitude: 0, longitude: 0, zoom: defaultZoom)
