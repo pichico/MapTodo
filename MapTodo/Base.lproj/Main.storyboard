@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F2073" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LlG-fu-xYr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="LlG-fu-xYr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -142,6 +143,41 @@
                                         <constraint firstItem="GT6-t3-fOE" firstAttribute="top" secondItem="0Gz-k0-AHA" secondAttribute="top" constant="10" id="rHh-Sk-1Vl"/>
                                     </constraints>
                                 </view>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="Peg-Va-e8R" userLabel="Footer View">
+                                    <rect key="frame" x="0.0" y="116" width="355" height="80"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3T-wI-z9f">
+                                            <rect key="frame" x="0.0" y="30" width="355" height="40"/>
+                                            <color key="backgroundColor" red="0.88627450980392153" green="0.41176470588235292" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="場所を削除する">
+                                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                    <color key="value" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                    <real key="value" value="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="deletePlaceButtonClicked:" destination="7q1-3Y-g5j" eventType="touchUpInside" id="fhW-o4-gJP"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="a3T-wI-z9f" secondAttribute="bottom" constant="10" id="2cZ-5X-ekr"/>
+                                        <constraint firstItem="a3T-wI-z9f" firstAttribute="top" secondItem="Peg-Va-e8R" secondAttribute="top" constant="30" id="8e2-hf-467"/>
+                                        <constraint firstItem="a3T-wI-z9f" firstAttribute="leading" secondItem="Peg-Va-e8R" secondAttribute="leading" id="aLg-gq-AlE"/>
+                                        <constraint firstAttribute="trailing" secondItem="a3T-wI-z9f" secondAttribute="trailing" id="pec-BG-aUb"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" id="3qM-P3-o4A" customClass="TextFieldTableViewCell" customModule="MapTodo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="355" height="44"/>
@@ -190,6 +226,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="footerView" destination="Peg-Va-e8R" id="byh-Ld-nON"/>
                         <outlet property="mapView" destination="GT6-t3-fOE" id="fld-rd-pq9"/>
                         <outlet property="mapViewFrame" destination="0Gz-k0-AHA" id="LxN-LC-txx"/>
                         <outlet property="placeNameTextField" destination="kG5-5r-bS7" id="YdH-DV-lX0"/>
@@ -207,7 +244,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LlG-fu-xYr" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="oBG-IR-Gac">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.0039215686274509803" green="0.51764705882352935" blue="0.69019607843137254" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
