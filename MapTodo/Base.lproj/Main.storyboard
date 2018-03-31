@@ -101,7 +101,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GT6-t3-fOE">
-                                            <rect key="frame" x="0.0" y="10" width="355" height="410"/>
+                                            <rect key="frame" x="0.0" y="10" width="394" height="410"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="410" id="F1Q-Za-Owd"/>
@@ -119,13 +119,16 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="地名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kG5-5r-bS7">
-                                            <rect key="frame" x="20" y="20" width="211" height="30"/>
+                                            <rect key="frame" x="20" y="20" width="250" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="200" id="TEw-Hs-ZE1"/>
+                                            </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minimumValue="100" maximumValue="100000" stepValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="vtr-nT-BmB">
-                                            <rect key="frame" x="241" y="20" width="94" height="29"/>
+                                            <rect key="frame" x="280" y="20" width="94" height="29"/>
                                             <connections>
                                                 <action selector="radiusStepperTapped:" destination="7q1-3Y-g5j" eventType="valueChanged" id="WaL-Va-OvG"/>
                                             </connections>
@@ -137,6 +140,8 @@
                                         <constraint firstItem="vtr-nT-BmB" firstAttribute="leading" secondItem="kG5-5r-bS7" secondAttribute="trailing" constant="10" id="CRP-Zq-RuG"/>
                                         <constraint firstItem="vtr-nT-BmB" firstAttribute="top" secondItem="0Gz-k0-AHA" secondAttribute="top" constant="20" id="EUm-65-M2F"/>
                                         <constraint firstAttribute="trailing" secondItem="vtr-nT-BmB" secondAttribute="trailing" constant="20" id="Khu-r6-6ev"/>
+                                        <constraint firstItem="GT6-t3-fOE" firstAttribute="trailing" secondItem="vtr-nT-BmB" secondAttribute="trailing" constant="20" id="Q61-S6-XVn"/>
+                                        <constraint firstAttribute="trailing" secondItem="vtr-nT-BmB" secondAttribute="trailing" constant="20" id="Sok-2p-yUM"/>
                                         <constraint firstItem="kG5-5r-bS7" firstAttribute="leading" secondItem="0Gz-k0-AHA" secondAttribute="leading" constant="20" id="Teq-Z1-Gdh"/>
                                         <constraint firstAttribute="trailing" secondItem="GT6-t3-fOE" secondAttribute="trailing" id="dB7-BB-M1f"/>
                                         <constraint firstItem="GT6-t3-fOE" firstAttribute="leading" secondItem="0Gz-k0-AHA" secondAttribute="leading" id="dGp-rb-6bN"/>
@@ -148,7 +153,7 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3T-wI-z9f">
-                                            <rect key="frame" x="0.0" y="30" width="355" height="40"/>
+                                            <rect key="frame" x="0.0" y="30" width="394" height="40"/>
                                             <color key="backgroundColor" red="0.88627450980392153" green="0.41176470588235292" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
                                             <state key="normal" title="場所を削除する">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -179,7 +184,7 @@
                                     </constraints>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" id="3qM-P3-o4A" customClass="TextFieldTableViewCell" customModule="MapTodo" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TodoListItem" id="3qM-P3-o4A" customClass="TextFieldTableViewCell" customModule="MapTodo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="355" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3qM-P3-o4A" id="Glk-Wg-5Rb">
