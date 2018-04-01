@@ -118,8 +118,11 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="地名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kG5-5r-bS7">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="この場所の名前" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kG5-5r-bS7">
                                             <rect key="frame" x="20" y="20" width="211" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="200" id="TEw-Hs-ZE1"/>
+                                            </constraints>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -137,6 +140,8 @@
                                         <constraint firstItem="vtr-nT-BmB" firstAttribute="leading" secondItem="kG5-5r-bS7" secondAttribute="trailing" constant="10" id="CRP-Zq-RuG"/>
                                         <constraint firstItem="vtr-nT-BmB" firstAttribute="top" secondItem="0Gz-k0-AHA" secondAttribute="top" constant="20" id="EUm-65-M2F"/>
                                         <constraint firstAttribute="trailing" secondItem="vtr-nT-BmB" secondAttribute="trailing" constant="20" id="Khu-r6-6ev"/>
+                                        <constraint firstItem="GT6-t3-fOE" firstAttribute="trailing" secondItem="vtr-nT-BmB" secondAttribute="trailing" constant="20" id="Q61-S6-XVn"/>
+                                        <constraint firstAttribute="trailing" secondItem="vtr-nT-BmB" secondAttribute="trailing" constant="20" id="Sok-2p-yUM"/>
                                         <constraint firstItem="kG5-5r-bS7" firstAttribute="leading" secondItem="0Gz-k0-AHA" secondAttribute="leading" constant="20" id="Teq-Z1-Gdh"/>
                                         <constraint firstAttribute="trailing" secondItem="GT6-t3-fOE" secondAttribute="trailing" id="dB7-BB-M1f"/>
                                         <constraint firstItem="GT6-t3-fOE" firstAttribute="leading" secondItem="0Gz-k0-AHA" secondAttribute="leading" id="dGp-rb-6bN"/>
