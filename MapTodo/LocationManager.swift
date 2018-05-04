@@ -44,7 +44,7 @@ final class LocationManager: NSObject, CLLocationManagerDelegate {
             if todoList.count > 0 {
                 let notification = UILocalNotification()
                 let showCount = 3
-                notification.alertTitle = place.name! + "でのToDo登録されています。"
+                notification.alertTitle = place.name! + "でのToDo"
                 notification.alertBody = todoList.map {$0.item!}.prefix(showCount).joined(separator: ", ")
                     + (todoList.count > showCount ? " 他" : "")
                 notification.userInfo = ["region": region.identifier]
