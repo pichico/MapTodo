@@ -17,15 +17,15 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>1.0.1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>位置による通知のため</string>
+	<string>アプリがバックグラウンドの時も位置情報に応じて通知します</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>地図表示のため</string>
+	<string>初回登録時に現在地を中心とした地図を表示します</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
