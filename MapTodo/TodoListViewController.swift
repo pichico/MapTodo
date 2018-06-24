@@ -8,6 +8,7 @@
 
 import CoreData
 import CoreLocation
+import Instructions
 import RealmSwift
 import UIKit
 
@@ -15,14 +16,21 @@ class TodoListViewController: AppViewController {
 
     @IBOutlet weak var todoListTableView: UITableView!
     @IBOutlet weak var todoListItemCell: UITableViewCell!
+    @IBOutlet weak var addPlaceButton: UIBarButtonItem!
+
+    let coachMarksController = CoachMarksController()
     var todoEntries: Results<Todo>!
     var placeEntries: Results<Place>!
     let realm: Realm = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        coachMarksController.dataSource = self
         todoEntries = Todo.getAll(realm: realm)
         placeEntries = Place.getAll(realm: realm)
+        if placeEntries.count == 0 {
+            coachMarksController.start(on: self)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +62,27 @@ class TodoListViewController: AppViewController {
         let controller = R.storyboard.main.placeView()!
         controller.place = place(section: sender.tag)
         navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+extension TodoListViewController: CoachMarksControllerDataSource, CoachMarksControllerDelegate {
+    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
+        return 1
+    }
+
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
+        var coachmark: CoachMark = coachMarksController.helper.makeCoachMark(for: addPlaceButton.value(forKey: "view") as! UIView)
+        coachmark.horizontalMargin = 2
+        return coachmark
+    }
+
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark)
+        -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
+        let coachViews = coachMarksController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: coachMark.arrowOrientation)
+        coachViews.bodyView.hintLabel.text = "まずはここからタスクのある場所を登録します"
+        coachViews.bodyView.nextLabel.text = "OK"
+
+        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
     }
 }
 
