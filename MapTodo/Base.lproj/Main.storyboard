@@ -74,6 +74,7 @@
                         </userDefinedRuntimeAttributes>
                     </navigationItem>
                     <connections>
+                        <outlet property="addPlaceButton" destination="pwl-XD-e7a" id="EA9-La-sAo"/>
                         <outlet property="todoListTableView" destination="HZk-Ha-3sB" id="oRu-ia-fg8"/>
                     </connections>
                 </viewController>
