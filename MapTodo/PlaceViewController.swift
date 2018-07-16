@@ -7,6 +7,7 @@
 //
 
 import GoogleMaps
+import Instructions
 import RealmSwift
 import UIKit
 
@@ -28,9 +29,21 @@ class PlaceViewController: AppViewController {
     let realm: Realm = try! Realm()
     var todoEntiries: Results<Todo>!
 
+    let coachMarksController = CoachMarksController()
+    class CoachMarkConfig {
+        let view: UIView
+        let text: String
+        init(view: UIView, text: String) {
+            self.view = view
+            self.text = text
+        }
+    }
+    var coachMarkConfigs: [CoachMarkConfig]!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if place == nil {
+            if Place.getAll(realm: realm).count == 0 { showCoachMark() }
             place = Place()
             isNew = true
         } else {
@@ -108,6 +121,16 @@ class PlaceViewController: AppViewController {
         let circle = GMSCircle(position: center, radius: radius)
         circle.strokeColor = UIColor(red: 160 / 255.0, green: 162 / 255.0, blue: 163 / 255.0, alpha: 1)
         circle.map = gmView
+    }
+
+    func showCoachMark() {
+        coachMarkConfigs = [
+            CoachMarkConfig(view: mapView, text: "①地図上でタスクを登録したい場所を長押しし、ピンを立てます"),
+            CoachMarkConfig(view: radiusStepper, text: "②タスクをリマインドしたい範囲をこのボタンで調整します。"),
+            CoachMarkConfig(view: placeNameTextField, text: "③この地点の名前を入力し、保存します"),
+        ]
+        coachMarksController.dataSource = self
+        coachMarksController.start(on: self)
     }
 
     @IBAction func deletePlaceButtonClicked(_ sender: Any) {
@@ -245,5 +268,25 @@ extension PlaceViewController: TextFieldTableViewCellDelegate {
                 }
             }
         }
+    }
+}
+
+extension PlaceViewController: CoachMarksControllerDataSource, CoachMarksControllerDelegate {
+    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
+        return coachMarkConfigs.count
+    }
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
+        var coachmark: CoachMark = coachMarksController.helper.makeCoachMark(for: coachMarkConfigs[index].view)
+        coachmark.horizontalMargin = 2
+        return coachmark
+    }
+
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark)
+        -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
+            let config = coachMarkConfigs[index]
+            let coachViews = coachMarksController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: coachMark.arrowOrientation)
+            coachViews.bodyView.hintLabel.text = config.text
+            coachViews.bodyView.nextLabel.text = "OK"
+            return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
     }
 }

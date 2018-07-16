@@ -28,7 +28,7 @@ class TodoListViewController: AppViewController {
         coachMarksController.dataSource = self
         todoEntries = Todo.getAll(realm: realm)
         placeEntries = Place.getAll(realm: realm)
-        if placeEntries.count == 0 {
+        if placeEntries.count == 0 || todoEntries.count == 0 {
             coachMarksController.start(on: self)
         }
     }
@@ -37,6 +37,9 @@ class TodoListViewController: AppViewController {
         super.viewWillAppear(animated)
         todoEntries = Todo.getAll(realm: realm)
         todoListTableView.reloadData()
+        if todoEntries.count == 0 {
+            coachMarksController.start(on: self)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -71,7 +74,8 @@ extension TodoListViewController: CoachMarksControllerDataSource, CoachMarksCont
     }
 
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
-        var coachmark: CoachMark = coachMarksController.helper.makeCoachMark(for: addPlaceButton.value(forKey: "view") as! UIView)
+        let coarchMarkFor: UIView! = placeEntries.count == 0 ? addPlaceButton.value(forKey: "view") as! UIView : todoListTableView.cellForRow(at: IndexPath(row: 0, section: 0))
+        var coachmark: CoachMark = coachMarksController.helper.makeCoachMark(for: coarchMarkFor)
         coachmark.horizontalMargin = 2
         return coachmark
     }
@@ -79,7 +83,8 @@ extension TodoListViewController: CoachMarksControllerDataSource, CoachMarksCont
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark)
         -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
         let coachViews = coachMarksController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: coachMark.arrowOrientation)
-        coachViews.bodyView.hintLabel.text = "まずはここからタスクのある場所を登録します"
+        let hintText: String = placeEntries.count == 0 ? "まずはここからタスクのある場所を登録します" : "ここからどんどんタスクを追加しましょう"
+        coachViews.bodyView.hintLabel.text = hintText
         coachViews.bodyView.nextLabel.text = "OK"
 
         return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
