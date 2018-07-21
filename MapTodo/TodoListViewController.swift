@@ -74,7 +74,8 @@ extension TodoListViewController: CoachMarksControllerDataSource, CoachMarksCont
     }
 
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
-        let coarchMarkFor: UIView! = placeEntries.count == 0 ? addPlaceButton.value(forKey: "view") as! UIView : todoListTableView.cellForRow(at: IndexPath(row: 0, section: 0))
+        let coarchMarkFor: UIView! = placeEntries.count == 0 ? addPlaceButton.value(forKey: "view") as! UIView
+                                                             : todoListTableView.cellForRow(at: IndexPath(row: 0, section: 0))
         var coachmark: CoachMark = coachMarksController.helper.makeCoachMark(for: coarchMarkFor)
         coachmark.horizontalMargin = 2
         return coachmark
