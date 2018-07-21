@@ -264,9 +264,7 @@ extension PlaceViewController: CoachMarksControllerDataSource, CoachMarksControl
     }
 
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
-        var coachmark: CoachMark = coachMarksController.helper.makeCoachMark(for: coachMarkConfigs()[index].view)
-        coachmark.horizontalMargin = 2 // これをしておかないと矢印が四角からはみ出る...
-        return coachmark
+        return coachMarksController.helper.makeCoachMark(for: coachMarkConfigs()[index].view)
     }
 
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark)
