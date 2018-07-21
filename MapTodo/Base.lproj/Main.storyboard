@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -101,6 +102,18 @@
                                     <rect key="frame" x="0.0" y="0.0" width="355" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O2m-Jw-VqT">
+                                            <rect key="frame" x="30" y="67.5" width="295" height="295"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="O2m-Jw-VqT" secondAttribute="height" multiplier="1:1" id="vxw-bP-k3a"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="30"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GT6-t3-fOE">
                                             <rect key="frame" x="0.0" y="10" width="355" height="410"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -138,12 +151,15 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstItem="kG5-5r-bS7" firstAttribute="top" secondItem="0Gz-k0-AHA" secondAttribute="top" constant="20" id="52V-21-j6O"/>
+                                        <constraint firstItem="O2m-Jw-VqT" firstAttribute="leading" secondItem="GT6-t3-fOE" secondAttribute="leading" constant="30" id="ALZ-3c-sqk"/>
                                         <constraint firstItem="vtr-nT-BmB" firstAttribute="leading" secondItem="kG5-5r-bS7" secondAttribute="trailing" constant="10" id="CRP-Zq-RuG"/>
                                         <constraint firstItem="vtr-nT-BmB" firstAttribute="top" secondItem="0Gz-k0-AHA" secondAttribute="top" constant="20" id="EUm-65-M2F"/>
+                                        <constraint firstItem="O2m-Jw-VqT" firstAttribute="trailing" secondItem="GT6-t3-fOE" secondAttribute="trailing" constant="-30" id="Ewe-HB-HJC"/>
                                         <constraint firstAttribute="trailing" secondItem="vtr-nT-BmB" secondAttribute="trailing" constant="20" id="Khu-r6-6ev"/>
                                         <constraint firstItem="GT6-t3-fOE" firstAttribute="trailing" secondItem="vtr-nT-BmB" secondAttribute="trailing" constant="20" id="Q61-S6-XVn"/>
                                         <constraint firstAttribute="trailing" secondItem="vtr-nT-BmB" secondAttribute="trailing" constant="20" id="Sok-2p-yUM"/>
                                         <constraint firstItem="kG5-5r-bS7" firstAttribute="leading" secondItem="0Gz-k0-AHA" secondAttribute="leading" constant="20" id="Teq-Z1-Gdh"/>
+                                        <constraint firstItem="O2m-Jw-VqT" firstAttribute="centerY" secondItem="GT6-t3-fOE" secondAttribute="centerY" id="byd-56-FK3"/>
                                         <constraint firstAttribute="trailing" secondItem="GT6-t3-fOE" secondAttribute="trailing" id="dB7-BB-M1f"/>
                                         <constraint firstItem="GT6-t3-fOE" firstAttribute="leading" secondItem="0Gz-k0-AHA" secondAttribute="leading" id="dGp-rb-6bN"/>
                                         <constraint firstItem="GT6-t3-fOE" firstAttribute="top" secondItem="0Gz-k0-AHA" secondAttribute="top" constant="10" id="rHh-Sk-1Vl"/>
@@ -234,6 +250,7 @@
                     <connections>
                         <outlet property="footerView" destination="Peg-Va-e8R" id="byh-Ld-nON"/>
                         <outlet property="mapView" destination="GT6-t3-fOE" id="fld-rd-pq9"/>
+                        <outlet property="mapViewCoachMarkGuide" destination="O2m-Jw-VqT" id="UA0-fV-08T"/>
                         <outlet property="mapViewFrame" destination="0Gz-k0-AHA" id="LxN-LC-txx"/>
                         <outlet property="placeNameTextField" destination="kG5-5r-bS7" id="YdH-DV-lX0"/>
                         <outlet property="radiusStepper" destination="vtr-nT-BmB" id="HET-ws-Rts"/>

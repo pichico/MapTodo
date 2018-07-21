@@ -25,10 +25,11 @@ class TodoListViewController: AppViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        coachMarksController.dataSource = self
         todoEntries = Todo.getAll(realm: realm)
         placeEntries = Place.getAll(realm: realm)
         if placeEntries.count == 0 || todoEntries.count == 0 {
+            coachMarksController.dataSource = self
+            coachMarksController.overlay.color = UIColor.init(white: 0.5, alpha: 0.5)
             coachMarksController.start(on: self)
         }
     }
