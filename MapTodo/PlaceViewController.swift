@@ -16,6 +16,7 @@ class PlaceViewController: AppViewController {
     @IBOutlet weak var radiusStepper: UIStepper!
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var mapViewFrame: UIView!
+    @IBOutlet weak var mapViewCoachMarkGuide: UIView!
     @IBOutlet weak var todoListTableView: UITableView!
     @IBOutlet weak var footerView: UIView!
 
@@ -36,6 +37,7 @@ class PlaceViewController: AppViewController {
         if place == nil {
             if Place.getAll(realm: realm).count == 0 {
                 coachMarksController.dataSource = self
+                coachMarksController.overlay.color = UIColor.init(white: 0.5, alpha: 0.5)
                 coachMarksController.start(on: self)
             }
             place = Place()
@@ -281,7 +283,7 @@ extension PlaceViewController: CoachMarksControllerDataSource, CoachMarksControl
 
     func coachMarkConfigs() -> Array<(view: UIView, text: String)> {
         return [
-            (view: mapView, text: "①地図上でタスクを登録したい場所を長押しし、ピンを立てます"),
+            (view: mapViewCoachMarkGuide, text: "①地図上でタスクを登録したい場所を長押しし、ピンを立てます"),
             (view: radiusStepper, text: "②タスクをリマインドしたい範囲をこのボタンで調整します。"),
             (view: placeNameTextField, text: "③この地点の名前を入力し、保存します")
         ]
