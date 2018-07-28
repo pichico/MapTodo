@@ -259,16 +259,16 @@ extension PlaceViewController: TextFieldTableViewCellDelegate {
 
 extension PlaceViewController: CoachMarksControllerDataSource, CoachMarksControllerDelegate {
     func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
-        return coachMarkConfigs().count
+        return coachMarkConfigs.count
     }
 
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
-        return coachMarksController.helper.makeCoachMark(for: coachMarkConfigs()[index].view)
+        return coachMarksController.helper.makeCoachMark(for: coachMarkConfigs[index].view)
     }
 
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark)
         -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
-            let config = coachMarkConfigs()[index]
+            let config = coachMarkConfigs[index]
             let coachViews = coachMarksController.helper.makeDefaultCoachViews(
                 withArrow: true,
                 arrowOrientation: coachMark.arrowOrientation
@@ -278,7 +278,7 @@ extension PlaceViewController: CoachMarksControllerDataSource, CoachMarksControl
             return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
     }
 
-    func coachMarkConfigs() -> Array<(view: UIView, text: String)> {
+    var coachMarkConfigs: [(view: UIView, text: String)] {
         return [
             (view: mapViewCoachMarkGuide, text: "①地図上でタスクを登録したい場所を長押しし、ピンを立てます"),
             (view: radiusStepper, text: "②タスクをリマインドしたい範囲をこのボタンで調整します。"),
