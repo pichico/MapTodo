@@ -12,7 +12,6 @@ import RealmSwift
 import UIKit
 
 class PlaceViewController: AppViewController {
-    @IBOutlet weak var placeNameTextField: UITextField!
     @IBOutlet weak var radiusStepper: UIStepper!
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var mapViewFrame: UIView!
@@ -57,7 +56,6 @@ class PlaceViewController: AppViewController {
 
         lmmap.delegate = self
 
-        placeNameTextField.returnKeyType = .done
         updateValues()
         if let tableHeaderView = todoListTableView.tableHeaderView {
             var frame = todoListTableView.frame
@@ -70,7 +68,6 @@ class PlaceViewController: AppViewController {
     func updateValues() {
         footerView.isHidden = isNew
         if let place = place {
-            placeNameTextField.text = place.name
             navigationItem.title = place.name
             if let CLLocationCoordinate2D = place.CLLocationCoordinate2D { // 地図をあわせる
                 mapPoint = CLLocationCoordinate2D
@@ -88,10 +85,10 @@ class PlaceViewController: AppViewController {
         }
     }
 
-    func replacePlace() {
+    func replacePlace(name: String) {
         try! realm.write {
             place.stopMonitoring()
-            place.replace(realm: realm, name: placeNameTextField.text!, radius: radiusStepper.value, point: mapPoint)
+            place.replace(realm: realm, name: name, radius: radiusStepper.value, point: mapPoint)
             place.startMonitoring()
         }
         UIApplication.shared.cancelAllLocalNotifications()
@@ -119,8 +116,34 @@ class PlaceViewController: AppViewController {
         circle.map = gmView
     }
 
+    func showSaveDialog() {
+        let alert: UIAlertController = UIAlertController(
+            title: "場所を保存します",
+            message: "この場所の呼び名を入力してください",
+            preferredStyle: UIAlertControllerStyle.alert
+        )
+        alert.addAction(UIAlertAction(title: "登録", style: UIAlertActionStyle.default) { _ in
+            // 入力したテキストをコンソールに表示
+            if let name = (alert.textFields![0] as UITextField).text, name != "" {
+                self.replacePlace(name: name)
+                self.navigationController!.popViewController(animated: true)
+            } else {
+                self.showSaveDialog()
+            }
+        })
+        alert.addTextField(configurationHandler: { (text: UITextField!) in
+            text.text = self.place.name
+        })
+        alert.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel))
+        present(alert, animated: true, completion: nil)
+    }
+
     @IBAction func deletePlaceButtonClicked(_ sender: Any) {
-        let alert: UIAlertController = UIAlertController(title: "この場所を削除しますか？", message: "登録されているToDoも削除されます。", preferredStyle:  UIAlertControllerStyle.alert)
+        let alert: UIAlertController = UIAlertController(
+            title: "この場所を削除しますか？",
+            message: "登録されているToDoも削除されます。",
+            preferredStyle: UIAlertControllerStyle.alert
+        )
         alert.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel))
         alert.addAction(UIAlertAction(title: "削除する", style: UIAlertActionStyle.default) { _ in
             self.deletePlace()
@@ -136,29 +159,16 @@ class PlaceViewController: AppViewController {
     }
 
     @IBAction func save(_ sender: AnyObject) {
-        if placeNameTextField.text == "" {
-            let alert: UIAlertController = UIAlertController(
-                title: "名前を設定して下さい",
-                message: "",
-                preferredStyle: UIAlertControllerStyle.alert
-            )
-            alert.addAction(UIAlertAction(
-                    title: "OK",
-                    style: UIAlertActionStyle.cancel
-            ))
-            present(alert, animated: true, completion: nil)
-        } else if mapPoint == nil {
+        if mapPoint == nil {
             let alert: UIAlertController = UIAlertController(title: "場所の指定がされていません", message: "近くに来たときに通知するには、地図を長押しして地点を指定して下さい", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "場所を指定せずに保存", style: UIAlertActionStyle.default) { _ in
-                self.replacePlace()
-                self.navigationController!.popViewController(animated: true)
+                self.showSaveDialog()
             })
             alert.addAction(UIAlertAction(title: "場所を指定する", style: UIAlertActionStyle.cancel))
 
             present(alert, animated: true, completion: nil)
         } else {
-            replacePlace()
-            navigationController!.popViewController(animated: true)
+            showSaveDialog()
         }
     }
     @IBAction func cancel(_ sender: AnyObject) {
@@ -281,8 +291,7 @@ extension PlaceViewController: CoachMarksControllerDataSource, CoachMarksControl
     var coachMarkConfigs: [(view: UIView, text: String)] {
         return [
             (view: mapViewCoachMarkGuide, text: "①地図上でタスクを登録したい場所を長押しし、ピンを立てます"),
-            (view: radiusStepper, text: "②タスクをリマインドしたい範囲をこのボタンで調整します。"),
-            (view: placeNameTextField, text: "③この地点の名前を入力し、保存します")
+            (view: radiusStepper, text: "②タスクをリマインドしたい範囲をこのボタンで調整し、「Save」ボタンを押します")
         ]
     }
 }
