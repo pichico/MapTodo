@@ -4,3 +4,5 @@ disabled_rules:
 excluded:
   - Pods
   - MapTodo/R.generated.swift
+line_length:
+  warning: 180
