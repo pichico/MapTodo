@@ -23,7 +23,7 @@ class PlaceViewController: AppViewController {
     var gmView: GMSMapView!
     let lm: LocationManager = LocationManager.sharedLocationManager
     let lmmap: CLLocationManager = CLLocationManager()
-    var mapPoint: CLLocationCoordinate2D? = nil
+    var mapPoint: CLLocationCoordinate2D?
     var place: Place!
     var isNew: Bool!
     let realm: Realm = try! Realm()
@@ -213,16 +213,19 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
 extension PlaceViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
         if place.CLLocationCoordinate2D == nil && lm.monitoredRegionsCount() >= 20 {
-            let alert: UIAlertController = UIAlertController(title: "登録できる地点は20個までです。", message: "どれかを消して下さい。", preferredStyle:  UIAlertControllerStyle.alert)
-            let cancelAction: UIAlertAction = UIAlertAction(title: "一覧に戻る", style: UIAlertActionStyle.default, handler:{
-                (action: UIAlertAction!) -> Void in
-                self.navigationController!.popViewController(animated: true)
-            })
+            let alert: UIAlertController = UIAlertController(
+                title: "登録できる地点は20個までです。",
+                message: "どれかを消して下さい。",
+                preferredStyle: UIAlertControllerStyle.alert)
+            let cancelAction: UIAlertAction = UIAlertAction(
+                title: "一覧に戻る",
+                style: UIAlertActionStyle.default) { _ in
+                    self.navigationController!.popViewController(animated: true)
+                }
             alert.addAction(cancelAction)
-            let mapResetAction: UIAlertAction = UIAlertAction(title: "地点を保存しない", style: UIAlertActionStyle.cancel, handler:{
-                (action: UIAlertAction!) -> Void in
-            })
+            let mapResetAction: UIAlertAction = UIAlertAction(title: "地点を保存しない", style: UIAlertActionStyle.cancel)
             alert.addAction(mapResetAction)
+
             present(alert, animated: true, completion: nil)
         } else {
             mapPoint = coordinate
