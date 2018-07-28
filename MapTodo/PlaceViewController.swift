@@ -37,7 +37,7 @@ class PlaceViewController: AppViewController {
         if place == nil {
             if Place.getAll(realm: realm).count == 0 {
                 coachMarksController.dataSource = self
-                coachMarksController.overlay.color = UIColor.init(white: 0.5, alpha: 0.5)
+                coachMarksController.overlay.color = UIColor(white: 0.5, alpha: 0.5)
                 coachMarksController.start(on: self)
             }
             place = Place()
@@ -118,7 +118,6 @@ class PlaceViewController: AppViewController {
         circle.strokeColor = UIColor(red: 160 / 255.0, green: 162 / 255.0, blue: 163 / 255.0, alpha: 1)
         circle.map = gmView
     }
-
 
     @IBAction func deletePlaceButtonClicked(_ sender: Any) {
         let alert: UIAlertController = UIAlertController(title: "この場所を削除しますか？", message: "登録されているToDoも削除されます。", preferredStyle:  UIAlertControllerStyle.alert)
