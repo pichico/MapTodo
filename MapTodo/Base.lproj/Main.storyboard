@@ -132,15 +132,6 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="この場所の名前" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kG5-5r-bS7">
-                                            <rect key="frame" x="20" y="20" width="211" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="750" constant="200" id="TEw-Hs-ZE1"/>
-                                            </constraints>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minimumValue="100" maximumValue="100000" stepValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="vtr-nT-BmB">
                                             <rect key="frame" x="241" y="20" width="94" height="29"/>
                                             <connections>
@@ -150,15 +141,12 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="kG5-5r-bS7" firstAttribute="top" secondItem="0Gz-k0-AHA" secondAttribute="top" constant="20" id="52V-21-j6O"/>
                                         <constraint firstItem="O2m-Jw-VqT" firstAttribute="leading" secondItem="GT6-t3-fOE" secondAttribute="leading" constant="30" id="ALZ-3c-sqk"/>
-                                        <constraint firstItem="vtr-nT-BmB" firstAttribute="leading" secondItem="kG5-5r-bS7" secondAttribute="trailing" constant="10" id="CRP-Zq-RuG"/>
                                         <constraint firstItem="vtr-nT-BmB" firstAttribute="top" secondItem="0Gz-k0-AHA" secondAttribute="top" constant="20" id="EUm-65-M2F"/>
                                         <constraint firstItem="O2m-Jw-VqT" firstAttribute="trailing" secondItem="GT6-t3-fOE" secondAttribute="trailing" constant="-30" id="Ewe-HB-HJC"/>
                                         <constraint firstAttribute="trailing" secondItem="vtr-nT-BmB" secondAttribute="trailing" constant="20" id="Khu-r6-6ev"/>
                                         <constraint firstItem="GT6-t3-fOE" firstAttribute="trailing" secondItem="vtr-nT-BmB" secondAttribute="trailing" constant="20" id="Q61-S6-XVn"/>
                                         <constraint firstAttribute="trailing" secondItem="vtr-nT-BmB" secondAttribute="trailing" constant="20" id="Sok-2p-yUM"/>
-                                        <constraint firstItem="kG5-5r-bS7" firstAttribute="leading" secondItem="0Gz-k0-AHA" secondAttribute="leading" constant="20" id="Teq-Z1-Gdh"/>
                                         <constraint firstItem="O2m-Jw-VqT" firstAttribute="centerY" secondItem="GT6-t3-fOE" secondAttribute="centerY" id="byd-56-FK3"/>
                                         <constraint firstAttribute="trailing" secondItem="GT6-t3-fOE" secondAttribute="trailing" id="dB7-BB-M1f"/>
                                         <constraint firstItem="GT6-t3-fOE" firstAttribute="leading" secondItem="0Gz-k0-AHA" secondAttribute="leading" id="dGp-rb-6bN"/>
@@ -252,7 +240,6 @@
                         <outlet property="mapView" destination="GT6-t3-fOE" id="fld-rd-pq9"/>
                         <outlet property="mapViewCoachMarkGuide" destination="O2m-Jw-VqT" id="UA0-fV-08T"/>
                         <outlet property="mapViewFrame" destination="0Gz-k0-AHA" id="LxN-LC-txx"/>
-                        <outlet property="placeNameTextField" destination="kG5-5r-bS7" id="YdH-DV-lX0"/>
                         <outlet property="radiusStepper" destination="vtr-nT-BmB" id="HET-ws-Rts"/>
                         <outlet property="todoListTableView" destination="BAD-vf-XOZ" id="bNU-kl-wRY"/>
                     </connections>
