@@ -117,39 +117,38 @@ class PlaceViewController: AppViewController {
     }
 
     func showSaveDialog() {
-        let alert: UIAlertController = UIAlertController(
+        let alert = UIAlertController(
             title: "場所を保存します",
             message: "この場所の呼び名を入力してください",
             preferredStyle: UIAlertControllerStyle.alert
         )
-        alert.addAction(UIAlertAction(title: "登録", style: UIAlertActionStyle.default) { _ in
-            // 入力したテキストをコンソールに表示
-            if let name = (alert.textFields![0] as UITextField).text, name != "" {
+        alert.addAction(UIAlertAction(title: "登録", style: .default) { _ in
+            if let name = alert.textFields![0].text, name != "" {
                 self.replacePlace(name: name)
                 self.navigationController!.popViewController(animated: true)
             } else {
                 self.showSaveDialog()
             }
         })
-        alert.addTextField(configurationHandler: { (text: UITextField!) in
+        alert.addTextField { (text: UITextField) in
             text.text = self.place.name
-        })
-        alert.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel))
-        present(alert, animated: true, completion: nil)
+        }
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel))
+        present(alert, animated: true)
     }
 
     @IBAction func deletePlaceButtonClicked(_ sender: Any) {
-        let alert: UIAlertController = UIAlertController(
+        let alert = UIAlertController(
             title: "この場所を削除しますか？",
             message: "登録されているToDoも削除されます。",
             preferredStyle: UIAlertControllerStyle.alert
         )
-        alert.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel))
-        alert.addAction(UIAlertAction(title: "削除する", style: UIAlertActionStyle.default) { _ in
+        alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel))
+        alert.addAction(UIAlertAction(title: "削除する", style: .default) { _ in
             self.deletePlace()
             self.navigationController!.popViewController(animated: true)
         })
-        present(alert, animated: true, completion: nil)
+        present(alert, animated: true)
     }
 
     @IBAction func radiusStepperTapped(_ sender: UIStepper) {
@@ -160,13 +159,13 @@ class PlaceViewController: AppViewController {
 
     @IBAction func save(_ sender: AnyObject) {
         if mapPoint == nil {
-            let alert: UIAlertController = UIAlertController(title: "場所の指定がされていません", message: "近くに来たときに通知するには、地図を長押しして地点を指定して下さい", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "場所を指定せずに保存", style: UIAlertActionStyle.default) { _ in
+            let alert = UIAlertController(title: "場所の指定がされていません", message: "近くに来たときに通知するには、地図を長押しして地点を指定して下さい", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "場所を指定せずに保存", style: .default) { _ in
                 self.showSaveDialog()
             })
-            alert.addAction(UIAlertAction(title: "場所を指定する", style: UIAlertActionStyle.cancel))
+            alert.addAction(UIAlertAction(title: "場所を指定する", style: .cancel))
 
-            present(alert, animated: true, completion: nil)
+            present(alert, animated: true)
         } else {
             showSaveDialog()
         }
@@ -183,7 +182,7 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: TextFieldTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as? TextFieldTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as! TextFieldTableViewCell
         cell.delegate = self
         cell.indexPath = indexPath
         cell.isTop = indexPath.row == 0
@@ -213,20 +212,20 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
 extension PlaceViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
         if place.CLLocationCoordinate2D == nil && lm.monitoredRegionsCount() >= 20 {
-            let alert: UIAlertController = UIAlertController(
+            let alert = UIAlertController(
                 title: "登録できる地点は20個までです。",
                 message: "どれかを消して下さい。",
                 preferredStyle: UIAlertControllerStyle.alert)
-            let cancelAction: UIAlertAction = UIAlertAction(
+            let cancelAction = UIAlertAction(
                 title: "一覧に戻る",
-                style: UIAlertActionStyle.default) { _ in
+                style: .default) { _ in
                     self.navigationController!.popViewController(animated: true)
                 }
             alert.addAction(cancelAction)
-            let mapResetAction: UIAlertAction = UIAlertAction(title: "地点を保存しない", style: UIAlertActionStyle.cancel)
+            let mapResetAction = UIAlertAction(title: "地点を保存しない", style: .cancel)
             alert.addAction(mapResetAction)
 
-            present(alert, animated: true, completion: nil)
+            present(alert, animated: true)
         } else {
             mapPoint = coordinate
             showMonitoringRegion(coordinate, radius: radiusStepper.value)
