@@ -58,14 +58,8 @@ class PlaceViewController: AppViewController {
         lmmap.delegate = self
 
         updateValues()
-        if let tableHeaderView = todoListTableView.tableHeaderView {
-            todoListTableView.tableHeaderView = tableHeaderView.with {view in
-                view.frame = todoListTableView.frame.with { frame in
-                    frame.size.width = frame.size.width
-                    frame.size.height = 450 // 高さを取っておかないと地図の下のTODOとかが隠れてしまう
-                }
-            }
-        }
+
+        todoListTableView.tableHeaderView?.height = 450
     }
 
     func updateValues() {
@@ -113,10 +107,10 @@ class PlaceViewController: AppViewController {
         gmView.clear()
 
         //ピンをMapViewの上に置く
-        GMSMarker(position: center).then { $0.map = gmView }
+        GMSMarker(position: center).do { $0.map = gmView }
 
         //ジオフェンスの範囲表示用
-        GMSCircle(position: center, radius: radius).then { circle in
+        GMSCircle(position: center, radius: radius).do { circle in
             circle.strokeColor = UIColor(red: 160 / 255.0, green: 162 / 255.0, blue: 163 / 255.0, alpha: 1)
             circle.map = gmView
         }
