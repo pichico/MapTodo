@@ -39,6 +39,7 @@ PODS:
   - RealmSwift (3.1.1):
     - Realm (= 3.1.1)
   - SwiftLint (0.25.0)
+  - Then (2.3.0)
 
 DEPENDENCIES:
   - Crashlytics (~> 3.9.3)
@@ -50,6 +51,7 @@ DEPENDENCIES:
   - R.swift
   - RealmSwift
   - SwiftLint
+  - Then
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -69,6 +71,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - SwiftLint
+    - Then
 
 SPEC CHECKSUMS:
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
@@ -87,7 +90,8 @@ SPEC CHECKSUMS:
   Realm: 42d1c38a5b1bbcc828b48a7ce702cb86fc68adf4
   RealmSwift: d31937ca6a6ee54acde64ec839523c0a3c04924b
   SwiftLint: e14651157288e9e01d6e1a71db7014fb5744a8ea
+  Then: ee21c97b85ff6062b9b0080c9abb1eea46743345
 
-PODFILE CHECKSUM: 346a4af1c057622f4006d9ece5132e5457e99e5d
+PODFILE CHECKSUM: 6b311298c87b732fca6dfbfdf5c0b7488af087fc
 
 COCOAPODS: 1.5.3
