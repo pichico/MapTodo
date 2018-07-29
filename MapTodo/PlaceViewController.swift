@@ -126,8 +126,7 @@ class PlaceViewController: AppViewController {
 
     func showSaveDialog() {
         present(
-            UI
-          Controller(
+            UIAlertController(
                 title: "場所を保存します",
                 message: "この場所の呼び名を入力してください",
                 preferredStyle: .alert
