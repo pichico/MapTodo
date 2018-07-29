@@ -7,6 +7,7 @@
 //
 
 import GoogleMaps
+import Instructions
 import RealmSwift
 import UIKit
 
@@ -15,6 +16,7 @@ class PlaceViewController: AppViewController {
     @IBOutlet weak var radiusStepper: UIStepper!
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var mapViewFrame: UIView!
+    @IBOutlet weak var mapViewCoachMarkGuide: UIView!
     @IBOutlet weak var todoListTableView: UITableView!
     @IBOutlet weak var footerView: UIView!
 
@@ -28,9 +30,16 @@ class PlaceViewController: AppViewController {
     let realm: Realm = try! Realm()
     var todoEntiries: Results<Todo>!
 
+    let coachMarksController = CoachMarksController()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if place == nil {
+            if Place.getAll(realm: realm).count == 0 {
+                coachMarksController.dataSource = self
+                coachMarksController.overlay.color = UIColor(white: 0.5, alpha: 0.5)
+                coachMarksController.start(on: self)
+            }
             place = Place()
             isNew = true
         } else {
@@ -245,5 +254,35 @@ extension PlaceViewController: TextFieldTableViewCellDelegate {
                 }
             }
         }
+    }
+}
+
+extension PlaceViewController: CoachMarksControllerDataSource, CoachMarksControllerDelegate {
+    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
+        return coachMarkConfigs.count
+    }
+
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
+        return coachMarksController.helper.makeCoachMark(for: coachMarkConfigs[index].view)
+    }
+
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark)
+        -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
+            let config = coachMarkConfigs[index]
+            let coachViews = coachMarksController.helper.makeDefaultCoachViews(
+                withArrow: true,
+                arrowOrientation: coachMark.arrowOrientation
+            )
+            coachViews.bodyView.hintLabel.text = config.text
+            coachViews.bodyView.nextLabel.text = "OK"
+            return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
+    }
+
+    var coachMarkConfigs: [(view: UIView, text: String)] {
+        return [
+            (view: mapViewCoachMarkGuide, text: "①地図上でタスクを登録したい場所を長押しし、ピンを立てます"),
+            (view: radiusStepper, text: "②タスクをリマインドしたい範囲をこのボタンで調整します。"),
+            (view: placeNameTextField, text: "③この地点の名前を入力し、保存します")
+        ]
     }
 }

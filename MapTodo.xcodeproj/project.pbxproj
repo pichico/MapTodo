@@ -296,8 +296,6 @@
 				7D4073011DA92DBD005BBBCD /* Sources */,
 				7D4073021DA92DBD005BBBCD /* Frameworks */,
 				7D4073031DA92DBD005BBBCD /* Resources */,
-				91D6193DC620E8D9722327FC /* [CP] Embed Pods Frameworks */,
-				B0AC1A2CA7E763C05E32D586 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -317,8 +315,6 @@
 				7D40730C1DA92DBD005BBBCD /* Sources */,
 				7D40730D1DA92DBD005BBBCD /* Frameworks */,
 				7D40730E1DA92DBD005BBBCD /* Resources */,
-				8F118DFDAF3B3E23707B62E9 /* [CP] Embed Pods Frameworks */,
-				15B940B55EEA8715B0613765 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -418,21 +414,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		15B940B55EEA8715B0613765 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapTodoUITests/Pods-MapTodoUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		34CC5FBA739C40BA7EDBA934 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -472,6 +453,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MapTodo/Pods-MapTodo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Instructions/Instructions.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -480,6 +462,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Instructions.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -562,36 +545,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/MapTodo\"";
 		};
-		8F118DFDAF3B3E23707B62E9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapTodoUITests/Pods-MapTodoUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		91D6193DC620E8D9722327FC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapTodoTests/Pods-MapTodoTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9ED0E425705A9D9597326083 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -608,21 +561,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B0AC1A2CA7E763C05E32D586 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapTodoTests/Pods-MapTodoTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B44D21404529C4F69BEEFCC3 /* [CP] Check Pods Manifest.lock */ = {
