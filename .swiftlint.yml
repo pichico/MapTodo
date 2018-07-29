@@ -1,6 +1,12 @@
 disabled_rules:
   - force_cast
   - force_try
+opt_in_rules:
+  - explicit_init
+  - closure_spacing
+  - operator_usage_whitespace
 excluded:
   - Pods
   - MapTodo/R.generated.swift
+line_length:
+  warning: 180

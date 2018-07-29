@@ -8,6 +8,7 @@
 
 import CoreData
 import CoreLocation
+import Instructions
 import RealmSwift
 import UIKit
 
@@ -15,6 +16,9 @@ class TodoListViewController: AppViewController {
 
     @IBOutlet weak var todoListTableView: UITableView!
     @IBOutlet weak var todoListItemCell: UITableViewCell!
+    @IBOutlet weak var addPlaceButton: UIBarButtonItem!
+
+    let coachMarksController = CoachMarksController()
     var todoEntries: Results<Todo>!
     var placeEntries: Results<Place>!
     let realm: Realm = try! Realm()
@@ -23,12 +27,20 @@ class TodoListViewController: AppViewController {
         super.viewDidLoad()
         todoEntries = Todo.getAll(realm: realm)
         placeEntries = Place.getAll(realm: realm)
+        if placeEntries.count == 0 || todoEntries.count == 0 {
+            coachMarksController.dataSource = self
+            coachMarksController.overlay.color = UIColor.init(white: 0.5, alpha: 0.5)
+            coachMarksController.start(on: self)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         todoEntries = Todo.getAll(realm: realm)
         todoListTableView.reloadData()
+        if todoEntries.count == 0 {
+            coachMarksController.start(on: self)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,6 +66,30 @@ class TodoListViewController: AppViewController {
         let controller = R.storyboard.main.placeView()!
         controller.place = place(section: sender.tag)
         navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+extension TodoListViewController: CoachMarksControllerDataSource, CoachMarksControllerDelegate {
+    func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
+        return 1
+    }
+
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
+        let coarchMarkFor: UIView! = placeEntries.count == 0 ? addPlaceButton.value(forKey: "view") as! UIView
+                                                             : todoListTableView.cellForRow(at: IndexPath(row: 0, section: 0))
+        var coachmark: CoachMark = coachMarksController.helper.makeCoachMark(for: coarchMarkFor)
+        coachmark.horizontalMargin = 2 // これをしておかないと矢印が四角からはみ出る...
+        return coachmark
+    }
+
+    func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark)
+        -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
+        let coachViews = coachMarksController.helper.makeDefaultCoachViews(withArrow: true, arrowOrientation: coachMark.arrowOrientation)
+        let hintText: String = placeEntries.count == 0 ? "まずはここからタスクのある場所を登録します" : "ここからどんどんタスクを追加しましょう"
+        coachViews.bodyView.hintLabel.text = hintText
+        coachViews.bodyView.nextLabel.text = "OK"
+
+        return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
     }
 }
 
