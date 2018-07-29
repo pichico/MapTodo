@@ -126,10 +126,11 @@ class PlaceViewController: AppViewController {
 
     func showSaveDialog() {
         present(
-            UIAlertController(
+            UI
+          Controller(
                 title: "場所を保存します",
                 message: "この場所の呼び名を入力してください",
-                preferredStyle: UIAlertControllerStyle.alert
+                preferredStyle: .alert
             ).then { alert in
                 alert.addTextField { textField in
                     textField.text = self.place.name
@@ -151,7 +152,7 @@ class PlaceViewController: AppViewController {
         present( UIAlertController(
                 title: "この場所を削除しますか？",
                 message: "登録されているToDoも削除されます。",
-                preferredStyle: UIAlertControllerStyle.alert
+                preferredStyle: .alert
             ).then {alert in
                 alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel))
                 alert.addAction(UIAlertAction(title: "削除する", style: .default) { _ in
@@ -173,7 +174,7 @@ class PlaceViewController: AppViewController {
                 UIAlertController(
                     title: "場所の指定がされていません",
                     message: "近くに来たときに通知するには、地図を長押しして地点を指定して下さい",
-                    preferredStyle: UIAlertControllerStyle.alert
+                    preferredStyle: .alert
                 ).then { alert in
                         alert.addAction(UIAlertAction(title: "場所を指定せずに保存", style: .default) { _ in
                             self.showSaveDialog()
@@ -229,7 +230,7 @@ extension PlaceViewController: GMSMapViewDelegate {
             present(UIAlertController(
                 title: "登録できる地点は20個までです。",
                 message: "どれかを消して下さい。",
-                preferredStyle: UIAlertControllerStyle.alert
+                preferredStyle: .alert
             ).then { alert in
                 alert.addAction(UIAlertAction(
                     title: "一覧に戻る",
