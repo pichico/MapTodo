@@ -113,9 +113,7 @@ class PlaceViewController: AppViewController {
         gmView.clear()
 
         //ピンをMapViewの上に置く
-        GMSMarker(position: center).then { marker in
-            marker.map = gmView
-        }
+        GMSMarker(position: center).then { $0.map = gmView }
 
         //ジオフェンスの範囲表示用
         GMSCircle(position: center, radius: radius).then { circle in
@@ -131,34 +129,38 @@ class PlaceViewController: AppViewController {
                 message: "この場所の呼び名を入力してください",
                 preferredStyle: .alert
             ).then { alert in
-                alert.addTextField { textField in
-                    textField.text = self.place.name
-                }
-                alert.addAction(UIAlertAction(title: "登録", style: .default) { _ in
-                    if let name = alert.textFields![0].text, name != "" {
-                        self.replacePlace(name: name)
-                        self.navigationController!.popViewController(animated: true)
-                    } else {
-                        self.showSaveDialog()
+                alert.addTextField { $0.text = self.place.name }
+                alert.addAction(
+                    UIAlertAction(title: "登録", style: .default) { _ in
+                        if let name = alert.textFields![0].text, name != "" {
+                            self.replacePlace(name: name)
+                            self.navigationController!.popViewController(animated: true)
+                        } else {
+                            self.showSaveDialog()
+                        }
                     }
-                })
+                )
                 alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel))
-            }, animated: true
+            },
+            animated: true
         )
     }
 
     @IBAction func deletePlaceButtonClicked(_ sender: Any) {
-        present( UIAlertController(
+        present(
+            UIAlertController(
                 title: "この場所を削除しますか？",
                 message: "登録されているToDoも削除されます。",
                 preferredStyle: .alert
-            ).then {alert in
+            ).then { alert in
                 alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel))
                 alert.addAction(UIAlertAction(title: "削除する", style: .default) { _ in
                     self.deletePlace()
                     self.navigationController!.popViewController(animated: true)
                 })
-            }, animated: true)
+            },
+            animated: true
+        )
     }
 
     @IBAction func radiusStepperTapped(_ sender: UIStepper) {
@@ -179,7 +181,9 @@ class PlaceViewController: AppViewController {
                             self.showSaveDialog()
                         })
                         alert.addAction(UIAlertAction(title: "場所を指定する", style: .cancel))
-                }, animated: true)
+                },
+                animated: true
+            )
         } else {
             showSaveDialog()
         }
@@ -226,18 +230,21 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
 extension PlaceViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
         if place.CLLocationCoordinate2D == nil && lm.monitoredRegionsCount() >= 20 {
-            present(UIAlertController(
-                title: "登録できる地点は20個までです。",
-                message: "どれかを消して下さい。",
-                preferredStyle: .alert
-            ).then { alert in
-                alert.addAction(UIAlertAction(
-                    title: "一覧に戻る",
-                    style: .default) { _ in
-                        self.navigationController!.popViewController(animated: true)
-                })
-                alert.addAction(UIAlertAction(title: "地点を保存しない", style: .cancel))
-            }, animated: true)
+            present(
+                UIAlertController(
+                    title: "登録できる地点は20個までです。",
+                    message: "どれかを消して下さい。",
+                    preferredStyle: .alert
+                ).then { alert in
+                    alert.addAction(UIAlertAction(
+                        title: "一覧に戻る",
+                        style: .default) { _ in
+                            self.navigationController!.popViewController(animated: true)
+                    })
+                    alert.addAction(UIAlertAction(title: "地点を保存しない", style: .cancel))
+                },
+                animated: true
+            )
         } else {
             mapPoint = coordinate
             showMonitoringRegion(coordinate, radius: radiusStepper.value)
