@@ -9,10 +9,10 @@
 import GoogleMaps
 import Instructions
 import RealmSwift
+import Then
 import UIKit
 
 class PlaceViewController: AppViewController {
-    @IBOutlet weak var placeNameTextField: UITextField!
     @IBOutlet weak var radiusStepper: UIStepper!
     @IBOutlet weak var mapView: UIView!
     @IBOutlet weak var mapViewFrame: UIView!
@@ -24,7 +24,7 @@ class PlaceViewController: AppViewController {
     var gmView: GMSMapView!
     let lm: LocationManager = LocationManager.sharedLocationManager
     let lmmap: CLLocationManager = CLLocationManager()
-    var mapPoint: CLLocationCoordinate2D? = nil
+    var mapPoint: CLLocationCoordinate2D?
     var place: Place!
     var isNew: Bool!
     let realm: Realm = try! Realm()
@@ -47,35 +47,32 @@ class PlaceViewController: AppViewController {
         }
 
         // map
-        let camera = GMSCameraPosition.camera(withLatitude: 0, longitude: 0, zoom: defaultZoom)
-        gmView = GMSMapView.map(withFrame: mapView.bounds, camera: camera)
+        gmView = GMSMapView.map(withFrame: mapView.bounds, camera: GMSCameraPosition.camera(withLatitude: 0, longitude: 0, zoom: defaultZoom))
         gmView.isMyLocationEnabled = true
         gmView.settings.zoomGestures = true
         gmView.settings.scrollGestures = true
         gmView.delegate = self
+
         mapView.addSubview(gmView)
 
         lmmap.delegate = self
 
-        placeNameTextField.returnKeyType = .done
         updateValues()
-        if let tableHeaderView = todoListTableView.tableHeaderView {
-            var frame = todoListTableView.frame
-            frame.size.height = 450
-            tableHeaderView.frame = frame
-            todoListTableView.tableHeaderView = tableHeaderView
-        }
+
+        todoListTableView.tableHeaderView?.height = 450
     }
 
     func updateValues() {
         footerView.isHidden = isNew
         if let place = place {
-            placeNameTextField.text = place.name
             navigationItem.title = place.name
-            if let CLLocationCoordinate2D = place.CLLocationCoordinate2D { // 地図をあわせる
-                mapPoint = CLLocationCoordinate2D
-                let camera = GMSCameraPosition.camera(withTarget: CLLocationCoordinate2D, zoom: defaultZoom)
-                gmView.moveCamera(GMSCameraUpdate.setCamera(camera))
+            if let locCoordinate = place.CLLocationCoordinate2D { // 地図をあわせる
+                mapPoint = locCoordinate
+                gmView.moveCamera(
+                    GMSCameraUpdate.setCamera(
+                        GMSCameraPosition.camera(withTarget: locCoordinate, zoom: defaultZoom)
+                    )
+                )
                 radiusStepper.value = place.radius.value!
                 showMonitoringRegion(mapPoint, radius: radiusStepper.value)
             } else {
@@ -88,10 +85,10 @@ class PlaceViewController: AppViewController {
         }
     }
 
-    func replacePlace() {
+    func replacePlace(name: String) {
         try! realm.write {
             place.stopMonitoring()
-            place.replace(realm: realm, name: placeNameTextField.text!, radius: radiusStepper.value, point: mapPoint)
+            place.replace(realm: realm, name: name, radius: radiusStepper.value, point: mapPoint)
             place.startMonitoring()
         }
         UIApplication.shared.cancelAllLocalNotifications()
@@ -110,23 +107,54 @@ class PlaceViewController: AppViewController {
         gmView.clear()
 
         //ピンをMapViewの上に置く
-        let marker = GMSMarker(position: center)
-        marker.map = gmView
+        GMSMarker(position: center).do { $0.map = gmView }
 
         //ジオフェンスの範囲表示用
-        let circle = GMSCircle(position: center, radius: radius)
-        circle.strokeColor = UIColor(red: 160 / 255.0, green: 162 / 255.0, blue: 163 / 255.0, alpha: 1)
-        circle.map = gmView
+        GMSCircle(position: center, radius: radius).do { circle in
+            circle.strokeColor = UIColor(red: 160 / 255.0, green: 162 / 255.0, blue: 163 / 255.0, alpha: 1)
+            circle.map = gmView
+        }
+    }
+
+    func showSaveDialog() {
+        present(
+            UIAlertController(
+                title: "場所を保存します",
+                message: "この場所の呼び名を入力してください",
+                preferredStyle: .alert
+            ).then { alert in
+                alert.addTextField { $0.text = self.place.name }
+                alert.addAction(
+                    UIAlertAction(title: "登録", style: .default) { _ in
+                        if let name = alert.textFields![0].text, name != "" {
+                            self.replacePlace(name: name)
+                            self.navigationController!.popViewController(animated: true)
+                        } else {
+                            self.showSaveDialog()
+                        }
+                    }
+                )
+                alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel))
+            },
+            animated: true
+        )
     }
 
     @IBAction func deletePlaceButtonClicked(_ sender: Any) {
-        let alert: UIAlertController = UIAlertController(title: "この場所を削除しますか？", message: "登録されているToDoも削除されます。", preferredStyle:  UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "キャンセル", style: UIAlertActionStyle.cancel))
-        alert.addAction(UIAlertAction(title: "削除する", style: UIAlertActionStyle.default) { _ in
-            self.deletePlace()
-            self.navigationController!.popViewController(animated: true)
-        })
-        present(alert, animated: true, completion: nil)
+        present(
+            UIAlertController(
+                title: "この場所を削除しますか？",
+                message: "登録されているToDoも削除されます。",
+                preferredStyle: .alert
+            ).then { alert in
+                alert.addAction(UIAlertAction(title: "キャンセル", style: .cancel))
+                alert.addAction(UIAlertAction(title: "削除する", style: .default) { _ in
+                    self.deletePlace()
+                    self.navigationController!.popViewController(animated: true)
+                })
+            },
+            animated: true
+        )
     }
 
     @IBAction func radiusStepperTapped(_ sender: UIStepper) {
@@ -136,29 +164,22 @@ class PlaceViewController: AppViewController {
     }
 
     @IBAction func save(_ sender: AnyObject) {
-        if placeNameTextField.text == "" {
-            let alert: UIAlertController = UIAlertController(
-                title: "名前を設定して下さい",
-                message: "",
-                preferredStyle: UIAlertControllerStyle.alert
+        if mapPoint == nil {
+            present(
+                UIAlertController(
+                    title: "場所の指定がされていません",
+                    message: "近くに来たときに通知するには、地図を長押しして地点を指定して下さい",
+                    preferredStyle: .alert
+                ).then { alert in
+                        alert.addAction(UIAlertAction(title: "場所を指定せずに保存", style: .default) { _ in
+                            self.showSaveDialog()
+                        })
+                        alert.addAction(UIAlertAction(title: "場所を指定する", style: .cancel))
+                },
+                animated: true
             )
-            alert.addAction(UIAlertAction(
-                    title: "OK",
-                    style: UIAlertActionStyle.cancel
-            ))
-            present(alert, animated: true, completion: nil)
-        } else if mapPoint == nil {
-            let alert: UIAlertController = UIAlertController(title: "場所の指定がされていません", message: "近くに来たときに通知するには、地図を長押しして地点を指定して下さい", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "場所を指定せずに保存", style: UIAlertActionStyle.default) { _ in
-                self.replacePlace()
-                self.navigationController!.popViewController(animated: true)
-            })
-            alert.addAction(UIAlertAction(title: "場所を指定する", style: UIAlertActionStyle.cancel))
-
-            present(alert, animated: true, completion: nil)
         } else {
-            replacePlace()
-            navigationController!.popViewController(animated: true)
+            showSaveDialog()
         }
     }
     @IBAction func cancel(_ sender: AnyObject) {
@@ -173,18 +194,18 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: TextFieldTableViewCell! = tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as? TextFieldTableViewCell
-        cell.delegate = self
-        cell.indexPath = indexPath
-        cell.isTop = indexPath.row == 0
-        if todoEntiries.count > indexPath.row {
-            cell.textField.text = todoEntiries[indexPath.row].item
-            cell.isBottom = false
-        } else {
-            cell.textField.text = ""
-            cell.isBottom = true
+        return (tableView.dequeueReusableCell(withIdentifier: "TodoListItem") as! TextFieldTableViewCell).with {cell in
+            cell.delegate = self
+            cell.indexPath = indexPath
+            cell.isTop = indexPath.row == 0
+            if todoEntiries.count > indexPath.row {
+                cell.textField.text = todoEntiries[indexPath.row].item
+                cell.isBottom = false
+            } else {
+                cell.textField.text = ""
+                cell.isBottom = true
+            }
         }
-        return cell
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -203,17 +224,21 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
 extension PlaceViewController: GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didLongPressAt coordinate: CLLocationCoordinate2D) {
         if place.CLLocationCoordinate2D == nil && lm.monitoredRegionsCount() >= 20 {
-            let alert: UIAlertController = UIAlertController(title: "登録できる地点は20個までです。", message: "どれかを消して下さい。", preferredStyle:  UIAlertControllerStyle.alert)
-            let cancelAction: UIAlertAction = UIAlertAction(title: "一覧に戻る", style: UIAlertActionStyle.default, handler:{
-                (action: UIAlertAction!) -> Void in
-                self.navigationController!.popViewController(animated: true)
-            })
-            alert.addAction(cancelAction)
-            let mapResetAction: UIAlertAction = UIAlertAction(title: "地点を保存しない", style: UIAlertActionStyle.cancel, handler:{
-                (action: UIAlertAction!) -> Void in
-            })
-            alert.addAction(mapResetAction)
-            present(alert, animated: true, completion: nil)
+            present(
+                UIAlertController(
+                    title: "登録できる地点は20個までです。",
+                    message: "どれかを消して下さい。",
+                    preferredStyle: .alert
+                ).then { alert in
+                    alert.addAction(UIAlertAction(
+                        title: "一覧に戻る",
+                        style: .default) { _ in
+                            self.navigationController!.popViewController(animated: true)
+                    })
+                    alert.addAction(UIAlertAction(title: "地点を保存しない", style: .cancel))
+                },
+                animated: true
+            )
         } else {
             mapPoint = coordinate
             showMonitoringRegion(coordinate, radius: radiusStepper.value)
@@ -223,8 +248,11 @@ extension PlaceViewController: GMSMapViewDelegate {
 
 extension PlaceViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let camera = GMSCameraPosition.camera(withTarget: locations[0].coordinate, zoom: defaultZoom)
-        gmView.moveCamera(GMSCameraUpdate.setCamera(camera))
+        gmView.moveCamera(
+            GMSCameraUpdate.setCamera(
+                GMSCameraPosition.camera(withTarget: locations[0].coordinate, zoom: defaultZoom)
+            )
+        )
     }
 }
 
@@ -268,12 +296,11 @@ extension PlaceViewController: CoachMarksControllerDataSource, CoachMarksControl
 
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark)
         -> (bodyView: CoachMarkBodyView, arrowView: CoachMarkArrowView?) {
-            let config = coachMarkConfigs[index]
             let coachViews = coachMarksController.helper.makeDefaultCoachViews(
                 withArrow: true,
                 arrowOrientation: coachMark.arrowOrientation
             )
-            coachViews.bodyView.hintLabel.text = config.text
+            coachViews.bodyView.hintLabel.text = coachMarkConfigs[index].text
             coachViews.bodyView.nextLabel.text = "OK"
             return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
     }
@@ -281,8 +308,7 @@ extension PlaceViewController: CoachMarksControllerDataSource, CoachMarksControl
     var coachMarkConfigs: [(view: UIView, text: String)] {
         return [
             (view: mapViewCoachMarkGuide, text: "①地図上でタスクを登録したい場所を長押しし、ピンを立てます"),
-            (view: radiusStepper, text: "②タスクをリマインドしたい範囲をこのボタンで調整します。"),
-            (view: placeNameTextField, text: "③この地点の名前を入力し、保存します")
+            (view: radiusStepper, text: "②タスクをリマインドしたい範囲をこのボタンで調整し、「Save」ボタンを押します")
         ]
     }
 }

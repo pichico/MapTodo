@@ -13,6 +13,7 @@ target 'MapTodo' do
 	pod 'RealmSwift'
 	pod 'R.swift'
 	pod 'SwiftLint'
+	pod 'Then'
 end
 
 target 'MapTodoTests' do

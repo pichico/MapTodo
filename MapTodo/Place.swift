@@ -60,7 +60,7 @@ extension Place {
     var CLLocationCoordinate2D: CLLocationCoordinate2D? {
         get {
             if let latitude = latitude.value, let longitude = longitude.value {
-                return CLLocationCoordinate2DMake(latitude , longitude)
+                return CLLocationCoordinate2DMake(latitude, longitude)
             } else {
                 return nil
             }
