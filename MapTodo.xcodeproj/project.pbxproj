@@ -10,6 +10,7 @@
 		065E3C033770B115BCF5696C /* Pods_MapTodoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC27D6FAD2F05AF50CDFA07C /* Pods_MapTodoTests.framework */; };
 		06D9EA0969424EC21C3C4710 /* Pods_MapTodoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9A080260C49D4BE5C7B8777 /* Pods_MapTodoUITests.framework */; };
 		5B4536DA201305690034CCFC /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B4536D9201305690034CCFC /* Settings.bundle */; };
+		5B9A10F3210E025100906E66 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9A10F2210E025100906E66 /* UIViewExtension.swift */; };
 		5BB1C6B41FD2E7A400266C98 /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB1C6B31FD2E7A400266C98 /* UIView+Border.swift */; };
 		5BCF5D0F1FAD878800F17043 /* AppTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BCF5D0E1FAD878800F17043 /* AppTableViewHeaderView.swift */; };
 		5BCF5D141FAD8E2900F17043 /* AppTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BCF5D131FAD8E2900F17043 /* AppTableViewHeaderView.xib */; };
@@ -62,6 +63,7 @@
 		135FDA1CC3C1B9E7ABA59F41 /* Pods_MapTodo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapTodo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D9D9DF8FA87DE319A7D4C1 /* Pods-MapTodoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapTodoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapTodoUITests/Pods-MapTodoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5B4536D9201305690034CCFC /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		5B9A10F2210E025100906E66 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		5BB1C6B31FD2E7A400266C98 /* UIView+Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
 		5BCF5D0E1FAD878800F17043 /* AppTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTableViewHeaderView.swift; sourceTree = "<group>"; };
 		5BCF5D131FAD8E2900F17043 /* AppTableViewHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppTableViewHeaderView.xib; sourceTree = "<group>"; };
@@ -158,6 +160,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5B9A10F1210E022000906E66 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				5B9A10F2210E025100906E66 /* UIViewExtension.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
 		7D1DB89F1E59BAAA006FFEA7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +202,7 @@
 		7D4072F01DA92DBD005BBBCD /* MapTodo */ = {
 			isa = PBXGroup;
 			children = (
+				5B9A10F1210E022000906E66 /* Extension */,
 				7D1DB89F1E59BAAA006FFEA7 /* Model */,
 				7DFD35621E06D05000F02FA0 /* R.generated.swift */,
 				7DED36F71DB399E9002CB35C /* Storyboard */,
@@ -590,6 +601,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B9A10F3210E025100906E66 /* UIViewExtension.swift in Sources */,
 				7D1DB8A71E59D856006FFEA7 /* Place.swift in Sources */,
 				7D4E66C91EED1CE20099F3CA /* AppNavigationItem.swift in Sources */,
 				7D4072F41DA92DBD005BBBCD /* TodoListViewController.swift in Sources */,
