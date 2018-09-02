@@ -288,7 +288,7 @@ extension PlaceViewController: TextFieldTableViewCellDelegate {
         // 下の方のセルに入力しようとするとキーボードでセルが隠れてしまうので、対象のセルが画面の真ん中にくるようにスクロールさせる
         let newContentOffset = todoListTableView.contentOffset.y + cell.frame.maxY - todoListTableView.bounds.minY - UIScreen.main.bounds.size.height * 0.5
         if newContentOffset >= todoListTableView.contentOffset.y {
-            todoListTableView.contentOffset.y = newContentOffset
+            todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
         }
     }
 }
