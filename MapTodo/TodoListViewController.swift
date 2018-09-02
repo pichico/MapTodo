@@ -97,10 +97,9 @@ class TodoListViewController: AppViewController {
 
     func fitScrollPositionToKeybord() {
         if keybordMinY > 0 && editingCellHight > 0 {
-            let newContentOffset = todoListTableView.contentOffset.y + editingCellHight - todoListTableView.bounds.minY - keybordMinY + 50
+            let newContentOffset = editingCellHight - keybordMinY + 50
             if newContentOffset > todoListTableView.contentOffset.y {
                 todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
-                //todoListTableView.contentOffset.y = newContentOffset
             }
             editingCellHight = 0
         }
