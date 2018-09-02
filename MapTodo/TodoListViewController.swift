@@ -19,9 +19,15 @@ class TodoListViewController: AppViewController {
     @IBOutlet weak var addPlaceButton: UIBarButtonItem!
 
     let coachMarksController = CoachMarksController()
+    let realm: Realm = try! Realm()
+    let notificationObservers: [(name: NSNotification.Name, selector: Selector)] = [
+        (name: .UIKeyboardWillShow, selector: #selector(keyboardWillBeShown(notification:))),
+        (name: .UIKeyboardWillHide, selector: #selector(keyboardWillBeHidden(notification:)))
+    ]
     var todoEntries: Results<Todo>!
     var placeEntries: Results<Place>!
-    let realm: Realm = try! Realm()
+    var keybordMinY: CGFloat = 0
+    var editingCellHight: CGFloat = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +35,7 @@ class TodoListViewController: AppViewController {
         placeEntries = Place.getAll(realm: realm)
         if placeEntries.count == 0 || todoEntries.count == 0 {
             coachMarksController.dataSource = self
-            coachMarksController.overlay.color = UIColor.init(white: 0.5, alpha: 0.5)
+            coachMarksController.overlay.color = UIColor(white: 0.5, alpha: 0.5)
             coachMarksController.start(on: self)
         }
     }
@@ -40,6 +46,15 @@ class TodoListViewController: AppViewController {
         todoListTableView.reloadData()
         if todoEntries.count == 0 {
             coachMarksController.start(on: self)
+        }
+        notificationObservers.forEach { obs in
+            NotificationCenter.default.addObserver(self, selector: obs.selector, name: obs.name, object: nil)
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        notificationObservers.forEach { obs in
+            NotificationCenter.default.removeObserver(self, name: obs.name, object: nil)
         }
     }
 
@@ -66,6 +81,29 @@ class TodoListViewController: AppViewController {
         let controller = R.storyboard.main.placeView()!
         controller.place = place(section: sender.tag)
         navigationController?.pushViewController(controller, animated: true)
+    }
+
+    @objc func keyboardWillBeShown(notification: NSNotification) {
+        if keybordMinY == 0 {
+            if let height = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.minY {
+                keybordMinY = height
+                fitScrollPositionToKeybord()
+            }
+        }
+    }
+
+    @objc func keyboardWillBeHidden(notification: NSNotification) {
+    }
+
+    func fitScrollPositionToKeybord() {
+        if keybordMinY > 0 && editingCellHight > 0 {
+            let newContentOffset = todoListTableView.contentOffset.y + editingCellHight - todoListTableView.bounds.minY - keybordMinY + 50
+            if newContentOffset > todoListTableView.contentOffset.y {
+                todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
+                //todoListTableView.contentOffset.y = newContentOffset
+            }
+            editingCellHight = 0
+        }
     }
 }
 
@@ -177,10 +215,7 @@ extension TodoListViewController: TextFieldTableViewCellDelegate {
     }
 
     func textFieldDidBeginEditing(cell: TextFieldTableViewCell) {
-        // 下の方のセルに入力しようとするとキーボードでセルが隠れてしまうので、対象のセルが画面の真ん中にくるようにスクロールさせる
-        let newContentOffset = todoListTableView.contentOffset.y + cell.frame.maxY - todoListTableView.bounds.minY - UIScreen.main.bounds.size.height * 0.5
-        if newContentOffset >= todoListTableView.contentOffset.y {
-            todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
-        }
+        editingCellHight = cell.frame.maxY
+        fitScrollPositionToKeybord()
     }
 }
