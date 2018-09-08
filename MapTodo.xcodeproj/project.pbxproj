@@ -285,10 +285,10 @@
 				7D4072EC1DA92DBC005BBBCD /* Resources */,
 				725A3590C240E861FB6F9ADE /* [CP] Embed Pods Frameworks */,
 				73BDB9D1EB75EB6F7C844605 /* [CP] Copy Pods Resources */,
-				7DCAA9E520149EF4006E109A /* ShellScript */,
-				5B4536DB201342F40034CCFC /* ShellScript */,
-				7DBC85DA205D59C200011811 /* ShellScript */,
-				7D3A840D2066395C004CC0CC /* ShellScript */,
+				7DCAA9E520149EF4006E109A /* Run Script SwiftLint */,
+				5B4536DB201342F40034CCFC /* Run Script for Acknowledgements */,
+				7DBC85DA205D59C200011811 /* Run Script Fabric */,
+				7D3A840D2066395C004CC0CC /* Run Script dSYM */,
 			);
 			buildRules = (
 			);
@@ -477,13 +477,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapTodoTests/Pods-MapTodoTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5B4536DB201342F40034CCFC /* ShellScript */ = {
+		5B4536DB201342F40034CCFC /* Run Script for Acknowledgements */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script for Acknowledgements";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,39 +555,42 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MapTodo/Pods-MapTodo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7D3A840D2066395C004CC0CC /* ShellScript */ = {
+		7D3A840D2066395C004CC0CC /* Run Script dSYM */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script dSYM";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "find ${SRCROOT}/ -name \"*.dSYM\" | xargs -I {} ${PODS_ROOT}/Fabric/upload-symbols -gsp ${SRCROOT}/MapTodo/GoogleService-Info.plist -p ios {}";
 		};
-		7DBC85DA205D59C200011811 /* ShellScript */ = {
+		7DBC85DA205D59C200011811 /* Run Script Fabric */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script Fabric";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\"";
 		};
-		7DCAA9E520149EF4006E109A /* ShellScript */ = {
+		7DCAA9E520149EF4006E109A /* Run Script SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script SwiftLint";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
