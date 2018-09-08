@@ -26,8 +26,8 @@ class TodoListViewController: AppViewController {
     ]
     var todoEntries: Results<Todo>!
     var placeEntries: Results<Place>!
-    var keybordMinY: CGFloat = 0
-    var editingCellHight: CGFloat = 0
+    var keyboardMinY: CGFloat?
+    var editingCellHeight: CGFloat?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,9 +84,9 @@ class TodoListViewController: AppViewController {
     }
 
     @objc func keyboardWillBeShown(notification: NSNotification) {
-        if keybordMinY == 0 {
+        if keyboardMinY == nil {
             if let height = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.minY {
-                keybordMinY = height
+                keyboardMinY = height
                 fitScrollPositionToKeybord()
             }
         }
@@ -96,12 +96,12 @@ class TodoListViewController: AppViewController {
     }
 
     func fitScrollPositionToKeybord() {
-        if keybordMinY > 0 && editingCellHight > 0 {
-            let newContentOffset = editingCellHight - keybordMinY + 50
+        if let keyboardMinY = keyboardMinY, let editingCellHeight = editingCellHeight {
+            let newContentOffset = editingCellHeight - keyboardMinY + 50
             if newContentOffset > todoListTableView.contentOffset.y {
                 todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
             }
-            editingCellHight = 0
+            self.editingCellHeight = nil
         }
     }
 }
@@ -214,7 +214,7 @@ extension TodoListViewController: TextFieldTableViewCellDelegate {
     }
 
     func textFieldDidBeginEditing(cell: TextFieldTableViewCell) {
-        editingCellHight = cell.frame.maxY
+        editingCellHeight = cell.frame.maxY
         fitScrollPositionToKeybord()
     }
 }
