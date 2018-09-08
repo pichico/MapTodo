@@ -20,10 +20,6 @@ class TodoListViewController: AppViewController {
 
     let coachMarksController = CoachMarksController()
     let realm: Realm = try! Realm()
-    let notificationObservers: [(name: NSNotification.Name, selector: Selector)] = [
-        (name: .UIKeyboardWillShow, selector: #selector(keyboardWillBeShown(notification:))),
-        (name: .UIKeyboardWillHide, selector: #selector(keyboardWillBeHidden(notification:)))
-    ]
     var todoEntries: Results<Todo>!
     var placeEntries: Results<Place>!
     var keyboardMinY: CGFloat?
@@ -47,15 +43,12 @@ class TodoListViewController: AppViewController {
         if todoEntries.count == 0 {
             coachMarksController.start(on: self)
         }
-        notificationObservers.forEach { obs in
-            NotificationCenter.default.addObserver(self, selector: obs.selector, name: obs.name, object: nil)
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeShown(notification:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: .UIKeyboardWillShow, object: nil)
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        notificationObservers.forEach { obs in
-            NotificationCenter.default.removeObserver(self, name: obs.name, object: nil)
-        }
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
