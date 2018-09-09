@@ -80,7 +80,7 @@ class TodoListViewController: AppViewController {
         if keyboardMinY == nil {
             if let height = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.minY {
                 keyboardMinY = height
-                fitScrollPositionToKeybord()
+                fitScrollPositionToKeyboard()
             }
         }
     }
@@ -88,7 +88,7 @@ class TodoListViewController: AppViewController {
     @objc func keyboardWillBeHidden(notification: NSNotification) {
     }
 
-    func fitScrollPositionToKeybord() {
+    func fitScrollPositionToKeyboard() {
         if let keyboardMinY = keyboardMinY, let editingCellHeight = editingCellHeight {
             let newContentOffset = editingCellHeight - keyboardMinY + 50
             if newContentOffset > todoListTableView.contentOffset.y {
@@ -208,6 +208,6 @@ extension TodoListViewController: TextFieldTableViewCellDelegate {
 
     func textFieldDidBeginEditing(cell: TextFieldTableViewCell) {
         editingCellHeight = cell.frame.maxY
-        fitScrollPositionToKeybord()
+        fitScrollPositionToKeyboard()
     }
 }
