@@ -34,6 +34,8 @@ class TodoListViewController: AppViewController {
             coachMarksController.overlay.color = UIColor(white: 0.5, alpha: 0.5)
             coachMarksController.start(on: self)
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeShown(notification:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: .UIKeyboardWillHide, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -43,8 +45,6 @@ class TodoListViewController: AppViewController {
         if todoEntries.count == 0 {
             coachMarksController.start(on: self)
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeShown(notification:)), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: .UIKeyboardWillHide, object: nil)
     }
 
     deinit {
@@ -95,6 +95,7 @@ class TodoListViewController: AppViewController {
                 todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
             }
             self.editingCellHeight = nil
+            self.keyboardMinY = nil
         }
     }
 }
