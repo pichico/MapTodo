@@ -86,13 +86,26 @@ class TodoListViewController: AppViewController {
     }
 
     @objc func keyboardWillBeHidden(notification: NSNotification) {
+        self.view.frame = CGRect(
+            x: self.view.frame.minX,
+            y: self.view.frame.minY,
+            width: self.view.frame.width,
+            height: UIScreen.main.bounds.height)
     }
 
     func fitScrollPositionToKeyboard() {
-        if let keyboardMinY = keyboardMinY, let editingCellHeight = editingCellHeight {
-            let newContentOffset = editingCellHeight - keyboardMinY + 50
-            if newContentOffset > todoListTableView.contentOffset.y {
-                todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
+        if let keyboardMinY = keyboardMinY {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.view.frame = CGRect(x: self.view.frame.minX,
+                                         y: self.view.frame.minY,
+                                         width: self.view.frame.width,
+                                         height: keyboardMinY)
+            })
+            if let editingCellHeight = editingCellHeight {
+                let newContentOffset = editingCellHeight - keyboardMinY + 50
+                if newContentOffset > todoListTableView.contentOffset.y {
+                    todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
+                }
             }
             self.editingCellHeight = nil
             self.keyboardMinY = nil
