@@ -22,8 +22,22 @@ class TodoListViewController: AppViewController {
     let realm: Realm = try! Realm()
     var todoEntries: Results<Todo>!
     var placeEntries: Results<Place>!
-    var keyboardMinY: CGFloat?
-    var editingCellHeight: CGFloat?
+    var keyboardMinY: CGFloat? {
+        didSet {
+            if keyboardMinY != nil {
+                fitScrollViewToKeyboard()
+            }
+        }
+    }
+    var editingCellHeight: CGFloat? {
+        didSet {
+            if editingCellHeight != nil {
+                fitScrollViewToKeyboard()
+            }
+        }
+    }
+    var keyboardAnimationDuration: NSNumber?
+    var keyboardAnimationOptions: UIViewAnimationOptions?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,12 +91,12 @@ class TodoListViewController: AppViewController {
     }
 
     @objc func keyboardWillBeShown(notification: NSNotification) {
-        if keyboardMinY == nil {
-            if let height = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.minY {
-                keyboardMinY = height
-                fitScrollVoewToKeyboard()
-            }
+        keyboardAnimationDuration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber
+        if let rowValue = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber {
+            keyboardAnimationOptions = UIViewAnimationOptions(rawValue: UInt(truncating: rowValue))
         }
+
+        keyboardMinY = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.minY
     }
 
     @objc func keyboardWillBeHidden(notification: NSNotification) {
@@ -93,22 +107,27 @@ class TodoListViewController: AppViewController {
             height: UIScreen.main.bounds.height)
     }
 
-    func fitScrollVoewToKeyboard() {
-        if let keyboardMinY = keyboardMinY {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.view.frame = CGRect(x: self.view.frame.minX,
-                                         y: self.view.frame.minY,
-                                         width: self.view.frame.width,
-                                         height: keyboardMinY)
-                if let editingCellHeight = self.editingCellHeight {
-                    let newContentOffset = editingCellHeight - keyboardMinY + 50
-                    if newContentOffset > self.todoListTableView.contentOffset.y {
-                        self.todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: false)
-                    }
-                }
-            })
+    func fitScrollViewToKeyboard() {
+        if let keyboardMinY = keyboardMinY, let editingCellHeight = self.editingCellHeight {
+            UIView.animate(withDuration: keyboardAnimationDuration as? Double ?? 0.2,
+                           delay: 0,
+                           options: keyboardAnimationOptions ??
+                                [.layoutSubviews, .allowUserInteraction, .beginFromCurrentState],
+                           animations: {
+                                self.view.frame = CGRect(x: self.view.frame.minX, y: self.view.frame.minY,
+                                                         width: self.view.frame.width, height: keyboardMinY)
+                            },
+                           completion: nil)
+
+            let newContentOffset = editingCellHeight - keyboardMinY + 50
+            if newContentOffset > self.todoListTableView.contentOffset.y {
+                self.todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: false)
+            }
+
             self.editingCellHeight = nil
             self.keyboardMinY = nil
+            self.keyboardAnimationDuration = nil
+            self.keyboardAnimationOptions = nil
         }
     }
 }
@@ -222,6 +241,5 @@ extension TodoListViewController: TextFieldTableViewCellDelegate {
 
     func textFieldDidBeginEditing(cell: TextFieldTableViewCell) {
         editingCellHeight = cell.frame.maxY
-        fitScrollVoewToKeyboard()
     }
 }
