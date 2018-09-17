@@ -100,13 +100,13 @@ class TodoListViewController: AppViewController {
                                          y: self.view.frame.minY,
                                          width: self.view.frame.width,
                                          height: keyboardMinY)
-            })
-            if let editingCellHeight = editingCellHeight {
-                let newContentOffset = editingCellHeight - keyboardMinY + 50
-                if newContentOffset > todoListTableView.contentOffset.y {
-                    todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
+                if let editingCellHeight = self.editingCellHeight {
+                    let newContentOffset = editingCellHeight - keyboardMinY + 50
+                    if newContentOffset > self.todoListTableView.contentOffset.y {
+                        self.todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: false)
+                    }
                 }
-            }
+            })
             self.editingCellHeight = nil
             self.keyboardMinY = nil
         }
