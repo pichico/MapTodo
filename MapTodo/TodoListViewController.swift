@@ -22,22 +22,8 @@ class TodoListViewController: AppViewController {
     let realm: Realm = try! Realm()
     var todoEntries: Results<Todo>!
     var placeEntries: Results<Place>!
-    var keyboardMinY: CGFloat? {
-        didSet {
-            if keyboardMinY != nil {
-                fitScrollViewToKeyboard()
-            }
-        }
-    }
-    var editingCellHeight: CGFloat? {
-        didSet {
-            if editingCellHeight != nil {
-                fitScrollViewToKeyboard()
-            }
-        }
-    }
-    var keyboardAnimationDuration: NSNumber?
-    var keyboardAnimationOptions: UIViewAnimationOptions?
+    var keyboardPosition: CGRect?
+    var editingCellHeight: CGFloat?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -91,43 +77,30 @@ class TodoListViewController: AppViewController {
     }
 
     @objc func keyboardWillBeShown(notification: NSNotification) {
-        keyboardAnimationDuration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber
-        if let rowValue = notification.userInfo?[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber {
-            keyboardAnimationOptions = UIViewAnimationOptions(rawValue: UInt(truncating: rowValue))
-        }
-
-        keyboardMinY = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.minY
+        keyboardPosition = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        fitScrollViewToKeyboard()
     }
 
     @objc func keyboardWillBeHidden(notification: NSNotification) {
-        self.view.frame = CGRect(
-            x: self.view.frame.minX,
-            y: self.view.frame.minY,
-            width: self.view.frame.width,
-            height: UIScreen.main.bounds.height)
+        todoListTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 
     func fitScrollViewToKeyboard() {
-        if let keyboardMinY = keyboardMinY, let editingCellHeight = self.editingCellHeight {
-            UIView.animate(withDuration: keyboardAnimationDuration as? Double ?? 0.2,
-                           delay: 0,
-                           options: keyboardAnimationOptions ??
-                                [.layoutSubviews, .allowUserInteraction, .beginFromCurrentState],
-                           animations: {
-                                self.view.frame = CGRect(x: self.view.frame.minX, y: self.view.frame.minY,
-                                                         width: self.view.frame.width, height: keyboardMinY)
-                            },
-                           completion: nil)
+        if let keyboardPosition = keyboardPosition, let editingCellHeight = editingCellHeight {
+            todoListTableView.contentInset = UIEdgeInsets(
+                top: 0,
+                left: 0,
+                bottom: keyboardPosition.height,
+                right: 0
+            )
 
-            let newContentOffset = editingCellHeight - keyboardMinY + 50
-            if newContentOffset > self.todoListTableView.contentOffset.y {
-                self.todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: false)
+            let newContentOffset = editingCellHeight - keyboardPosition.minY + 50
+            if newContentOffset > todoListTableView.contentOffset.y {
+                todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
             }
 
             self.editingCellHeight = nil
-            self.keyboardMinY = nil
-            self.keyboardAnimationDuration = nil
-            self.keyboardAnimationOptions = nil
+            self.keyboardPosition = nil
         }
     }
 }
@@ -241,5 +214,6 @@ extension TodoListViewController: TextFieldTableViewCellDelegate {
 
     func textFieldDidBeginEditing(cell: TextFieldTableViewCell) {
         editingCellHeight = cell.frame.maxY
+        fitScrollViewToKeyboard()
     }
 }
