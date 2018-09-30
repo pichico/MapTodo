@@ -19,9 +19,11 @@ class TodoListViewController: AppViewController {
     @IBOutlet weak var addPlaceButton: UIBarButtonItem!
 
     let coachMarksController = CoachMarksController()
+    let realm: Realm = try! Realm()
     var todoEntries: Results<Todo>!
     var placeEntries: Results<Place>!
-    let realm: Realm = try! Realm()
+    var keyboardPosition: CGRect?
+    var editingCellHeight: CGFloat?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +31,11 @@ class TodoListViewController: AppViewController {
         placeEntries = Place.getAll(realm: realm)
         if placeEntries.count == 0 || todoEntries.count == 0 {
             coachMarksController.dataSource = self
-            coachMarksController.overlay.color = UIColor.init(white: 0.5, alpha: 0.5)
+            coachMarksController.overlay.color = UIColor(white: 0.5, alpha: 0.5)
             coachMarksController.start(on: self)
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeShown(notification:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: .UIKeyboardWillHide, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +45,10 @@ class TodoListViewController: AppViewController {
         if todoEntries.count == 0 {
             coachMarksController.start(on: self)
         }
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,6 +74,29 @@ class TodoListViewController: AppViewController {
         let controller = R.storyboard.main.placeView()!
         controller.place = place(section: sender.tag)
         navigationController?.pushViewController(controller, animated: true)
+    }
+
+    @objc func keyboardWillBeShown(notification: NSNotification) {
+        keyboardPosition = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        fitScrollViewToKeyboard()
+    }
+
+    @objc func keyboardWillBeHidden(notification: NSNotification) {
+        todoListTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    }
+
+    func fitScrollViewToKeyboard() {
+        if let keyboardPosition = keyboardPosition, let editingCellHeight = editingCellHeight {
+            todoListTableView.contentInset.bottom = keyboardPosition.height
+
+            let newContentOffset = editingCellHeight - keyboardPosition.minY + 50
+            if newContentOffset > todoListTableView.contentOffset.y {
+                todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
+            }
+
+            self.editingCellHeight = nil
+            self.keyboardPosition = nil
+        }
     }
 }
 
@@ -174,5 +205,10 @@ extension TodoListViewController: TextFieldTableViewCellDelegate {
                 }
             }
         }
+    }
+
+    func textFieldDidBeginEditing(cell: TextFieldTableViewCell) {
+        editingCellHeight = cell.frame.maxY
+        fitScrollViewToKeyboard()
     }
 }
