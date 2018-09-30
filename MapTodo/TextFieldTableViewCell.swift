@@ -8,20 +8,20 @@
 
 import UIKit
 
-
-protocol TextFieldTableViewCellDelegate {
-    func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String, indexPath: IndexPath) -> ()
+protocol TextFieldTableViewCellDelegate: class {
+    func textFieldDidEndEditing(cell: TextFieldTableViewCell, value: String, indexPath: IndexPath)
+    func textFieldDidBeginEditing(cell: TextFieldTableViewCell)
 }
 
 class TextFieldTableViewCell: AppTableViewCell, UITextFieldDelegate {
-    var delegate: TextFieldTableViewCellDelegate! = nil
+    weak var delegate: TextFieldTableViewCellDelegate!
     var indexPath: IndexPath?
     @IBOutlet weak var textField: UITextField!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         if let view = Bundle.main.loadNibNamed("TextFieldTableViewCell", owner: self, options: nil)?.first as? UIView {
-            view.frame = CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
+            view.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
             textField.delegate = self
             textField.returnKeyType = .done
             self.addSubview(view)
@@ -39,5 +39,9 @@ class TextFieldTableViewCell: AppTableViewCell, UITextFieldDelegate {
     internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+
+    internal func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.delegate.textFieldDidBeginEditing(cell: self)
     }
 }
