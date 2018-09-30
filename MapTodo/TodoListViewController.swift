@@ -87,12 +87,7 @@ class TodoListViewController: AppViewController {
 
     func fitScrollViewToKeyboard() {
         if let keyboardPosition = keyboardPosition, let editingCellHeight = editingCellHeight {
-            todoListTableView.contentInset = UIEdgeInsets(
-                top: 0,
-                left: 0,
-                bottom: keyboardPosition.height,
-                right: 0
-            )
+            todoListTableView.contentInset.bottom = keyboardPosition.height
 
             let newContentOffset = editingCellHeight - keyboardPosition.minY + 50
             if newContentOffset > todoListTableView.contentOffset.y {
