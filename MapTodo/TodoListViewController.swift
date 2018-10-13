@@ -82,7 +82,7 @@ class TodoListViewController: AppViewController {
     }
 
     @objc func keyboardWillBeHidden(notification: NSNotification) {
-        todoListTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        todoListTableView.contentInset.bottom = 0
     }
 
     func fitScrollViewToKeyboard() {
