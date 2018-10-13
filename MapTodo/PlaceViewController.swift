@@ -151,7 +151,9 @@ class PlaceViewController: AppViewController {
 
     @objc func keyboardWillBeShown(notification: NSNotification) {
         keyboardPosition = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-        fitScrollViewToKeyboard()
+        DispatchQueue.main.async {
+            self.fitScrollViewToKeyboard()
+        }
     }
 
     @objc func keyboardWillBeHidden(notification: NSNotification) {
@@ -164,9 +166,7 @@ class PlaceViewController: AppViewController {
 
             let newContentOffset = editingCellHeight - keyboardPosition.minY + 50
             if newContentOffset > todoListTableView.contentOffset.y {
-                DispatchQueue.main.async {
-                    self.todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
-                }
+                todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
             }
 
             self.editingCellHeight = nil
