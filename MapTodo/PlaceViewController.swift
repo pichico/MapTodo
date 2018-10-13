@@ -155,16 +155,18 @@ class PlaceViewController: AppViewController {
     }
 
     @objc func keyboardWillBeHidden(notification: NSNotification) {
-        todoListTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        todoListTableView.contentInset.bottom = 0
     }
 
     func fitScrollViewToKeyboard() {
         if let keyboardPosition = keyboardPosition, let editingCellHeight = editingCellHeight {
             todoListTableView.contentInset.bottom = keyboardPosition.height
-            let newContentOffset = editingCellHeight - keyboardPosition.minY + 50
 
+            let newContentOffset = editingCellHeight - keyboardPosition.minY + 50
             if newContentOffset > todoListTableView.contentOffset.y {
-                todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
+                DispatchQueue.main.async {
+                    self.todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
+                }
             }
 
             self.editingCellHeight = nil
