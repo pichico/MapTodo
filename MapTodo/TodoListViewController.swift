@@ -78,7 +78,9 @@ class TodoListViewController: AppViewController {
 
     @objc func keyboardWillBeShown(notification: NSNotification) {
         keyboardPosition = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-        fitScrollViewToKeyboard()
+        DispatchQueue.main.async {
+            self.fitScrollViewToKeyboard()
+        }
     }
 
     @objc func keyboardWillBeHidden(notification: NSNotification) {
