@@ -29,6 +29,8 @@ class PlaceViewController: AppViewController {
     var isNew: Bool!
     let realm: Realm = try! Realm()
     var todoEntiries: Results<Todo>!
+    var keyboardPosition: CGRect?
+    var editingCellHeight: CGFloat?
 
     let coachMarksController = CoachMarksController()
 
@@ -60,6 +62,13 @@ class PlaceViewController: AppViewController {
         updateValues()
 
         todoListTableView.tableHeaderView?.height = 450
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeShown(notification:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: .UIKeyboardWillHide, object: nil)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     func updateValues() {
@@ -138,6 +147,31 @@ class PlaceViewController: AppViewController {
             },
             animated: true
         )
+    }
+
+    @objc func keyboardWillBeShown(notification: NSNotification) {
+        keyboardPosition = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        DispatchQueue.main.async {
+            self.fitScrollViewToKeyboard()
+        }
+    }
+
+    @objc func keyboardWillBeHidden(notification: NSNotification) {
+        todoListTableView.contentInset.bottom = 0
+    }
+
+    func fitScrollViewToKeyboard() {
+        if let keyboardPosition = keyboardPosition, let editingCellHeight = editingCellHeight {
+            todoListTableView.contentInset.bottom = keyboardPosition.height
+
+            let newContentOffset = editingCellHeight - keyboardPosition.minY + 50
+            if newContentOffset > todoListTableView.contentOffset.y {
+                todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
+            }
+
+            self.editingCellHeight = nil
+            self.keyboardPosition = nil
+        }
     }
 
     @IBAction func deletePlaceButtonClicked(_ sender: Any) {
@@ -285,11 +319,8 @@ extension PlaceViewController: TextFieldTableViewCellDelegate {
     }
 
     func textFieldDidBeginEditing(cell: TextFieldTableViewCell) {
-        // 下の方のセルに入力しようとするとキーボードでセルが隠れてしまうので、対象のセルが画面の真ん中にくるようにスクロールさせる
-        let newContentOffset = todoListTableView.contentOffset.y + cell.frame.maxY - todoListTableView.bounds.minY - UIScreen.main.bounds.size.height * 0.5
-        if newContentOffset >= todoListTableView.contentOffset.y {
-            todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
-        }
+        editingCellHeight = cell.frame.maxY
+        fitScrollViewToKeyboard()
     }
 }
 
