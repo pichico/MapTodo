@@ -73,25 +73,23 @@ class PlaceViewController: AppViewController {
 
     func updateValues() {
         footerView.isHidden = isNew
-        if let place = place {
-            navigationItem.title = place.name
-            if let locCoordinate = place.CLLocationCoordinate2D { // 地図をあわせる
-                mapPoint = locCoordinate
-                gmView.moveCamera(
-                    GMSCameraUpdate.setCamera(
-                        GMSCameraPosition.camera(withTarget: locCoordinate, zoom: defaultZoom)
-                    )
+        navigationItem.title = place.name
+        if let locCoordinate = place.CLLocationCoordinate2D { // 地図をあわせる
+            mapPoint = locCoordinate
+            gmView.moveCamera(
+                GMSCameraUpdate.setCamera(
+                    GMSCameraPosition.camera(withTarget: locCoordinate, zoom: defaultZoom)
                 )
-                radiusStepper.value = place.radius.value!
-                showMonitoringRegion(mapPoint, radius: radiusStepper.value)
-            } else {
-                //デフォルトのmap
-                lmmap.desiredAccuracy = kCLLocationAccuracyBest
-                lmmap.distanceFilter = 200
-                lmmap.startUpdatingLocation()
-            }
-            todoEntiries = Todo.getList(realm: realm, place: place)
+            )
+            radiusStepper.value = place.radius.value!
+            showMonitoringRegion(mapPoint, radius: radiusStepper.value)
+        } else {
+            //デフォルトのmap
+            lmmap.desiredAccuracy = kCLLocationAccuracyBest
+            lmmap.distanceFilter = 200
+            lmmap.startUpdatingLocation()
         }
+        todoEntiries = Todo.getList(realm: realm, place: place)
     }
 
     func replacePlace(name: String) {
@@ -161,17 +159,16 @@ class PlaceViewController: AppViewController {
     }
 
     func fitScrollViewToKeyboard() {
-        if let keyboardPosition = keyboardPosition, let editingCellHeight = editingCellHeight {
-            todoListTableView.contentInset.bottom = keyboardPosition.height
+        guard let keyboardPosition = keyboardPosition, let editingCellHeight = editingCellHeight else { return }
+        todoListTableView.contentInset.bottom = keyboardPosition.height
 
-            let newContentOffset = editingCellHeight - keyboardPosition.minY + 50
-            if newContentOffset > todoListTableView.contentOffset.y {
-                todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
-            }
-
-            self.editingCellHeight = nil
-            self.keyboardPosition = nil
+        let newContentOffset = editingCellHeight - keyboardPosition.minY + 50
+        if newContentOffset > todoListTableView.contentOffset.y {
+            todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
         }
+
+        self.editingCellHeight = nil
+        self.keyboardPosition = nil
     }
 
     @IBAction func deletePlaceButtonClicked(_ sender: Any) {

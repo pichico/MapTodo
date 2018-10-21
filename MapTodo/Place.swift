@@ -15,7 +15,7 @@ class Place: Object {
 
     var latitude = RealmOptional<Double>(nil)
     var longitude = RealmOptional<Double>(nil)
-    @objc dynamic var name: String? = nil
+    @objc dynamic var name: String!
     @objc dynamic var uuid = UUID().uuidString
     var radius = RealmOptional<Double>(nil)
 
@@ -40,8 +40,7 @@ class Place: Object {
 
     public func replace(realm: Realm, name: String, radius: Double?, point: CLLocationCoordinate2D?) {
         self.name = name
-        if let point = point { // 新しいMonitoringを開始
-            let radius = radius!
+        if let point = point, let radius = radius { // 新しいMonitoringを開始
             self.radius.value = radius
             self.latitude.value = point.latitude
             self.longitude.value = point.longitude
@@ -72,17 +71,13 @@ extension Place {
     }
 
     func startMonitoring() {
-        let lm = LocationManager.sharedLocationManager
-        if let CLLocationCoordinate2D = CLLocationCoordinate2D {
-            lm.startMonitoring(CLLocationCoordinate2D, radius: self.radius.value!, identifier: self.uuid)
-        }
+        guard let CLLocationCoordinate2D = CLLocationCoordinate2D else { return }
+        LocationManager.sharedLocationManager.startMonitoring(CLLocationCoordinate2D, radius: self.radius.value!, identifier: self.uuid)
     }
 
     func stopMonitoring() {
-        let lm = LocationManager.sharedLocationManager
-        if let CLLocationCoordinate2D = CLLocationCoordinate2D {
-            lm.stopMonitoring(CLLocationCoordinate2D, radius: self.radius.value!, identifier: self.uuid)
-        }
+        guard let CLLocationCoordinate2D = CLLocationCoordinate2D else { return }
+        LocationManager.sharedLocationManager.stopMonitoring(CLLocationCoordinate2D, radius: self.radius.value!, identifier: self.uuid)
     }
 
 }

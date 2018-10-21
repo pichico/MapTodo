@@ -20,12 +20,11 @@ class TextFieldTableViewCell: AppTableViewCell, UITextFieldDelegate {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        if let view = Bundle.main.loadNibNamed("TextFieldTableViewCell", owner: self, options: nil)?.first as? UIView {
-            view.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
-            textField.delegate = self
-            textField.returnKeyType = .done
-            self.addSubview(view)
-        }
+        guard let view = Bundle.main.loadNibNamed("TextFieldTableViewCell", owner: self, options: nil)?.first as? UIView else { return }
+        view.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)
+        textField.delegate = self
+        textField.returnKeyType = .done
+        self.addSubview(view)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

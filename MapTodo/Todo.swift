@@ -12,7 +12,7 @@ import RealmSwift
 
 class Todo: Object {
     @objc dynamic var item: String?
-    @objc dynamic var place: Place? = nil
+    @objc dynamic var place: Place!
     @objc dynamic var uuid = UUID().uuidString
 
     override static func primaryKey() -> String? {
@@ -30,7 +30,7 @@ class Todo: Object {
     public func delete(realm: Realm) {
         Analytics.logEvent("delete_todo", parameters: [
             "uuid": uuid,
-            "place": place!.uuid
+            "place": place.uuid
             ])
         realm.delete(self)
     }

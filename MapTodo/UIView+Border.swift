@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIView {
-    
+
     // 枠線の色
     @IBInspectable var borderColor: UIColor? {
         get {
@@ -19,7 +19,7 @@ extension UIView {
             layer.borderColor = newValue?.cgColor
         }
     }
-    
+
     // 枠線のWidth
     @IBInspectable var borderWidth: CGFloat {
         get {
@@ -29,7 +29,7 @@ extension UIView {
             layer.borderWidth = newValue
         }
     }
-    
+
     // 角丸設定
     @IBInspectable var cornerRadius: CGFloat {
         get {
