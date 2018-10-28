@@ -235,6 +235,7 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.isBottom = false
             } else {
                 cell.textField.text = ""
+                cell.textField.placeholder = "この場所のTODOを入力します"
                 cell.isBottom = true
             }
         }
