@@ -52,12 +52,203 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="nyg-lr-bQ6"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" restorationIdentifier="GuideView" translatesAutoresizingMaskIntoConstraints="NO" id="dYp-2N-YLc">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkM-Z6-Tzl" userLabel="ご利用ありがとうございます  「お知らせマップ」は、 あなたのタスクを地図上の場所ごとに管理し、 近くを通りかかると通知でお知らせします。  まずはこの画面右上の「+」ボタンから タスクのある場所(クリーニング店、自宅など)を 登録しましょう。" customClass="AppUILabel" customModule="MapTodo" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="100" width="355" height="200"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="TSb-QW-eKh"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="hBN-wP-In0"/>
+                                        </constraints>
+                                        <attributedString key="attributedText">
+                                            <fragment content="ご利用ありがとうございます">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="18" name="HiraginoSans-W3"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tighteningFactorForTruncation="0.0">
+                                                        <tabStops>
+                                                            <textTab alignment="left" location="28">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="56">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="84">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="112">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="140">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="168">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="196">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="224">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="252">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="280">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="308">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="336">
+                                                                <options/>
+                                                            </textTab>
+                                                        </tabStops>
+                                                    </paragraphStyle>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment>
+                                                <string key="content">
+
+「お知らせマップ」は、
+あなたのタスクを地図上の場所ごとに管理し、
+近くを通りかかると通知でお知らせします。
+
+まずはこの画面右上の「+」ボタンから
+タスクのある場所(クリーニング店、自宅など)を
+</string>
+                                                <attributes>
+                                                    <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="14" name="HiraginoSans-W3"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tighteningFactorForTruncation="0.0">
+                                                        <tabStops>
+                                                            <textTab alignment="left" location="28">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="56">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="84">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="112">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="140">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="168">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="196">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="224">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="252">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="280">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="308">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="336">
+                                                                <options/>
+                                                            </textTab>
+                                                        </tabStops>
+                                                    </paragraphStyle>
+                                                </attributes>
+                                            </fragment>
+                                            <fragment content="登録しましょう。">
+                                                <attributes>
+                                                    <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <font key="NSFont" size="14" name="HiraginoSans-W3"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="20" tighteningFactorForTruncation="0.0">
+                                                        <tabStops>
+                                                            <textTab alignment="left" location="28">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="56">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="84">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="112">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="140">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="168">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="196">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="224">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="252">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="280">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="308">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="336">
+                                                                <options/>
+                                                            </textTab>
+                                                        </tabStops>
+                                                    </paragraphStyle>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="padding">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide-arrow" translatesAutoresizingMaskIntoConstraints="NO" id="kyx-Kn-hau">
+                                        <rect key="frame" x="322" y="4" width="39" height="117"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="kyx-Kn-hau" firstAttribute="top" secondItem="dYp-2N-YLc" secondAttribute="top" constant="4" id="8lr-aa-Vfr"/>
+                                    <constraint firstItem="mkM-Z6-Tzl" firstAttribute="top" secondItem="dYp-2N-YLc" secondAttribute="top" constant="100" id="BzA-Wk-kkx"/>
+                                    <constraint firstAttribute="trailing" secondItem="kyx-Kn-hau" secondAttribute="trailing" constant="14" id="EqS-vp-Onb"/>
+                                    <constraint firstItem="mkM-Z6-Tzl" firstAttribute="leading" secondItem="dYp-2N-YLc" secondAttribute="leading" constant="10" id="Jg5-QZ-LVN"/>
+                                    <constraint firstAttribute="trailing" secondItem="mkM-Z6-Tzl" secondAttribute="trailing" constant="10" id="V0V-kb-Pf6"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="dYp-2N-YLc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7Rb-bb-uhd"/>
                             <constraint firstItem="HZk-Ha-3sB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="Bjb-xR-r7X"/>
+                            <constraint firstItem="dYp-2N-YLc" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="LcE-4m-WD2"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dYp-2N-YLc" secondAttribute="bottom" id="Uaf-ah-lze"/>
                             <constraint firstAttribute="trailing" secondItem="HZk-Ha-3sB" secondAttribute="trailing" constant="10" id="aFp-Ob-J7K"/>
                             <constraint firstItem="HZk-Ha-3sB" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" constant="10" id="aqx-Zo-hhc"/>
+                            <constraint firstAttribute="trailing" secondItem="dYp-2N-YLc" secondAttribute="trailing" id="hmz-zP-Wlp"/>
                             <constraint firstItem="HZk-Ha-3sB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="10" id="rM8-2m-C9h"/>
                         </constraints>
                     </view>
@@ -76,6 +267,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addPlaceButton" destination="pwl-XD-e7a" id="EA9-La-sAo"/>
+                        <outlet property="guideView" destination="dYp-2N-YLc" id="73V-7p-tz7"/>
                         <outlet property="todoListTableView" destination="HZk-Ha-3sB" id="oRu-ia-fg8"/>
                     </connections>
                 </viewController>
@@ -275,6 +467,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="guide-arrow" width="39" height="117"/>
         <image name="headerIcon" width="12" height="16"/>
     </resources>
 </document>

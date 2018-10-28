@@ -33,6 +33,7 @@ class PlaceViewController: AppViewController {
     var editingCellHeight: CGFloat?
 
     let coachMarksController = CoachMarksController()
+    var coachMarkIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -271,6 +272,10 @@ extension PlaceViewController: GMSMapViewDelegate {
                 animated: true
             )
         } else {
+            if Place.getAll(realm: realm).count == 0 {
+                coachMarkIndex = 1
+                coachMarksController.start(on: self)
+            }
             mapPoint = coordinate
             showMonitoringRegion(coordinate, radius: radiusStepper.value)
         }
@@ -323,11 +328,11 @@ extension PlaceViewController: TextFieldTableViewCellDelegate {
 
 extension PlaceViewController: CoachMarksControllerDataSource, CoachMarksControllerDelegate {
     func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
-        return coachMarkConfigs.count
+        return 1
     }
 
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
-        return coachMarksController.helper.makeCoachMark(for: coachMarkConfigs[index].view)
+        return coachMarksController.helper.makeCoachMark(for: coachMarkConfigs[coachMarkIndex].view)
     }
 
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark)
@@ -336,7 +341,7 @@ extension PlaceViewController: CoachMarksControllerDataSource, CoachMarksControl
                 withArrow: true,
                 arrowOrientation: coachMark.arrowOrientation
             )
-            coachViews.bodyView.hintLabel.text = coachMarkConfigs[index].text
+            coachViews.bodyView.hintLabel.text = coachMarkConfigs[coachMarkIndex].text
             coachViews.bodyView.nextLabel.text = "OK"
             return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
     }
