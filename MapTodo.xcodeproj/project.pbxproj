@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		065E3C033770B115BCF5696C /* Pods_MapTodoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC27D6FAD2F05AF50CDFA07C /* Pods_MapTodoTests.framework */; };
 		06D9EA0969424EC21C3C4710 /* Pods_MapTodoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9A080260C49D4BE5C7B8777 /* Pods_MapTodoUITests.framework */; };
-		5B12595821857DEE00F87398 /* AppUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B12595721857DEE00F87398 /* AppUILabel.swift */; };
+		5B12595821857DEE00F87398 /* AppLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B12595721857DEE00F87398 /* AppLabel.swift */; };
 		5B4536DA201305690034CCFC /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5B4536D9201305690034CCFC /* Settings.bundle */; };
 		5B9A10F3210E025100906E66 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9A10F2210E025100906E66 /* UIViewExtension.swift */; };
 		5BB1C6B41FD2E7A400266C98 /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB1C6B31FD2E7A400266C98 /* UIView+Border.swift */; };
@@ -63,7 +63,7 @@
 		012DA89AD8296A2BE609DEFC /* Pods-MapTodoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapTodoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapTodoTests/Pods-MapTodoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		135FDA1CC3C1B9E7ABA59F41 /* Pods_MapTodo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapTodo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		14D9D9DF8FA87DE319A7D4C1 /* Pods-MapTodoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapTodoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MapTodoUITests/Pods-MapTodoUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		5B12595721857DEE00F87398 /* AppUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUILabel.swift; sourceTree = "<group>"; };
+		5B12595721857DEE00F87398 /* AppLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLabel.swift; sourceTree = "<group>"; };
 		5B4536D9201305690034CCFC /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		5B9A10F2210E025100906E66 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		5BB1C6B31FD2E7A400266C98 /* UIView+Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
@@ -256,7 +256,7 @@
 				5BB1C6B31FD2E7A400266C98 /* UIView+Border.swift */,
 				7D4073231DA94514005BBBCD /* TextFieldTableViewCell.swift */,
 				7D9E30211EC9EECD007F2D21 /* AppTableViewCell.swift */,
-				5B12595721857DEE00F87398 /* AppUILabel.swift */,
+				5B12595721857DEE00F87398 /* AppLabel.swift */,
 				7D4E66C81EED1CE20099F3CA /* AppNavigationItem.swift */,
 				5BCF5D0E1FAD878800F17043 /* AppTableViewHeaderView.swift */,
 			);
@@ -681,7 +681,7 @@
 				7DFD35631E06D05000F02FA0 /* R.generated.swift in Sources */,
 				7D9E30221EC9EECD007F2D21 /* AppTableViewCell.swift in Sources */,
 				7D1DB8A51E59BB07006FFEA7 /* Todo.swift in Sources */,
-				5B12595821857DEE00F87398 /* AppUILabel.swift in Sources */,
+				5B12595821857DEE00F87398 /* AppLabel.swift in Sources */,
 				7D4073241DA94514005BBBCD /* TextFieldTableViewCell.swift in Sources */,
 				7DBE19611DE976C4008E20DC /* LocationManager.swift in Sources */,
 				7D4072F21DA92DBD005BBBCD /* AppDelegate.swift in Sources */,

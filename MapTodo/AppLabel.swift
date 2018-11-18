@@ -7,11 +7,18 @@
 //
 
 import UIKit
-class AppUILabel: UILabel {
+class AppLabel: UILabel {
     @IBInspectable var padding: CGFloat = 0
 
     override func drawText(in rect: CGRect) {
          let insets = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
         super.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
+    }
+
+    override var intrinsicContentSize: CGSize {
+        var intrinsicContentSize = super.intrinsicContentSize
+        intrinsicContentSize.height += 2 * padding
+        intrinsicContentSize.width += 2 * padding
+        return intrinsicContentSize
     }
 }
