@@ -55,19 +55,22 @@
                             <view contentMode="scaleToFill" restorationIdentifier="GuideView" translatesAutoresizingMaskIntoConstraints="NO" id="dYp-2N-YLc">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkM-Z6-Tzl" userLabel="ご利用ありがとうございます  「お知らせマップ」は、 あなたのタスクを地図上の場所ごとに管理し、 近くを通りかかると通知でお知らせします。  まずはこの画面右上の「+」ボタンから タスクのある場所(クリーニング店、自宅など)を 登録しましょう。" customClass="AppLabel" customModule="MapTodo" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="100" width="355" height="130"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="ご利用ありがとうございます">
-                                                <attributes>
-                                                    <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="18" name="HiraginoSans-W3"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment>
-                                                <string key="content">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IWU-Ga-Bcp">
+                                        <rect key="frame" x="10" y="100" width="355" height="166"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mkM-Z6-Tzl" userLabel="ご利用ありがとうございます  「お知らせマップ」は、 あなたのタスクを地図上の場所ごとに管理し、 近くを通りかかると通知でお知らせします。  まずはこの画面右上の「+」ボタンから タスクのある場所(クリーニング店、自宅など)を 登録しましょう。">
+                                                <rect key="frame" x="18" y="18" width="319" height="130"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="ご利用ありがとうございます">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="18" name="HiraginoSans-W3"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment>
+                                                        <string key="content">
 
 「お知らせマップ」は、
 あなたのタスクを地図上の場所ごとに管理し、
@@ -76,46 +79,52 @@
 まずはこの画面右上の「+」ボタンから
 タスクのある場所(クリーニング店、自宅など)を
 </string>
-                                                <attributes>
-                                                    <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="14" name="HiraginoSans-W3"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                            <fragment content="登録しましょう。">
-                                                <attributes>
-                                                    <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                                    <font key="NSFont" size="14" name="HiraginoSans-W3"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="20" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <nil key="highlightedColor"/>
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="14" name="HiraginoSans-W3"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                    <fragment content="登録しましょう。">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                            <font key="NSFont" size="14" name="HiraginoSans-W3"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" headIndent="20" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="mkM-Z6-Tzl" firstAttribute="top" secondItem="IWU-Ga-Bcp" secondAttribute="top" constant="18" id="4Lg-9b-Wx1"/>
+                                            <constraint firstItem="mkM-Z6-Tzl" firstAttribute="leading" secondItem="IWU-Ga-Bcp" secondAttribute="leading" constant="18" id="5XO-iG-QTa"/>
+                                            <constraint firstAttribute="trailing" secondItem="mkM-Z6-Tzl" secondAttribute="trailing" constant="18" id="LFL-wE-JIb"/>
+                                            <constraint firstAttribute="bottom" secondItem="mkM-Z6-Tzl" secondAttribute="bottom" constant="18" id="ib9-6s-1uP"/>
+                                        </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="1"/>
                                             </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="padding">
-                                                <real key="value" value="18"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                    </label>
+                                    </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide-arrow" translatesAutoresizingMaskIntoConstraints="NO" id="kyx-Kn-hau">
                                         <rect key="frame" x="322" y="4" width="39" height="117"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="kyx-Kn-hau" firstAttribute="top" secondItem="dYp-2N-YLc" secondAttribute="top" constant="4" id="8lr-aa-Vfr"/>
-                                    <constraint firstItem="mkM-Z6-Tzl" firstAttribute="top" secondItem="dYp-2N-YLc" secondAttribute="top" constant="100" id="BzA-Wk-kkx"/>
                                     <constraint firstAttribute="trailing" secondItem="kyx-Kn-hau" secondAttribute="trailing" constant="14" id="EqS-vp-Onb"/>
-                                    <constraint firstItem="mkM-Z6-Tzl" firstAttribute="leading" secondItem="dYp-2N-YLc" secondAttribute="leading" constant="10" id="Jg5-QZ-LVN"/>
-                                    <constraint firstAttribute="trailing" secondItem="mkM-Z6-Tzl" secondAttribute="trailing" constant="10" id="V0V-kb-Pf6"/>
+                                    <constraint firstItem="IWU-Ga-Bcp" firstAttribute="leading" secondItem="dYp-2N-YLc" secondAttribute="leading" constant="10" id="gnt-zh-RJP"/>
+                                    <constraint firstAttribute="trailing" secondItem="IWU-Ga-Bcp" secondAttribute="trailing" constant="10" id="hVJ-Nh-37x"/>
+                                    <constraint firstItem="IWU-Ga-Bcp" firstAttribute="top" secondItem="dYp-2N-YLc" secondAttribute="top" constant="100" id="x2o-68-MG3"/>
                                 </constraints>
                             </view>
                         </subviews>
