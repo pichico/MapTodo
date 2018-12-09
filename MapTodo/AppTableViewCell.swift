@@ -32,7 +32,7 @@ class AppTableViewCell: UITableViewCell {
 
     func updateBorder() {
         let rcfirst: UIRectCorner = isTop ? [UIRectCorner.topLeft, UIRectCorner.topRight] : []
-        let rclast:  UIRectCorner = isBottom  ? [UIRectCorner.bottomLeft, UIRectCorner.bottomRight] : []
+        let rclast: UIRectCorner = isBottom  ? [UIRectCorner.bottomLeft, UIRectCorner.bottomRight] : []
 
         // 角丸
         if (isTop || isBottom) && tableCornerRadius > 0 {

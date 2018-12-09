@@ -33,6 +33,7 @@ class PlaceViewController: AppViewController {
     var editingCellHeight: CGFloat?
 
     let coachMarksController = CoachMarksController()
+    var coachMarkIndex = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,25 +74,23 @@ class PlaceViewController: AppViewController {
 
     func updateValues() {
         footerView.isHidden = isNew
-        if let place = place {
-            navigationItem.title = place.name
-            if let locCoordinate = place.CLLocationCoordinate2D { // 地図をあわせる
-                mapPoint = locCoordinate
-                gmView.moveCamera(
-                    GMSCameraUpdate.setCamera(
-                        GMSCameraPosition.camera(withTarget: locCoordinate, zoom: defaultZoom)
-                    )
+        navigationItem.title = place.name
+        if let locCoordinate = place.CLLocationCoordinate2D { // 地図をあわせる
+            mapPoint = locCoordinate
+            gmView.moveCamera(
+                GMSCameraUpdate.setCamera(
+                    GMSCameraPosition.camera(withTarget: locCoordinate, zoom: defaultZoom)
                 )
-                radiusStepper.value = place.radius.value!
-                showMonitoringRegion(mapPoint, radius: radiusStepper.value)
-            } else {
-                //デフォルトのmap
-                lmmap.desiredAccuracy = kCLLocationAccuracyBest
-                lmmap.distanceFilter = 200
-                lmmap.startUpdatingLocation()
-            }
-            todoEntiries = Todo.getList(realm: realm, place: place)
+            )
+            radiusStepper.value = place.radius.value!
+            showMonitoringRegion(mapPoint, radius: radiusStepper.value)
+        } else {
+            //デフォルトのmap
+            lmmap.desiredAccuracy = kCLLocationAccuracyBest
+            lmmap.distanceFilter = 200
+            lmmap.startUpdatingLocation()
         }
+        todoEntiries = Todo.getList(realm: realm, place: place)
     }
 
     func replacePlace(name: String) {
@@ -161,17 +160,16 @@ class PlaceViewController: AppViewController {
     }
 
     func fitScrollViewToKeyboard() {
-        if let keyboardPosition = keyboardPosition, let editingCellHeight = editingCellHeight {
-            todoListTableView.contentInset.bottom = keyboardPosition.height
+        guard let keyboardPosition = keyboardPosition, let editingCellHeight = editingCellHeight else { return }
+        todoListTableView.contentInset.bottom = keyboardPosition.height
 
-            let newContentOffset = editingCellHeight - keyboardPosition.minY + 50
-            if newContentOffset > todoListTableView.contentOffset.y {
-                todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
-            }
-
-            self.editingCellHeight = nil
-            self.keyboardPosition = nil
+        let newContentOffset = editingCellHeight - keyboardPosition.minY + 50
+        if newContentOffset > todoListTableView.contentOffset.y {
+            todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
         }
+
+        self.editingCellHeight = nil
+        self.keyboardPosition = nil
     }
 
     @IBAction func deletePlaceButtonClicked(_ sender: Any) {
@@ -237,6 +235,7 @@ extension PlaceViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.isBottom = false
             } else {
                 cell.textField.text = ""
+                cell.textField.placeholder = "この場所のTODOを入力します"
                 cell.isBottom = true
             }
         }
@@ -274,6 +273,10 @@ extension PlaceViewController: GMSMapViewDelegate {
                 animated: true
             )
         } else {
+            if Place.getAll(realm: realm).count == 0 {
+                coachMarkIndex = 1
+                coachMarksController.start(on: self)
+            }
             mapPoint = coordinate
             showMonitoringRegion(coordinate, radius: radiusStepper.value)
         }
@@ -326,11 +329,11 @@ extension PlaceViewController: TextFieldTableViewCellDelegate {
 
 extension PlaceViewController: CoachMarksControllerDataSource, CoachMarksControllerDelegate {
     func numberOfCoachMarks(for coachMarksController: CoachMarksController) -> Int {
-        return coachMarkConfigs.count
+        return 1
     }
 
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkAt index: Int) -> CoachMark {
-        return coachMarksController.helper.makeCoachMark(for: coachMarkConfigs[index].view)
+        return coachMarksController.helper.makeCoachMark(for: coachMarkConfigs[coachMarkIndex].view)
     }
 
     func coachMarksController(_ coachMarksController: CoachMarksController, coachMarkViewsAt index: Int, madeFrom coachMark: CoachMark)
@@ -339,7 +342,7 @@ extension PlaceViewController: CoachMarksControllerDataSource, CoachMarksControl
                 withArrow: true,
                 arrowOrientation: coachMark.arrowOrientation
             )
-            coachViews.bodyView.hintLabel.text = coachMarkConfigs[index].text
+            coachViews.bodyView.hintLabel.text = coachMarkConfigs[coachMarkIndex].text
             coachViews.bodyView.nextLabel.text = "OK"
             return (bodyView: coachViews.bodyView, arrowView: coachViews.arrowView)
     }

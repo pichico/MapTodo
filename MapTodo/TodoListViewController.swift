@@ -15,6 +15,7 @@ import UIKit
 class TodoListViewController: AppViewController {
 
     @IBOutlet weak var todoListTableView: UITableView!
+    @IBOutlet weak var guideView: UIView!
     @IBOutlet weak var todoListItemCell: UITableViewCell!
     @IBOutlet weak var addPlaceButton: UIBarButtonItem!
 
@@ -29,11 +30,6 @@ class TodoListViewController: AppViewController {
         super.viewDidLoad()
         todoEntries = Todo.getAll(realm: realm)
         placeEntries = Place.getAll(realm: realm)
-        if placeEntries.count == 0 || todoEntries.count == 0 {
-            coachMarksController.dataSource = self
-            coachMarksController.overlay.color = UIColor(white: 0.5, alpha: 0.5)
-            coachMarksController.start(on: self)
-        }
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeShown(notification:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: .UIKeyboardWillHide, object: nil)
     }
@@ -42,9 +38,7 @@ class TodoListViewController: AppViewController {
         super.viewWillAppear(animated)
         todoEntries = Todo.getAll(realm: realm)
         todoListTableView.reloadData()
-        if todoEntries.count == 0 {
-            coachMarksController.start(on: self)
-        }
+        guideView.isHidden = placeEntries.count > 0
     }
 
     deinit {
@@ -88,17 +82,16 @@ class TodoListViewController: AppViewController {
     }
 
     func fitScrollViewToKeyboard() {
-        if let keyboardPosition = keyboardPosition, let editingCellHeight = editingCellHeight {
-            todoListTableView.contentInset.bottom = keyboardPosition.height
+        guard let keyboardPosition = keyboardPosition, let editingCellHeight = editingCellHeight else { return }
+        todoListTableView.contentInset.bottom = keyboardPosition.height
 
-            let newContentOffset = editingCellHeight - keyboardPosition.minY + 50
-            if newContentOffset > todoListTableView.contentOffset.y {
-                todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
-            }
-
-            self.editingCellHeight = nil
-            self.keyboardPosition = nil
+        let newContentOffset = editingCellHeight - keyboardPosition.minY + 50
+        if newContentOffset > todoListTableView.contentOffset.y {
+            todoListTableView.setContentOffset(CGPoint(x: 0, y: newContentOffset), animated: true)
         }
+
+        self.editingCellHeight = nil
+        self.keyboardPosition = nil
     }
 }
 
@@ -162,6 +155,7 @@ extension TodoListViewController: UITableViewDataSource {
             cell.isBottom = false
         } else {
             cell.textField.text = ""
+            cell.textField.placeholder = "この場所のTODOを入力します"
             cell.isBottom = true
         }
         return cell
